@@ -82,7 +82,7 @@ public final class LibSLRuntime {
 
     public static String toString(final byte v) {
         // TODO: maybe use more sophisticated approach?
-        final var str = Engine.makeSymbolic(String.class);
+        final String str = Engine.makeSymbolic(String.class);
         Engine.assume(str != null);
 
         Engine.assume(str.length() <= 4); // '-128' _ '128'
@@ -92,7 +92,7 @@ public final class LibSLRuntime {
 
     public static String toString(final short v) {
         // TODO: maybe use more sophisticated approach?
-        final var str = Engine.makeSymbolic(String.class);
+        final String str = Engine.makeSymbolic(String.class);
         Engine.assume(str != null);
 
         Engine.assume(str.length() <= 6); // '-32768' _ '32767'
@@ -102,7 +102,7 @@ public final class LibSLRuntime {
 
     public static String toString(final int v) {
         // TODO: maybe use more sophisticated approach?
-        final var str = Engine.makeSymbolic(String.class);
+        final String str = Engine.makeSymbolic(String.class);
         Engine.assume(str != null);
 
         Engine.assume(str.length() <= 11); // '-2147483648' _ '2147483647'
@@ -112,7 +112,7 @@ public final class LibSLRuntime {
 
     public static String toString(final long v) {
         // TODO: maybe use more sophisticated approach?
-        final var str = Engine.makeSymbolic(String.class);
+        final String str = Engine.makeSymbolic(String.class);
         Engine.assume(str != null);
 
         Engine.assume(str.length() <= 20); // '-9223372036854775808' _ '9223372036854775807'
@@ -140,13 +140,13 @@ public final class LibSLRuntime {
     }
 
     public static String toString(final SymbolicList v) {
-        var counter = v.size();
+        int counter = v.size();
         Engine.assume(counter >= 0);
         if (counter == 0)
             return "[]";
 
         // FIXME: use less complex approach
-        var res = "[";
+        String res = "[";
 
         for (int i = 0, c = counter; i < c; i++) {
             res = res.concat(toString(v.get(i)));
@@ -159,17 +159,17 @@ public final class LibSLRuntime {
     }
 
     public static String toString(final SymbolicMap v) {
-        var unseen = v.size();
+        int unseen = v.size();
         Engine.assume(unseen >= 0);
         if (unseen == 0)
             return "[]";
 
         // FIXME: use less complex approach
-        var res = "[";
+        String res = "[";
 
-        final var visited = Engine.makeSymbolicMap();
+        final SymbolicMap<Object, Object> visited = Engine.makeSymbolicMap();
         while (unseen != 0) {
-            final var key = Engine.makeSymbolic(Object.class);
+            final Object key = Engine.makeSymbolic(Object.class);
             Engine.assume(!visited.containsKey(key));
             Engine.assume(v.containsKey(key));
 
@@ -192,12 +192,12 @@ public final class LibSLRuntime {
     }
 
     public static String toString(final Object[] objects) {
-        var counter = objects.length;
+        int counter = objects.length;
         Engine.assume(counter >= 0);
         if (counter == 0)
             return "[]";
     
-        var str = "[";
+        String str = "[";
 
         for (int i = 0, c = counter; i < c; i++) {
             str = str.concat(toString(objects[i]));
@@ -255,7 +255,7 @@ public final class LibSLRuntime {
         if (v == null)
             return 0;
 
-        final var count = v.size();
+        final int count = v.size();
         Engine.assume(count >= 0);
         if (count == 0)
             return 1;
@@ -263,7 +263,7 @@ public final class LibSLRuntime {
         // FIXME: use less complex approach
         int res = 1;
 
-        for (var i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)
             res = 31 * res + hashCode(v.get(i));
 
         return res;
@@ -273,7 +273,7 @@ public final class LibSLRuntime {
         if (v == null)
             return 0;
 
-        var unseen = v.size();
+        int unseen = v.size();
         Engine.assume(unseen >= 0);
         if (unseen == 0)
             return 1;
@@ -281,9 +281,9 @@ public final class LibSLRuntime {
         // FIXME: use less complex approach
         int res = 1;
 
-        final var visited = Engine.makeSymbolicMap();
+        final SymbolicMap<Object, Object> visited = Engine.makeSymbolicMap();
         while (unseen != 0) {
-            final var key = Engine.makeSymbolic(Object.class);
+            final Object key = Engine.makeSymbolic(Object.class);
             Engine.assume(!visited.containsKey(key));
             Engine.assume(v.containsKey(key));
 
@@ -304,14 +304,14 @@ public final class LibSLRuntime {
         if (v == null)
             return 0;
 
-        final var count = v.length;
+        final int count = v.length;
         Engine.assume(count >= 0);
         if (count == 0)
             return 1;
 
         int res = 1;
 
-        for (var i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)
             res = 31 * res + hashCode(v[i]);
 
         return res;
@@ -359,12 +359,12 @@ public final class LibSLRuntime {
         if (a == null || b == null)
             return false;
 
-        var length = a.size();
+        int length = a.size();
         if (b.size() != length)
             return false;
 
         Engine.assume(length >= 0);
-        for (var i = 0; i < length; i++)
+        for (int i = 0; i < length; i++)
             if (!equals(a.get(i), b.get(i)))
                 return false;
 
@@ -377,14 +377,14 @@ public final class LibSLRuntime {
         if (a == null || b == null)
             return false;
 
-        var length = a.size();
+        int length = a.size();
         if (b.size() != length)
             return false;
 
         Engine.assume(length >= 0);
-        final var visited = Engine.makeSymbolicMap();
+        final SymbolicMap<Object, Object> visited = Engine.makeSymbolicMap();
         while (length != 0) {
-            final var key = Engine.makeSymbolic(Object.class);
+            final Object key = Engine.makeSymbolic(Object.class);
             Engine.assume(a.containsKey(key));
             Engine.assume(!visited.containsKey(key));
 
@@ -414,12 +414,12 @@ public final class LibSLRuntime {
         if (a == null || b == null)
             return false;
 
-        var length = a.length;
+        int length = a.length;
         if (b.length != length)
             return false;
 
         Engine.assume(length >= 0);
-        for (var i = 0; i < length; i++)
+        for (int i = 0; i < length; i++)
             if (!equals(a[i], b[i]))
                 return false;
 
@@ -452,7 +452,7 @@ public final class LibSLRuntime {
         public static <T> void fill(final T[] arr, final T value) {
             Engine.assume(arr != null);
 
-            final var count = arr.length;
+            final int count = arr.length;
             Engine.assume(count >= 0);
             for (int i = 0; i < count; i++)
                 arr[i] = value;
@@ -472,11 +472,11 @@ public final class LibSLRuntime {
             Engine.assume(from < to);
             Engine.assume(list != null);
 
-            final var idx = Engine.makeSymbolicInt();
+            final int idx = Engine.makeSymbolicInt();
             Engine.assume(from <= idx);
             Engine.assume(idx < to);
 
-            final var something = list.get(idx);
+            final Object something = list.get(idx);
             if (value == something)
                 return idx;
 
