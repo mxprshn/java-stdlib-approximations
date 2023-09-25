@@ -3,19 +3,26 @@
 //
 package generated.java.util;
 
-import org.jacodb.approximation.annotation.Approximate;
-import org.usvm.api.Engine;
-import org.usvm.api.SymbolicList;
-import runtime.LibSLRuntime;
-
 import java.io.Serializable;
+import java.util.AbstractSequentialList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.ConcurrentModificationException;
+import java.util.Deque;
+import java.util.Iterator;
 import java.util.List;
-import java.util.*;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+import java.util.Spliterator;
 import java.util.function.Consumer;
 import java.util.function.IntFunction;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
+import org.jacodb.approximation.annotation.Approximate;
+import org.usvm.api.Engine;
+import org.usvm.api.SymbolicList;
+import runtime.LibSLRuntime;
 
 /**
  * LinkedListAutomaton for LinkedList ~> java.util.LinkedList
@@ -33,7 +40,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
 
     public transient int size;
 
-    public transient int modCount = 0;
+    public transient int modCount;
 
     @LibSLRuntime.AutomatonConstructor
     public LinkedList(Void __$lsl_token, final byte p0, final SymbolicList<Object> p1, final int p2,
@@ -56,8 +63,8 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         this((Void) null);
         Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
         /* body */ {
-            storage = Engine.makeSymbolicList();
-            size = 0;
+            this.storage = Engine.makeSymbolicList();
+            this.size = 0;
         }
         this.__$lsl_state = __$lsl_States.Initialized;
     }
@@ -72,9 +79,9 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
             if (c == null) {
                 throw new NullPointerException();
             }
-            storage = Engine.makeSymbolicList();
-            size = 0;
-            _addAllElements(size, c);
+            this.storage = Engine.makeSymbolicList();
+            this.size = 0;
+            _addAllElements(this.size, c);
         }
         this.__$lsl_state = __$lsl_States.Initialized;
     }
@@ -84,7 +91,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
      */
     public void _checkForComodification(int expectedModCount) {
         /* body */ {
-            if (modCount != expectedModCount) {
+            if (this.modCount != expectedModCount) {
                 throw new ConcurrentModificationException();
             }
         }
@@ -96,10 +103,10 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
     private Object _unlinkAny(int index) {
         Object result = null;
         /* body */ {
-            result = storage.get(index);
-            storage.remove(index);
-            size -= 1;
-            modCount += 1;
+            result = this.storage.get(index);
+            this.storage.remove(index);
+            this.size -= 1;
+            this.modCount += 1;
         }
         return result;
     }
@@ -109,9 +116,9 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
      */
     private void _linkAny(int index, Object e) {
         /* body */ {
-            storage.insert(index, e);
-            size += 1;
-            modCount += 1;
+            this.storage.insert(index, e);
+            this.size += 1;
+            this.modCount += 1;
         }
     }
 
@@ -132,7 +139,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
     private boolean _isValidIndex(int index) {
         boolean result = false;
         /* body */ {
-            result = (0 <= index) && (index < size);
+            result = (0 <= index) && (index < this.size);
         }
         return result;
     }
@@ -143,7 +150,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
     private boolean _isPositionIndex(int index) {
         boolean result = false;
         /* body */ {
-            result = (0 <= index) && (index <= size);
+            result = (0 <= index) && (index <= this.size);
         }
         return result;
     }
@@ -165,7 +172,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
     private Object _unlinkFirst() {
         Object result = null;
         /* body */ {
-            if (size == 0) {
+            if (this.size == 0) {
                 throw new NoSuchElementException();
             }
             result = _unlinkAny(0);
@@ -179,12 +186,12 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
     private boolean _unlinkByFirstEqualsObject(Object o) {
         boolean result = false;
         /* body */ {
-            final int index = LibSLRuntime.ListActions.find(storage, o, 0, size);
-            result = index >= 0;
+            final int index = LibSLRuntime.ListActions.find(this.storage, o, 0, this.size);
+            result = index != -1;
             if (result) {
-                storage.remove(index);
-                size -= 1;
-                modCount += 1;
+                this.storage.remove(index);
+                this.size -= 1;
+                this.modCount += 1;
             }
         }
         return result;
@@ -200,12 +207,12 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
             result = iter.hasNext();
             while (iter.hasNext()) {
                 final Object item = iter.next();
-                storage.insert(index, item);
+                this.storage.insert(index, item);
                 index += 1;
-                size += 1;
+                this.size += 1;
             }
             ;
-            modCount += 1;
+            this.modCount += 1;
         }
         return result;
     }
@@ -216,10 +223,10 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
     private Object _getFirstElement() {
         Object result = null;
         /* body */ {
-            if (size == 0) {
+            if (this.size == 0) {
                 throw new NoSuchElementException();
             }
-            result = storage.get(0);
+            result = this.storage.get(0);
         }
         return result;
     }
@@ -244,7 +251,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            _linkAny(size, e);
+            _linkAny(this.size, e);
             result = true;
         }
         return result;
@@ -268,7 +275,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = _addAllElements(size, c);
+            result = _addAllElements(this.size, c);
         }
         return result;
     }
@@ -301,7 +308,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
     public void addLast(Object e) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            _linkAny(size, e);
+            _linkAny(this.size, e);
         }
     }
 
@@ -311,9 +318,9 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
     public void clear() {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            storage = Engine.makeSymbolicList();
-            size = 0;
-            modCount += 1;
+            this.storage = Engine.makeSymbolicList();
+            this.size = 0;
+            this.modCount += 1;
         }
     }
 
@@ -325,8 +332,12 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final SymbolicList<Object> storageCopy = Engine.makeSymbolicList();
-            storage.copy(storageCopy, 0, 0, size);
-            result = new LinkedList((Void) null, __$lsl_States.Initialized, storageCopy, size, 0);
+            this.storage.copy(storageCopy, 0, 0, this.size);
+            result = new LinkedList((Void) null, 
+            /* state = */ LinkedList.__$lsl_States.Initialized, 
+            /* storage = */ storageCopy, 
+            /* size = */ this.size, 
+            /* modCount = */ 0);
         }
         return result;
     }
@@ -338,7 +349,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = LibSLRuntime.ListActions.find(storage, o, 0, size) >= 0;
+            result = LibSLRuntime.ListActions.find(this.storage, o, 0, this.size) != -1;
         }
         return result;
     }
@@ -359,7 +370,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
                 int i = 0;
                 while (result && (i < otherSize)) {
                     final Object item = otherStorage.get(i);
-                    result = LibSLRuntime.ListActions.find(storage, item, 0, size) >= 0;
+                    result = LibSLRuntime.ListActions.find(this.storage, item, 0, this.size) != -1;
                     i += 1;
                 }
                 ;
@@ -367,7 +378,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
                 final Iterator iter = c.iterator();
                 while (result && iter.hasNext()) {
                     final Object item = iter.next();
-                    result = LibSLRuntime.ListActions.find(storage, item, 0, size) >= 0;
+                    result = LibSLRuntime.ListActions.find(this.storage, item, 0, this.size) != -1;
                 }
                 ;
             }
@@ -411,12 +422,12 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
                 result = true;
             } else {
                 if ((o != null && o.getClass() == LinkedList.class)) {
-                    final int expectedModCount = modCount;
+                    final int expectedModCount = this.modCount;
                     final int otherExpectedModCount = ((LinkedList) o).modCount;
                     final SymbolicList<Object> otherStorage = ((LinkedList) o).storage;
                     final int otherSize = ((LinkedList) o).size;
-                    if (size == otherSize) {
-                        result = LibSLRuntime.equals(storage, otherStorage);
+                    if (this.size == otherSize) {
+                        result = LibSLRuntime.equals(this.storage, otherStorage);
                     } else {
                         result = false;
                     }
@@ -439,11 +450,11 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
             if (_action == null) {
                 throw new NullPointerException();
             }
-            final int expectedModCount = modCount;
-            final int length = size;
+            final int expectedModCount = this.modCount;
+            final int length = this.size;
             int i = 0;
-            while ((modCount == expectedModCount) && (i < length)) {
-                final Object item = storage.get(i);
+            while ((this.modCount == expectedModCount) && (i < length)) {
+                final Object item = this.storage.get(i);
                 _action.accept(item);
                 i += 1;
             }
@@ -460,7 +471,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _checkElementIndex(index);
-            result = storage.get(index);
+            result = this.storage.get(index);
         }
         return result;
     }
@@ -484,10 +495,10 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (size == 0) {
+            if (this.size == 0) {
                 throw new NoSuchElementException();
             }
-            result = storage.get(size - 1);
+            result = this.storage.get(this.size - 1);
         }
         return result;
     }
@@ -499,7 +510,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         int result = 0;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = LibSLRuntime.hashCode(storage);
+            result = LibSLRuntime.hashCode(this.storage);
         }
         return result;
     }
@@ -511,7 +522,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         int result = 0;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = LibSLRuntime.ListActions.find(storage, o, 0, size);
+            result = LibSLRuntime.ListActions.find(this.storage, o, 0, this.size);
         }
         return result;
     }
@@ -523,7 +534,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = size == 0;
+            result = this.size == 0;
         }
         return result;
     }
@@ -548,11 +559,11 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         int result = 0;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = LibSLRuntime.ListActions.find(storage, o, 0, size);
+            result = LibSLRuntime.ListActions.find(this.storage, o, 0, this.size);
             if (result != -1) {
                 final int nextIndex = result + 1;
-                if (nextIndex < size) {
-                    final int rightIndex = LibSLRuntime.ListActions.find(storage, o, nextIndex, size);
+                if (nextIndex < this.size) {
+                    final int rightIndex = LibSLRuntime.ListActions.find(this.storage, o, nextIndex, this.size);
                     Engine.assume(rightIndex == -1);
                 }
             }
@@ -594,7 +605,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            _linkAny(size, e);
+            _linkAny(this.size, e);
             result = true;
         }
         return result;
@@ -620,7 +631,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            _linkAny(size, e);
+            _linkAny(this.size, e);
             result = true;
         }
         return result;
@@ -645,10 +656,10 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (size == 0) {
+            if (this.size == 0) {
                 result = null;
             } else {
-                result = storage.get(0);
+                result = this.storage.get(0);
             }
         }
         return result;
@@ -661,10 +672,10 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (size == 0) {
+            if (this.size == 0) {
                 result = null;
             } else {
-                result = storage.get(0);
+                result = this.storage.get(0);
             }
         }
         return result;
@@ -677,10 +688,10 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (size == 0) {
+            if (this.size == 0) {
                 result = null;
             } else {
-                result = storage.get(size - 1);
+                result = this.storage.get(this.size - 1);
             }
         }
         return result;
@@ -693,7 +704,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (size == 0) {
+            if (this.size == 0) {
                 result = null;
             } else {
                 result = _unlinkAny(0);
@@ -709,7 +720,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (size == 0) {
+            if (this.size == 0) {
                 result = null;
             } else {
                 result = _unlinkAny(0);
@@ -725,10 +736,10 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (size == 0) {
+            if (this.size == 0) {
                 result = null;
             } else {
-                result = _unlinkAny(size - 1);
+                result = _unlinkAny(this.size - 1);
             }
         }
         return result;
@@ -848,10 +859,10 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (size == 0) {
+            if (this.size == 0) {
                 throw new NoSuchElementException();
             }
-            result = _unlinkAny(size - 1);
+            result = _unlinkAny(this.size - 1);
         }
         return result;
     }
@@ -863,19 +874,19 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            final int index = LibSLRuntime.ListActions.find(storage, o, 0, size);
+            final int index = LibSLRuntime.ListActions.find(this.storage, o, 0, this.size);
             if (index == -1) {
                 result = false;
             } else {
                 result = true;
                 final int nextIndex = index + 1;
-                if (nextIndex < size) {
-                    final int rightIndex = LibSLRuntime.ListActions.find(storage, o, nextIndex, size);
+                if (nextIndex < this.size) {
+                    final int rightIndex = LibSLRuntime.ListActions.find(this.storage, o, nextIndex, this.size);
                     Engine.assume(rightIndex == -1);
                 }
-                storage.remove(index);
-                size -= 1;
-                modCount += 1;
+                this.storage.remove(index);
+                this.size -= 1;
+                this.modCount += 1;
             }
         }
         return result;
@@ -911,8 +922,8 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _checkElementIndex(index);
-            storage.set(index, element);
-            result = storage.get(index);
+            this.storage.set(index, element);
+            result = this.storage.get(index);
         }
         return result;
     }
@@ -924,7 +935,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         int result = 0;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = size;
+            result = this.size;
         }
         return result;
     }
@@ -935,24 +946,24 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
     public void sort(Comparator c) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (size != 0) {
-                final int expectedModCount = modCount;
-                Engine.assume(size > 0);
-                final int outerLimit = size - 1;
+            if (this.size != 0) {
+                final int expectedModCount = this.modCount;
+                Engine.assume(this.size > 0);
+                final int outerLimit = this.size - 1;
                 int innerLimit = 0;
                 int i = 0;
                 int j = 0;
                 if (c == null) {
                     for (i = 0; i < outerLimit; i += 1) {
-                        innerLimit = (size - i) - 1;
+                        innerLimit = (this.size - i) - 1;
                         for (j = 0; j < innerLimit; j += 1) {
                             final int idxA = j;
                             final int idxB = j + 1;
-                            final Object a = storage.get(idxA);
-                            final Object b = storage.get(idxB);
+                            final Object a = this.storage.get(idxA);
+                            final Object b = this.storage.get(idxB);
                             if (((Comparable) a).compareTo(b) > 0) {
-                                storage.set(idxA, b);
-                                storage.set(idxB, a);
+                                this.storage.set(idxA, b);
+                                this.storage.set(idxB, a);
                             }
                         }
                         ;
@@ -960,15 +971,15 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
                     ;
                 } else {
                     for (i = 0; i < outerLimit; i += 1) {
-                        innerLimit = (size - i) - 1;
+                        innerLimit = (this.size - i) - 1;
                         for (j = 0; j < innerLimit; j += 1) {
                             final int idxA = j;
                             final int idxB = j + 1;
-                            final Object a = storage.get(idxA);
-                            final Object b = storage.get(idxB);
+                            final Object a = this.storage.get(idxA);
+                            final Object b = this.storage.get(idxB);
                             if (c.compare(a, b) > 0) {
-                                storage.set(idxA, b);
-                                storage.set(idxB, a);
+                                this.storage.set(idxA, b);
+                                this.storage.set(idxB, a);
                             }
                         }
                         ;
@@ -977,7 +988,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
                 }
                 _checkForComodification(expectedModCount);
             }
-            modCount += 1;
+            this.modCount += 1;
         }
     }
 
@@ -1025,11 +1036,11 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         Object[] result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            final int len = size;
+            final int len = this.size;
             result = new Object[len];
             int i = 0;
             for (i = 0; i < len; i += 1) {
-                result[i] = storage.get(i);
+                result[i] = this.storage.get(i);
             }
             ;
         }
@@ -1045,11 +1056,11 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         /* body */ {
             final Object[] a = ((Object[]) generator.apply(0));
             final int aLen = a.length;
-            final int len = size;
+            final int len = this.size;
             result = new Object[len];
             int i = 0;
             for (i = 0; i < len; i += 1) {
-                result[i] = storage.get(i);
+                result[i] = this.storage.get(i);
             }
             ;
         }
@@ -1064,18 +1075,18 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final int aLen = a.length;
-            final int len = size;
+            final int len = this.size;
             int i = 0;
             if (aLen < len) {
                 result = new Object[len];
                 for (i = 0; i < len; i += 1) {
-                    result[i] = storage.get(i);
+                    result[i] = this.storage.get(i);
                 }
                 ;
             } else {
                 result = a;
                 for (i = 0; i < len; i += 1) {
-                    result[i] = storage.get(i);
+                    result[i] = this.storage.get(i);
                 }
                 ;
                 if (aLen > len) {
@@ -1093,7 +1104,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         String result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = LibSLRuntime.toString(storage);
+            result = LibSLRuntime.toString(this.storage);
         }
         return result;
     }

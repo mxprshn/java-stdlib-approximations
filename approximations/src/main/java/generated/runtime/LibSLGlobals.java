@@ -20,6 +20,8 @@ public final class LibSLGlobals {
 
     public static final OptionalLong EMPTY_OPTIONAL_LONG;
 
+    public static final Object HASHSET_VALUE;
+
     public static final int SPLITERATOR_CONCURRENT;
 
     public static final int SPLITERATOR_DISTINCT;
@@ -37,10 +39,22 @@ public final class LibSLGlobals {
     public static final int SPLITERATOR_SUBSIZED;
 
     static {
-        EMPTY_OPTIONAL = new Optional((Void) null, Optional.__$lsl_States.Initialized, null);
-        EMPTY_OPTIONAL_DOUBLE = new OptionalDouble((Void) null, OptionalDouble.__$lsl_States.Initialized, 0.0d, false);
-        EMPTY_OPTIONAL_INT = new OptionalInt((Void) null, OptionalInt.__$lsl_States.Initialized, 0, false);
-        EMPTY_OPTIONAL_LONG = new OptionalLong((Void) null, OptionalLong.__$lsl_States.Initialized, 0L, false);
+        EMPTY_OPTIONAL = new Optional((Void) null, 
+                /* state = */ Optional.__$lsl_States.Initialized, 
+                /* value = */ null);
+        EMPTY_OPTIONAL_DOUBLE = new OptionalDouble((Void) null, 
+                /* state = */ OptionalDouble.__$lsl_States.Initialized, 
+                /* value = */ 0.0d, 
+                /* present = */ false);
+        EMPTY_OPTIONAL_INT = new OptionalInt((Void) null, 
+                /* state = */ OptionalInt.__$lsl_States.Initialized, 
+                /* value = */ 0, 
+                /* present = */ false);
+        EMPTY_OPTIONAL_LONG = new OptionalLong((Void) null, 
+                /* state = */ OptionalLong.__$lsl_States.Initialized, 
+                /* value = */ 0L, 
+                /* present = */ false);
+        HASHSET_VALUE = 0;
         SPLITERATOR_CONCURRENT = 4096;
         SPLITERATOR_DISTINCT = 1;
         SPLITERATOR_IMMUTABLE = 1024;

@@ -4,16 +4,15 @@
 package generated.java.util;
 
 import generated.runtime.LibSLGlobals;
-import org.jacodb.approximation.annotation.Approximate;
-import org.usvm.api.Engine;
-import runtime.LibSLRuntime;
-
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
+import org.jacodb.approximation.annotation.Approximate;
+import org.usvm.api.Engine;
+import runtime.LibSLRuntime;
 
 /**
  * OptionalAutomaton for LSLOptional ~> java.util.Optional
@@ -96,7 +95,9 @@ public final class Optional implements LibSLRuntime.Automaton {
             if (obj == null) {
                 throw new NullPointerException();
             }
-            result = new Optional((Void) null, __$lsl_States.Initialized, obj);
+            result = new Optional((Void) null, 
+            /* state = */ Optional.__$lsl_States.Initialized, 
+            /* value = */ obj);
         }
         // WARNING: no state transitions in static context
         return result;
@@ -112,7 +113,9 @@ public final class Optional implements LibSLRuntime.Automaton {
             if (obj == null) {
                 result = _makeEmpty();
             } else {
-                result = new Optional((Void) null, __$lsl_States.Initialized, obj);
+                result = new Optional((Void) null, 
+                /* state = */ Optional.__$lsl_States.Initialized, 
+                /* value = */ obj);
             }
         }
         // WARNING: no state transitions in static context
@@ -132,7 +135,7 @@ public final class Optional implements LibSLRuntime.Automaton {
                 final boolean isSameType = Engine.typeEquals(this, other);
                 if (isSameType) {
                     final Object otherValue = ((Optional) other).value;
-                    result = LibSLRuntime.equals(value, otherValue);
+                    result = LibSLRuntime.equals(this.value, otherValue);
                 } else {
                     result = false;
                 }
@@ -151,10 +154,10 @@ public final class Optional implements LibSLRuntime.Automaton {
             if (predicate == null) {
                 throw new NullPointerException();
             }
-            if (value == null) {
+            if (this.value == null) {
                 result = this;
             } else {
-                final boolean sat = predicate.test(value);
+                final boolean sat = predicate.test(this.value);
                 if (sat) {
                     result = this;
                 } else {
@@ -175,10 +178,10 @@ public final class Optional implements LibSLRuntime.Automaton {
             if (mapper == null) {
                 throw new NullPointerException();
             }
-            if (value == null) {
+            if (this.value == null) {
                 result = _makeEmpty();
             } else {
-                result = ((Optional) mapper.apply(value));
+                result = ((Optional) mapper.apply(this.value));
                 if (result == null) {
                     throw new NullPointerException();
                 }
@@ -194,10 +197,10 @@ public final class Optional implements LibSLRuntime.Automaton {
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (value == null) {
+            if (this.value == null) {
                 throw new NoSuchElementException("No value present");
             }
-            result = value;
+            result = this.value;
         }
         return result;
     }
@@ -209,7 +212,7 @@ public final class Optional implements LibSLRuntime.Automaton {
         int result = 0;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = LibSLRuntime.hashCode(value);
+            result = LibSLRuntime.hashCode(this.value);
         }
         return result;
     }
@@ -220,11 +223,11 @@ public final class Optional implements LibSLRuntime.Automaton {
     public void ifPresent(Consumer consumer) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (value != null) {
+            if (this.value != null) {
                 if (consumer == null) {
                     throw new NullPointerException();
                 }
-                consumer.accept(value);
+                consumer.accept(this.value);
             }
         }
     }
@@ -235,11 +238,11 @@ public final class Optional implements LibSLRuntime.Automaton {
     public void ifPresentOrElse(Consumer consumer, Runnable emptyAction) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (value != null) {
+            if (this.value != null) {
                 if (consumer == null) {
                     throw new NullPointerException();
                 }
-                consumer.accept(value);
+                consumer.accept(this.value);
             } else {
                 if (emptyAction == null) {
                     throw new NullPointerException();
@@ -256,7 +259,7 @@ public final class Optional implements LibSLRuntime.Automaton {
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = value == null;
+            result = this.value == null;
         }
         return result;
     }
@@ -268,7 +271,7 @@ public final class Optional implements LibSLRuntime.Automaton {
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = value != null;
+            result = this.value != null;
         }
         return result;
     }
@@ -283,14 +286,16 @@ public final class Optional implements LibSLRuntime.Automaton {
             if (mapper == null) {
                 throw new NullPointerException();
             }
-            if (value == null) {
+            if (this.value == null) {
                 result = _makeEmpty();
             } else {
-                final Object mappedValue = mapper.apply(value);
+                final Object mappedValue = mapper.apply(this.value);
                 if (mappedValue == null) {
                     result = _makeEmpty();
                 } else {
-                    result = new Optional((Void) null, __$lsl_States.Initialized, mappedValue);
+                    result = new Optional((Void) null, 
+                    /* state = */ Optional.__$lsl_States.Initialized, 
+                    /* value = */ mappedValue);
                 }
             }
         }
@@ -307,7 +312,7 @@ public final class Optional implements LibSLRuntime.Automaton {
             if (supplier == null) {
                 throw new NullPointerException();
             }
-            if (value == null) {
+            if (this.value == null) {
                 result = ((Optional) supplier.get());
                 if (result == null) {
                     throw new NullPointerException();
@@ -326,10 +331,10 @@ public final class Optional implements LibSLRuntime.Automaton {
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (value == null) {
+            if (this.value == null) {
                 result = other;
             } else {
-                result = value;
+                result = this.value;
             }
         }
         return result;
@@ -345,10 +350,10 @@ public final class Optional implements LibSLRuntime.Automaton {
             if (supplier == null) {
                 throw new NullPointerException();
             }
-            if (value == null) {
+            if (this.value == null) {
                 result = supplier.get();
             } else {
-                result = value;
+                result = this.value;
             }
         }
         return result;
@@ -361,10 +366,10 @@ public final class Optional implements LibSLRuntime.Automaton {
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (value == null) {
+            if (this.value == null) {
                 throw new NoSuchElementException("No value present");
             }
-            result = value;
+            result = this.value;
         }
         return result;
     }
@@ -372,18 +377,18 @@ public final class Optional implements LibSLRuntime.Automaton {
     /**
      * [FUNCTION] OptionalAutomaton::orElseThrow(LSLOptional, Supplier) -> Object
      */
-    public Object orElseThrow(Supplier exceptionSupplier) throws Throwable {
+    public Object orElseThrow(Supplier exceptionSupplier) throws java.lang.Throwable {
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (exceptionSupplier == null) {
                 throw new NullPointerException();
             }
-            if (value == null) {
+            if (this.value == null) {
                 final Object exception = exceptionSupplier.get();
                 throw ((Throwable) exception);
             } else {
-                result = value;
+                result = this.value;
             }
         }
         return result;
@@ -409,10 +414,10 @@ public final class Optional implements LibSLRuntime.Automaton {
         String result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (value == null) {
+            if (this.value == null) {
                 result = "Optional.empty";
             } else {
-                final String valueStr = LibSLRuntime.toString(value);
+                final String valueStr = LibSLRuntime.toString(this.value);
                 result = "Optional[".concat(valueStr).concat("]");
             }
         }

@@ -4,14 +4,13 @@
 package generated.java.util;
 
 import generated.runtime.LibSLGlobals;
+import java.util.ConcurrentModificationException;
+import java.util.Spliterator;
+import java.util.function.Consumer;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 import org.usvm.api.SymbolicList;
 import runtime.LibSLRuntime;
-
-import java.util.ConcurrentModificationException;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
 /**
  * ArrayList_SpliteratorAutomaton for ArrayList_Spliterator ~> java.util.ArrayList_Spliterator
@@ -25,11 +24,11 @@ public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spli
 
     public ArrayList parent;
 
-    public int index = 0;
+    public int index;
 
-    public int fence = -1;
+    public int fence;
 
-    public int expectedModCount = 0;
+    public int expectedModCount;
 
     @LibSLRuntime.AutomatonConstructor
     public ArrayList_Spliterator(Void __$lsl_token, final byte p0, final ArrayList p1, final int p2,
@@ -64,12 +63,12 @@ public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spli
     private int _getFence() {
         int result = 0;
         /* body */ {
-            if (fence < 0) {
-                Engine.assume(parent != null);
-                expectedModCount = ((ArrayList) parent).modCount;
-                fence = ((ArrayList) parent).length;
+            if (this.fence == -1) {
+                Engine.assume(this.parent != null);
+                this.expectedModCount = ((ArrayList) this.parent).modCount;
+                this.fence = ((ArrayList) this.parent).length;
             }
-            result = fence;
+            result = this.fence;
         }
         return result;
     }
@@ -93,7 +92,7 @@ public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spli
         long result = 0L;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = _getFence() - index;
+            result = _getFence() - this.index;
         }
         return result;
     }
@@ -107,20 +106,20 @@ public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spli
             if (_action == null) {
                 throw new NullPointerException();
             }
-            Engine.assume(parent != null);
-            final SymbolicList<Object> a = ((ArrayList) parent).storage;
+            Engine.assume(this.parent != null);
+            final SymbolicList<Object> a = ((ArrayList) this.parent).storage;
             if (a == null) {
                 throw new ConcurrentModificationException();
             }
-            int hi = fence;
-            int mc = expectedModCount;
-            if (hi < 0) {
-                hi = ((ArrayList) parent).length;
-                mc = ((ArrayList) parent).modCount;
+            int hi = this.fence;
+            int mc = this.expectedModCount;
+            if (hi == -1) {
+                hi = ((ArrayList) this.parent).length;
+                mc = ((ArrayList) this.parent).modCount;
             }
-            int i = index;
-            index = hi;
-            if ((i < 0) || (hi > ((ArrayList) parent).length)) {
+            int i = this.index;
+            this.index = hi;
+            if ((i < 0) || (hi > ((ArrayList) this.parent).length)) {
                 throw new ConcurrentModificationException();
             }
             for (i = i; i < hi; i += 1) {
@@ -128,7 +127,7 @@ public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spli
                 _action.accept(item);
             }
             ;
-            if (mc != ((ArrayList) parent).modCount) {
+            if (mc != ((ArrayList) this.parent).modCount) {
                 throw new ConcurrentModificationException();
             }
         }
@@ -141,7 +140,7 @@ public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spli
         long result = 0L;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = _getFence() - index;
+            result = _getFence() - this.index;
         }
         return result;
     }
@@ -157,14 +156,14 @@ public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spli
                 throw new NullPointerException();
             }
             final int hi = _getFence();
-            final int i = index;
+            final int i = this.index;
             if (i < hi) {
-                Engine.assume(parent != null);
-                index = i + 1;
-                final SymbolicList<Object> parentStorage = ((ArrayList) parent).storage;
+                Engine.assume(this.parent != null);
+                this.index = i + 1;
+                final SymbolicList<Object> parentStorage = ((ArrayList) this.parent).storage;
                 final Object item = parentStorage.get(i);
                 _action.accept(item);
-                if (((ArrayList) parent).modCount != expectedModCount) {
+                if (((ArrayList) this.parent).modCount != this.expectedModCount) {
                     throw new ConcurrentModificationException();
                 }
                 result = true;
@@ -183,14 +182,19 @@ public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spli
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final int hi = _getFence();
-            final int lo = index;
+            final int lo = this.index;
             final int mid = (lo + hi) >>> 1;
             if (lo >= mid) {
                 result = null;
             } else {
-                result = new ArrayList_Spliterator((Void) null, __$lsl_States.Initialized, parent, lo, mid, expectedModCount);
+                result = new ArrayList_Spliterator((Void) null, 
+                /* state = */ ArrayList_Spliterator.__$lsl_States.Initialized, 
+                /* parent = */ this.parent, 
+                /* index = */ lo, 
+                /* fence = */ mid, 
+                /* expectedModCount = */ this.expectedModCount);
             }
-            index = mid;
+            this.index = mid;
         }
         return result;
     }

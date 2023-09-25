@@ -3,11 +3,10 @@
 //
 package generated.java.lang;
 
+import java.io.Serializable;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 import runtime.LibSLRuntime;
-
-import java.io.Serializable;
 
 /**
  * ThrowableAutomaton for LSLThrowable ~> java.lang.Throwable

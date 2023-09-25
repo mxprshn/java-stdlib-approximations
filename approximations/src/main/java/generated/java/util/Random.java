@@ -3,16 +3,15 @@
 //
 package generated.java.util;
 
-import org.jacodb.approximation.annotation.Approximate;
-import org.usvm.api.Engine;
-import runtime.LibSLRuntime;
-
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
+import org.jacodb.approximation.annotation.Approximate;
+import org.usvm.api.Engine;
+import runtime.LibSLRuntime;
 
 /**
  * RandomAutomaton for Random ~> java.util.Random
@@ -339,7 +338,7 @@ public class Random implements LibSLRuntime.Automaton, Serializable {
      * [FUNCTION] RandomAutomaton::readObject(ObjectInputStream) -> void
      */
     private void readObject(ObjectInputStream s) throws java.io.IOException,
-            ClassNotFoundException {
+            java.lang.ClassNotFoundException {
         /* body */ {
             LibSLRuntime.not_implemented(/* no serialization support */);
         }
