@@ -56,7 +56,8 @@ public final class LibSLGlobals {
                 /* state = */ OptionalLong.__$lsl_States.Initialized, 
                 /* value = */ 0L, 
                 /* present = */ false);
-        HASHSET_VALUE = 0;
+        HASHSET_VALUE = new generated.java.lang.Object((Void) null, 
+                /* state = */ generated.java.lang.Object.__$lsl_States.Initialized);
         SPLITERATOR_CONCURRENT = 4096;
         SPLITERATOR_DISTINCT = 1;
         SPLITERATOR_IMMUTABLE = 1024;
