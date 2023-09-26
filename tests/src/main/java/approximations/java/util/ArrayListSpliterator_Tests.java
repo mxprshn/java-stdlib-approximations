@@ -70,8 +70,7 @@ public final class ArrayListSpliterator_Tests {
                 ArrayList<Object> a = new ArrayList<>();
                 Spliterator<Object> s = a.spliterator();
 
-                final Integer[] counter = new Integer[1];
-                counter[0] = 0;
+                final int[] counter = new int[1];
 
                 s.forEachRemaining(o -> ++counter[0]);
                 if (counter[0] != 0)
@@ -89,7 +88,7 @@ public final class ArrayListSpliterator_Tests {
                 counter[0] = 0;
 
                 s.forEachRemaining(o -> {
-                    Integer idx = ++counter[0];
+                    int idx = ++counter[0];
                     counter[idx] = o;
                 });
                 if (counter[0] != 2)
@@ -159,14 +158,13 @@ public final class ArrayListSpliterator_Tests {
                 ArrayList<Object> a = new ArrayList<>();
                 Spliterator<Object> s = a.spliterator();
 
-                if (s.tryAdvance(o -> {
-                }) == true)
+                if (s.tryAdvance(o -> {}) == true)
                     return -1;
             }
             break;
 
             case 1: {
-                ArrayList<Integer> a = new ArrayList<Integer>();
+                ArrayList<Integer> a = new ArrayList<>();
                 a.add(10);
                 a.add(20);
                 Spliterator<Integer> s = a.spliterator();
@@ -218,12 +216,12 @@ public final class ArrayListSpliterator_Tests {
             break;
 
             case 1: {
-                ArrayList<Integer> a = new ArrayList<Integer>();
+                ArrayList<Object> a = new ArrayList<>();
                 a.add(10);
                 a.add(20);
-                Spliterator<Integer> s = a.spliterator();
+                Spliterator<Object> s = a.spliterator();
 
-                Spliterator<Integer> s2 = s.trySplit();
+                Spliterator<Object> s2 = s.trySplit();
                 if (s2 == null || s2 == s)
                     return -1;
 

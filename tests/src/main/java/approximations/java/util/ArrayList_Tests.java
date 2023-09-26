@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public final class ArrayList_Tests {
 
     public static int test_get_0(int execution) {
-        ArrayList<Object> list = new ArrayList<Object>();
+        ArrayList<Object> list = new ArrayList<>();
         if (execution == 0) {
             // IOB
             if (list.get(5) == null)

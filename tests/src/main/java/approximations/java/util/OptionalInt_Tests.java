@@ -1,7 +1,5 @@
 package approximations.java.util;
 
-import java.util.OptionalInt;
-
 public final class OptionalInt_Tests {
 
     // internal variables
