@@ -32,6 +32,7 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
     private static long serialVersionUID = 876323262645176354L;
 
     static {
+        Engine.assume(true);
     }
 
     private byte __$lsl_state = __$lsl_States.Allocated;

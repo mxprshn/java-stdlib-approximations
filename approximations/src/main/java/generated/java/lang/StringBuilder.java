@@ -27,6 +27,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     public static int MIN_SUPPLEMENTARY_CODE_POINT = 65536;
 
     static {
+        Engine.assume(true);
     }
 
     private byte __$lsl_state = __$lsl_States.Allocated;
@@ -966,7 +967,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     public void ensureCapacity(int minimumCapacity) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            ;
+            Engine.assume(true);
         }
     }
 
@@ -1063,7 +1064,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     public void trimToSize() {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            ;
+            Engine.assume(true);
         }
     }
 

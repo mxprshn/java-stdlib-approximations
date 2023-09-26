@@ -27,6 +27,7 @@ import runtime.LibSLRuntime;
 @Approximate(stub.java.util.ArrayList_SubList.class)
 public final class ArrayList_SubList extends AbstractList implements LibSLRuntime.Automaton, List, RandomAccess {
     static {
+        Engine.assume(true);
     }
 
     private byte __$lsl_state = __$lsl_States.Allocated;

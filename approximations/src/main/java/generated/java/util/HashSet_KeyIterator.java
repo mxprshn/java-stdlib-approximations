@@ -20,6 +20,7 @@ import runtime.LibSLRuntime;
 @Approximate(stub.java.util.HashSet_KeyIterator.class)
 public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterator {
     static {
+        Engine.assume(true);
     }
 
     private byte __$lsl_state = __$lsl_States.Allocated;

@@ -19,6 +19,7 @@ import runtime.LibSLRuntime;
 @Approximate(stub.java.util.HashSet_KeySpliterator.class)
 public final class HashSet_KeySpliterator implements LibSLRuntime.Automaton, Spliterator {
     static {
+        Engine.assume(true);
     }
 
     private byte __$lsl_state = __$lsl_States.Allocated;

@@ -33,6 +33,7 @@ public class ArrayList extends AbstractList implements LibSLRuntime.Automaton, L
     private static long serialVersionUID = 8683452581122892189L;
 
     static {
+        Engine.assume(true);
     }
 
     private byte __$lsl_state = __$lsl_States.Allocated;

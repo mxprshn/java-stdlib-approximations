@@ -18,6 +18,7 @@ import runtime.LibSLRuntime;
 @Approximate(stub.java.util.ArrayList_ListItr.class)
 public final class ArrayList_ListItr implements LibSLRuntime.Automaton, ListIterator {
     static {
+        Engine.assume(true);
     }
 
     public ArrayList parent;

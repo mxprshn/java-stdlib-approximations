@@ -18,6 +18,7 @@ import runtime.LibSLRuntime;
 @Approximate(stub.java.util.ArrayList_Spliterator.class)
 public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spliterator {
     static {
+        Engine.assume(true);
     }
 
     private byte __$lsl_state = __$lsl_States.Allocated;

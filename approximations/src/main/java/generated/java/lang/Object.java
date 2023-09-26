@@ -14,7 +14,7 @@ import runtime.LibSLRuntime;
 public class Object implements LibSLRuntime.Automaton {
     static {
         /* ObjectAutomaton::__clinit__() */ {
-            ;
+            Engine.assume(true);
         }
     }
 

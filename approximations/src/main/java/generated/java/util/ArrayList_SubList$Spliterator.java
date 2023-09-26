@@ -18,6 +18,7 @@ import runtime.LibSLRuntime;
 @Approximate(stub.java.util.ArrayList_SubList$Spliterator.class)
 public final class ArrayList_SubList$Spliterator implements LibSLRuntime.Automaton, Spliterator {
     static {
+        Engine.assume(true);
     }
 
     public ArrayList root;

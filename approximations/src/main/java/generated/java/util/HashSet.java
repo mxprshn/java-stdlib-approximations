@@ -27,6 +27,7 @@ import runtime.LibSLRuntime;
 @Approximate(java.util.HashSet.class)
 public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializable {
     static {
+        Engine.assume(true);
     }
 
     private byte __$lsl_state = __$lsl_States.Allocated;

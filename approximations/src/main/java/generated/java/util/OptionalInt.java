@@ -19,6 +19,7 @@ import runtime.LibSLRuntime;
 @Approximate(java.util.OptionalInt.class)
 public final class OptionalInt implements LibSLRuntime.Automaton {
     static {
+        Engine.assume(true);
     }
 
     private byte __$lsl_state = __$lsl_States.Allocated;

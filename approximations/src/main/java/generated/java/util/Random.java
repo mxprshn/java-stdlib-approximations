@@ -19,6 +19,7 @@ import runtime.LibSLRuntime;
 @Approximate(java.util.Random.class)
 public class Random implements LibSLRuntime.Automaton, Serializable {
     static {
+        Engine.assume(true);
     }
 
     private byte __$lsl_state = __$lsl_States.Allocated;
@@ -40,7 +41,7 @@ public class Random implements LibSLRuntime.Automaton, Serializable {
         this((Void) null);
         Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
         /* body */ {
-            ;
+            Engine.assume(true);
         }
         this.__$lsl_state = __$lsl_States.Initialized;
     }
@@ -52,7 +53,7 @@ public class Random implements LibSLRuntime.Automaton, Serializable {
         this((Void) null);
         Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
         /* body */ {
-            ;
+            Engine.assume(true);
         }
         this.__$lsl_state = __$lsl_States.Initialized;
     }
@@ -330,7 +331,7 @@ public class Random implements LibSLRuntime.Automaton, Serializable {
     public synchronized void setSeed(long seed) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            ;
+            Engine.assume(true);
         }
     }
 

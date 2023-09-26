@@ -24,6 +24,7 @@ public class Throwable implements LibSLRuntime.Automaton, Serializable {
     private static String SUPPRESSED_CAPTION = "Suppressed: ";
 
     static {
+        Engine.assume(true);
     }
 
     @LibSLRuntime.AutomatonConstructor

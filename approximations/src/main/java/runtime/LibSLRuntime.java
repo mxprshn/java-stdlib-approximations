@@ -86,6 +86,7 @@ public final class LibSLRuntime {
         Engine.assume(str != null);
 
         Engine.assume(str.length() <= 4); // '-128' _ '128'
+        Engine.assume(str.isEmpty() == false);
 
         return str;
     }
@@ -96,6 +97,7 @@ public final class LibSLRuntime {
         Engine.assume(str != null);
 
         Engine.assume(str.length() <= 6); // '-32768' _ '32767'
+        Engine.assume(str.isEmpty() == false);
 
         return str;
     }
@@ -106,6 +108,7 @@ public final class LibSLRuntime {
         Engine.assume(str != null);
 
         Engine.assume(str.length() <= 11); // '-2147483648' _ '2147483647'
+        Engine.assume(str.isEmpty() == false);
 
         return str;
     }
@@ -116,6 +119,7 @@ public final class LibSLRuntime {
         Engine.assume(str != null);
 
         Engine.assume(str.length() <= 20); // '-9223372036854775808' _ '9223372036854775807'
+        Engine.assume(str.isEmpty() == false);
 
         return str;
     }
@@ -493,7 +497,10 @@ public final class LibSLRuntime {
     // a helper class for complex "map<K,V>"-related actions
     public static final class MapActions {
 
-        ;
+        public static <K, V> void intersect_1(final SymbolicMap<K, V> receiver,
+                                              final SymbolicMap<K, V> otherSource) {
+            throw new InternalError(/* TODO */);
+        }
 
     }
 
