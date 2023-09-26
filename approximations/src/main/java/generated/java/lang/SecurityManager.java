@@ -4,14 +4,24 @@
 package generated.java.lang;
 
 import java.io.FileDescriptor;
+import java.lang.IllegalArgumentException;
+import java.lang.NullPointerException;
+import java.lang.Object;
+import java.lang.SecurityException;
+import java.lang.String;
+import java.lang.Thread;
+import java.lang.ThreadGroup;
+import java.lang.Void;
 import java.net.InetAddress;
+import java.security.AccessControlContext;
+import java.security.AccessControlException;
 import java.security.Permission;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 import runtime.LibSLRuntime;
 
 /**
- * LSLSecurityManagerAutomaton for LSLSecurityManager ~> java.lang.SecurityManager
+ * SecurityManagerAutomaton for LSLSecurityManager ~> java.lang.SecurityManager
  */
 @Approximate(java.lang.SecurityManager.class)
 public class SecurityManager implements LibSLRuntime.Automaton {
@@ -32,21 +42,31 @@ public class SecurityManager implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [CONSTRUCTOR] LSLSecurityManagerAutomaton::LSLSecurityManager(LSLSecurityManager) -> LSLSecurityManager
+     * [CONSTRUCTOR] SecurityManagerAutomaton::LSLSecurityManager(LSLSecurityManager) -> LSLSecurityManager
      */
     public SecurityManager() {
         this((Void) null);
         Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
-            }
+            final String a = "createSecurityManager";
+            _do_checkPermission(new RuntimePermission(a));
         }
         this.__$lsl_state = __$lsl_States.Initialized;
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkAccept(LSLSecurityManager, String, int) -> void
+     * [SUBROUTINE] SecurityManagerAutomaton::_do_checkPermission(Permission) -> void
+     */
+    private void _do_checkPermission(Permission perm) {
+        /* body */ {
+            if (Engine.makeSymbolicBoolean()) {
+                throw new AccessControlException("access denied", perm);
+            }
+        }
+    }
+
+    /**
+     * [FUNCTION] SecurityManagerAutomaton::checkAccept(LSLSecurityManager, String, int) -> void
      */
     public void checkAccept(String host, int port) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -54,87 +74,96 @@ public class SecurityManager implements LibSLRuntime.Automaton {
             if (host == null) {
                 throw new NullPointerException();
             }
-            LibSLRuntime.todo();
             if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
+                throw new IllegalArgumentException();
             }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkAccess(LSLSecurityManager, Thread) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkAccess(LSLSecurityManager, Thread) -> void
      */
     public void checkAccess(Thread t) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
+            if (t == null) {
+                throw new NullPointerException("thread can't be null");
             }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkAccess(LSLSecurityManager, ThreadGroup) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkAccess(LSLSecurityManager, ThreadGroup) -> void
      */
     public void checkAccess(ThreadGroup g) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
+            if (g == null) {
+                throw new NullPointerException("thread group can't be null");
             }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkConnect(LSLSecurityManager, String, int) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkConnect(LSLSecurityManager, String, int) -> void
      */
     public void checkConnect(String host, int port) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
+            if (host == null) {
+                throw new NullPointerException("host can't be null");
             }
+            if (Engine.makeSymbolicBoolean()) {
+                throw new IllegalArgumentException();
+            }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkConnect(LSLSecurityManager, String, int, Object) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkConnect(LSLSecurityManager, String, int, Object) -> void
      */
     public void checkConnect(String host, int port, Object context) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
+            if (host == null) {
+                throw new NullPointerException();
             }
+            if (Engine.makeSymbolicBoolean()) {
+                throw new IllegalArgumentException();
+            }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkCreateClassLoader(LSLSecurityManager) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkCreateClassLoader(LSLSecurityManager) -> void
      */
     public void checkCreateClassLoader() {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
-            }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkDelete(LSLSecurityManager, String) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkDelete(LSLSecurityManager, String) -> void
      */
     public void checkDelete(String file) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
+            if (file == null) {
+                throw new NullPointerException();
             }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkExec(LSLSecurityManager, String) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkExec(LSLSecurityManager, String) -> void
      */
     public void checkExec(String cmd) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -142,194 +171,187 @@ public class SecurityManager implements LibSLRuntime.Automaton {
             if (cmd == null) {
                 throw new NullPointerException();
             }
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
-            }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkExit(LSLSecurityManager, int) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkExit(LSLSecurityManager, int) -> void
      */
     public void checkExit(int status) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
-            }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkLink(LSLSecurityManager, String) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkLink(LSLSecurityManager, String) -> void
      */
     public void checkLink(String lib) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
+            if (lib == null) {
+                throw new NullPointerException();
             }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkListen(LSLSecurityManager, int) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkListen(LSLSecurityManager, int) -> void
      */
     public void checkListen(int port) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
-            }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkMulticast(LSLSecurityManager, InetAddress) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkMulticast(LSLSecurityManager, InetAddress) -> void
      */
     public void checkMulticast(InetAddress maddr) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
+            if (maddr == null) {
+                throw new NullPointerException();
             }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkMulticast(LSLSecurityManager, InetAddress, byte) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkMulticast(LSLSecurityManager, InetAddress, byte) -> void
      */
     public void checkMulticast(InetAddress maddr, byte ttl) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
+            if (maddr == null) {
+                throw new NullPointerException();
             }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkPackageAccess(LSLSecurityManager, String) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkPackageAccess(LSLSecurityManager, String) -> void
      */
     public void checkPackageAccess(String pkg) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
+            if (pkg == null) {
+                throw new NullPointerException();
             }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkPackageDefinition(LSLSecurityManager, String) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkPackageDefinition(LSLSecurityManager, String) -> void
      */
     public void checkPackageDefinition(String pkg) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
+            if (pkg == null) {
+                throw new NullPointerException();
             }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkPermission(LSLSecurityManager, Permission) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkPermission(LSLSecurityManager, Permission) -> void
      */
     public void checkPermission(Permission perm) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
+            if (perm == null) {
+                throw new NullPointerException();
             }
+            _do_checkPermission(perm);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkPermission(LSLSecurityManager, Permission, Object) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkPermission(LSLSecurityManager, Permission, Object) -> void
      */
     public void checkPermission(Permission perm, Object context) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
+            if (context instanceof AccessControlContext) {
+                if (perm == null) {
+                    throw new NullPointerException();
+                }
+                _do_checkPermission(perm);
+            } else {
                 throw new SecurityException();
             }
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkPrintJobAccess(LSLSecurityManager) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkPrintJobAccess(LSLSecurityManager) -> void
      */
     public void checkPrintJobAccess() {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
-            }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkPropertiesAccess(LSLSecurityManager) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkPropertiesAccess(LSLSecurityManager) -> void
      */
     public void checkPropertiesAccess() {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
-            }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkPropertyAccess(LSLSecurityManager, String) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkPropertyAccess(LSLSecurityManager, String) -> void
      */
     public void checkPropertyAccess(String key) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
-            }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkRead(LSLSecurityManager, FileDescriptor) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkRead(LSLSecurityManager, FileDescriptor) -> void
      */
     public void checkRead(FileDescriptor fd) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
-            }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkRead(LSLSecurityManager, String) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkRead(LSLSecurityManager, String) -> void
      */
     public void checkRead(String file) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
-            }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkRead(LSLSecurityManager, String, Object) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkRead(LSLSecurityManager, String, Object) -> void
      */
     public void checkRead(String file, Object context) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
-            }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkSecurityAccess(LSLSecurityManager, String) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkSecurityAccess(LSLSecurityManager, String) -> void
      */
     public void checkSecurityAccess(String _target) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -340,56 +362,49 @@ public class SecurityManager implements LibSLRuntime.Automaton {
             if (_target.isEmpty()) {
                 throw new IllegalArgumentException();
             }
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
-            }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkSetFactory(LSLSecurityManager) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkSetFactory(LSLSecurityManager) -> void
      */
     public void checkSetFactory() {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
-            }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkWrite(LSLSecurityManager, FileDescriptor) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkWrite(LSLSecurityManager, FileDescriptor) -> void
      */
     public void checkWrite(FileDescriptor fd) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
-            }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::checkWrite(LSLSecurityManager, String) -> void
+     * [FUNCTION] SecurityManagerAutomaton::checkWrite(LSLSecurityManager, String) -> void
      */
     public void checkWrite(String file) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (Engine.makeSymbolicBoolean()) {
-                throw new SecurityException();
-            }
+            _do_checkPermission(null);
         }
     }
 
     /**
-     * [FUNCTION] LSLSecurityManagerAutomaton::getSecurityContext(LSLSecurityManager) -> Object
+     * [FUNCTION] SecurityManagerAutomaton::getSecurityContext(LSLSecurityManager) -> Object
      */
     public Object getSecurityContext() {
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = Engine.makeSymbolic(Object.class);
+            result = Engine.makeSymbolic(AccessControlContext.class);
+            Engine.assume(result != null);
         }
         return result;
     }

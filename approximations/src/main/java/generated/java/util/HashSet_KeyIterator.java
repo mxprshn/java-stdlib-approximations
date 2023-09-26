@@ -4,6 +4,10 @@
 package generated.java.util;
 
 import generated.runtime.LibSLGlobals;
+import java.lang.IllegalStateException;
+import java.lang.NullPointerException;
+import java.lang.Object;
+import java.lang.Void;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.Iterator;

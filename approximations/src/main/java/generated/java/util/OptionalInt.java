@@ -4,6 +4,11 @@
 package generated.java.util;
 
 import generated.runtime.LibSLGlobals;
+import java.lang.NullPointerException;
+import java.lang.Object;
+import java.lang.Runnable;
+import java.lang.String;
+import java.lang.Void;
 import java.util.NoSuchElementException;
 import java.util.function.IntConsumer;
 import java.util.function.IntSupplier;

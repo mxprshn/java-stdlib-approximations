@@ -3,6 +3,9 @@
 //
 package stub.java.util;
 
+import java.lang.InternalError;
+import java.lang.Object;
+import java.lang.String;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Collection;

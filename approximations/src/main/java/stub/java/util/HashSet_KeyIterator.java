@@ -3,6 +3,8 @@
 //
 package stub.java.util;
 
+import java.lang.InternalError;
+import java.lang.Object;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.function.Consumer;

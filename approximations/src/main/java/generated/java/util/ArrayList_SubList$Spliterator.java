@@ -4,6 +4,9 @@
 package generated.java.util;
 
 import generated.runtime.LibSLGlobals;
+import java.lang.NullPointerException;
+import java.lang.Object;
+import java.lang.Void;
 import java.util.ConcurrentModificationException;
 import java.util.Spliterator;
 import java.util.function.Consumer;

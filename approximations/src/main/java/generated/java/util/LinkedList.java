@@ -4,6 +4,13 @@
 package generated.java.util;
 
 import java.io.Serializable;
+import java.lang.Cloneable;
+import java.lang.Comparable;
+import java.lang.IndexOutOfBoundsException;
+import java.lang.NullPointerException;
+import java.lang.Object;
+import java.lang.String;
+import java.lang.Void;
 import java.util.AbstractSequentialList;
 import java.util.Collection;
 import java.util.Comparator;

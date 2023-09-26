@@ -3,6 +3,8 @@
 //
 package stub.java.util;
 
+import java.lang.InternalError;
+import java.lang.Object;
 import java.util.ListIterator;
 import java.util.function.Consumer;
 import runtime.LibSLRuntime;

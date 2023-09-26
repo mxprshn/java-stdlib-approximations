@@ -3,6 +3,7 @@
 //
 package stub.java.util;
 
+import java.lang.InternalError;
 import java.util.ArrayList;
 import java.util.Spliterator;
 import java.util.function.Consumer;

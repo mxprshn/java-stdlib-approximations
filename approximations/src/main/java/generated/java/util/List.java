@@ -3,6 +3,9 @@
 //
 package generated.java.util;
 
+import java.lang.Class;
+import java.lang.Object;
+import java.lang.Void;
 import java.util.Collection;
 import java.util.Iterator;
 import org.jacodb.approximation.annotation.Approximate;

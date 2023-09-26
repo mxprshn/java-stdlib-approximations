@@ -3,6 +3,10 @@
 //
 package generated.java.util;
 
+import java.lang.IllegalStateException;
+import java.lang.NullPointerException;
+import java.lang.Object;
+import java.lang.Void;
 import java.util.ConcurrentModificationException;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;

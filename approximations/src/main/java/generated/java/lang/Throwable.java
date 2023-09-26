@@ -4,6 +4,9 @@
 package generated.java.lang;
 
 import java.io.Serializable;
+import java.lang.StackTraceElement;
+import java.lang.String;
+import java.lang.Void;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 import runtime.LibSLRuntime;

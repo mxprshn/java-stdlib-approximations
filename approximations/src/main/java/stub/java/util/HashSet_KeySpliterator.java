@@ -3,6 +3,7 @@
 //
 package stub.java.util;
 
+import java.lang.InternalError;
 import java.util.HashMap;
 import java.util.Spliterator;
 import java.util.function.Consumer;

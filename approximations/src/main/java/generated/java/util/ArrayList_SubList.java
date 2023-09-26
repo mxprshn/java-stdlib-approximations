@@ -3,6 +3,10 @@
 //
 package generated.java.util;
 
+import java.lang.Comparable;
+import java.lang.Object;
+import java.lang.String;
+import java.lang.Void;
 import java.util.AbstractList;
 import java.util.Collection;
 import java.util.Comparator;

@@ -7,6 +7,8 @@ import generated.java.util.Optional;
 import generated.java.util.OptionalDouble;
 import generated.java.util.OptionalInt;
 import generated.java.util.OptionalLong;
+import java.lang.Object;
+import java.lang.Void;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 
