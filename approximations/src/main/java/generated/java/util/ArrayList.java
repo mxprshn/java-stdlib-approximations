@@ -38,7 +38,7 @@ import runtime.LibSLRuntime;
  */
 @Approximate(java.util.ArrayList.class)
 public class ArrayList extends AbstractList implements LibSLRuntime.Automaton, List, RandomAccess, Cloneable, Serializable {
-    private static long serialVersionUID = 8683452581122892189L;
+    private static final long serialVersionUID = 8683452581122892189L;
 
     static {
         Engine.assume(true);

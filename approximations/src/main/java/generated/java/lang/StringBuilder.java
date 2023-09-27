@@ -26,15 +26,15 @@ import runtime.LibSLRuntime;
  */
 @Approximate(java.lang.StringBuilder.class)
 public final class StringBuilder implements LibSLRuntime.Automaton, Serializable, Comparable<StringBuilder>, CharSequence {
-    public static int MAX_CODE_POINT = 1114111;
+    public static final int MAX_CODE_POINT = 1114111;
 
-    public static int MIN_CODE_POINT = 0;
+    public static final int MIN_CODE_POINT = 0;
 
-    public static int MIN_LOW_SURROGATE = 56320;
+    public static final int MIN_LOW_SURROGATE = 56320;
 
-    public static int MIN_HIGH_SURROGATE = 55296;
+    public static final int MIN_HIGH_SURROGATE = 55296;
 
-    public static int MIN_SUPPLEMENTARY_CODE_POINT = 65536;
+    public static final int MIN_SUPPLEMENTARY_CODE_POINT = 65536;
 
     static {
         Engine.assume(true);

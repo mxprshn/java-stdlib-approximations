@@ -16,15 +16,15 @@ import runtime.LibSLRuntime;
  */
 @Approximate(java.lang.Throwable.class)
 public class Throwable implements LibSLRuntime.Automaton, Serializable {
-    private static long serialVersionUID = -3042686055658047285L;
+    private static final long serialVersionUID = -3042686055658047285L;
 
-    private static String NULL_CAUSE_MESSAGE = "Cannot suppress a null exception.";
+    private static final String NULL_CAUSE_MESSAGE = "Cannot suppress a null exception.";
 
-    private static String SELF_SUPPRESSION_MESSAGE = "Self-suppression not permitted";
+    private static final String SELF_SUPPRESSION_MESSAGE = "Self-suppression not permitted";
 
-    private static String CAUSE_CAPTION = "Caused by: ";
+    private static final String CAUSE_CAPTION = "Caused by: ";
 
-    private static String SUPPRESSED_CAPTION = "Suppressed: ";
+    private static final String SUPPRESSED_CAPTION = "Suppressed: ";
 
     static {
         Engine.assume(true);

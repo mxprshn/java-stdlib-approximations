@@ -48,8 +48,8 @@ public class SecurityManager implements LibSLRuntime.Automaton {
         this((Void) null);
         Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
         /* body */ {
-            final String a = "createSecurityManager";
-            _do_checkPermission(new RuntimePermission(a));
+            final String actionName = "createSecurityManager";
+            _do_checkPermission(new RuntimePermission(actionName));
         }
         this.__$lsl_state = __$lsl_States.Initialized;
     }
@@ -60,7 +60,7 @@ public class SecurityManager implements LibSLRuntime.Automaton {
     private void _do_checkPermission(Permission perm) {
         /* body */ {
             if (Engine.makeSymbolicBoolean()) {
-                throw new AccessControlException("access denied", perm);
+                throw new AccessControlException("access denied ", perm);
             }
         }
     }
@@ -130,7 +130,7 @@ public class SecurityManager implements LibSLRuntime.Automaton {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (host == null) {
-                throw new NullPointerException();
+                throw new NullPointerException("host can't be null");
             }
             if (Engine.makeSymbolicBoolean()) {
                 throw new IllegalArgumentException();
