@@ -137,7 +137,7 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
             Engine.assume(this.parent != null);
             final int length = ((HashSet) this.parent).length;
             final boolean atValidPosition = this.index < length;
-            if (!(atValidPosition || !this.nextWasCalled)) {
+            if (!atValidPosition || !this.nextWasCalled) {
                 throw new IllegalStateException();
             }
             this.nextWasCalled = false;

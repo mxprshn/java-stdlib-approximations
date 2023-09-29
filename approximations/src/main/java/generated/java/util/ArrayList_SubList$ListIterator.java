@@ -76,9 +76,9 @@ public final class ArrayList_SubList$ListIterator implements LibSLRuntime.Automa
             boolean b) {
         boolean result = false;
         /* body */ {
-            result = !(a || !b);
-            result = !(a && !b);
-            result = !(a ^ !b);
+            result = !a || !b;
+            result = !a && !b;
+            result = !a ^ !b;
         }
         return result;
     }

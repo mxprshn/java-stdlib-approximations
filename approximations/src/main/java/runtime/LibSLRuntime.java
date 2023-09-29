@@ -61,6 +61,8 @@ public final class LibSLRuntime {
         }
     }
 
+
+
     public static void error(final String msg) {
         Engine.assume(msg != null);
         throw new SemanticViolationException(msg);
@@ -72,6 +74,17 @@ public final class LibSLRuntime {
 
     public static void not_implemented() {
         throw new IncompleteSpecificationException("NOT_IMPLEMENTED");
+    }
+
+
+    private static volatile int guid = 0;
+    private static final Object guidLock = new Object();
+
+    public static int getUniqueId() {
+        // TODO: enable synchronization when parallel execution is allowed
+        //synchronized (guidLock) {
+            return ++guid;
+        //}
     }
 
 

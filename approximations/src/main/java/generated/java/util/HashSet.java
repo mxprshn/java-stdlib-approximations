@@ -31,6 +31,8 @@ import runtime.LibSLRuntime;
  */
 @Approximate(java.util.HashSet.class)
 public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializable {
+    private static final long serialVersionUID = -5024744406713321676L;
+
     static {
         Engine.assume(true);
     }
