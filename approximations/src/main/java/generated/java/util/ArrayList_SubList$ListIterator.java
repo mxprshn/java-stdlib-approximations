@@ -70,20 +70,6 @@ public final class ArrayList_SubList$ListIterator implements LibSLRuntime.Automa
     }
 
     /**
-     * [SUBROUTINE] ArrayList_SubList_ListIteratorAutomaton::qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq(boolean, boolean) -> boolean
-     */
-    private boolean qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq(boolean a,
-            boolean b) {
-        boolean result = false;
-        /* body */ {
-            result = !a || !b;
-            result = !a && !b;
-            result = !a ^ !b;
-        }
-        return result;
-    }
-
-    /**
      * [FUNCTION] ArrayList_SubList_ListIteratorAutomaton::hasPrevious(ArrayList_SubList_ListIterator) -> boolean
      */
     public boolean hasPrevious() {

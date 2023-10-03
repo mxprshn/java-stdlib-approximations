@@ -713,32 +713,36 @@ public class ArrayList extends AbstractList implements LibSLRuntime.Automaton, L
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final int oldLength = this.length;
-            if ((c != null && c.getClass() == ArrayList.class)) {
-                final SymbolicList<Object> otherStorage = ((ArrayList) c).storage;
-                final int otherLength = ((ArrayList) c).length;
-                Engine.assume(otherStorage != null);
-                Engine.assume(otherLength >= 0);
-                int i = 0;
-                for (i = 0; i < otherLength; i += 1) {
-                    final Object o = otherStorage.get(i);
-                    final int index = LibSLRuntime.ListActions.find(this.storage, o, 0, this.length);
-                    if (index != -1) {
-                        _deleteElement(index);
+            if (oldLength != 0) {
+                if ((c != null && c.getClass() == ArrayList.class)) {
+                    final SymbolicList<Object> otherStorage = ((ArrayList) c).storage;
+                    final int otherLength = ((ArrayList) c).length;
+                    Engine.assume(otherStorage != null);
+                    Engine.assume(otherLength >= 0);
+                    int i = 0;
+                    for (i = 0; i < otherLength; i += 1) {
+                        final Object o = otherStorage.get(i);
+                        final int index = LibSLRuntime.ListActions.find(this.storage, o, 0, this.length);
+                        if (index != -1) {
+                            _deleteElement(index);
+                        }
                     }
+                    ;
+                } else {
+                    final Iterator iter = c.iterator();
+                    while (iter.hasNext()) {
+                        final Object o = iter.next();
+                        final int index = LibSLRuntime.ListActions.find(this.storage, o, 0, this.length);
+                        if (index != -1) {
+                            _deleteElement(index);
+                        }
+                    }
+                    ;
                 }
-                ;
+                result = oldLength != this.length;
             } else {
-                final Iterator iter = c.iterator();
-                while (iter.hasNext()) {
-                    final Object o = iter.next();
-                    final int index = LibSLRuntime.ListActions.find(this.storage, o, 0, this.length);
-                    if (index != -1) {
-                        _deleteElement(index);
-                    }
-                }
-                ;
+                result = false;
             }
-            result = oldLength != this.length;
         }
         return result;
     }

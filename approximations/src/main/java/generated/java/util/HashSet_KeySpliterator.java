@@ -157,8 +157,10 @@ public final class HashSet_KeySpliterator implements LibSLRuntime.Automaton, Spl
             }
             this.index = hi;
             if ((length > 0) && (length >= hi) && (i >= 0) && (i < this.index)) {
+                final Object[] storage = this.keysStorage;
+                Engine.assume(storage != null);
                 while (i < hi) {
-                    final Object key = keysStorage[i];
+                    final Object key = storage[i];
                     userAction.accept(key);
                     i += 1;
                 }
