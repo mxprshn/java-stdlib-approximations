@@ -4,8 +4,6 @@
 package generated.java.lang;
 
 import generated.runtime.LibSLGlobals;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.lang.CharSequence;
 import java.lang.Comparable;
@@ -22,10 +20,12 @@ import org.usvm.api.Engine;
 import runtime.LibSLRuntime;
 
 /**
- * StringBuilderAutomaton for StringBuilder ~> java.lang.StringBuilder
+ * StringBufferAutomaton for StringBuffer ~> java.lang.StringBuffer
  */
-@Approximate(java.lang.StringBuilder.class)
-public final class StringBuilder implements LibSLRuntime.Automaton, Serializable, Comparable<StringBuilder>, CharSequence {
+@Approximate(java.lang.StringBuffer.class)
+public final class StringBuffer implements LibSLRuntime.Automaton, Serializable, Comparable<StringBuffer>, CharSequence {
+    private static final long serialVersionUID = 3388685877147921107L;
+
     static {
         Engine.assume(true);
     }
@@ -37,21 +37,21 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     public int length;
 
     @LibSLRuntime.AutomatonConstructor
-    public StringBuilder(Void __$lsl_token, final byte p0, final String p1, final int p2) {
+    public StringBuffer(Void __$lsl_token, final byte p0, final String p1, final int p2) {
         this.__$lsl_state = p0;
         this.storage = p1;
         this.length = p2;
     }
 
     @LibSLRuntime.AutomatonConstructor
-    public StringBuilder(final Void __$lsl_token) {
+    public StringBuffer(final Void __$lsl_token) {
         this(__$lsl_token, __$lsl_States.Allocated, "", 0);
     }
 
     /**
-     * [CONSTRUCTOR] StringBuilderAutomaton::StringBuilder(StringBuilder) -> StringBuilder
+     * [CONSTRUCTOR] StringBufferAutomaton::StringBuffer(StringBuffer) -> StringBuffer
      */
-    public StringBuilder() {
+    public StringBuffer() {
         this((Void) null);
         Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
         /* body */ {
@@ -60,9 +60,9 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [CONSTRUCTOR] StringBuilderAutomaton::StringBuilder(StringBuilder, CharSequence) -> StringBuilder
+     * [CONSTRUCTOR] StringBufferAutomaton::StringBuffer(StringBuffer, CharSequence) -> StringBuffer
      */
-    public StringBuilder(CharSequence seq) {
+    public StringBuffer(CharSequence seq) {
         this((Void) null);
         Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
         /* body */ {
@@ -75,9 +75,9 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [CONSTRUCTOR] StringBuilderAutomaton::StringBuilder(StringBuilder, String) -> StringBuilder
+     * [CONSTRUCTOR] StringBufferAutomaton::StringBuffer(StringBuffer, String) -> StringBuffer
      */
-    public StringBuilder(String str) {
+    public StringBuffer(String str) {
         this((Void) null);
         Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
         /* body */ {
@@ -90,9 +90,9 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [CONSTRUCTOR] StringBuilderAutomaton::StringBuilder(StringBuilder, int) -> StringBuilder
+     * [CONSTRUCTOR] StringBufferAutomaton::StringBuffer(StringBuffer, int) -> StringBuffer
      */
-    public StringBuilder(int capacity) {
+    public StringBuffer(int capacity) {
         this((Void) null);
         Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
         /* body */ {
@@ -101,7 +101,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [SUBROUTINE] StringBuilderAutomaton::_checkRange(int, int, int) -> void
+     * [SUBROUTINE] StringBufferAutomaton::_checkRange(int, int, int) -> void
      */
     private void _checkRange(int start, int end, int len) {
         /* body */ {
@@ -112,7 +112,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [SUBROUTINE] StringBuilderAutomaton::_checkRangeSIOOBE(int, int, int) -> void
+     * [SUBROUTINE] StringBufferAutomaton::_checkRangeSIOOBE(int, int, int) -> void
      */
     private void _checkRangeSIOOBE(int start, int end, int len) {
         /* body */ {
@@ -123,7 +123,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [SUBROUTINE] StringBuilderAutomaton::_checkIndex(int) -> void
+     * [SUBROUTINE] StringBufferAutomaton::_checkIndex(int) -> void
      */
     private void _checkIndex(int index) {
         /* body */ {
@@ -134,7 +134,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [SUBROUTINE] StringBuilderAutomaton::_checkOffset(int) -> void
+     * [SUBROUTINE] StringBufferAutomaton::_checkOffset(int) -> void
      */
     private void _checkOffset(int offset) {
         /* body */ {
@@ -145,7 +145,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [SUBROUTINE] StringBuilderAutomaton::_isBmpCodePoint(int) -> boolean
+     * [SUBROUTINE] StringBufferAutomaton::_isBmpCodePoint(int) -> boolean
      */
     private boolean _isBmpCodePoint(int codePoint) {
         boolean result = false;
@@ -156,7 +156,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [SUBROUTINE] StringBuilderAutomaton::_isValidCodePoint(int) -> boolean
+     * [SUBROUTINE] StringBufferAutomaton::_isValidCodePoint(int) -> boolean
      */
     private boolean _isValidCodePoint(int codePoint) {
         boolean result = false;
@@ -167,7 +167,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [SUBROUTINE] StringBuilderAutomaton::_lowSurrogate(int) -> char
+     * [SUBROUTINE] StringBufferAutomaton::_lowSurrogate(int) -> char
      */
     private char _lowSurrogate(int codePoint) {
         char result = '?';
@@ -178,7 +178,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [SUBROUTINE] StringBuilderAutomaton::_highSurrogate(int) -> char
+     * [SUBROUTINE] StringBufferAutomaton::_highSurrogate(int) -> char
      */
     private char _highSurrogate(int codePoint) {
         char result = '?';
@@ -189,7 +189,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [SUBROUTINE] StringBuilderAutomaton::_appendCharSequence(CharSequence) -> void
+     * [SUBROUTINE] StringBufferAutomaton::_appendCharSequence(CharSequence) -> void
      */
     private void _appendCharSequence(CharSequence seq) {
         /* body */ {
@@ -210,7 +210,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [SUBROUTINE] StringBuilderAutomaton::_appendString(String) -> void
+     * [SUBROUTINE] StringBufferAutomaton::_appendString(String) -> void
      */
     private void _appendString(String str) {
         /* body */ {
@@ -225,7 +225,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [SUBROUTINE] StringBuilderAutomaton::_delete(int, int) -> void
+     * [SUBROUTINE] StringBufferAutomaton::_delete(int, int) -> void
      */
     private void _delete(int start, int end) {
         /* body */ {
@@ -249,7 +249,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [SUBROUTINE] StringBuilderAutomaton::_insertCharSequence(int, CharSequence, int, int, int) -> void
+     * [SUBROUTINE] StringBufferAutomaton::_insertCharSequence(int, CharSequence, int, int, int) -> void
      */
     private void _insertCharSequence(int dstOffset, CharSequence s, int len, int start, int end) {
         /* body */ {
@@ -279,7 +279,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [SUBROUTINE] StringBuilderAutomaton::_substring(int, int) -> String
+     * [SUBROUTINE] StringBufferAutomaton::_substring(int, int) -> String
      */
     private String _substring(int start, int end) {
         String result = null;
@@ -298,10 +298,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::append(StringBuilder, CharSequence) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::append(StringBuffer, CharSequence) -> StringBuffer
      */
-    public StringBuilder append(CharSequence seq) {
-        StringBuilder result = null;
+    public synchronized StringBuffer append(CharSequence seq) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _appendCharSequence(seq);
@@ -311,10 +311,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::append(StringBuilder, CharSequence, int, int) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::append(StringBuffer, CharSequence, int, int) -> StringBuffer
      */
-    public StringBuilder append(CharSequence seq, int start, int end) {
-        StringBuilder result = null;
+    public synchronized StringBuffer append(CharSequence seq, int start, int end) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             int seqLength = 4;
@@ -336,10 +336,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::append(StringBuilder, Object) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::append(StringBuffer, Object) -> StringBuffer
      */
-    public StringBuilder append(Object obj) {
-        StringBuilder result = null;
+    public synchronized StringBuffer append(Object obj) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (obj == null) {
@@ -356,10 +356,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::append(StringBuilder, String) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::append(StringBuffer, String) -> StringBuffer
      */
-    public StringBuilder append(String str) {
-        StringBuilder result = null;
+    public synchronized StringBuffer append(String str) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _appendString(str);
@@ -369,18 +369,20 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::append(StringBuilder, StringBuffer) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::append(StringBuffer, StringBuffer) -> StringBuffer
      */
-    public StringBuilder append(StringBuffer sb) {
-        StringBuilder result = null;
+    public synchronized StringBuffer append(StringBuffer sb) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (sb == null) {
                 this.storage = this.storage.concat("null");
                 this.length += 4;
             } else {
-                this.storage = this.storage.concat(LibSLRuntime.toString(sb));
-                this.length = this.storage.length();
+                if ((sb != null && sb.getClass() == StringBuffer.class)) {
+                    this.storage = this.storage.concat(((StringBuffer) sb).storage);
+                    this.length += ((StringBuffer) sb).length;
+                }
             }
             result = this;
         }
@@ -388,10 +390,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::append(StringBuilder, boolean) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::append(StringBuffer, boolean) -> StringBuffer
      */
-    public StringBuilder append(boolean b) {
-        StringBuilder result = null;
+    public synchronized StringBuffer append(boolean b) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (b) {
@@ -407,10 +409,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::append(StringBuilder, char) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::append(StringBuffer, char) -> StringBuffer
      */
-    public StringBuilder append(char c) {
-        StringBuilder result = null;
+    public synchronized StringBuffer append(char c) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             this.storage = this.storage.concat(LibSLRuntime.toString(c));
@@ -421,10 +423,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::append(StringBuilder, array<char>) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::append(StringBuffer, array<char>) -> StringBuffer
      */
-    public StringBuilder append(char[] str) {
-        StringBuilder result = null;
+    public synchronized StringBuffer append(char[] str) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final int strSize = str.length;
@@ -436,10 +438,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::append(StringBuilder, array<char>, int, int) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::append(StringBuffer, array<char>, int, int) -> StringBuffer
      */
-    public StringBuilder append(char[] str, int offset, int len) {
-        StringBuilder result = null;
+    public synchronized StringBuffer append(char[] str, int offset, int len) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final int end = offset + len;
@@ -461,10 +463,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::append(StringBuilder, double) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::append(StringBuffer, double) -> StringBuffer
      */
-    public StringBuilder append(double d) {
-        StringBuilder result = null;
+    public synchronized StringBuffer append(double d) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final String dString = LibSLRuntime.toString(d);
@@ -476,10 +478,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::append(StringBuilder, float) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::append(StringBuffer, float) -> StringBuffer
      */
-    public StringBuilder append(float f) {
-        StringBuilder result = null;
+    public synchronized StringBuffer append(float f) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final String fString = LibSLRuntime.toString(f);
@@ -491,10 +493,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::append(StringBuilder, int) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::append(StringBuffer, int) -> StringBuffer
      */
-    public StringBuilder append(int i) {
-        StringBuilder result = null;
+    public synchronized StringBuffer append(int i) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final String iString = LibSLRuntime.toString(i);
@@ -506,10 +508,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::append(StringBuilder, long) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::append(StringBuffer, long) -> StringBuffer
      */
-    public StringBuilder append(long lng) {
-        StringBuilder result = null;
+    public synchronized StringBuffer append(long lng) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final String lngString = LibSLRuntime.toString(lng);
@@ -521,10 +523,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::appendCodePoint(StringBuilder, int) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::appendCodePoint(StringBuffer, int) -> StringBuffer
      */
-    public StringBuilder appendCodePoint(int codePoint) {
-        StringBuilder result = null;
+    public synchronized StringBuffer appendCodePoint(int codePoint) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (_isBmpCodePoint(codePoint)) {
@@ -548,16 +550,119 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::compareTo(StringBuilder, StringBuilder) -> int
+     * [FUNCTION] StringBufferAutomaton::capacity(StringBuffer) -> int
      */
-    public int compareTo(StringBuilder another) {
+    public synchronized int capacity() {
+        int result = 0;
+        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
+        /* body */ {
+            result = this.length;
+        }
+        return result;
+    }
+
+    /**
+     * [FUNCTION] StringBufferAutomaton::charAt(StringBuffer, int) -> char
+     */
+    public synchronized char charAt(int index) {
+        char result = '?';
+        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
+        /* body */ {
+            _checkIndex(index);
+            result = this.storage.charAt(index);
+        }
+        return result;
+    }
+
+    /**
+     * [FUNCTION] StringBufferAutomaton::chars(StringBuffer) -> IntStream
+     */
+    public IntStream chars() {
+        IntStream result = null;
+        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
+        /* body */ {
+            result = Engine.makeSymbolic(IntStream.class);
+            Engine.assume(result != null);
+        }
+        return result;
+    }
+
+    /**
+     * [FUNCTION] StringBufferAutomaton::codePointAt(StringBuffer, int) -> int
+     */
+    public synchronized int codePointAt(int index) {
+        int result = 0;
+        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
+        /* body */ {
+            _checkIndex(index);
+            final int codePoint = Engine.makeSymbolicInt();
+            Engine.assume(codePoint >= LibSLGlobals.MIN_CODE_POINT);
+            Engine.assume(codePoint <= LibSLGlobals.MAX_CODE_POINT);
+            result = codePoint;
+        }
+        return result;
+    }
+
+    /**
+     * [FUNCTION] StringBufferAutomaton::codePointBefore(StringBuffer, int) -> int
+     */
+    public synchronized int codePointBefore(int index) {
+        int result = 0;
+        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
+        /* body */ {
+            index -= 1;
+            _checkIndex(index);
+            final int codePoint = Engine.makeSymbolicInt();
+            Engine.assume(codePoint >= LibSLGlobals.MIN_CODE_POINT);
+            Engine.assume(codePoint <= LibSLGlobals.MAX_CODE_POINT);
+            result = codePoint;
+        }
+        return result;
+    }
+
+    /**
+     * [FUNCTION] StringBufferAutomaton::codePointCount(StringBuffer, int, int) -> int
+     */
+    public synchronized int codePointCount(int beginIndex, int endIndex) {
+        int result = 0;
+        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
+        /* body */ {
+            if ((beginIndex < 0) || (endIndex > this.length) || (beginIndex > endIndex)) {
+                throw new IndexOutOfBoundsException();
+            }
+            final int codePoint = Engine.makeSymbolicInt();
+            final int leftBorder = endIndex - beginIndex;
+            final int rightBorder = (endIndex - beginIndex) * 2;
+            Engine.assume(codePoint >= leftBorder);
+            Engine.assume(codePoint <= rightBorder);
+        }
+        return result;
+    }
+
+    /**
+     * [FUNCTION] StringBufferAutomaton::codePoints(StringBuffer) -> IntStream
+     */
+    public IntStream codePoints() {
+        IntStream result = null;
+        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
+        /* body */ {
+            result = Engine.makeSymbolic(IntStream.class);
+            Engine.assume(result != null);
+        }
+        return result;
+    }
+
+    /**
+     * [FUNCTION] StringBufferAutomaton::compareTo(StringBuffer, StringBuffer) -> int
+     */
+    public synchronized int compareTo(StringBuffer another) {
         int result = 0;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (another == this) {
                 result = 0;
             } else {
-                final String anotherString = ((StringBuilder) another).storage;
+                final String anotherString = ((StringBuffer) another).storage;
                 result = this.storage.compareTo(anotherString);
             }
         }
@@ -565,10 +670,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::delete(StringBuilder, int, int) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::delete(StringBuffer, int, int) -> StringBuffer
      */
-    public StringBuilder delete(int start, int end) {
-        StringBuilder result = null;
+    public synchronized StringBuffer delete(int start, int end) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (end > this.length) {
@@ -582,10 +687,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::deleteCharAt(StringBuilder, int) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::deleteCharAt(StringBuffer, int) -> StringBuffer
      */
-    public StringBuilder deleteCharAt(int index) {
-        StringBuilder result = null;
+    public synchronized StringBuffer deleteCharAt(int index) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _checkIndex(index);
@@ -596,7 +701,37 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::indexOf(StringBuilder, String) -> int
+     * [FUNCTION] StringBufferAutomaton::ensureCapacity(StringBuffer, int) -> void
+     */
+    public synchronized void ensureCapacity(int minimumCapacity) {
+        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
+        /* body */ {
+            Engine.assume(true);
+        }
+    }
+
+    /**
+     * [FUNCTION] StringBufferAutomaton::getChars(StringBuffer, int, int, array<char>, int) -> void
+     */
+    public synchronized void getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin) {
+        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
+        /* body */ {
+            _checkRangeSIOOBE(srcBegin, srcEnd, this.length);
+            int n = srcEnd - srcBegin;
+            final int dstLength = dst.length;
+            _checkRange(dstBegin, dstBegin + n, dstLength);
+            char[] storageChars = this.storage.toCharArray();
+            int i = 0;
+            for (i = srcBegin; i < srcEnd; i += 1) {
+                dst[dstBegin] = storageChars[i];
+                dstBegin += 1;
+            }
+            ;
+        }
+    }
+
+    /**
+     * [FUNCTION] StringBufferAutomaton::indexOf(StringBuffer, String) -> int
      */
     public int indexOf(String str) {
         int result = 0;
@@ -608,9 +743,9 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::indexOf(StringBuilder, String, int) -> int
+     * [FUNCTION] StringBufferAutomaton::indexOf(StringBuffer, String, int) -> int
      */
-    public int indexOf(String str, int fromIndex) {
+    public synchronized int indexOf(String str, int fromIndex) {
         int result = 0;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
@@ -620,10 +755,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::insert(StringBuilder, int, CharSequence) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::insert(StringBuffer, int, CharSequence) -> StringBuffer
      */
-    public StringBuilder insert(int dstOffset, CharSequence s) {
-        StringBuilder result = null;
+    public StringBuffer insert(int dstOffset, CharSequence s) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _checkOffset(dstOffset);
@@ -640,10 +775,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::insert(StringBuilder, int, CharSequence, int, int) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::insert(StringBuffer, int, CharSequence, int, int) -> StringBuffer
      */
-    public StringBuilder insert(int dstOffset, CharSequence s, int start, int end) {
-        StringBuilder result = null;
+    public synchronized StringBuffer insert(int dstOffset, CharSequence s, int start, int end) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _checkOffset(dstOffset);
@@ -660,10 +795,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::insert(StringBuilder, int, Object) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::insert(StringBuffer, int, Object) -> StringBuffer
      */
-    public StringBuilder insert(int dstOffset, Object obj) {
-        StringBuilder result = null;
+    public synchronized StringBuffer insert(int dstOffset, Object obj) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _checkOffset(dstOffset);
@@ -681,10 +816,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::insert(StringBuilder, int, String) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::insert(StringBuffer, int, String) -> StringBuffer
      */
-    public StringBuilder insert(int dstOffset, String s) {
-        StringBuilder result = null;
+    public synchronized StringBuffer insert(int dstOffset, String s) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _checkOffset(dstOffset);
@@ -701,10 +836,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::insert(StringBuilder, int, boolean) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::insert(StringBuffer, int, boolean) -> StringBuffer
      */
-    public StringBuilder insert(int dstOffset, boolean b) {
-        StringBuilder result = null;
+    public StringBuffer insert(int dstOffset, boolean b) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _checkOffset(dstOffset);
@@ -721,10 +856,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::insert(StringBuilder, int, char) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::insert(StringBuffer, int, char) -> StringBuffer
      */
-    public StringBuilder insert(int dstOffset, char c) {
-        StringBuilder result = null;
+    public synchronized StringBuffer insert(int dstOffset, char c) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _checkOffset(dstOffset);
@@ -752,10 +887,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::insert(StringBuilder, int, array<char>) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::insert(StringBuffer, int, array<char>) -> StringBuffer
      */
-    public StringBuilder insert(int dstOffset, char[] str) {
-        StringBuilder result = null;
+    public synchronized StringBuffer insert(int dstOffset, char[] str) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _checkOffset(dstOffset);
@@ -768,27 +903,27 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::insert(StringBuilder, int, array<char>, int, int) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::insert(StringBuffer, int, array<char>, int, int) -> StringBuffer
      */
-    public StringBuilder insert(int dstOffset, char[] str, int start, int end) {
-        StringBuilder result = null;
+    public synchronized StringBuffer insert(int index, char[] str, int offset, int len) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            _checkOffset(dstOffset);
+            _checkOffset(index);
+            final int lenStr = str.length;
+            _checkRangeSIOOBE(offset, offset + len, lenStr);
             final String s = LibSLRuntime.toString(str);
-            final int len = str.length;
-            _checkRangeSIOOBE(start, start + end, len);
-            _insertCharSequence(dstOffset, s, len, start, end);
+            _insertCharSequence(index, s, len, offset, offset + len);
             result = this;
         }
         return result;
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::insert(StringBuilder, int, double) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::insert(StringBuffer, int, double) -> StringBuffer
      */
-    public StringBuilder insert(int dstOffset, double d) {
-        StringBuilder result = null;
+    public StringBuffer insert(int dstOffset, double d) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _checkOffset(dstOffset);
@@ -801,10 +936,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::insert(StringBuilder, int, float) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::insert(StringBuffer, int, float) -> StringBuffer
      */
-    public StringBuilder insert(int dstOffset, float f) {
-        StringBuilder result = null;
+    public StringBuffer insert(int dstOffset, float f) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _checkOffset(dstOffset);
@@ -817,10 +952,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::insert(StringBuilder, int, int) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::insert(StringBuffer, int, int) -> StringBuffer
      */
-    public StringBuilder insert(int dstOffset, int ii) {
-        StringBuilder result = null;
+    public StringBuffer insert(int dstOffset, int ii) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _checkOffset(dstOffset);
@@ -833,10 +968,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::insert(StringBuilder, int, long) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::insert(StringBuffer, int, long) -> StringBuffer
      */
-    public StringBuilder insert(int dstOffset, long l) {
-        StringBuilder result = null;
+    public StringBuffer insert(int dstOffset, long l) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _checkOffset(dstOffset);
@@ -849,7 +984,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::lastIndexOf(StringBuilder, String) -> int
+     * [FUNCTION] StringBufferAutomaton::lastIndexOf(StringBuffer, String) -> int
      */
     public int lastIndexOf(String str) {
         int result = 0;
@@ -861,9 +996,9 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::lastIndexOf(StringBuilder, String, int) -> int
+     * [FUNCTION] StringBufferAutomaton::lastIndexOf(StringBuffer, String, int) -> int
      */
-    public int lastIndexOf(String str, int fromIndex) {
+    public synchronized int lastIndexOf(String str, int fromIndex) {
         int result = 0;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
@@ -873,10 +1008,35 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::replace(StringBuilder, int, int, String) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::length(StringBuffer) -> int
      */
-    public StringBuilder replace(int start, int end, String s) {
-        StringBuilder result = null;
+    public synchronized int length() {
+        int result = 0;
+        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
+        /* body */ {
+            result = this.length;
+        }
+        return result;
+    }
+
+    /**
+     * [FUNCTION] StringBufferAutomaton::offsetByCodePoints(StringBuffer, int, int) -> int
+     */
+    public synchronized int offsetByCodePoints(int index, int codePointOffset) {
+        int result = 0;
+        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
+        /* body */ {
+            _checkIndex(index);
+            result = Character.offsetByCodePoints(this.storage, index, codePointOffset);
+        }
+        return result;
+    }
+
+    /**
+     * [FUNCTION] StringBufferAutomaton::replace(StringBuffer, int, int, String) -> StringBuffer
+     */
+    public synchronized StringBuffer replace(int start, int end, String s) {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (end > this.length) {
@@ -911,10 +1071,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::reverse(StringBuilder) -> StringBuilder
+     * [FUNCTION] StringBufferAutomaton::reverse(StringBuffer) -> StringBuffer
      */
-    public StringBuilder reverse() {
-        StringBuilder result = null;
+    public synchronized StringBuffer reverse() {
+        StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (this.length != 0) {
@@ -938,68 +1098,34 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::toString(StringBuilder) -> String
+     * [FUNCTION] StringBufferAutomaton::setCharAt(StringBuffer, int, char) -> void
      */
-    public String toString() {
-        String result = null;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
-        /* body */ {
-            result = this.storage;
-        }
-        return result;
-    }
-
-    /**
-     * [FUNCTION] StringBuilderAutomaton::capacity(StringBuilder) -> int
-     */
-    public int capacity() {
-        int result = 0;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
-        /* body */ {
-            result = this.length;
-        }
-        return result;
-    }
-
-    /**
-     * [FUNCTION] StringBuilderAutomaton::ensureCapacity(StringBuilder, int) -> void
-     */
-    public void ensureCapacity(int minimumCapacity) {
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
-        /* body */ {
-            Engine.assume(true);
-        }
-    }
-
-    /**
-     * [FUNCTION] StringBuilderAutomaton::length(StringBuilder) -> int
-     */
-    public int length() {
-        int result = 0;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
-        /* body */ {
-            result = this.length;
-        }
-        return result;
-    }
-
-    /**
-     * [FUNCTION] StringBuilderAutomaton::charAt(StringBuilder, int) -> char
-     */
-    public char charAt(int index) {
-        char result = '?';
+    public synchronized void setCharAt(int index, char ch) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _checkIndex(index);
-            result = this.storage.charAt(index);
+            final char[] newStr = new char[this.length];
+            int arrayIndex = 0;
+            int i = 0;
+            for (i = 0; i < index; i += 1) {
+                newStr[arrayIndex] = this.storage.charAt(i);
+                arrayIndex += 1;
+            }
+            ;
+            newStr[index] = ch;
+            for (i = index + 1; i < this.length; i += 1) {
+                newStr[arrayIndex] = this.storage.charAt(i);
+                arrayIndex += 1;
+            }
+            ;
+            this.storage = LibSLRuntime.toString(newStr);
         }
-        return result;
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::setLength(StringBuilder, int) -> void
+     * [FUNCTION] StringBufferAutomaton::setLength(StringBuffer, int) -> void
      */
-    public void setLength(int newLength) {
+    public synchronized void setLength(int newLength) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (newLength < 0) {
@@ -1034,68 +1160,9 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::setCharAt(StringBuilder, int, char) -> void
+     * [FUNCTION] StringBufferAutomaton::subSequence(StringBuffer, int, int) -> CharSequence
      */
-    public void setCharAt(int index, char ch) {
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
-        /* body */ {
-            _checkIndex(index);
-            final char[] newStr = new char[this.length];
-            int arrayIndex = 0;
-            int i = 0;
-            for (i = 0; i < index; i += 1) {
-                newStr[arrayIndex] = this.storage.charAt(i);
-                arrayIndex += 1;
-            }
-            ;
-            newStr[index] = ch;
-            for (i = index + 1; i < this.length; i += 1) {
-                newStr[arrayIndex] = this.storage.charAt(i);
-                arrayIndex += 1;
-            }
-            ;
-            this.storage = LibSLRuntime.toString(newStr);
-        }
-    }
-
-    /**
-     * [FUNCTION] StringBuilderAutomaton::trimToSize(StringBuilder) -> void
-     */
-    public void trimToSize() {
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
-        /* body */ {
-            Engine.assume(true);
-        }
-    }
-
-    /**
-     * [FUNCTION] StringBuilderAutomaton::substring(StringBuilder, int) -> String
-     */
-    public String substring(int start) {
-        String result = null;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
-        /* body */ {
-            result = _substring(start, this.length);
-        }
-        return result;
-    }
-
-    /**
-     * [FUNCTION] StringBuilderAutomaton::substring(StringBuilder, int, int) -> String
-     */
-    public String substring(int start, int end) {
-        String result = null;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
-        /* body */ {
-            result = _substring(start, end);
-        }
-        return result;
-    }
-
-    /**
-     * [FUNCTION] StringBuilderAutomaton::subSequence(StringBuilder, int, int) -> CharSequence
-     */
-    public CharSequence subSequence(int start, int end) {
+    public synchronized CharSequence subSequence(int start, int end) {
         CharSequence result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
@@ -1105,132 +1172,48 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::getChars(StringBuilder, int, int, array<char>, int) -> void
+     * [FUNCTION] StringBufferAutomaton::substring(StringBuffer, int) -> String
      */
-    public void getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin) {
+    public synchronized String substring(int start) {
+        String result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            _checkRangeSIOOBE(srcBegin, srcEnd, this.length);
-            int n = srcEnd - srcBegin;
-            final int dstLength = dst.length;
-            _checkRange(dstBegin, dstBegin + n, dstLength);
-            char[] storageChars = this.storage.toCharArray();
-            int i = 0;
-            for (i = srcBegin; i < srcEnd; i += 1) {
-                dst[dstBegin] = storageChars[i];
-                dstBegin += 1;
-            }
-            ;
-        }
-    }
-
-    /**
-     * [FUNCTION] StringBuilderAutomaton::codePointCount(StringBuilder, int, int) -> int
-     */
-    public int codePointCount(int beginIndex, int endIndex) {
-        int result = 0;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
-        /* body */ {
-            if ((beginIndex < 0) || (endIndex > this.length) || (beginIndex > endIndex)) {
-                throw new IndexOutOfBoundsException();
-            }
-            final int codePoint = Engine.makeSymbolicInt();
-            final int leftBorder = endIndex - beginIndex;
-            final int rightBorder = (endIndex - beginIndex) * 2;
-            Engine.assume(codePoint >= leftBorder);
-            Engine.assume(codePoint <= rightBorder);
+            result = _substring(start, this.length);
         }
         return result;
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::codePointAt(StringBuilder, int) -> int
+     * [FUNCTION] StringBufferAutomaton::substring(StringBuffer, int, int) -> String
      */
-    public int codePointAt(int index) {
-        int result = 0;
+    public synchronized String substring(int start, int end) {
+        String result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            _checkIndex(index);
-            final int codePoint = Engine.makeSymbolicInt();
-            Engine.assume(codePoint >= LibSLGlobals.MIN_CODE_POINT);
-            Engine.assume(codePoint <= LibSLGlobals.MAX_CODE_POINT);
-            result = codePoint;
+            result = _substring(start, end);
         }
         return result;
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::codePointBefore(StringBuilder, int) -> int
+     * [FUNCTION] StringBufferAutomaton::toString(StringBuffer) -> String
      */
-    public int codePointBefore(int index) {
-        int result = 0;
+    public synchronized String toString() {
+        String result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            index -= 1;
-            _checkIndex(index);
-            final int codePoint = Engine.makeSymbolicInt();
-            Engine.assume(codePoint >= LibSLGlobals.MIN_CODE_POINT);
-            Engine.assume(codePoint <= LibSLGlobals.MAX_CODE_POINT);
-            result = codePoint;
+            result = this.storage;
         }
         return result;
     }
 
     /**
-     * [FUNCTION] StringBuilderAutomaton::offsetByCodePoints(StringBuilder, int, int) -> int
+     * [FUNCTION] StringBufferAutomaton::trimToSize(StringBuffer) -> void
      */
-    public int offsetByCodePoints(int index, int codePointOffset) {
-        int result = 0;
+    public synchronized void trimToSize() {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            _checkIndex(index);
-            result = Character.offsetByCodePoints(this.storage, index, codePointOffset);
-        }
-        return result;
-    }
-
-    /**
-     * [FUNCTION] StringBuilderAutomaton::codePoints(StringBuilder) -> IntStream
-     */
-    public IntStream codePoints() {
-        IntStream result = null;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
-        /* body */ {
-            result = Engine.makeSymbolic(IntStream.class);
-            Engine.assume(result != null);
-        }
-        return result;
-    }
-
-    /**
-     * [FUNCTION] StringBuilderAutomaton::chars(StringBuilder) -> IntStream
-     */
-    public IntStream chars() {
-        IntStream result = null;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
-        /* body */ {
-            result = Engine.makeSymbolic(IntStream.class);
-            Engine.assume(result != null);
-        }
-        return result;
-    }
-
-    /**
-     * [FUNCTION] StringBuilderAutomaton::writeObject(StringBuilder, ObjectOutputStream) -> void
-     */
-    private void writeObject(ObjectOutputStream s) throws java.io.IOException {
-        /* body */ {
-            LibSLRuntime.not_implemented(/* no serialization support yet */);
-        }
-    }
-
-    /**
-     * [FUNCTION] StringBuilderAutomaton::readObject(StringBuilder, ObjectInputStream) -> void
-     */
-    private void readObject(ObjectInputStream s) throws java.io.IOException,
-            java.lang.ClassNotFoundException {
-        /* body */ {
-            LibSLRuntime.not_implemented(/* no serialization support yet */);
+            Engine.assume(true);
         }
     }
 
@@ -1240,7 +1223,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
         public static final byte Initialized = (byte) 1;
     }
 
-    @Approximate(StringBuilder.class)
+    @Approximate(StringBuffer.class)
     public static final class __hook {
         private __hook(Void o1, Void o2) {
             Engine.assume(false);
