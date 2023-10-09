@@ -94,51 +94,49 @@ public final class LibSLRuntime {
     }
 
     public static String toString(final byte v) {
-        // TODO: maybe use more sophisticated approach?
-        final String str = Engine.makeSymbolic(String.class);
-        Engine.assume(str != null);
+        if (v == 0)               return "0";
+        if (v == Byte.MIN_VALUE)  return "-128";
+        if (v == Byte.MAX_VALUE)  return "127";
+        // FIXME: add more common cases
 
-        Engine.assume(str.length() <= 4); // '-128' _ '128'
-        Engine.assume(str.isEmpty() == false);
-
-        return str;
+        final int value = (int) v;
+        Engine.assume(value > Byte.MIN_VALUE);
+        Engine.assume(value < Byte.MAX_VALUE);
+        return Integer.toString(value);
     }
 
     public static String toString(final short v) {
-        // TODO: maybe use more sophisticated approach?
-        final String str = Engine.makeSymbolic(String.class);
-        Engine.assume(str != null);
+        if (v == 0)                return "0";
+        if (v == Short.MIN_VALUE)  return "-32768";
+        if (v == Short.MAX_VALUE)  return "32767";
+        // FIXME: add more common cases
 
-        Engine.assume(str.length() <= 6); // '-32768' _ '32767'
-        Engine.assume(str.isEmpty() == false);
-
-        return str;
+        final int value = (int) v;
+        Engine.assume(value > Short.MIN_VALUE);
+        Engine.assume(value < Short.MAX_VALUE);
+        return Integer.toString(value);
     }
 
     public static String toString(final int v) {
-        // TODO: maybe use more sophisticated approach?
-        final String str = Engine.makeSymbolic(String.class);
-        Engine.assume(str != null);
+        if (v == 0)                  return "0";
+        if (v == Integer.MIN_VALUE)  return "-2147483648";
+        if (v == Integer.MAX_VALUE)  return "2147483647";
+        // FIXME: add more common cases
 
-        Engine.assume(str.length() <= 11); // '-2147483648' _ '2147483647'
-        Engine.assume(str.isEmpty() == false);
-
-        return str;
+        return Integer.toString(v);
     }
 
     public static String toString(final long v) {
-        // TODO: maybe use more sophisticated approach?
-        final String str = Engine.makeSymbolic(String.class);
-        Engine.assume(str != null);
+        if (v == 0L)              return "0";
+        if (v == Long.MIN_VALUE)  return "-9223372036854775808";
+        if (v == Long.MAX_VALUE)  return "9223372036854775807";
+        // FIXME: add more common cases
 
-        Engine.assume(str.length() <= 20); // '-9223372036854775808' _ '9223372036854775807'
-        Engine.assume(str.isEmpty() == false);
-
-        return str;
+        return Long.toString(v);
     }
 
     public static String toString(final char v) {
-        return new String(new char[]{ v });
+        return String.valueOf(v);
     }
 
     // TODO: do we need more variants for other primitive array types?
@@ -147,12 +145,12 @@ public final class LibSLRuntime {
     }
 
     public static String toString(final float v) {
-        // FIXME: use less complex approach
+        // TODO: use less complex approach
         return Float.toString(v);
     }
 
     public static String toString(final double v) {
-        // FIXME: use less complex approach
+        // TODO: use less complex approach
         return Double.toString(v);
     }
 
@@ -509,10 +507,83 @@ public final class LibSLRuntime {
 
     // a helper class for complex "map<K,V>"-related actions
     public static final class MapActions {
+        private static final Object DUMMY_IDENTITY_MAP = Engine.makeSymbolicMap();
 
-        public static <K, V> void intersect_1(final SymbolicMap<K, V> receiver,
-                                              final SymbolicMap<K, V> otherSource) {
-            throw new InternalError(/* TODO */);
+        public static <K, V> SymbolicMap<K, V> union(final SymbolicMap<K, V> a,
+                                                     final SymbolicMap<K, V> b) {
+            final SymbolicMap<K, V> r = Engine.typeEquals(a, DUMMY_IDENTITY_MAP)
+                        ? Engine.makeSymbolicMap()
+                        : Engine.makeSymbolicMap();
+
+            r.merge(a);
+            r.merge(b);
+
+            return r;
+        }
+
+
+        public static <K, V> SymbolicMap<K, V> intersection(final SymbolicMap<K, V> a,
+                                                            final SymbolicMap<K, V> b) {
+            final SymbolicMap<K, V> r = Engine.typeEquals(a, DUMMY_IDENTITY_MAP)
+                        ? Engine.makeSymbolicMap()
+                        : Engine.makeSymbolicMap();
+
+            final int aSize = a.size();
+            final int bSize = b.size();
+            int count = aSize > bSize ? bSize : aSize;
+
+            if (count == 0)
+                return r;
+            Engine.assume(count > 0);
+
+            while (count != 0) {
+                final K key = (K) Engine.makeSymbolic(Object.class);
+                Engine.assume(r.containsKey(key) == false);
+                Engine.assume(a.containsKey(key) == true);
+
+                if (b.containsKey(key))
+                    r.set(key, b.get(key));
+
+                count -= 1;
+            }
+
+            return r;
+        }
+
+
+        public static <K, V> void intersect(final SymbolicMap<K, V> receiver,
+                                            final SymbolicMap<K, V> otherSource) {
+            int count = receiver.size();
+
+            if (count == 0)
+                return;
+            Engine.assume(count > 0);
+
+            final SymbolicMap<Object, Object> visited = Engine.makeSymbolicMap();
+            if (otherSource.size() == 0) {
+                while (count != 0) {
+                    final K key = (K) Engine.makeSymbolic(Object.class);
+                    Engine.assume(visited.containsKey(key) == false);
+                    Engine.assume(receiver.containsKey(key) == true);
+
+                    receiver.remove(key);
+
+                    visited.set(key, SOMETHING);
+                    count -= 1;
+                }
+            } else {
+                while (count != 0) {
+                    final K key = (K) Engine.makeSymbolic(Object.class);
+                    Engine.assume(visited.containsKey(key) == false);
+                    Engine.assume(receiver.containsKey(key) == true);
+
+                    if (!otherSource.containsKey(key))
+                        receiver.remove(key);
+
+                    visited.set(key, SOMETHING);
+                    count -= 1;
+                }
+            }
         }
 
     }
