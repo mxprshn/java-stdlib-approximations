@@ -479,6 +479,7 @@ public final class LibSLRuntime {
 
     // a helper class for complex "list<T>"-related actions
     public static final class ListActions {
+        private static final int INDEX_NOT_FOUND = -1;
 
         public static int find(final SymbolicList<?> list, final Object value,
                                final int from, final int to) {
@@ -487,18 +488,21 @@ public final class LibSLRuntime {
             Engine.assume(from < to);
             Engine.assume(list != null);
 
-            final int idx = Engine.makeSymbolicInt();
-            Engine.assume(from <= idx);
-            Engine.assume(idx < to);
+            // FIXME: is there a more efficient solution?
+            if (value == null) {
+                for (int i = from; i < to; i++) {
+                    if (list.get(i) == null)
+                        return i;
+                }
+            } else {
+                for (int i = from; i < to; i++) {
+                    final Object item = list.get(i);
+                    if (value == item || value.equals(item))
+                        return i;
+                }
+            }
 
-            final Object something = list.get(idx);
-            if (value == something)
-                return idx;
-
-            if (value != null && value.equals(something))
-                return idx;
-
-            return -1;
+            return INDEX_NOT_FOUND;
         }
 
     }
