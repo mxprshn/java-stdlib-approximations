@@ -15,7 +15,6 @@ import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
-import org.usvm.api.SymbolicMap;
 import runtime.LibSLRuntime;
 
 /**
@@ -31,7 +30,7 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
 
     public int expectedModCount;
 
-    public SymbolicMap<Object, Object> visitedKeys;
+    public LibSLRuntime.Map<Object, Object> visitedKeys;
 
     public HashSet parent;
 
@@ -43,8 +42,8 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
 
     @LibSLRuntime.AutomatonConstructor
     public HashSet_KeyIterator(Void __$lsl_token, final byte p0, final int p1,
-            final SymbolicMap<Object, Object> p2, final HashSet p3, final int p4, final Object p5,
-            final boolean p6) {
+            final LibSLRuntime.Map<Object, Object> p2, final HashSet p3, final int p4,
+            final Object p5, final boolean p6) {
         this.__$lsl_state = p0;
         this.expectedModCount = p1;
         this.visitedKeys = p2;
@@ -114,14 +113,14 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
             final Object key = Engine.makeSymbolic(Object.class);
             Engine.assume(key != null);
             Engine.assume(key != this.currentKey);
-            final SymbolicMap<Object, Object> parentStorage = ((HashSet) this.parent).storage;
-            final boolean sourceStorageHasKey = parentStorage.containsKey(key);
+            final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) this.parent).storage;
+            final boolean sourceStorageHasKey = parentStorage.hasKey(key);
             Engine.assume(sourceStorageHasKey);
-            final boolean dstStorageHasKey = this.visitedKeys.containsKey(key);
+            final boolean dstStorageHasKey = this.visitedKeys.hasKey(key);
             Engine.assume(!dstStorageHasKey);
             this.currentKey = key;
             result = key;
-            this.visitedKeys.set(this.currentKey, LibSLGlobals.HASHSET_VALUE);
+            this.visitedKeys.set(this.currentKey, LibSLGlobals.SOMETHING);
             this.index += 1;
             this.nextWasCalled = true;
         }
@@ -142,7 +141,7 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
             }
             this.nextWasCalled = false;
             _checkForComodification();
-            final SymbolicMap<Object, Object> parentStorage = ((HashSet) this.parent).storage;
+            final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) this.parent).storage;
             parentStorage.remove(this.currentKey);
             this.expectedModCount = ((HashSet) this.parent).modCount;
         }
@@ -164,13 +163,13 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
                 final Object key = Engine.makeSymbolic(Object.class);
                 Engine.assume(key != null);
                 Engine.assume(key != this.currentKey);
-                final SymbolicMap<Object, Object> parentStorage = ((HashSet) this.parent).storage;
-                final boolean sourceStorageHasKey = parentStorage.containsKey(key);
+                final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) this.parent).storage;
+                final boolean sourceStorageHasKey = parentStorage.hasKey(key);
                 Engine.assume(sourceStorageHasKey);
-                final boolean destStorageHasKey = this.visitedKeys.containsKey(key);
+                final boolean destStorageHasKey = this.visitedKeys.hasKey(key);
                 Engine.assume(!destStorageHasKey);
                 this.currentKey = key;
-                this.visitedKeys.set(this.currentKey, LibSLGlobals.HASHSET_VALUE);
+                this.visitedKeys.set(this.currentKey, LibSLGlobals.SOMETHING);
                 userAction.accept(key);
                 i += 1;
             }

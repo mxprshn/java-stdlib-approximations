@@ -240,6 +240,23 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
     }
 
     /**
+     * [SUBROUTINE] LinkedListAutomaton::_replaceAllRange(UnaryOperator, int, int) -> void
+     */
+    public void _replaceAllRange(UnaryOperator op, int i, int end) {
+        /* body */ {
+            final int expectedModCount = this.modCount;
+            while ((this.modCount == expectedModCount) && (i < end)) {
+                final Object oldItem = this.storage.get(i);
+                final Object newItem = op.apply(oldItem);
+                this.storage.set(i, newItem);
+                i += 1;
+            }
+            ;
+            _checkForComodification(expectedModCount);
+        }
+    }
+
+    /**
      * [SUBROUTINE] LinkedListAutomaton::_makeStream(boolean) -> Stream
      */
     private Stream _makeStream(boolean parallel) {
@@ -903,10 +920,14 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
     /**
      * [FUNCTION] LinkedListAutomaton::replaceAll(LinkedList, UnaryOperator) -> void
      */
-    public void replaceAll(UnaryOperator operator) {
+    public void replaceAll(UnaryOperator op) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            LibSLRuntime.todo();
+            if (op == null) {
+                throw new NullPointerException();
+            }
+            _replaceAllRange(op, 0, this.size);
+            this.modCount += 1;
         }
     }
 

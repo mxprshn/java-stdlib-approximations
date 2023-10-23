@@ -19,7 +19,7 @@ import org.usvm.api.Engine;
 import runtime.LibSLRuntime;
 
 /**
- * OptionalIntAutomaton for OptionalInt ~> java.util.OptionalInt
+ * OptionalIntAutomaton for LSLOptionalInt ~> java.util.OptionalInt
  */
 @Approximate(java.util.OptionalInt.class)
 public final class OptionalInt implements LibSLRuntime.Automaton {
@@ -46,7 +46,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [CONSTRUCTOR] OptionalIntAutomaton::OptionalInt(OptionalInt) -> OptionalInt
+     * [CONSTRUCTOR] OptionalIntAutomaton::LSLOptionalInt(LSLOptionalInt) -> LSLOptionalInt
      */
     private OptionalInt() {
         this((Void) null);
@@ -58,7 +58,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [CONSTRUCTOR] OptionalIntAutomaton::OptionalInt(OptionalInt, int) -> OptionalInt
+     * [CONSTRUCTOR] OptionalIntAutomaton::LSLOptionalInt(LSLOptionalInt, int) -> LSLOptionalInt
      */
     private OptionalInt(int x) {
         this((Void) null);
@@ -70,7 +70,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalIntAutomaton::empty() -> OptionalInt
+     * [FUNCTION] OptionalIntAutomaton::empty() -> LSLOptionalInt
      */
     public static OptionalInt empty() {
         OptionalInt result = null;
@@ -83,7 +83,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalIntAutomaton::of(int) -> OptionalInt
+     * [FUNCTION] OptionalIntAutomaton::of(int) -> LSLOptionalInt
      */
     public static OptionalInt of(int x) {
         OptionalInt result = null;
@@ -99,7 +99,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalIntAutomaton::equals(OptionalInt, Object) -> boolean
+     * [FUNCTION] OptionalIntAutomaton::equals(LSLOptionalInt, Object) -> boolean
      */
     public boolean equals(Object other) {
         boolean result = false;
@@ -126,7 +126,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalIntAutomaton::getAsInt(OptionalInt) -> int
+     * [FUNCTION] OptionalIntAutomaton::getAsInt(LSLOptionalInt) -> int
      */
     public int getAsInt() {
         int result = 0;
@@ -141,7 +141,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalIntAutomaton::hashCode(OptionalInt) -> int
+     * [FUNCTION] OptionalIntAutomaton::hashCode(LSLOptionalInt) -> int
      */
     public int hashCode() {
         int result = 0;
@@ -157,7 +157,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalIntAutomaton::ifPresent(OptionalInt, IntConsumer) -> void
+     * [FUNCTION] OptionalIntAutomaton::ifPresent(LSLOptionalInt, IntConsumer) -> void
      */
     public void ifPresent(IntConsumer consumer) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -172,7 +172,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalIntAutomaton::ifPresentOrElse(OptionalInt, IntConsumer, Runnable) -> void
+     * [FUNCTION] OptionalIntAutomaton::ifPresentOrElse(LSLOptionalInt, IntConsumer, Runnable) -> void
      */
     public void ifPresentOrElse(IntConsumer consumer, Runnable emptyAction) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -192,7 +192,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalIntAutomaton::isEmpty(OptionalInt) -> boolean
+     * [FUNCTION] OptionalIntAutomaton::isEmpty(LSLOptionalInt) -> boolean
      */
     public boolean isEmpty() {
         boolean result = false;
@@ -204,7 +204,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalIntAutomaton::isPresent(OptionalInt) -> boolean
+     * [FUNCTION] OptionalIntAutomaton::isPresent(LSLOptionalInt) -> boolean
      */
     public boolean isPresent() {
         boolean result = false;
@@ -216,7 +216,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalIntAutomaton::orElse(OptionalInt, int) -> int
+     * [FUNCTION] OptionalIntAutomaton::orElse(LSLOptionalInt, int) -> int
      */
     public int orElse(int other) {
         int result = 0;
@@ -232,7 +232,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalIntAutomaton::orElseGet(OptionalInt, IntSupplier) -> int
+     * [FUNCTION] OptionalIntAutomaton::orElseGet(LSLOptionalInt, IntSupplier) -> int
      */
     public int orElseGet(IntSupplier supplier) {
         int result = 0;
@@ -251,7 +251,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalIntAutomaton::orElseThrow(OptionalInt) -> int
+     * [FUNCTION] OptionalIntAutomaton::orElseThrow(LSLOptionalInt) -> int
      */
     public int orElseThrow() {
         int result = 0;
@@ -266,7 +266,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalIntAutomaton::orElseThrow(OptionalInt, Supplier) -> int
+     * [FUNCTION] OptionalIntAutomaton::orElseThrow(LSLOptionalInt, Supplier) -> int
      */
     public int orElseThrow(Supplier exceptionSupplier) throws java.lang.Throwable {
         int result = 0;
@@ -286,7 +286,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalIntAutomaton::stream(OptionalInt) -> IntStream
+     * [FUNCTION] OptionalIntAutomaton::stream(LSLOptionalInt) -> IntStream
      */
     public IntStream stream() {
         IntStream result = null;
@@ -299,7 +299,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalIntAutomaton::toString(OptionalInt) -> String
+     * [FUNCTION] OptionalIntAutomaton::toString(LSLOptionalInt) -> String
      */
     public String toString() {
         String result = null;

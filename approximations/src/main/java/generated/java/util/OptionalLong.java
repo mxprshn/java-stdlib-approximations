@@ -19,7 +19,7 @@ import org.usvm.api.Engine;
 import runtime.LibSLRuntime;
 
 /**
- * OptionalLongAutomaton for OptionalLong ~> java.util.OptionalLong
+ * OptionalLongAutomaton for LSLOptionalLong ~> java.util.OptionalLong
  */
 @Approximate(java.util.OptionalLong.class)
 public final class OptionalLong implements LibSLRuntime.Automaton {
@@ -46,7 +46,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [CONSTRUCTOR] OptionalLongAutomaton::OptionalLong(OptionalLong) -> OptionalLong
+     * [CONSTRUCTOR] OptionalLongAutomaton::LSLOptionalLong(LSLOptionalLong) -> LSLOptionalLong
      */
     private OptionalLong() {
         this((Void) null);
@@ -58,7 +58,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [CONSTRUCTOR] OptionalLongAutomaton::OptionalLong(OptionalLong, long) -> OptionalLong
+     * [CONSTRUCTOR] OptionalLongAutomaton::LSLOptionalLong(LSLOptionalLong, long) -> LSLOptionalLong
      */
     private OptionalLong(long x) {
         this((Void) null);
@@ -70,7 +70,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalLongAutomaton::empty() -> OptionalLong
+     * [FUNCTION] OptionalLongAutomaton::empty() -> LSLOptionalLong
      */
     public static OptionalLong empty() {
         OptionalLong result = null;
@@ -83,7 +83,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalLongAutomaton::of(long) -> OptionalLong
+     * [FUNCTION] OptionalLongAutomaton::of(long) -> LSLOptionalLong
      */
     public static OptionalLong of(long x) {
         OptionalLong result = null;
@@ -99,7 +99,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalLongAutomaton::equals(OptionalLong, Object) -> boolean
+     * [FUNCTION] OptionalLongAutomaton::equals(LSLOptionalLong, Object) -> boolean
      */
     public boolean equals(Object other) {
         boolean result = false;
@@ -126,7 +126,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalLongAutomaton::getAsLong(OptionalLong) -> long
+     * [FUNCTION] OptionalLongAutomaton::getAsLong(LSLOptionalLong) -> long
      */
     public long getAsLong() {
         long result = 0L;
@@ -141,7 +141,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalLongAutomaton::hashCode(OptionalLong) -> int
+     * [FUNCTION] OptionalLongAutomaton::hashCode(LSLOptionalLong) -> int
      */
     public int hashCode() {
         int result = 0;
@@ -157,7 +157,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalLongAutomaton::ifPresent(OptionalLong, LongConsumer) -> void
+     * [FUNCTION] OptionalLongAutomaton::ifPresent(LSLOptionalLong, LongConsumer) -> void
      */
     public void ifPresent(LongConsumer consumer) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -172,7 +172,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalLongAutomaton::ifPresentOrElse(OptionalLong, LongConsumer, Runnable) -> void
+     * [FUNCTION] OptionalLongAutomaton::ifPresentOrElse(LSLOptionalLong, LongConsumer, Runnable) -> void
      */
     public void ifPresentOrElse(LongConsumer consumer, Runnable emptyAction) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -192,7 +192,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalLongAutomaton::isEmpty(OptionalLong) -> boolean
+     * [FUNCTION] OptionalLongAutomaton::isEmpty(LSLOptionalLong) -> boolean
      */
     public boolean isEmpty() {
         boolean result = false;
@@ -204,7 +204,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalLongAutomaton::isPresent(OptionalLong) -> boolean
+     * [FUNCTION] OptionalLongAutomaton::isPresent(LSLOptionalLong) -> boolean
      */
     public boolean isPresent() {
         boolean result = false;
@@ -216,7 +216,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalLongAutomaton::orElse(OptionalLong, long) -> long
+     * [FUNCTION] OptionalLongAutomaton::orElse(LSLOptionalLong, long) -> long
      */
     public long orElse(long other) {
         long result = 0L;
@@ -232,7 +232,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalLongAutomaton::orElseGet(OptionalLong, LongSupplier) -> long
+     * [FUNCTION] OptionalLongAutomaton::orElseGet(LSLOptionalLong, LongSupplier) -> long
      */
     public long orElseGet(LongSupplier supplier) {
         long result = 0L;
@@ -251,7 +251,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalLongAutomaton::orElseThrow(OptionalLong) -> long
+     * [FUNCTION] OptionalLongAutomaton::orElseThrow(LSLOptionalLong) -> long
      */
     public long orElseThrow() {
         long result = 0L;
@@ -266,7 +266,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalLongAutomaton::orElseThrow(OptionalLong, Supplier) -> long
+     * [FUNCTION] OptionalLongAutomaton::orElseThrow(LSLOptionalLong, Supplier) -> long
      */
     public long orElseThrow(Supplier exceptionSupplier) throws java.lang.Throwable {
         long result = 0L;
@@ -286,7 +286,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalLongAutomaton::stream(OptionalLong) -> LongStream
+     * [FUNCTION] OptionalLongAutomaton::stream(LSLOptionalLong) -> LongStream
      */
     public LongStream stream() {
         LongStream result = null;
@@ -299,7 +299,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalLongAutomaton::toString(OptionalLong) -> String
+     * [FUNCTION] OptionalLongAutomaton::toString(LSLOptionalLong) -> String
      */
     public String toString() {
         String result = null;

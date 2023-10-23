@@ -26,6 +26,8 @@ import runtime.LibSLRuntime;
  */
 @Approximate(java.lang.StringBuilder.class)
 public final class StringBuilder implements LibSLRuntime.Automaton, Serializable, Comparable<StringBuilder>, CharSequence {
+    private static final long serialVersionUID = 4383685877147921099L;
+
     static {
         Engine.assume(true);
     }

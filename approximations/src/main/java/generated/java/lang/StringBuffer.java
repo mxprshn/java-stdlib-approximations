@@ -595,10 +595,7 @@ public final class StringBuffer implements LibSLRuntime.Automaton, Serializable,
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _checkIndex(index);
-            final int codePoint = Engine.makeSymbolicInt();
-            Engine.assume(codePoint >= LibSLGlobals.MIN_CODE_POINT);
-            Engine.assume(codePoint <= LibSLGlobals.MAX_CODE_POINT);
-            result = codePoint;
+            result = this.storage.codePointAt(index);
         }
         return result;
     }
@@ -612,10 +609,7 @@ public final class StringBuffer implements LibSLRuntime.Automaton, Serializable,
         /* body */ {
             index -= 1;
             _checkIndex(index);
-            final int codePoint = Engine.makeSymbolicInt();
-            Engine.assume(codePoint >= LibSLGlobals.MIN_CODE_POINT);
-            Engine.assume(codePoint <= LibSLGlobals.MAX_CODE_POINT);
-            result = codePoint;
+            result = this.storage.codePointBefore(index);
         }
         return result;
     }
@@ -630,11 +624,7 @@ public final class StringBuffer implements LibSLRuntime.Automaton, Serializable,
             if ((beginIndex < 0) || (endIndex > this.length) || (beginIndex > endIndex)) {
                 throw new IndexOutOfBoundsException();
             }
-            final int codePoint = Engine.makeSymbolicInt();
-            final int leftBorder = endIndex - beginIndex;
-            final int rightBorder = (endIndex - beginIndex) * 2;
-            Engine.assume(codePoint >= leftBorder);
-            Engine.assume(codePoint <= rightBorder);
+            result = this.storage.codePointCount(beginIndex, endIndex);
         }
         return result;
     }

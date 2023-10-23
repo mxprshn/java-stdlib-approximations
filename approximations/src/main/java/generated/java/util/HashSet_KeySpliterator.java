@@ -13,7 +13,6 @@ import java.util.Spliterator;
 import java.util.function.Consumer;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
-import org.usvm.api.SymbolicMap;
 import runtime.LibSLRuntime;
 
 /**
@@ -81,7 +80,7 @@ public final class HashSet_KeySpliterator implements LibSLRuntime.Automaton, Spl
             Engine.assume(this.parent != null);
             int hi = this.fence;
             if (hi < 0) {
-                final SymbolicMap<Object, Object> parentStorage = ((HashSet) this.parent).storage;
+                final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) this.parent).storage;
                 this.est = ((HashSet) this.parent).length;
                 this.expectedModCount = ((HashSet) this.parent).modCount;
                 this.fence = this.est;

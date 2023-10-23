@@ -19,7 +19,7 @@ import org.usvm.api.Engine;
 import runtime.LibSLRuntime;
 
 /**
- * OptionalDoubleAutomaton for OptionalDouble ~> java.util.OptionalDouble
+ * OptionalDoubleAutomaton for LSLOptionalDouble ~> java.util.OptionalDouble
  */
 @Approximate(java.util.OptionalDouble.class)
 public final class OptionalDouble implements LibSLRuntime.Automaton {
@@ -46,7 +46,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [CONSTRUCTOR] OptionalDoubleAutomaton::OptionalDouble(OptionalDouble) -> OptionalDouble
+     * [CONSTRUCTOR] OptionalDoubleAutomaton::LSLOptionalDouble(LSLOptionalDouble) -> LSLOptionalDouble
      */
     private OptionalDouble() {
         this((Void) null);
@@ -58,7 +58,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [CONSTRUCTOR] OptionalDoubleAutomaton::OptionalDouble(OptionalDouble, double) -> OptionalDouble
+     * [CONSTRUCTOR] OptionalDoubleAutomaton::LSLOptionalDouble(LSLOptionalDouble, double) -> LSLOptionalDouble
      */
     private OptionalDouble(double x) {
         this((Void) null);
@@ -70,7 +70,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalDoubleAutomaton::empty() -> OptionalDouble
+     * [FUNCTION] OptionalDoubleAutomaton::empty() -> LSLOptionalDouble
      */
     public static OptionalDouble empty() {
         OptionalDouble result = null;
@@ -83,7 +83,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalDoubleAutomaton::of(double) -> OptionalDouble
+     * [FUNCTION] OptionalDoubleAutomaton::of(double) -> LSLOptionalDouble
      */
     public static OptionalDouble of(double x) {
         OptionalDouble result = null;
@@ -99,7 +99,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalDoubleAutomaton::equals(OptionalDouble, Object) -> boolean
+     * [FUNCTION] OptionalDoubleAutomaton::equals(LSLOptionalDouble, Object) -> boolean
      */
     public boolean equals(Object other) {
         boolean result = false;
@@ -126,7 +126,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalDoubleAutomaton::getAsDouble(OptionalDouble) -> double
+     * [FUNCTION] OptionalDoubleAutomaton::getAsDouble(LSLOptionalDouble) -> double
      */
     public double getAsDouble() {
         double result = 0.0d;
@@ -141,7 +141,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalDoubleAutomaton::hashCode(OptionalDouble) -> int
+     * [FUNCTION] OptionalDoubleAutomaton::hashCode(LSLOptionalDouble) -> int
      */
     public int hashCode() {
         int result = 0;
@@ -157,7 +157,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalDoubleAutomaton::ifPresent(OptionalDouble, DoubleConsumer) -> void
+     * [FUNCTION] OptionalDoubleAutomaton::ifPresent(LSLOptionalDouble, DoubleConsumer) -> void
      */
     public void ifPresent(DoubleConsumer consumer) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -172,7 +172,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalDoubleAutomaton::ifPresentOrElse(OptionalDouble, DoubleConsumer, Runnable) -> void
+     * [FUNCTION] OptionalDoubleAutomaton::ifPresentOrElse(LSLOptionalDouble, DoubleConsumer, Runnable) -> void
      */
     public void ifPresentOrElse(DoubleConsumer consumer, Runnable emptyAction) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -192,7 +192,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalDoubleAutomaton::isEmpty(OptionalDouble) -> boolean
+     * [FUNCTION] OptionalDoubleAutomaton::isEmpty(LSLOptionalDouble) -> boolean
      */
     public boolean isEmpty() {
         boolean result = false;
@@ -204,7 +204,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalDoubleAutomaton::isPresent(OptionalDouble) -> boolean
+     * [FUNCTION] OptionalDoubleAutomaton::isPresent(LSLOptionalDouble) -> boolean
      */
     public boolean isPresent() {
         boolean result = false;
@@ -216,7 +216,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalDoubleAutomaton::orElse(OptionalDouble, double) -> double
+     * [FUNCTION] OptionalDoubleAutomaton::orElse(LSLOptionalDouble, double) -> double
      */
     public double orElse(double other) {
         double result = 0.0d;
@@ -232,7 +232,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalDoubleAutomaton::orElseGet(OptionalDouble, DoubleSupplier) -> double
+     * [FUNCTION] OptionalDoubleAutomaton::orElseGet(LSLOptionalDouble, DoubleSupplier) -> double
      */
     public double orElseGet(DoubleSupplier supplier) {
         double result = 0.0d;
@@ -251,7 +251,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalDoubleAutomaton::orElseThrow(OptionalDouble) -> double
+     * [FUNCTION] OptionalDoubleAutomaton::orElseThrow(LSLOptionalDouble) -> double
      */
     public double orElseThrow() {
         double result = 0.0d;
@@ -266,7 +266,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalDoubleAutomaton::orElseThrow(OptionalDouble, Supplier) -> double
+     * [FUNCTION] OptionalDoubleAutomaton::orElseThrow(LSLOptionalDouble, Supplier) -> double
      */
     public double orElseThrow(Supplier exceptionSupplier) throws java.lang.Throwable {
         double result = 0.0d;
@@ -286,7 +286,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalDoubleAutomaton::stream(OptionalDouble) -> DoubleStream
+     * [FUNCTION] OptionalDoubleAutomaton::stream(LSLOptionalDouble) -> DoubleStream
      */
     public DoubleStream stream() {
         DoubleStream result = null;
@@ -299,7 +299,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalDoubleAutomaton::toString(OptionalDouble) -> String
+     * [FUNCTION] OptionalDoubleAutomaton::toString(LSLOptionalDouble) -> String
      */
     public String toString() {
         String result = null;

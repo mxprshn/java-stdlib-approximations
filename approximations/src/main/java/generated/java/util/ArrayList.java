@@ -241,9 +241,9 @@ public class ArrayList extends AbstractList implements LibSLRuntime.Automaton, L
     }
 
     /**
-     * [SUBROUTINE] ArrayListAutomaton::_replaceAllRange(int, int, UnaryOperator) -> void
+     * [SUBROUTINE] ArrayListAutomaton::_replaceAllRange(UnaryOperator, int, int) -> void
      */
-    private void _replaceAllRange(int i, int end, UnaryOperator op) {
+    public void _replaceAllRange(UnaryOperator op, int i, int end) {
         /* body */ {
             final int expectedModCount = this.modCount;
             while ((this.modCount == expectedModCount) && (i < end)) {
@@ -268,6 +268,7 @@ public class ArrayList extends AbstractList implements LibSLRuntime.Automaton, L
             }
             final int oldLength = this.length;
             final int expectedModCount = this.modCount;
+            Engine.assume(start <= end);
             int i = 0;
             for (i = end - 1; i > start; i += -1) {
                 final Object item = this.storage.get(i);
@@ -351,6 +352,50 @@ public class ArrayList extends AbstractList implements LibSLRuntime.Automaton, L
             result = Engine.makeSymbolic(Stream.class);
             Engine.assume(result != null);
             Engine.assume(result.isParallel() == parallel);
+        }
+        return result;
+    }
+
+    /**
+     * [SUBROUTINE] ArrayListAutomaton::_batchRemove(Collection, boolean, int, int) -> boolean
+     */
+    public boolean _batchRemove(Collection c, boolean complement, int start, int end) {
+        boolean result = false;
+        /* body */ {
+            final int oldLength = this.length;
+            if ((oldLength == 0) || (start >= end)) {
+                result = false;
+            } else {
+                final int otherLength = c.size();
+                if (otherLength == 0) {
+                    result = false;
+                } else {
+                    Engine.assume(otherLength > 0);
+                    int i = 0;
+                    start -= 1;
+                    end -= 1;
+                    if ((c != null && c.getClass() == ArrayList.class)) {
+                        final SymbolicList<Object> otherStorage = ((ArrayList) c).storage;
+                        Engine.assume(otherStorage != null);
+                        for (i = end; i > start; i += -1) {
+                            final Object item = this.storage.get(i);
+                            if ((LibSLRuntime.ListActions.find(otherStorage, item, 0, this.length) == -1) == complement) {
+                                _deleteElement(i);
+                            }
+                        }
+                        ;
+                    } else {
+                        for (i = end; i > start; i += -1) {
+                            final Object item = this.storage.get(i);
+                            if (c.contains(item) != complement) {
+                                _deleteElement(i);
+                            }
+                        }
+                        ;
+                    }
+                    result = oldLength != this.length;
+                }
+            }
         }
         return result;
     }
@@ -712,37 +757,7 @@ public class ArrayList extends AbstractList implements LibSLRuntime.Automaton, L
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            final int oldLength = this.length;
-            if (oldLength != 0) {
-                if ((c != null && c.getClass() == ArrayList.class)) {
-                    final SymbolicList<Object> otherStorage = ((ArrayList) c).storage;
-                    final int otherLength = ((ArrayList) c).length;
-                    Engine.assume(otherStorage != null);
-                    Engine.assume(otherLength >= 0);
-                    int i = 0;
-                    for (i = 0; i < otherLength; i += 1) {
-                        final Object o = otherStorage.get(i);
-                        final int index = LibSLRuntime.ListActions.find(this.storage, o, 0, this.length);
-                        if (index != -1) {
-                            _deleteElement(index);
-                        }
-                    }
-                    ;
-                } else {
-                    final Iterator iter = c.iterator();
-                    while (iter.hasNext()) {
-                        final Object o = iter.next();
-                        final int index = LibSLRuntime.ListActions.find(this.storage, o, 0, this.length);
-                        if (index != -1) {
-                            _deleteElement(index);
-                        }
-                    }
-                    ;
-                }
-                result = oldLength != this.length;
-            } else {
-                result = false;
-            }
+            result = _batchRemove(c, false, 0, this.length);
         }
         return result;
     }
@@ -768,7 +783,7 @@ public class ArrayList extends AbstractList implements LibSLRuntime.Automaton, L
             if (op == null) {
                 throw new NullPointerException();
             }
-            _replaceAllRange(0, this.length, op);
+            _replaceAllRange(op, 0, this.length);
             this.modCount += 1;
         }
     }
@@ -780,32 +795,7 @@ public class ArrayList extends AbstractList implements LibSLRuntime.Automaton, L
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            final int oldLength = this.length;
-            int i = 0;
-            if ((c != null && c.getClass() == ArrayList.class)) {
-                final SymbolicList<Object> otherStorage = ((ArrayList) c).storage;
-                final int otherLength = ((ArrayList) c).length;
-                Engine.assume(otherStorage != null);
-                Engine.assume(otherLength >= 0);
-                for (i = this.length - 1; i > 0; i += -1) {
-                    final Object item = this.storage.get(i);
-                    final boolean otherHasItem = LibSLRuntime.ListActions.find(otherStorage, item, 0, otherLength) != -1;
-                    if (!otherHasItem) {
-                        _deleteElement(i);
-                    }
-                }
-                ;
-            } else {
-                for (i = this.length - 1; i > 0; i += -1) {
-                    final Object item = this.storage.get(i);
-                    final boolean otherHasItem = c.contains(item);
-                    if (!otherHasItem) {
-                        _deleteElement(i);
-                    }
-                }
-                ;
-            }
-            result = oldLength != this.length;
+            result = _batchRemove(c, true, 0, this.length);
         }
         return result;
     }

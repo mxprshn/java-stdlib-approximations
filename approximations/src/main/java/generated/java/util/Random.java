@@ -5,6 +5,7 @@ package generated.java.util;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.ObjectStreamField;
 import java.io.Serializable;
 import java.lang.IllegalArgumentException;
 import java.lang.Void;
@@ -20,6 +21,10 @@ import runtime.LibSLRuntime;
  */
 @Approximate(java.util.Random.class)
 public class Random implements LibSLRuntime.Automaton, Serializable {
+    private static final long serialVersionUID = 3905348978240129619L;
+
+    private static final ObjectStreamField[] serialPersistentFields = {};
+
     static {
         Engine.assume(true);
     }

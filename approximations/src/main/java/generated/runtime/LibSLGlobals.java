@@ -14,6 +14,12 @@ import org.usvm.api.Engine;
 
 @Approximate(runtime.LibSLGlobals.class)
 public final class LibSLGlobals {
+    public static final double DOUBLE_NAN;
+
+    public static final double DOUBLE_NEGATIVE_INFINITY;
+
+    public static final double DOUBLE_POSITIVE_INFINITY;
+
     public static final Optional EMPTY_OPTIONAL;
 
     public static final OptionalDouble EMPTY_OPTIONAL_DOUBLE;
@@ -21,8 +27,6 @@ public final class LibSLGlobals {
     public static final OptionalInt EMPTY_OPTIONAL_INT;
 
     public static final OptionalLong EMPTY_OPTIONAL_LONG;
-
-    public static final Object HASHSET_VALUE;
 
     public static final int MAX_CODE_POINT;
 
@@ -33,6 +37,8 @@ public final class LibSLGlobals {
     public static final int MIN_LOW_SURROGATE;
 
     public static final int MIN_SUPPLEMENTARY_CODE_POINT;
+
+    public static final Object SOMETHING;
 
     public static final int SPLITERATOR_CONCURRENT;
 
@@ -50,7 +56,12 @@ public final class LibSLGlobals {
 
     public static final int SPLITERATOR_SUBSIZED;
 
+    public static final boolean SYSTEM_IS_WINDOWS;
+
     static {
+        DOUBLE_NAN = 0.0d / 0.0d;
+        DOUBLE_NEGATIVE_INFINITY = -1.0d / 0.0d;
+        DOUBLE_POSITIVE_INFINITY = 1.0d / 0.0d;
         EMPTY_OPTIONAL = new Optional((Void) null, 
                 /* state = */ Optional.__$lsl_States.Initialized, 
                 /* value = */ null);
@@ -66,13 +77,12 @@ public final class LibSLGlobals {
                 /* state = */ OptionalLong.__$lsl_States.Initialized, 
                 /* value = */ 0L, 
                 /* present = */ false);
-        HASHSET_VALUE = new generated.java.lang.Object((Void) null, 
-                /* state = */ generated.java.lang.Object.__$lsl_States.Initialized);
         MAX_CODE_POINT = 1114111;
         MIN_CODE_POINT = 0;
         MIN_HIGH_SURROGATE = 55296;
         MIN_LOW_SURROGATE = 56320;
         MIN_SUPPLEMENTARY_CODE_POINT = 65536;
+        SOMETHING = new java.lang.Object();
         SPLITERATOR_CONCURRENT = 4096;
         SPLITERATOR_DISTINCT = 1;
         SPLITERATOR_IMMUTABLE = 1024;
@@ -81,6 +91,7 @@ public final class LibSLGlobals {
         SPLITERATOR_SIZED = 64;
         SPLITERATOR_SORTED = 4;
         SPLITERATOR_SUBSIZED = 16384;
+        SYSTEM_IS_WINDOWS = Engine.makeSymbolicBoolean();
     }
 
     @Approximate(LibSLGlobals.class)
