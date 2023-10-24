@@ -16,7 +16,12 @@ group = "org.usvm.approximations.java.stdlib"
 version = "0.0.0"
 
 tasks.withType<JavaCompile> {
-    options.release = 8
+    //options.release = 8
+    //options.compilerArgs.add("--add-exports=java.base/sun.nio.ch=ALL-UNNAMED")
+    options.compilerArgs.add("-target")
+    options.compilerArgs.add("1.8")
+    options.compilerArgs.add("-source")
+    options.compilerArgs.add("1.8")
 }
 
 publishing {
