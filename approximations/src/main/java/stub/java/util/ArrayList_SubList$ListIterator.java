@@ -5,11 +5,16 @@ package stub.java.util;
 
 import java.lang.InternalError;
 import java.lang.Object;
+import java.lang.Void;
 import java.util.ListIterator;
 import java.util.function.Consumer;
 import runtime.LibSLRuntime;
 
 public final class ArrayList_SubList$ListIterator implements LibSLRuntime.HasAutomaton, ListIterator {
+    private ArrayList_SubList$ListIterator(Void a, Void b) {
+        super();
+    }
+
     public boolean hasPrevious() {
         throw new InternalError();
     }

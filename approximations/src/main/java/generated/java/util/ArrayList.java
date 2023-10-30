@@ -401,6 +401,58 @@ public class ArrayList extends AbstractList implements LibSLRuntime.Automaton, L
     }
 
     /**
+     * [SUBROUTINE] ArrayListAutomaton::_do_sort(int, int, Comparator) -> void
+     */
+    public void _do_sort(int start, int end, Comparator c) {
+        /* body */ {
+            if (start < end) {
+                final int expectedModCount = this.modCount;
+                Engine.assume(start >= 0);
+                Engine.assume(end > 0);
+                final int outerLimit = end - 1;
+                int innerLimit = 0;
+                int i = 0;
+                int j = 0;
+                if (c == null) {
+                    for (i = start; i < outerLimit; i += 1) {
+                        innerLimit = (end - i) - 1;
+                        for (j = start; j < innerLimit; j += 1) {
+                            final int idxA = j;
+                            final int idxB = j + 1;
+                            final Object a = this.storage.get(idxA);
+                            final Object b = this.storage.get(idxB);
+                            if (((Comparable) a).compareTo(b) > 0) {
+                                this.storage.set(idxA, b);
+                                this.storage.set(idxB, a);
+                            }
+                        }
+                        ;
+                    }
+                    ;
+                } else {
+                    for (i = start; i < outerLimit; i += 1) {
+                        innerLimit = (end - i) - 1;
+                        for (j = start; j < innerLimit; j += 1) {
+                            final int idxA = j;
+                            final int idxB = j + 1;
+                            final Object a = this.storage.get(idxA);
+                            final Object b = this.storage.get(idxB);
+                            if (c.compare(a, b) > 0) {
+                                this.storage.set(idxA, b);
+                                this.storage.set(idxB, a);
+                            }
+                        }
+                        ;
+                    }
+                    ;
+                }
+                _checkForComodification(expectedModCount);
+            }
+            this.modCount += 1;
+        }
+    }
+
+    /**
      * [FUNCTION] ArrayListAutomaton::add(ArrayList, Object) -> boolean
      */
     public boolean add(Object e) {
@@ -830,49 +882,7 @@ public class ArrayList extends AbstractList implements LibSLRuntime.Automaton, L
     public void sort(Comparator c) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (this.length != 0) {
-                final int expectedModCount = this.modCount;
-                Engine.assume(this.length > 0);
-                final int outerLimit = this.length - 1;
-                int innerLimit = 0;
-                int i = 0;
-                int j = 0;
-                if (c == null) {
-                    for (i = 0; i < outerLimit; i += 1) {
-                        innerLimit = (this.length - i) - 1;
-                        for (j = 0; j < innerLimit; j += 1) {
-                            final int idxA = j;
-                            final int idxB = j + 1;
-                            final Object a = this.storage.get(idxA);
-                            final Object b = this.storage.get(idxB);
-                            if (((Comparable) a).compareTo(b) > 0) {
-                                this.storage.set(idxA, b);
-                                this.storage.set(idxB, a);
-                            }
-                        }
-                        ;
-                    }
-                    ;
-                } else {
-                    for (i = 0; i < outerLimit; i += 1) {
-                        innerLimit = (this.length - i) - 1;
-                        for (j = 0; j < innerLimit; j += 1) {
-                            final int idxA = j;
-                            final int idxB = j + 1;
-                            final Object a = this.storage.get(idxA);
-                            final Object b = this.storage.get(idxB);
-                            if (c.compare(a, b) > 0) {
-                                this.storage.set(idxA, b);
-                                this.storage.set(idxB, a);
-                            }
-                        }
-                        ;
-                    }
-                    ;
-                }
-                _checkForComodification(expectedModCount);
-            }
-            this.modCount += 1;
+            _do_sort(0, this.length, c);
         }
     }
 

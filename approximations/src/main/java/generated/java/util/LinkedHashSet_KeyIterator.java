@@ -18,10 +18,10 @@ import org.usvm.api.Engine;
 import runtime.LibSLRuntime;
 
 /**
- * HashSet_KeyIteratorAutomaton for HashSet_KeyIterator ~> java.util.HashSet_KeyIterator
+ * LinkedHashSet_KeyIteratorAutomaton for LinkedHashSet_KeyIterator ~> java.util.LinkedHashSet_KeyIterator
  */
-@Approximate(stub.java.util.HashSet_KeyIterator.class)
-public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterator {
+@Approximate(stub.java.util.LinkedHashSet_KeyIterator.class)
+public final class LinkedHashSet_KeyIterator implements LibSLRuntime.Automaton, Iterator {
     static {
         Engine.assume(true);
     }
@@ -32,7 +32,7 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
 
     public LibSLRuntime.Map<Object, Object> visitedKeys;
 
-    public HashSet parent;
+    public LinkedHashSet parent;
 
     public int index;
 
@@ -41,8 +41,8 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
     public boolean nextWasCalled;
 
     @LibSLRuntime.AutomatonConstructor
-    public HashSet_KeyIterator(Void __$lsl_token, final byte p0, final int p1,
-            final LibSLRuntime.Map<Object, Object> p2, final HashSet p3, final int p4,
+    public LinkedHashSet_KeyIterator(Void __$lsl_token, final byte p0, final int p1,
+            final LibSLRuntime.Map<Object, Object> p2, final LinkedHashSet p3, final int p4,
             final Object p5, final boolean p6) {
         this.__$lsl_state = p0;
         this.expectedModCount = p1;
@@ -54,14 +54,14 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
     }
 
     @LibSLRuntime.AutomatonConstructor
-    public HashSet_KeyIterator(final Void __$lsl_token) {
+    public LinkedHashSet_KeyIterator(final Void __$lsl_token) {
         this(__$lsl_token, __$lsl_States.Allocated, 0, null, null, 0, 0, false);
     }
 
     /**
-     * [CONSTRUCTOR] HashSet_KeyIteratorAutomaton::HashSet_KeyIterator(HashSet_KeyIterator, HashMap) -> HashSet_KeyIterator
+     * [CONSTRUCTOR] LinkedHashSet_KeyIteratorAutomaton::LinkedHashSet_KeyIterator(LinkedHashSet_KeyIterator, HashMap) -> LinkedHashSet_KeyIterator
      */
-    private HashSet_KeyIterator(HashMap source) {
+    private LinkedHashSet_KeyIterator(HashMap source) {
         this((Void) null);
         Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
         /* body */ {
@@ -71,11 +71,11 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
     }
 
     /**
-     * [SUBROUTINE] HashSet_KeyIteratorAutomaton::_checkForComodification() -> void
+     * [SUBROUTINE] LinkedHashSet_KeyIteratorAutomaton::_checkForComodification() -> void
      */
     private void _checkForComodification() {
         /* body */ {
-            final int modCount = ((HashSet) this.parent).modCount;
+            final int modCount = ((LinkedHashSet) this.parent).modCount;
             if (this.expectedModCount != modCount) {
                 throw new ConcurrentModificationException();
             }
@@ -83,21 +83,21 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
     }
 
     /**
-     * [FUNCTION] HashSet_KeyIteratorAutomaton::hasNext(HashSet_KeyIterator) -> boolean
+     * [FUNCTION] LinkedHashSet_KeyIteratorAutomaton::hasNext(LinkedHashSet_KeyIterator) -> boolean
      */
     public boolean hasNext() {
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             Engine.assume(this.parent != null);
-            final int length = ((HashSet) this.parent).length;
+            final int length = ((LinkedHashSet) this.parent).length;
             result = this.index < length;
         }
         return result;
     }
 
     /**
-     * [FUNCTION] HashSet_KeyIteratorAutomaton::next(HashSet_KeyIterator) -> Object
+     * [FUNCTION] LinkedHashSet_KeyIteratorAutomaton::next(LinkedHashSet_KeyIterator) -> Object
      */
     public final Object next() {
         Object result = null;
@@ -105,7 +105,7 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
         /* body */ {
             Engine.assume(this.parent != null);
             _checkForComodification();
-            final int length = ((HashSet) this.parent).length;
+            final int length = ((LinkedHashSet) this.parent).length;
             final boolean atValidPosition = this.index < length;
             if (!atValidPosition) {
                 throw new NoSuchElementException();
@@ -113,7 +113,7 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
             final Object key = Engine.makeSymbolic(Object.class);
             Engine.assume(key != null);
             Engine.assume(key != this.currentKey);
-            final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) this.parent).storage;
+            final LibSLRuntime.Map<Object, Object> parentStorage = ((LinkedHashSet) this.parent).storage;
             final boolean sourceStorageHasKey = parentStorage.hasKey(key);
             Engine.assume(sourceStorageHasKey);
             final boolean dstStorageHasKey = this.visitedKeys.hasKey(key);
@@ -128,27 +128,27 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
     }
 
     /**
-     * [FUNCTION] HashSet_KeyIteratorAutomaton::remove(HashSet_KeyIterator) -> void
+     * [FUNCTION] LinkedHashSet_KeyIteratorAutomaton::remove(LinkedHashSet_KeyIterator) -> void
      */
     public void remove() {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             Engine.assume(this.parent != null);
-            final int length = ((HashSet) this.parent).length;
+            final int length = ((LinkedHashSet) this.parent).length;
             final boolean atValidPosition = this.index < length;
             if (!atValidPosition || !this.nextWasCalled) {
                 throw new IllegalStateException();
             }
             this.nextWasCalled = false;
             _checkForComodification();
-            final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) this.parent).storage;
+            final LibSLRuntime.Map<Object, Object> parentStorage = ((LinkedHashSet) this.parent).storage;
             parentStorage.remove(this.currentKey);
-            this.expectedModCount = ((HashSet) this.parent).modCount;
+            this.expectedModCount = ((LinkedHashSet) this.parent).modCount;
         }
     }
 
     /**
-     * [FUNCTION] HashSet_KeyIteratorAutomaton::forEachRemaining(HashSet_KeyIterator, Consumer) -> void
+     * [FUNCTION] LinkedHashSet_KeyIteratorAutomaton::forEachRemaining(LinkedHashSet_KeyIterator, Consumer) -> void
      */
     public void forEachRemaining(Consumer userAction) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -157,14 +157,14 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
             if (userAction == null) {
                 throw new NullPointerException();
             }
-            final int length = ((HashSet) this.parent).length;
+            final int length = ((LinkedHashSet) this.parent).length;
             int i = this.index;
             while (i < length) {
                 _checkForComodification();
                 final Object key = Engine.makeSymbolic(Object.class);
                 Engine.assume(key != null);
                 Engine.assume(key != this.currentKey);
-                final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) this.parent).storage;
+                final LibSLRuntime.Map<Object, Object> parentStorage = ((LinkedHashSet) this.parent).storage;
                 final boolean sourceStorageHasKey = parentStorage.hasKey(key);
                 Engine.assume(sourceStorageHasKey);
                 final boolean destStorageHasKey = this.visitedKeys.hasKey(key);
@@ -186,7 +186,7 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
         public static final byte Initialized = (byte) 1;
     }
 
-    @Approximate(HashSet_KeyIterator.class)
+    @Approximate(LinkedHashSet_KeyIterator.class)
     public static final class __hook {
         private __hook(Void o1, Void o2) {
             Engine.assume(false);

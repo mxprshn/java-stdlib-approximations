@@ -12,9 +12,9 @@ import java.lang.IllegalArgumentException;
 import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.Void;
-import java.util.AbstractSet;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.Spliterator;
@@ -27,11 +27,11 @@ import org.usvm.api.Engine;
 import runtime.LibSLRuntime;
 
 /**
- * HashSetAutomaton for HashSet ~> java.util.HashSet
+ * LinkedHashSetAutomaton for LinkedHashSet ~> java.util.LinkedHashSet
  */
-@Approximate(java.util.HashSet.class)
-public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializable {
-    private static final long serialVersionUID = -5024744406713321676L;
+@Approximate(java.util.LinkedHashSet.class)
+public class LinkedHashSet extends HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializable {
+    private static final long serialVersionUID = -2851667679971038690L;
 
     static {
         Engine.assume(true);
@@ -46,8 +46,8 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     public transient int modCount;
 
     @LibSLRuntime.AutomatonConstructor
-    public HashSet(Void __$lsl_token, final byte p0, final LibSLRuntime.Map<Object, Object> p1,
-            final int p2, final int p3) {
+    public LinkedHashSet(Void __$lsl_token, final byte p0,
+            final LibSLRuntime.Map<Object, Object> p1, final int p2, final int p3) {
         this.__$lsl_state = p0;
         this.storage = p1;
         this.length = p2;
@@ -55,14 +55,14 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     @LibSLRuntime.AutomatonConstructor
-    public HashSet(final Void __$lsl_token) {
+    public LinkedHashSet(final Void __$lsl_token) {
         this(__$lsl_token, __$lsl_States.Allocated, null, 0, 0);
     }
 
     /**
-     * [CONSTRUCTOR] HashSetAutomaton::HashSet(HashSet) -> HashSet
+     * [CONSTRUCTOR] LinkedHashSetAutomaton::LinkedHashSet(LinkedHashSet) -> LinkedHashSet
      */
-    public HashSet() {
+    public LinkedHashSet() {
         this((Void) null);
         Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
         /* body */ {
@@ -72,9 +72,9 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [CONSTRUCTOR] HashSetAutomaton::HashSet(HashSet, Collection) -> HashSet
+     * [CONSTRUCTOR] LinkedHashSetAutomaton::LinkedHashSet(LinkedHashSet, Collection) -> LinkedHashSet
      */
-    public HashSet(Collection c) {
+    public LinkedHashSet(Collection c) {
         this((Void) null);
         Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
         /* body */ {
@@ -85,22 +85,24 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [CONSTRUCTOR] HashSetAutomaton::HashSet(HashSet, int) -> HashSet
+     * [CONSTRUCTOR] LinkedHashSetAutomaton::LinkedHashSet(LinkedHashSet, int) -> LinkedHashSet
      */
-    public HashSet(int initialCapacity) {
+    public LinkedHashSet(int initialCapacity) {
         this((Void) null);
+        Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
         /* body */ {
             if (initialCapacity < 0) {
                 throw new IllegalArgumentException();
             }
             this.storage = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
         }
+        this.__$lsl_state = __$lsl_States.Initialized;
     }
 
     /**
-     * [CONSTRUCTOR] HashSetAutomaton::HashSet(HashSet, int, float) -> HashSet
+     * [CONSTRUCTOR] LinkedHashSetAutomaton::LinkedHashSet(LinkedHashSet, int, float) -> LinkedHashSet
      */
-    public HashSet(int initialCapacity, float loadFactor) {
+    public LinkedHashSet(int initialCapacity, float loadFactor) {
         this((Void) null);
         Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
         /* body */ {
@@ -116,19 +118,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [CONSTRUCTOR] HashSetAutomaton::HashSet(HashSet, int, float, boolean) -> HashSet
-     */
-    private HashSet(int initialCapacity, float loadFactor, boolean dummy) {
-        this((Void) null);
-        Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
-        /* body */ {
-            LibSLRuntime.error("Private constructor call");
-        }
-        this.__$lsl_state = __$lsl_States.Initialized;
-    }
-
-    /**
-     * [SUBROUTINE] HashSetAutomaton::_checkForComodification(int) -> void
+     * [SUBROUTINE] LinkedHashSetAutomaton::_checkForComodification(int) -> void
      */
     public void _checkForComodification(int expectedModCount) {
         /* body */ {
@@ -139,7 +129,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [SUBROUTINE] HashSetAutomaton::_addAllElements(Collection) -> boolean
+     * [SUBROUTINE] LinkedHashSetAutomaton::_addAllElements(Collection) -> boolean
      */
     private boolean _addAllElements(Collection c) {
         boolean result = false;
@@ -166,7 +156,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [SUBROUTINE] HashSetAutomaton::_generateKey(map<Object, Object>) -> Object
+     * [SUBROUTINE] LinkedHashSetAutomaton::_generateKey(map<Object, Object>) -> Object
      */
     private Object _generateKey(LibSLRuntime.Map<Object, Object> visitedKeys) {
         Object result = null;
@@ -182,7 +172,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::add(HashSet, Object) -> boolean
+     * [FUNCTION] LinkedHashSetAutomaton::add(LinkedHashSet, Object) -> boolean
      */
     public boolean add(Object obj) {
         boolean result = false;
@@ -202,7 +192,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::clear(HashSet) -> void
+     * [FUNCTION] LinkedHashSetAutomaton::clear(LinkedHashSet) -> void
      */
     public void clear() {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -214,7 +204,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::clone(HashSet) -> Object
+     * [FUNCTION] LinkedHashSetAutomaton::clone(LinkedHashSet) -> Object
      */
     public Object clone() {
         Object result = null;
@@ -222,8 +212,8 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
         /* body */ {
             final LibSLRuntime.Map<Object, Object> storageCopy = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
             storageCopy.union(this.storage);
-            result = new HashSet((Void) null, 
-            /* state = */ HashSet.__$lsl_States.Initialized, 
+            result = new LinkedHashSet((Void) null, 
+            /* state = */ LinkedHashSet.__$lsl_States.Initialized, 
             /* storage = */ storageCopy, 
             /* length = */ this.length, 
             /* modCount = */ 0);
@@ -232,7 +222,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::contains(HashSet, Object) -> boolean
+     * [FUNCTION] LinkedHashSetAutomaton::contains(LinkedHashSet, Object) -> boolean
      */
     public boolean contains(Object obj) {
         boolean result = false;
@@ -248,7 +238,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::isEmpty(HashSet) -> boolean
+     * [FUNCTION] LinkedHashSetAutomaton::isEmpty(LinkedHashSet) -> boolean
      */
     public boolean isEmpty() {
         boolean result = false;
@@ -260,15 +250,15 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::iterator(HashSet) -> Iterator
+     * [FUNCTION] LinkedHashSetAutomaton::iterator(LinkedHashSet) -> Iterator
      */
     public Iterator iterator() {
         Iterator result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final LibSLRuntime.Map<Object, Object> visitedKeysMap = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
-            result = new HashSet_KeyIterator((Void) null, 
-            /* state = */ HashSet_KeyIterator.__$lsl_States.Initialized, 
+            result = new LinkedHashSet_KeyIterator((Void) null, 
+            /* state = */ LinkedHashSet_KeyIterator.__$lsl_States.Initialized, 
             /* expectedModCount = */ this.modCount, 
             /* visitedKeys = */ visitedKeysMap, 
             /* parent = */ this, 
@@ -280,7 +270,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::remove(HashSet, Object) -> boolean
+     * [FUNCTION] LinkedHashSetAutomaton::remove(LinkedHashSet, Object) -> boolean
      */
     public boolean remove(Object obj) {
         boolean result = false;
@@ -300,7 +290,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::size(HashSet) -> int
+     * [FUNCTION] LinkedHashSetAutomaton::size(LinkedHashSet) -> int
      */
     public int size() {
         int result = 0;
@@ -312,7 +302,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::spliterator(HashSet) -> Spliterator
+     * [FUNCTION] LinkedHashSetAutomaton::spliterator(LinkedHashSet) -> Spliterator
      */
     public Spliterator spliterator() {
         Spliterator result = null;
@@ -327,8 +317,8 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
                 visitedKeys.set(key, LibSLGlobals.SOMETHING);
             }
             ;
-            result = new HashSet_KeySpliterator((Void) null, 
-            /* state = */ HashSet_KeySpliterator.__$lsl_States.Initialized, 
+            result = new LinkedHashSet_KeySpliterator((Void) null, 
+            /* state = */ LinkedHashSet_KeySpliterator.__$lsl_States.Initialized, 
             /* keysStorage = */ keysStorageArray, 
             /* index = */ 0, 
             /* fence = */ -1, 
@@ -340,7 +330,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::equals(HashSet, Object) -> boolean
+     * [FUNCTION] LinkedHashSetAutomaton::equals(LinkedHashSet, Object) -> boolean
      */
     public boolean equals(Object other) {
         boolean result = false;
@@ -352,15 +342,15 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
                 final boolean isSameType = Engine.typeEquals(this, other);
                 if (isSameType) {
                     final int expectedModCount = this.modCount;
-                    final int otherExpectedModCount = ((HashSet) other).modCount;
-                    final LibSLRuntime.Map<Object, Object> otherStorage = ((HashSet) other).storage;
-                    final int otherLength = ((HashSet) other).length;
+                    final int otherExpectedModCount = ((LinkedHashSet) other).modCount;
+                    final LibSLRuntime.Map<Object, Object> otherStorage = ((LinkedHashSet) other).storage;
+                    final int otherLength = ((LinkedHashSet) other).length;
                     if (this.length == otherLength) {
                         result = LibSLRuntime.equals(this.storage, otherStorage);
                     } else {
                         result = false;
                     }
-                    ((HashSet) other)._checkForComodification(otherExpectedModCount);
+                    ((LinkedHashSet) other)._checkForComodification(otherExpectedModCount);
                     _checkForComodification(expectedModCount);
                 } else {
                     result = false;
@@ -371,7 +361,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::hashCode(HashSet) -> int
+     * [FUNCTION] LinkedHashSetAutomaton::hashCode(LinkedHashSet) -> int
      */
     public int hashCode() {
         int result = 0;
@@ -383,7 +373,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::removeAll(HashSet, Collection) -> boolean
+     * [FUNCTION] LinkedHashSetAutomaton::removeAll(LinkedHashSet, Collection) -> boolean
      */
     public boolean removeAll(Collection c) {
         boolean result = false;
@@ -429,7 +419,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::toArray(HashSet) -> array<Object>
+     * [FUNCTION] LinkedHashSetAutomaton::toArray(LinkedHashSet) -> array<Object>
      */
     public Object[] toArray() {
         Object[] result = null;
@@ -452,7 +442,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::toArray(HashSet, array<Object>) -> array<Object>
+     * [FUNCTION] LinkedHashSetAutomaton::toArray(LinkedHashSet, array<Object>) -> array<Object>
      */
     public Object[] toArray(Object[] a) {
         Object[] result = null;
@@ -482,7 +472,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::toArray(HashSet, IntFunction) -> array<Object>
+     * [FUNCTION] LinkedHashSetAutomaton::toArray(LinkedHashSet, IntFunction) -> array<Object>
      */
     public Object[] toArray(IntFunction generator) {
         Object[] result = null;
@@ -508,7 +498,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::containsAll(HashSet, Collection) -> boolean
+     * [FUNCTION] LinkedHashSetAutomaton::containsAll(LinkedHashSet, Collection) -> boolean
      */
     public boolean containsAll(Collection c) {
         boolean result = false;
@@ -532,7 +522,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::addAll(HashSet, Collection) -> boolean
+     * [FUNCTION] LinkedHashSetAutomaton::addAll(LinkedHashSet, Collection) -> boolean
      */
     public boolean addAll(Collection c) {
         boolean result = false;
@@ -544,7 +534,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::retainAll(HashSet, Collection) -> boolean
+     * [FUNCTION] LinkedHashSetAutomaton::retainAll(LinkedHashSet, Collection) -> boolean
      */
     public boolean retainAll(Collection c) {
         boolean result = false;
@@ -575,7 +565,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::removeIf(HashSet, Predicate) -> boolean
+     * [FUNCTION] LinkedHashSetAutomaton::removeIf(LinkedHashSet, Predicate) -> boolean
      */
     public boolean removeIf(Predicate filter) {
         boolean result = false;
@@ -611,7 +601,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::forEach(HashSet, Consumer) -> void
+     * [FUNCTION] LinkedHashSetAutomaton::forEach(LinkedHashSet, Consumer) -> void
      */
     public void forEach(Consumer userAction) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -634,7 +624,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::stream(HashSet) -> Stream
+     * [FUNCTION] LinkedHashSetAutomaton::stream(LinkedHashSet) -> Stream
      */
     public Stream stream() {
         Stream result = null;
@@ -647,7 +637,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::parallelStream(HashSet) -> Stream
+     * [FUNCTION] LinkedHashSetAutomaton::parallelStream(LinkedHashSet) -> Stream
      */
     public Stream parallelStream() {
         Stream result = null;
@@ -660,7 +650,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::writeObject(HashSet, ObjectOutputStream) -> void
+     * [FUNCTION] LinkedHashSetAutomaton::writeObject(LinkedHashSet, ObjectOutputStream) -> void
      */
     private void writeObject(ObjectOutputStream s) throws java.io.IOException {
         /* body */ {
@@ -669,7 +659,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
     }
 
     /**
-     * [FUNCTION] HashSetAutomaton::readObject(HashSet, ObjectInputStream) -> void
+     * [FUNCTION] LinkedHashSetAutomaton::readObject(LinkedHashSet, ObjectInputStream) -> void
      */
     private void readObject(ObjectInputStream s) throws java.io.IOException,
             java.lang.ClassNotFoundException {
@@ -684,7 +674,7 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
         public static final byte Initialized = (byte) 1;
     }
 
-    @Approximate(HashSet.class)
+    @Approximate(LinkedHashSet.class)
     public static final class __hook {
         private __hook(Void o1, Void o2) {
             Engine.assume(false);

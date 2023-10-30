@@ -6,6 +6,7 @@ package stub.java.util.stream;
 import java.lang.InternalError;
 import java.lang.Object;
 import java.lang.Runnable;
+import java.lang.Void;
 import java.util.IntSummaryStatistics;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
@@ -28,6 +29,10 @@ import java.util.stream.Stream;
 import runtime.LibSLRuntime;
 
 public class IntStreamLSL implements LibSLRuntime.HasAutomaton, IntStream {
+    private IntStreamLSL(Void a, Void b) {
+        super();
+    }
+
     public IntStream filter(IntPredicate predicate) {
         throw new InternalError();
     }

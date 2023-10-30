@@ -4,12 +4,17 @@
 package stub.java.util;
 
 import java.lang.InternalError;
+import java.lang.Void;
 import java.util.ArrayList;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 import runtime.LibSLRuntime;
 
 public final class ArrayList_Spliterator implements LibSLRuntime.HasAutomaton, Spliterator {
+    private ArrayList_Spliterator(Void a, Void b) {
+        super();
+    }
+
     private ArrayList_Spliterator(ArrayList _this, int origin, int fence, int expectedModCount) {
         throw new InternalError();
     }

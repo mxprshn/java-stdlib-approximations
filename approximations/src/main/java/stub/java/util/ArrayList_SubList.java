@@ -6,6 +6,7 @@ package stub.java.util;
 import java.lang.InternalError;
 import java.lang.Object;
 import java.lang.String;
+import java.lang.Void;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,6 +24,10 @@ import java.util.stream.Stream;
 import runtime.LibSLRuntime;
 
 public final class ArrayList_SubList extends AbstractList implements LibSLRuntime.HasAutomaton, List, RandomAccess {
+    private ArrayList_SubList(Void a, Void b) {
+        super();
+    }
+
     public ArrayList_SubList(ArrayList root, int fromIndex, int toIndex) {
         throw new InternalError();
     }

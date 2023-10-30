@@ -10,12 +10,12 @@ import java.util.Spliterator;
 import java.util.function.Consumer;
 import runtime.LibSLRuntime;
 
-public final class HashSet_KeySpliterator implements LibSLRuntime.HasAutomaton, Spliterator {
-    private HashSet_KeySpliterator(Void a, Void b) {
+public final class LinkedHashSet_KeySpliterator implements LibSLRuntime.HasAutomaton, Spliterator {
+    private LinkedHashSet_KeySpliterator(Void a, Void b) {
         super();
     }
 
-    private HashSet_KeySpliterator(HashMap source, int origin, int fence, int est,
+    private LinkedHashSet_KeySpliterator(HashMap source, int origin, int fence, int est,
             int expectedModCount) {
         throw new InternalError();
     }
@@ -36,7 +36,7 @@ public final class HashSet_KeySpliterator implements LibSLRuntime.HasAutomaton, 
         throw new InternalError();
     }
 
-    public HashSet_KeySpliterator trySplit() {
+    public LinkedHashSet_KeySpliterator trySplit() {
         throw new InternalError();
     }
 }

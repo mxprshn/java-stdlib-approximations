@@ -14,6 +14,8 @@ import org.usvm.api.Engine;
 
 @Approximate(runtime.LibSLGlobals.class)
 public final class LibSLGlobals {
+    public static final boolean CONSOLE_IS_TTY;
+
     public static final double DOUBLE_NAN;
 
     public static final double DOUBLE_NEGATIVE_INFINITY;
@@ -59,6 +61,7 @@ public final class LibSLGlobals {
     public static final boolean SYSTEM_IS_WINDOWS;
 
     static {
+        CONSOLE_IS_TTY = Engine.makeSymbolicBoolean();
         DOUBLE_NAN = 0.0d / 0.0d;
         DOUBLE_NEGATIVE_INFINITY = -1.0d / 0.0d;
         DOUBLE_POSITIVE_INFINITY = 1.0d / 0.0d;

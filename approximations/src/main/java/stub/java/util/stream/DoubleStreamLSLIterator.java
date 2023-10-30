@@ -5,12 +5,17 @@ package stub.java.util.stream;
 
 import java.lang.Double;
 import java.lang.InternalError;
+import java.lang.Void;
 import java.util.PrimitiveIterator;
 import java.util.function.Consumer;
 import java.util.function.DoubleConsumer;
 import runtime.LibSLRuntime;
 
 public class DoubleStreamLSLIterator implements LibSLRuntime.HasAutomaton, PrimitiveIterator.OfDouble {
+    private DoubleStreamLSLIterator(Void a, Void b) {
+        super();
+    }
+
     public boolean hasNext() {
         throw new InternalError();
     }

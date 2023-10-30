@@ -6,6 +6,7 @@ package stub.java.util.stream;
 import java.lang.InternalError;
 import java.lang.Object;
 import java.lang.Runnable;
+import java.lang.Void;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Optional;
@@ -30,6 +31,10 @@ import java.util.stream.Stream;
 import runtime.LibSLRuntime;
 
 public class StreamLSL implements LibSLRuntime.HasAutomaton, Stream {
+    private StreamLSL(Void a, Void b) {
+        super();
+    }
+
     public Stream filter(Predicate predicate) {
         throw new InternalError();
     }

@@ -6,6 +6,7 @@ package stub.java.util.stream;
 import java.lang.InternalError;
 import java.lang.Object;
 import java.lang.Runnable;
+import java.lang.Void;
 import java.util.DoubleSummaryStatistics;
 import java.util.OptionalDouble;
 import java.util.PrimitiveIterator;
@@ -27,6 +28,10 @@ import java.util.stream.Stream;
 import runtime.LibSLRuntime;
 
 public class DoubleStreamLSL implements LibSLRuntime.HasAutomaton, DoubleStream {
+    private DoubleStreamLSL(Void a, Void b) {
+        super();
+    }
+
     public DoubleStream filter(DoublePredicate predicate) {
         throw new InternalError();
     }

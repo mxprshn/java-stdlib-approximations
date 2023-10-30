@@ -3,7 +3,6 @@
 //
 package generated.java.util;
 
-import java.lang.Comparable;
 import java.lang.Object;
 import java.lang.String;
 import java.lang.Void;
@@ -665,51 +664,9 @@ public final class ArrayList_SubList extends AbstractList implements LibSLRuntim
     public void sort(Comparator c) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            final int size = this.length;
-            if (size != 0) {
-                Engine.assume(size > 0);
-                Engine.assume(this.root != null);
-                ((ArrayList) this.root)._checkForComodification(this.modCount);
-                final SymbolicList<Object> rootStorage = ((ArrayList) this.root).storage;
-                final int baseLimit = this.offset + size;
-                final int outerLimit = baseLimit - 1;
-                int i = 0;
-                int j = 0;
-                if (c == null) {
-                    for (i = this.offset; i < outerLimit; i += 1) {
-                        final int innerLimit = (baseLimit - i) - 1;
-                        for (j = this.offset; j < innerLimit; j += 1) {
-                            final int idxA = j;
-                            final int idxB = j + 1;
-                            final Object a = rootStorage.get(idxA);
-                            final Object b = rootStorage.get(idxB);
-                            if (((Comparable) a).compareTo(b) > 0) {
-                                rootStorage.set(idxA, b);
-                                rootStorage.set(idxB, a);
-                            }
-                        }
-                        ;
-                    }
-                    ;
-                } else {
-                    for (i = this.offset; i < outerLimit; i += 1) {
-                        final int innerLimit = (baseLimit - i) - 1;
-                        for (j = this.offset; j < innerLimit; j += 1) {
-                            final int idxA = j;
-                            final int idxB = j + 1;
-                            final Object a = rootStorage.get(idxA);
-                            final Object b = rootStorage.get(idxB);
-                            if (c.compare(a, b) > 0) {
-                                rootStorage.set(idxA, b);
-                                rootStorage.set(idxB, a);
-                            }
-                        }
-                        ;
-                    }
-                    ;
-                }
-                this.modCount = ((ArrayList) this.root).modCount;
-            }
+            Engine.assume(this.root != null);
+            ((ArrayList) this.root)._do_sort(this.offset, this.offset + this.length, c);
+            this.modCount = ((ArrayList) this.root).modCount;
         }
     }
 

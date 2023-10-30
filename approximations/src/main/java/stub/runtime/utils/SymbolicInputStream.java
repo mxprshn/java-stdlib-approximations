@@ -6,9 +6,14 @@ package stub.runtime.utils;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.InternalError;
+import java.lang.Void;
 import runtime.LibSLRuntime;
 
 public final class SymbolicInputStream extends InputStream implements LibSLRuntime.HasAutomaton {
+    private SymbolicInputStream(Void a, Void b) {
+        super();
+    }
+
     public int available() throws java.io.IOException {
         throw new InternalError();
     }
