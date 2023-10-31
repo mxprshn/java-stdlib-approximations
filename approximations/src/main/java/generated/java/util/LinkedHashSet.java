@@ -213,10 +213,11 @@ public class LinkedHashSet extends HashSet implements LibSLRuntime.Automaton, Se
             final LibSLRuntime.Map<Object, Object> storageCopy = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
             storageCopy.union(this.storage);
             result = new LinkedHashSet((Void) null, 
-            /* state = */ LinkedHashSet.__$lsl_States.Initialized, 
-            /* storage = */ storageCopy, 
-            /* length = */ this.length, 
-            /* modCount = */ 0);
+                /* state = */ LinkedHashSet.__$lsl_States.Initialized, 
+                /* storage = */ storageCopy, 
+                /* length = */ this.length, 
+                /* modCount = */ 0
+            );
         }
         return result;
     }
@@ -258,13 +259,14 @@ public class LinkedHashSet extends HashSet implements LibSLRuntime.Automaton, Se
         /* body */ {
             final LibSLRuntime.Map<Object, Object> visitedKeysMap = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
             result = new LinkedHashSet_KeyIterator((Void) null, 
-            /* state = */ LinkedHashSet_KeyIterator.__$lsl_States.Initialized, 
-            /* expectedModCount = */ this.modCount, 
-            /* visitedKeys = */ visitedKeysMap, 
-            /* parent = */ this, 
-            /* index = */ 0, 
-            /* currentKey = */ 0, 
-            /* nextWasCalled = */ false);
+                /* state = */ LinkedHashSet_KeyIterator.__$lsl_States.Initialized, 
+                /* expectedModCount = */ this.modCount, 
+                /* visitedKeys = */ visitedKeysMap, 
+                /* parent = */ this, 
+                /* index = */ 0, 
+                /* currentKey = */ 0, 
+                /* nextWasCalled = */ false
+            );
         }
         return result;
     }
@@ -318,13 +320,14 @@ public class LinkedHashSet extends HashSet implements LibSLRuntime.Automaton, Se
             }
             ;
             result = new LinkedHashSet_KeySpliterator((Void) null, 
-            /* state = */ LinkedHashSet_KeySpliterator.__$lsl_States.Initialized, 
-            /* keysStorage = */ keysStorageArray, 
-            /* index = */ 0, 
-            /* fence = */ -1, 
-            /* est = */ 0, 
-            /* expectedModCount = */ this.modCount, 
-            /* parent = */ this);
+                /* state = */ LinkedHashSet_KeySpliterator.__$lsl_States.Initialized, 
+                /* keysStorage = */ keysStorageArray, 
+                /* index = */ 0, 
+                /* fence = */ -1, 
+                /* est = */ 0, 
+                /* expectedModCount = */ this.modCount, 
+                /* parent = */ this
+            );
         }
         return result;
     }

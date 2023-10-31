@@ -90,9 +90,10 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
         // WARNING: no state checks in static context
         /* body */ {
             result = new OptionalDouble((Void) null, 
-            /* state = */ OptionalDouble.__$lsl_States.Initialized, 
-            /* value = */ x, 
-            /* present = */ true);
+                /* state = */ OptionalDouble.__$lsl_States.Initialized, 
+                /* value = */ x, 
+                /* present = */ true
+            );
         }
         // WARNING: no state transitions in static context
         return result;

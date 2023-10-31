@@ -192,11 +192,12 @@ public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spli
                 result = null;
             } else {
                 result = new ArrayList_Spliterator((Void) null, 
-                /* state = */ ArrayList_Spliterator.__$lsl_States.Initialized, 
-                /* parent = */ this.parent, 
-                /* index = */ lo, 
-                /* fence = */ mid, 
-                /* expectedModCount = */ this.expectedModCount);
+                    /* state = */ ArrayList_Spliterator.__$lsl_States.Initialized, 
+                    /* parent = */ this.parent, 
+                    /* index = */ lo, 
+                    /* fence = */ mid, 
+                    /* expectedModCount = */ this.expectedModCount
+                );
             }
             this.index = mid;
         }

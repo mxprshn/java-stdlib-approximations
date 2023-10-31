@@ -90,9 +90,10 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
         // WARNING: no state checks in static context
         /* body */ {
             result = new OptionalLong((Void) null, 
-            /* state = */ OptionalLong.__$lsl_States.Initialized, 
-            /* value = */ x, 
-            /* present = */ true);
+                /* state = */ OptionalLong.__$lsl_States.Initialized, 
+                /* value = */ x, 
+                /* present = */ true
+            );
         }
         // WARNING: no state transitions in static context
         return result;

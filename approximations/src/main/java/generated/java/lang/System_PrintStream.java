@@ -34,8 +34,9 @@ public final class System_PrintStream extends PrintStream implements LibSLRuntim
             final boolean p2) {
         // System_PrintStreamAutomaton::__super__()
         super(new OutputStream$Void((Void) null, 
-                /* state = */ OutputStream$Void.__$lsl_States.Initialized, 
-                /* closed = */ false));
+                    /* state = */ OutputStream$Void.__$lsl_States.Initialized, 
+                    /* closed = */ false
+                ));
         this.closed = p1;
         this.error = p2;
     }

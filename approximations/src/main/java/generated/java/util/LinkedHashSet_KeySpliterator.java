@@ -214,13 +214,14 @@ public final class LinkedHashSet_KeySpliterator implements LibSLRuntime.Automato
                 this.est = this.est >>> 1;
                 this.index = mid;
                 result = new LinkedHashSet_KeySpliterator((Void) null, 
-                /* state = */ LinkedHashSet_KeySpliterator.__$lsl_States.Initialized, 
-                /* keysStorage = */ this.keysStorage, 
-                /* index = */ lo, 
-                /* fence = */ mid, 
-                /* est = */ this.est, 
-                /* expectedModCount = */ this.expectedModCount, 
-                /* parent = */ this.parent);
+                    /* state = */ LinkedHashSet_KeySpliterator.__$lsl_States.Initialized, 
+                    /* keysStorage = */ this.keysStorage, 
+                    /* index = */ lo, 
+                    /* fence = */ mid, 
+                    /* est = */ this.est, 
+                    /* expectedModCount = */ this.expectedModCount, 
+                    /* parent = */ this.parent
+                );
             }
         }
         return result;

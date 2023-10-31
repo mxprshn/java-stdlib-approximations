@@ -172,12 +172,13 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
             double[] resultStorage = new double[filteredLength];
             LibSLRuntime.ArrayActions.copy(filteredStorage, 0, resultStorage, 0, filteredLength);
             result = new DoubleStreamLSL((Void) null, 
-            /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
-            /* storage = */ resultStorage, 
-            /* length = */ filteredLength, 
-            /* closeHandlers = */ this.closeHandlers, 
-            /* isParallel = */ false, 
-            /* linkedOrConsumed = */ false);
+                /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ resultStorage, 
+                /* length = */ filteredLength, 
+                /* closeHandlers = */ this.closeHandlers, 
+                /* isParallel = */ false, 
+                /* linkedOrConsumed = */ false
+            );
             this.linkedOrConsumed = true;
         }
         return result;
@@ -202,12 +203,13 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
             }
             ;
             result = new DoubleStreamLSL((Void) null, 
-            /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
-            /* storage = */ mappedStorage, 
-            /* length = */ this.length, 
-            /* closeHandlers = */ this.closeHandlers, 
-            /* isParallel = */ false, 
-            /* linkedOrConsumed = */ false);
+                /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ mappedStorage, 
+                /* length = */ this.length, 
+                /* closeHandlers = */ this.closeHandlers, 
+                /* isParallel = */ false, 
+                /* linkedOrConsumed = */ false
+            );
             this.linkedOrConsumed = true;
         }
         return result;
@@ -229,12 +231,13 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
             }
             ;
             result = new StreamLSL((Void) null, 
-            /* state = */ StreamLSL.__$lsl_States.Initialized, 
-            /* storage = */ objStorage, 
-            /* length = */ this.length, 
-            /* closeHandlers = */ this.closeHandlers, 
-            /* isParallel = */ false, 
-            /* linkedOrConsumed = */ false);
+                /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ objStorage, 
+                /* length = */ this.length, 
+                /* closeHandlers = */ this.closeHandlers, 
+                /* isParallel = */ false, 
+                /* linkedOrConsumed = */ false
+            );
             this.linkedOrConsumed = true;
         }
         return result;
@@ -259,12 +262,13 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
             }
             ;
             result = new LongStreamLSL((Void) null, 
-            /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
-            /* storage = */ mappedStorage, 
-            /* length = */ this.length, 
-            /* closeHandlers = */ this.closeHandlers, 
-            /* isParallel = */ false, 
-            /* linkedOrConsumed = */ false);
+                /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ mappedStorage, 
+                /* length = */ this.length, 
+                /* closeHandlers = */ this.closeHandlers, 
+                /* isParallel = */ false, 
+                /* linkedOrConsumed = */ false
+            );
             this.linkedOrConsumed = true;
         }
         return result;
@@ -289,12 +293,13 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
             }
             ;
             result = new IntStreamLSL((Void) null, 
-            /* state = */ IntStreamLSL.__$lsl_States.Initialized, 
-            /* storage = */ mappedStorage, 
-            /* length = */ this.length, 
-            /* closeHandlers = */ this.closeHandlers, 
-            /* isParallel = */ false, 
-            /* linkedOrConsumed = */ false);
+                /* state = */ IntStreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ mappedStorage, 
+                /* length = */ this.length, 
+                /* closeHandlers = */ this.closeHandlers, 
+                /* isParallel = */ false, 
+                /* linkedOrConsumed = */ false
+            );
             this.linkedOrConsumed = true;
         }
         return result;
@@ -330,12 +335,13 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
             }
             if (this.length == 0) {
                 result = new DoubleStreamLSL((Void) null, 
-                /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ this.storage, 
-                /* length = */ 0, 
-                /* closeHandlers = */ this.closeHandlers, 
-                /* isParallel = */ false, 
-                /* linkedOrConsumed = */ false);
+                    /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
+                    /* storage = */ this.storage, 
+                    /* length = */ 0, 
+                    /* closeHandlers = */ this.closeHandlers, 
+                    /* isParallel = */ false, 
+                    /* linkedOrConsumed = */ false
+                );
             } else {
                 Engine.assume(this.length > 0);
                 final int outerLimit = this.length - 1;
@@ -358,12 +364,13 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
                 }
                 ;
                 result = new DoubleStreamLSL((Void) null, 
-                /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ this.storage, 
-                /* length = */ this.length, 
-                /* closeHandlers = */ this.closeHandlers, 
-                /* isParallel = */ false, 
-                /* linkedOrConsumed = */ false);
+                    /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
+                    /* storage = */ this.storage, 
+                    /* length = */ this.length, 
+                    /* closeHandlers = */ this.closeHandlers, 
+                    /* isParallel = */ false, 
+                    /* linkedOrConsumed = */ false
+                );
             }
             this.linkedOrConsumed = true;
         }
@@ -415,12 +422,13 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
                 ;
             }
             result = new DoubleStreamLSL((Void) null, 
-            /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
-            /* storage = */ distinctStorage, 
-            /* length = */ distinctLength, 
-            /* closeHandlers = */ this.closeHandlers, 
-            /* isParallel = */ false, 
-            /* linkedOrConsumed = */ false);
+                /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ distinctStorage, 
+                /* length = */ distinctLength, 
+                /* closeHandlers = */ this.closeHandlers, 
+                /* isParallel = */ false, 
+                /* linkedOrConsumed = */ false
+            );
             this.linkedOrConsumed = true;
         }
         return result;
@@ -437,12 +445,13 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
             }
             _actionApply(_action);
             result = new DoubleStreamLSL((Void) null, 
-            /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
-            /* storage = */ this.storage, 
-            /* length = */ this.length, 
-            /* closeHandlers = */ this.closeHandlers, 
-            /* isParallel = */ false, 
-            /* linkedOrConsumed = */ false);
+                /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ this.storage, 
+                /* length = */ this.length, 
+                /* closeHandlers = */ this.closeHandlers, 
+                /* isParallel = */ false, 
+                /* linkedOrConsumed = */ false
+            );
             this.linkedOrConsumed = true;
         }
         return result;
@@ -463,31 +472,34 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
             }
             if (maxSizeInt == 0) {
                 result = new DoubleStreamLSL((Void) null, 
-                /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ this.storage, 
-                /* length = */ 0, 
-                /* closeHandlers = */ this.closeHandlers, 
-                /* isParallel = */ false, 
-                /* linkedOrConsumed = */ false);
+                    /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
+                    /* storage = */ this.storage, 
+                    /* length = */ 0, 
+                    /* closeHandlers = */ this.closeHandlers, 
+                    /* isParallel = */ false, 
+                    /* linkedOrConsumed = */ false
+                );
             } else {
                 if (maxSizeInt > this.length) {
                     result = new DoubleStreamLSL((Void) null, 
-                    /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
-                    /* storage = */ this.storage, 
-                    /* length = */ this.length, 
-                    /* closeHandlers = */ this.closeHandlers, 
-                    /* isParallel = */ false, 
-                    /* linkedOrConsumed = */ false);
+                        /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
+                        /* storage = */ this.storage, 
+                        /* length = */ this.length, 
+                        /* closeHandlers = */ this.closeHandlers, 
+                        /* isParallel = */ false, 
+                        /* linkedOrConsumed = */ false
+                    );
                 } else {
                     final double[] limitStorage = new double[maxSizeInt];
                     LibSLRuntime.ArrayActions.copy(this.storage, 0, limitStorage, 0, maxSizeInt);
                     result = new DoubleStreamLSL((Void) null, 
-                    /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
-                    /* storage = */ limitStorage, 
-                    /* length = */ maxSizeInt, 
-                    /* closeHandlers = */ this.closeHandlers, 
-                    /* isParallel = */ false, 
-                    /* linkedOrConsumed = */ false);
+                        /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
+                        /* storage = */ limitStorage, 
+                        /* length = */ maxSizeInt, 
+                        /* closeHandlers = */ this.closeHandlers, 
+                        /* isParallel = */ false, 
+                        /* linkedOrConsumed = */ false
+                    );
                 }
             }
             this.linkedOrConsumed = true;
@@ -510,22 +522,24 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
             }
             if (offset == 0) {
                 result = new DoubleStreamLSL((Void) null, 
-                /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ this.storage, 
-                /* length = */ this.length, 
-                /* closeHandlers = */ this.closeHandlers, 
-                /* isParallel = */ false, 
-                /* linkedOrConsumed = */ false);
+                    /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
+                    /* storage = */ this.storage, 
+                    /* length = */ this.length, 
+                    /* closeHandlers = */ this.closeHandlers, 
+                    /* isParallel = */ false, 
+                    /* linkedOrConsumed = */ false
+                );
             } else {
                 if (offset >= this.length) {
                     double[] newArray = {};
                     result = new DoubleStreamLSL((Void) null, 
-                    /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
-                    /* storage = */ newArray, 
-                    /* length = */ 0, 
-                    /* closeHandlers = */ this.closeHandlers, 
-                    /* isParallel = */ false, 
-                    /* linkedOrConsumed = */ false);
+                        /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
+                        /* storage = */ newArray, 
+                        /* length = */ 0, 
+                        /* closeHandlers = */ this.closeHandlers, 
+                        /* isParallel = */ false, 
+                        /* linkedOrConsumed = */ false
+                    );
                 } else {
                     final int newLength = this.length - offset;
                     final double[] skipStorage = new double[newLength];
@@ -537,12 +551,13 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
                     }
                     ;
                     result = new DoubleStreamLSL((Void) null, 
-                    /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
-                    /* storage = */ skipStorage, 
-                    /* length = */ newLength, 
-                    /* closeHandlers = */ this.closeHandlers, 
-                    /* isParallel = */ false, 
-                    /* linkedOrConsumed = */ false);
+                        /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
+                        /* storage = */ skipStorage, 
+                        /* length = */ newLength, 
+                        /* closeHandlers = */ this.closeHandlers, 
+                        /* isParallel = */ false, 
+                        /* linkedOrConsumed = */ false
+                    );
                 }
             }
             this.linkedOrConsumed = true;
@@ -869,9 +884,10 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
                 throw new IllegalStateException();
             }
             result = new DoubleStreamLSLIterator((Void) null, 
-            /* state = */ DoubleStreamLSLIterator.__$lsl_States.Initialized, 
-            /* parent = */ this, 
-            /* cursor = */ 0);
+                /* state = */ DoubleStreamLSLIterator.__$lsl_States.Initialized, 
+                /* parent = */ this, 
+                /* cursor = */ 0
+            );
             this.linkedOrConsumed = true;
         }
         return result;
@@ -938,12 +954,13 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
                 throw new IllegalStateException();
             }
             result = new DoubleStreamLSL((Void) null, 
-            /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
-            /* storage = */ this.storage, 
-            /* length = */ this.length, 
-            /* closeHandlers = */ this.closeHandlers, 
-            /* isParallel = */ false, 
-            /* linkedOrConsumed = */ false);
+                /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ this.storage, 
+                /* length = */ this.length, 
+                /* closeHandlers = */ this.closeHandlers, 
+                /* isParallel = */ false, 
+                /* linkedOrConsumed = */ false
+            );
             this.linkedOrConsumed = true;
         }
         return result;
@@ -997,12 +1014,13 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
             if (this.length == 0) {
                 final double[] emptyStorage = new double[0];
                 result = new DoubleStreamLSL((Void) null, 
-                /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ emptyStorage, 
-                /* length = */ 0, 
-                /* closeHandlers = */ this.closeHandlers, 
-                /* isParallel = */ false, 
-                /* linkedOrConsumed = */ false);
+                    /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
+                    /* storage = */ emptyStorage, 
+                    /* length = */ 0, 
+                    /* closeHandlers = */ this.closeHandlers, 
+                    /* isParallel = */ false, 
+                    /* linkedOrConsumed = */ false
+                );
             } else {
                 Engine.assume(this.length > 0);
                 int dropLength = 0;
@@ -1014,12 +1032,13 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
                 ;
                 if (dropLength == 0) {
                     result = new DoubleStreamLSL((Void) null, 
-                    /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
-                    /* storage = */ this.storage, 
-                    /* length = */ this.length, 
-                    /* closeHandlers = */ this.closeHandlers, 
-                    /* isParallel = */ false, 
-                    /* linkedOrConsumed = */ false);
+                        /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
+                        /* storage = */ this.storage, 
+                        /* length = */ this.length, 
+                        /* closeHandlers = */ this.closeHandlers, 
+                        /* isParallel = */ false, 
+                        /* linkedOrConsumed = */ false
+                    );
                 } else {
                     final int newLength = this.length - dropLength;
                     final double[] newStorage = new double[newLength];
@@ -1032,12 +1051,13 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
                     }
                     ;
                     result = new DoubleStreamLSL((Void) null, 
-                    /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
-                    /* storage = */ newStorage, 
-                    /* length = */ newLength, 
-                    /* closeHandlers = */ this.closeHandlers, 
-                    /* isParallel = */ false, 
-                    /* linkedOrConsumed = */ false);
+                        /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
+                        /* storage = */ newStorage, 
+                        /* length = */ newLength, 
+                        /* closeHandlers = */ this.closeHandlers, 
+                        /* isParallel = */ false, 
+                        /* linkedOrConsumed = */ false
+                    );
                 }
             }
             this.linkedOrConsumed = true;
@@ -1060,12 +1080,13 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
             if (this.length == 0) {
                 final double[] emptyStorage = new double[0];
                 result = new DoubleStreamLSL((Void) null, 
-                /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ emptyStorage, 
-                /* length = */ 0, 
-                /* closeHandlers = */ this.closeHandlers, 
-                /* isParallel = */ false, 
-                /* linkedOrConsumed = */ false);
+                    /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
+                    /* storage = */ emptyStorage, 
+                    /* length = */ 0, 
+                    /* closeHandlers = */ this.closeHandlers, 
+                    /* isParallel = */ false, 
+                    /* linkedOrConsumed = */ false
+                );
             } else {
                 Engine.assume(this.length > 0);
                 int takeLength = 0;
@@ -1077,12 +1098,13 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
                 ;
                 if (takeLength == this.length) {
                     result = new DoubleStreamLSL((Void) null, 
-                    /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
-                    /* storage = */ this.storage, 
-                    /* length = */ this.length, 
-                    /* closeHandlers = */ this.closeHandlers, 
-                    /* isParallel = */ false, 
-                    /* linkedOrConsumed = */ false);
+                        /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
+                        /* storage = */ this.storage, 
+                        /* length = */ this.length, 
+                        /* closeHandlers = */ this.closeHandlers, 
+                        /* isParallel = */ false, 
+                        /* linkedOrConsumed = */ false
+                    );
                 } else {
                     final int newLength = takeLength;
                     final double[] newStorage = new double[newLength];
@@ -1095,12 +1117,13 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
                     }
                     ;
                     result = new DoubleStreamLSL((Void) null, 
-                    /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
-                    /* storage = */ newStorage, 
-                    /* length = */ newLength, 
-                    /* closeHandlers = */ this.closeHandlers, 
-                    /* isParallel = */ false, 
-                    /* linkedOrConsumed = */ false);
+                        /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
+                        /* storage = */ newStorage, 
+                        /* length = */ newLength, 
+                        /* closeHandlers = */ this.closeHandlers, 
+                        /* isParallel = */ false, 
+                        /* linkedOrConsumed = */ false
+                    );
                 }
             }
             this.linkedOrConsumed = true;
@@ -1180,12 +1203,13 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
             }
             ;
             result = new StreamLSL((Void) null, 
-            /* state = */ StreamLSL.__$lsl_States.Initialized, 
-            /* storage = */ doubleArray, 
-            /* length = */ this.length, 
-            /* closeHandlers = */ this.closeHandlers, 
-            /* isParallel = */ false, 
-            /* linkedOrConsumed = */ false);
+                /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ doubleArray, 
+                /* length = */ this.length, 
+                /* closeHandlers = */ this.closeHandlers, 
+                /* isParallel = */ false, 
+                /* linkedOrConsumed = */ false
+            );
             this.linkedOrConsumed = true;
         }
         return result;

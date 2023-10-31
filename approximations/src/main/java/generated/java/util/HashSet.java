@@ -223,10 +223,11 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
             final LibSLRuntime.Map<Object, Object> storageCopy = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
             storageCopy.union(this.storage);
             result = new HashSet((Void) null, 
-            /* state = */ HashSet.__$lsl_States.Initialized, 
-            /* storage = */ storageCopy, 
-            /* length = */ this.length, 
-            /* modCount = */ 0);
+                /* state = */ HashSet.__$lsl_States.Initialized, 
+                /* storage = */ storageCopy, 
+                /* length = */ this.length, 
+                /* modCount = */ 0
+            );
         }
         return result;
     }
@@ -268,13 +269,14 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
         /* body */ {
             final LibSLRuntime.Map<Object, Object> visitedKeysMap = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
             result = new HashSet_KeyIterator((Void) null, 
-            /* state = */ HashSet_KeyIterator.__$lsl_States.Initialized, 
-            /* expectedModCount = */ this.modCount, 
-            /* visitedKeys = */ visitedKeysMap, 
-            /* parent = */ this, 
-            /* index = */ 0, 
-            /* currentKey = */ 0, 
-            /* nextWasCalled = */ false);
+                /* state = */ HashSet_KeyIterator.__$lsl_States.Initialized, 
+                /* expectedModCount = */ this.modCount, 
+                /* visitedKeys = */ visitedKeysMap, 
+                /* parent = */ this, 
+                /* index = */ 0, 
+                /* currentKey = */ 0, 
+                /* nextWasCalled = */ false
+            );
         }
         return result;
     }
@@ -328,13 +330,14 @@ public class HashSet extends AbstractSet implements LibSLRuntime.Automaton, Set,
             }
             ;
             result = new HashSet_KeySpliterator((Void) null, 
-            /* state = */ HashSet_KeySpliterator.__$lsl_States.Initialized, 
-            /* keysStorage = */ keysStorageArray, 
-            /* index = */ 0, 
-            /* fence = */ -1, 
-            /* est = */ 0, 
-            /* expectedModCount = */ this.modCount, 
-            /* parent = */ this);
+                /* state = */ HashSet_KeySpliterator.__$lsl_States.Initialized, 
+                /* keysStorage = */ keysStorageArray, 
+                /* index = */ 0, 
+                /* fence = */ -1, 
+                /* est = */ 0, 
+                /* expectedModCount = */ this.modCount, 
+                /* parent = */ this
+            );
         }
         return result;
     }

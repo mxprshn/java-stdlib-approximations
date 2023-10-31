@@ -36,21 +36,27 @@ public final class System implements LibSLRuntime.Automaton {
     static {
         /* SystemAutomaton::__clinit__() */ {
             final InputStream newInput = new SymbolicInputStream((Void) null, 
-            /* state = */ SymbolicInputStream.__$lsl_States.Initialized, 
-            /* maxSize = */ 1000, 
-            /* supportMarks = */ false, 
-            /* dataSize = */ -1, 
-            /* data = */ null, 
-            /* closed = */ false, 
-            /* pos = */ 0, 
-            /* markPos = */ -1, 
-            /* markLimit = */ 0);
-            in = new java.io.BufferedInputStream(newInput);
-            final System_PrintStream o1 = new System_PrintStream((Void) null, 
-            /* state = */ System_PrintStream.__$lsl_States.Initialized, 
-            /* closed = */ false, 
-            /* error = */ false);
-            out = ((PrintStream) o1);
+                /* state = */ SymbolicInputStream.__$lsl_States.Initialized, 
+                /* maxSize = */ 1000, 
+                /* supportMarks = */ false, 
+                /* dataSize = */ -1, 
+                /* data = */ null, 
+                /* closed = */ false, 
+                /* pos = */ 0, 
+                /* markPos = */ -1, 
+                /* markLimit = */ 0
+            );
+            in = newInput;
+            out = new System_PrintStream((Void) null, 
+                /* state = */ System_PrintStream.__$lsl_States.Initialized, 
+                /* closed = */ false, 
+                /* error = */ false
+            );
+            err = new System_PrintStream((Void) null, 
+                /* state = */ System_PrintStream.__$lsl_States.Initialized, 
+                /* closed = */ false, 
+                /* error = */ false
+            );
         }
     }
 

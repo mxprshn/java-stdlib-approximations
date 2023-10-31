@@ -102,8 +102,9 @@ public final class Optional implements LibSLRuntime.Automaton {
                 throw new NullPointerException();
             }
             result = new Optional((Void) null, 
-            /* state = */ Optional.__$lsl_States.Initialized, 
-            /* value = */ obj);
+                /* state = */ Optional.__$lsl_States.Initialized, 
+                /* value = */ obj
+            );
         }
         // WARNING: no state transitions in static context
         return result;
@@ -120,8 +121,9 @@ public final class Optional implements LibSLRuntime.Automaton {
                 result = _makeEmpty();
             } else {
                 result = new Optional((Void) null, 
-                /* state = */ Optional.__$lsl_States.Initialized, 
-                /* value = */ obj);
+                    /* state = */ Optional.__$lsl_States.Initialized, 
+                    /* value = */ obj
+                );
             }
         }
         // WARNING: no state transitions in static context
@@ -300,8 +302,9 @@ public final class Optional implements LibSLRuntime.Automaton {
                     result = _makeEmpty();
                 } else {
                     result = new Optional((Void) null, 
-                    /* state = */ Optional.__$lsl_States.Initialized, 
-                    /* value = */ mappedValue);
+                        /* state = */ Optional.__$lsl_States.Initialized, 
+                        /* value = */ mappedValue
+                    );
                 }
             }
         }

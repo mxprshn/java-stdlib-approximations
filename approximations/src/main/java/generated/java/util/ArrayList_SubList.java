@@ -436,14 +436,15 @@ public final class ArrayList_SubList extends AbstractList implements LibSLRuntim
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             result = new ArrayList_SubList$ListIterator((Void) null, 
-            /* state = */ ArrayList_SubList$ListIterator.__$lsl_States.Initialized, 
-            /* root = */ this.root, 
-            /* sublist = */ this, 
-            /* cursor = */ 0, 
-            /* expectedModCount = */ this.modCount, 
-            /* offset = */ this.offset, 
-            /* size = */ this.length, 
-            /* lastRet = */ -1);
+                /* state = */ ArrayList_SubList$ListIterator.__$lsl_States.Initialized, 
+                /* root = */ this.root, 
+                /* sublist = */ this, 
+                /* cursor = */ 0, 
+                /* expectedModCount = */ this.modCount, 
+                /* offset = */ this.offset, 
+                /* size = */ this.length, 
+                /* lastRet = */ -1
+            );
         }
         return result;
     }
@@ -485,14 +486,15 @@ public final class ArrayList_SubList extends AbstractList implements LibSLRuntim
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             result = new ArrayList_SubList$ListIterator((Void) null, 
-            /* state = */ ArrayList_SubList$ListIterator.__$lsl_States.Initialized, 
-            /* root = */ this.root, 
-            /* sublist = */ this, 
-            /* cursor = */ 0, 
-            /* expectedModCount = */ this.modCount, 
-            /* offset = */ this.offset, 
-            /* size = */ this.length, 
-            /* lastRet = */ -1);
+                /* state = */ ArrayList_SubList$ListIterator.__$lsl_States.Initialized, 
+                /* root = */ this.root, 
+                /* sublist = */ this, 
+                /* cursor = */ 0, 
+                /* expectedModCount = */ this.modCount, 
+                /* offset = */ this.offset, 
+                /* size = */ this.length, 
+                /* lastRet = */ -1
+            );
         }
         return result;
     }
@@ -505,14 +507,15 @@ public final class ArrayList_SubList extends AbstractList implements LibSLRuntim
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             result = new ArrayList_SubList$ListIterator((Void) null, 
-            /* state = */ ArrayList_SubList$ListIterator.__$lsl_States.Initialized, 
-            /* root = */ this.root, 
-            /* sublist = */ this, 
-            /* cursor = */ index, 
-            /* expectedModCount = */ this.modCount, 
-            /* offset = */ this.offset, 
-            /* size = */ this.length, 
-            /* lastRet = */ -1);
+                /* state = */ ArrayList_SubList$ListIterator.__$lsl_States.Initialized, 
+                /* root = */ this.root, 
+                /* sublist = */ this, 
+                /* cursor = */ index, 
+                /* expectedModCount = */ this.modCount, 
+                /* offset = */ this.offset, 
+                /* size = */ this.length, 
+                /* lastRet = */ -1
+            );
         }
         return result;
     }
@@ -678,12 +681,13 @@ public final class ArrayList_SubList extends AbstractList implements LibSLRuntim
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             result = new ArrayList_SubList$Spliterator((Void) null, 
-            /* state = */ ArrayList_SubList$Spliterator.__$lsl_States.Initialized, 
-            /* root = */ this.root, 
-            /* parent = */ this, 
-            /* index = */ 0, 
-            /* fence = */ -1, 
-            /* expectedModCount = */ 0);
+                /* state = */ ArrayList_SubList$Spliterator.__$lsl_States.Initialized, 
+                /* root = */ this.root, 
+                /* parent = */ this, 
+                /* index = */ 0, 
+                /* fence = */ -1, 
+                /* expectedModCount = */ 0
+            );
         }
         return result;
     }
@@ -710,12 +714,13 @@ public final class ArrayList_SubList extends AbstractList implements LibSLRuntim
             Engine.assume(this.root != null);
             ((ArrayList) this.root)._subListRangeCheck(fromIndex, toIndex, this.length);
             result = new ArrayList_SubList((Void) null, 
-            /* state = */ ArrayList_SubList.__$lsl_States.Initialized, 
-            /* root = */ this.root, 
-            /* parentList = */ this, 
-            /* offset = */ this.offset + fromIndex, 
-            /* length = */ toIndex - fromIndex, 
-            /* modCount = */ this.modCount);
+                /* state = */ ArrayList_SubList.__$lsl_States.Initialized, 
+                /* root = */ this.root, 
+                /* parentList = */ this, 
+                /* offset = */ this.offset + fromIndex, 
+                /* length = */ toIndex - fromIndex, 
+                /* modCount = */ this.modCount
+            );
         }
         return result;
     }

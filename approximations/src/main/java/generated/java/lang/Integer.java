@@ -32,8 +32,9 @@ public final class Integer implements LibSLRuntime.Automaton {
         Integer result = null;
         /* body */ {
             result = new Integer((Void) null, 
-            /* state = */ Integer.__$lsl_States.Initialized, 
-            /* value = */ i);
+                /* state = */ Integer.__$lsl_States.Initialized, 
+                /* value = */ i
+            );
         }
         return result;
     }

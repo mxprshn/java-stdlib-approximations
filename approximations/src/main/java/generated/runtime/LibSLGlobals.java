@@ -66,20 +66,24 @@ public final class LibSLGlobals {
         DOUBLE_NEGATIVE_INFINITY = -1.0d / 0.0d;
         DOUBLE_POSITIVE_INFINITY = 1.0d / 0.0d;
         EMPTY_OPTIONAL = new Optional((Void) null, 
-                /* state = */ Optional.__$lsl_States.Initialized, 
-                /* value = */ null);
+                    /* state = */ Optional.__$lsl_States.Initialized, 
+                    /* value = */ null
+                );
         EMPTY_OPTIONAL_DOUBLE = new OptionalDouble((Void) null, 
-                /* state = */ OptionalDouble.__$lsl_States.Initialized, 
-                /* value = */ 0.0d, 
-                /* present = */ false);
+                    /* state = */ OptionalDouble.__$lsl_States.Initialized, 
+                    /* value = */ 0.0d, 
+                    /* present = */ false
+                );
         EMPTY_OPTIONAL_INT = new OptionalInt((Void) null, 
-                /* state = */ OptionalInt.__$lsl_States.Initialized, 
-                /* value = */ 0, 
-                /* present = */ false);
+                    /* state = */ OptionalInt.__$lsl_States.Initialized, 
+                    /* value = */ 0, 
+                    /* present = */ false
+                );
         EMPTY_OPTIONAL_LONG = new OptionalLong((Void) null, 
-                /* state = */ OptionalLong.__$lsl_States.Initialized, 
-                /* value = */ 0L, 
-                /* present = */ false);
+                    /* state = */ OptionalLong.__$lsl_States.Initialized, 
+                    /* value = */ 0L, 
+                    /* present = */ false
+                );
         MAX_CODE_POINT = 1114111;
         MIN_CODE_POINT = 0;
         MIN_HIGH_SURROGATE = 55296;

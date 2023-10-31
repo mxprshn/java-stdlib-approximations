@@ -175,12 +175,13 @@ public final class ArrayList_SubList$Spliterator implements LibSLRuntime.Automat
                 result = null;
             } else {
                 result = new ArrayList_SubList$Spliterator((Void) null, 
-                /* state = */ ArrayList_SubList$Spliterator.__$lsl_States.Initialized, 
-                /* root = */ this.root, 
-                /* parent = */ this.parent, 
-                /* index = */ lo, 
-                /* fence = */ mid, 
-                /* expectedModCount = */ this.expectedModCount);
+                    /* state = */ ArrayList_SubList$Spliterator.__$lsl_States.Initialized, 
+                    /* root = */ this.root, 
+                    /* parent = */ this.parent, 
+                    /* index = */ lo, 
+                    /* fence = */ mid, 
+                    /* expectedModCount = */ this.expectedModCount
+                );
             }
             this.index = mid;
         }

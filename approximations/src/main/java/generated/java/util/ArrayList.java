@@ -524,10 +524,11 @@ public class ArrayList extends AbstractList implements LibSLRuntime.Automaton, L
             final SymbolicList<Object> storageCopy = Engine.makeSymbolicList();
             this.storage.copy(storageCopy, 0, 0, this.length);
             result = new ArrayList((Void) null, 
-            /* state = */ ArrayList.__$lsl_States.Initialized, 
-            /* storage = */ storageCopy, 
-            /* length = */ this.length, 
-            /* modCount = */ 0);
+                /* state = */ ArrayList.__$lsl_States.Initialized, 
+                /* storage = */ storageCopy, 
+                /* length = */ this.length, 
+                /* modCount = */ 0
+            );
         }
         return result;
     }
@@ -694,11 +695,12 @@ public class ArrayList extends AbstractList implements LibSLRuntime.Automaton, L
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             result = new ArrayList_ListItr((Void) null, 
-            /* state = */ ArrayList_ListItr.__$lsl_States.Initialized, 
-            /* parent = */ this, 
-            /* cursor = */ 0, 
-            /* expectedModCount = */ this.modCount, 
-            /* lastRet = */ -1);
+                /* state = */ ArrayList_ListItr.__$lsl_States.Initialized, 
+                /* parent = */ this, 
+                /* cursor = */ 0, 
+                /* expectedModCount = */ this.modCount, 
+                /* lastRet = */ -1
+            );
         }
         return result;
     }
@@ -735,11 +737,12 @@ public class ArrayList extends AbstractList implements LibSLRuntime.Automaton, L
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             result = new ArrayList_ListItr((Void) null, 
-            /* state = */ ArrayList_ListItr.__$lsl_States.Initialized, 
-            /* parent = */ this, 
-            /* cursor = */ 0, 
-            /* expectedModCount = */ this.modCount, 
-            /* lastRet = */ -1);
+                /* state = */ ArrayList_ListItr.__$lsl_States.Initialized, 
+                /* parent = */ this, 
+                /* cursor = */ 0, 
+                /* expectedModCount = */ this.modCount, 
+                /* lastRet = */ -1
+            );
         }
         return result;
     }
@@ -753,11 +756,12 @@ public class ArrayList extends AbstractList implements LibSLRuntime.Automaton, L
         /* body */ {
             _rangeCheckForAdd(index);
             result = new ArrayList_ListItr((Void) null, 
-            /* state = */ ArrayList_ListItr.__$lsl_States.Initialized, 
-            /* parent = */ this, 
-            /* cursor = */ index, 
-            /* expectedModCount = */ this.modCount, 
-            /* lastRet = */ -1);
+                /* state = */ ArrayList_ListItr.__$lsl_States.Initialized, 
+                /* parent = */ this, 
+                /* cursor = */ index, 
+                /* expectedModCount = */ this.modCount, 
+                /* lastRet = */ -1
+            );
         }
         return result;
     }
@@ -894,11 +898,12 @@ public class ArrayList extends AbstractList implements LibSLRuntime.Automaton, L
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             result = new ArrayList_Spliterator((Void) null, 
-            /* state = */ ArrayList_Spliterator.__$lsl_States.Initialized, 
-            /* parent = */ this, 
-            /* index = */ 0, 
-            /* fence = */ -1, 
-            /* expectedModCount = */ 0);
+                /* state = */ ArrayList_Spliterator.__$lsl_States.Initialized, 
+                /* parent = */ this, 
+                /* index = */ 0, 
+                /* fence = */ -1, 
+                /* expectedModCount = */ 0
+            );
         }
         return result;
     }
@@ -924,12 +929,13 @@ public class ArrayList extends AbstractList implements LibSLRuntime.Automaton, L
         /* body */ {
             _subListRangeCheck(fromIndex, toIndex, this.length);
             result = new ArrayList_SubList((Void) null, 
-            /* state = */ ArrayList_SubList.__$lsl_States.Initialized, 
-            /* root = */ this, 
-            /* parentList = */ null, 
-            /* offset = */ fromIndex, 
-            /* length = */ toIndex - fromIndex, 
-            /* modCount = */ this.modCount);
+                /* state = */ ArrayList_SubList.__$lsl_States.Initialized, 
+                /* root = */ this, 
+                /* parentList = */ null, 
+                /* offset = */ fromIndex, 
+                /* length = */ toIndex - fromIndex, 
+                /* modCount = */ this.modCount
+            );
         }
         return result;
     }

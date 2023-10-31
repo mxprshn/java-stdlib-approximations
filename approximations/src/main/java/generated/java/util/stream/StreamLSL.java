@@ -133,12 +133,13 @@ public class StreamLSL implements LibSLRuntime.Automaton, Stream {
             Object[] resultStorage = new Object[filteredLength];
             LibSLRuntime.ArrayActions.copy(filteredStorage, 0, resultStorage, 0, filteredLength);
             result = new StreamLSL((Void) null, 
-            /* state = */ StreamLSL.__$lsl_States.Initialized, 
-            /* storage = */ resultStorage, 
-            /* length = */ filteredLength, 
-            /* closeHandlers = */ this.closeHandlers, 
-            /* isParallel = */ false, 
-            /* linkedOrConsumed = */ false);
+                /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ resultStorage, 
+                /* length = */ filteredLength, 
+                /* closeHandlers = */ this.closeHandlers, 
+                /* isParallel = */ false, 
+                /* linkedOrConsumed = */ false
+            );
             this.linkedOrConsumed = true;
         }
         return result;
@@ -164,12 +165,13 @@ public class StreamLSL implements LibSLRuntime.Automaton, Stream {
             }
             ;
             result = new StreamLSL((Void) null, 
-            /* state = */ StreamLSL.__$lsl_States.Initialized, 
-            /* storage = */ mappedStorage, 
-            /* length = */ this.length, 
-            /* closeHandlers = */ this.closeHandlers, 
-            /* isParallel = */ false, 
-            /* linkedOrConsumed = */ false);
+                /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ mappedStorage, 
+                /* length = */ this.length, 
+                /* closeHandlers = */ this.closeHandlers, 
+                /* isParallel = */ false, 
+                /* linkedOrConsumed = */ false
+            );
             this.linkedOrConsumed = true;
         }
         return result;
@@ -373,12 +375,13 @@ public class StreamLSL implements LibSLRuntime.Automaton, Stream {
                 ;
             }
             result = new StreamLSL((Void) null, 
-            /* state = */ StreamLSL.__$lsl_States.Initialized, 
-            /* storage = */ distinctStorage, 
-            /* length = */ distinctLength, 
-            /* closeHandlers = */ this.closeHandlers, 
-            /* isParallel = */ false, 
-            /* linkedOrConsumed = */ false);
+                /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ distinctStorage, 
+                /* length = */ distinctLength, 
+                /* closeHandlers = */ this.closeHandlers, 
+                /* isParallel = */ false, 
+                /* linkedOrConsumed = */ false
+            );
             this.linkedOrConsumed = true;
         }
         return result;
@@ -396,12 +399,13 @@ public class StreamLSL implements LibSLRuntime.Automaton, Stream {
             }
             if (this.length == 0) {
                 result = new StreamLSL((Void) null, 
-                /* state = */ StreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ this.storage, 
-                /* length = */ this.length, 
-                /* closeHandlers = */ this.closeHandlers, 
-                /* isParallel = */ false, 
-                /* linkedOrConsumed = */ false);
+                    /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                    /* storage = */ this.storage, 
+                    /* length = */ this.length, 
+                    /* closeHandlers = */ this.closeHandlers, 
+                    /* isParallel = */ false, 
+                    /* linkedOrConsumed = */ false
+                );
             } else {
                 Engine.assume(this.length > 0);
                 final int outerLimit = this.length - 1;
@@ -424,12 +428,13 @@ public class StreamLSL implements LibSLRuntime.Automaton, Stream {
                 }
                 ;
                 result = new StreamLSL((Void) null, 
-                /* state = */ StreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ this.storage, 
-                /* length = */ this.length, 
-                /* closeHandlers = */ this.closeHandlers, 
-                /* isParallel = */ false, 
-                /* linkedOrConsumed = */ false);
+                    /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                    /* storage = */ this.storage, 
+                    /* length = */ this.length, 
+                    /* closeHandlers = */ this.closeHandlers, 
+                    /* isParallel = */ false, 
+                    /* linkedOrConsumed = */ false
+                );
             }
             this.linkedOrConsumed = true;
         }
@@ -448,12 +453,13 @@ public class StreamLSL implements LibSLRuntime.Automaton, Stream {
             }
             if (this.length == 0) {
                 result = new StreamLSL((Void) null, 
-                /* state = */ StreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ this.storage, 
-                /* length = */ this.length, 
-                /* closeHandlers = */ this.closeHandlers, 
-                /* isParallel = */ false, 
-                /* linkedOrConsumed = */ false);
+                    /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                    /* storage = */ this.storage, 
+                    /* length = */ this.length, 
+                    /* closeHandlers = */ this.closeHandlers, 
+                    /* isParallel = */ false, 
+                    /* linkedOrConsumed = */ false
+                );
             } else {
                 final int outerLimit = this.length - 1;
                 int innerLimit = 0;
@@ -475,12 +481,13 @@ public class StreamLSL implements LibSLRuntime.Automaton, Stream {
                 }
                 ;
                 result = new StreamLSL((Void) null, 
-                /* state = */ StreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ this.storage, 
-                /* length = */ this.length, 
-                /* closeHandlers = */ this.closeHandlers, 
-                /* isParallel = */ false, 
-                /* linkedOrConsumed = */ false);
+                    /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                    /* storage = */ this.storage, 
+                    /* length = */ this.length, 
+                    /* closeHandlers = */ this.closeHandlers, 
+                    /* isParallel = */ false, 
+                    /* linkedOrConsumed = */ false
+                );
             }
             this.linkedOrConsumed = true;
         }
@@ -499,12 +506,13 @@ public class StreamLSL implements LibSLRuntime.Automaton, Stream {
             }
             _actionApply(_action);
             result = new StreamLSL((Void) null, 
-            /* state = */ StreamLSL.__$lsl_States.Initialized, 
-            /* storage = */ this.storage, 
-            /* length = */ this.length, 
-            /* closeHandlers = */ this.closeHandlers, 
-            /* isParallel = */ false, 
-            /* linkedOrConsumed = */ false);
+                /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ this.storage, 
+                /* length = */ this.length, 
+                /* closeHandlers = */ this.closeHandlers, 
+                /* isParallel = */ false, 
+                /* linkedOrConsumed = */ false
+            );
             this.linkedOrConsumed = true;
         }
         return result;
@@ -525,21 +533,23 @@ public class StreamLSL implements LibSLRuntime.Automaton, Stream {
             }
             if (maxSize == 0) {
                 result = new StreamLSL((Void) null, 
-                /* state = */ StreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ this.storage, 
-                /* length = */ 0, 
-                /* closeHandlers = */ this.closeHandlers, 
-                /* isParallel = */ false, 
-                /* linkedOrConsumed = */ false);
+                    /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                    /* storage = */ this.storage, 
+                    /* length = */ 0, 
+                    /* closeHandlers = */ this.closeHandlers, 
+                    /* isParallel = */ false, 
+                    /* linkedOrConsumed = */ false
+                );
             } else {
                 if (maxSize > this.length) {
                     result = new StreamLSL((Void) null, 
-                    /* state = */ StreamLSL.__$lsl_States.Initialized, 
-                    /* storage = */ this.storage, 
-                    /* length = */ this.length, 
-                    /* closeHandlers = */ this.closeHandlers, 
-                    /* isParallel = */ false, 
-                    /* linkedOrConsumed = */ false);
+                        /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                        /* storage = */ this.storage, 
+                        /* length = */ this.length, 
+                        /* closeHandlers = */ this.closeHandlers, 
+                        /* isParallel = */ false, 
+                        /* linkedOrConsumed = */ false
+                    );
                 } else {
                     final int maxSizeInt = ((int) maxSize);
                     final Object[] limitStorage = new Object[maxSizeInt];
@@ -549,12 +559,13 @@ public class StreamLSL implements LibSLRuntime.Automaton, Stream {
                     }
                     ;
                     result = new StreamLSL((Void) null, 
-                    /* state = */ StreamLSL.__$lsl_States.Initialized, 
-                    /* storage = */ limitStorage, 
-                    /* length = */ maxSizeInt, 
-                    /* closeHandlers = */ this.closeHandlers, 
-                    /* isParallel = */ false, 
-                    /* linkedOrConsumed = */ false);
+                        /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                        /* storage = */ limitStorage, 
+                        /* length = */ maxSizeInt, 
+                        /* closeHandlers = */ this.closeHandlers, 
+                        /* isParallel = */ false, 
+                        /* linkedOrConsumed = */ false
+                    );
                 }
             }
             this.linkedOrConsumed = true;
@@ -578,22 +589,24 @@ public class StreamLSL implements LibSLRuntime.Automaton, Stream {
             }
             if (offset == 0) {
                 result = new StreamLSL((Void) null, 
-                /* state = */ StreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ this.storage, 
-                /* length = */ this.length, 
-                /* closeHandlers = */ this.closeHandlers, 
-                /* isParallel = */ false, 
-                /* linkedOrConsumed = */ false);
+                    /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                    /* storage = */ this.storage, 
+                    /* length = */ this.length, 
+                    /* closeHandlers = */ this.closeHandlers, 
+                    /* isParallel = */ false, 
+                    /* linkedOrConsumed = */ false
+                );
             } else {
                 if (offset >= this.length) {
                     Object[] newArray = {};
                     result = new StreamLSL((Void) null, 
-                    /* state = */ StreamLSL.__$lsl_States.Initialized, 
-                    /* storage = */ newArray, 
-                    /* length = */ 0, 
-                    /* closeHandlers = */ this.closeHandlers, 
-                    /* isParallel = */ false, 
-                    /* linkedOrConsumed = */ false);
+                        /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                        /* storage = */ newArray, 
+                        /* length = */ 0, 
+                        /* closeHandlers = */ this.closeHandlers, 
+                        /* isParallel = */ false, 
+                        /* linkedOrConsumed = */ false
+                    );
                 } else {
                     final int newLength = this.length - offset;
                     final Object[] skipStorage = new Object[newLength];
@@ -605,12 +618,13 @@ public class StreamLSL implements LibSLRuntime.Automaton, Stream {
                     }
                     ;
                     result = new StreamLSL((Void) null, 
-                    /* state = */ StreamLSL.__$lsl_States.Initialized, 
-                    /* storage = */ skipStorage, 
-                    /* length = */ newLength, 
-                    /* closeHandlers = */ this.closeHandlers, 
-                    /* isParallel = */ false, 
-                    /* linkedOrConsumed = */ false);
+                        /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                        /* storage = */ skipStorage, 
+                        /* length = */ newLength, 
+                        /* closeHandlers = */ this.closeHandlers, 
+                        /* isParallel = */ false, 
+                        /* linkedOrConsumed = */ false
+                    );
                 }
             }
             this.linkedOrConsumed = true;
@@ -1031,9 +1045,10 @@ public class StreamLSL implements LibSLRuntime.Automaton, Stream {
                 throw new IllegalStateException();
             }
             result = new StreamLSLIterator((Void) null, 
-            /* state = */ StreamLSLIterator.__$lsl_States.Initialized, 
-            /* parent = */ this, 
-            /* cursor = */ 0);
+                /* state = */ StreamLSLIterator.__$lsl_States.Initialized, 
+                /* parent = */ this, 
+                /* cursor = */ 0
+            );
             this.linkedOrConsumed = true;
         }
         return result;
@@ -1104,12 +1119,13 @@ public class StreamLSL implements LibSLRuntime.Automaton, Stream {
                 throw new IllegalStateException();
             }
             result = new StreamLSL((Void) null, 
-            /* state = */ StreamLSL.__$lsl_States.Initialized, 
-            /* storage = */ this.storage, 
-            /* length = */ this.length, 
-            /* closeHandlers = */ this.closeHandlers, 
-            /* isParallel = */ false, 
-            /* linkedOrConsumed = */ false);
+                /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ this.storage, 
+                /* length = */ this.length, 
+                /* closeHandlers = */ this.closeHandlers, 
+                /* isParallel = */ false, 
+                /* linkedOrConsumed = */ false
+            );
             this.linkedOrConsumed = true;
         }
         return result;
@@ -1166,12 +1182,13 @@ public class StreamLSL implements LibSLRuntime.Automaton, Stream {
             if (this.length == 0) {
                 final Object[] emptyStorage = new Object[0];
                 result = new StreamLSL((Void) null, 
-                /* state = */ StreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ emptyStorage, 
-                /* length = */ 0, 
-                /* closeHandlers = */ this.closeHandlers, 
-                /* isParallel = */ false, 
-                /* linkedOrConsumed = */ false);
+                    /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                    /* storage = */ emptyStorage, 
+                    /* length = */ 0, 
+                    /* closeHandlers = */ this.closeHandlers, 
+                    /* isParallel = */ false, 
+                    /* linkedOrConsumed = */ false
+                );
             } else {
                 int dropLength = 0;
                 int i = 0;
@@ -1192,12 +1209,13 @@ public class StreamLSL implements LibSLRuntime.Automaton, Stream {
                 }
                 ;
                 result = new StreamLSL((Void) null, 
-                /* state = */ StreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ newStorage, 
-                /* length = */ newLength, 
-                /* closeHandlers = */ this.closeHandlers, 
-                /* isParallel = */ false, 
-                /* linkedOrConsumed = */ false);
+                    /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                    /* storage = */ newStorage, 
+                    /* length = */ newLength, 
+                    /* closeHandlers = */ this.closeHandlers, 
+                    /* isParallel = */ false, 
+                    /* linkedOrConsumed = */ false
+                );
             }
             this.linkedOrConsumed = true;
         }
@@ -1220,12 +1238,13 @@ public class StreamLSL implements LibSLRuntime.Automaton, Stream {
             if (this.length == 0) {
                 final Object[] emptyStorage = new Object[0];
                 result = new StreamLSL((Void) null, 
-                /* state = */ StreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ emptyStorage, 
-                /* length = */ 0, 
-                /* closeHandlers = */ this.closeHandlers, 
-                /* isParallel = */ false, 
-                /* linkedOrConsumed = */ false);
+                    /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                    /* storage = */ emptyStorage, 
+                    /* length = */ 0, 
+                    /* closeHandlers = */ this.closeHandlers, 
+                    /* isParallel = */ false, 
+                    /* linkedOrConsumed = */ false
+                );
             } else {
                 int takeLength = 0;
                 int i = 0;
@@ -1246,12 +1265,13 @@ public class StreamLSL implements LibSLRuntime.Automaton, Stream {
                 }
                 ;
                 result = new StreamLSL((Void) null, 
-                /* state = */ StreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ newStorage, 
-                /* length = */ newLength, 
-                /* closeHandlers = */ this.closeHandlers, 
-                /* isParallel = */ false, 
-                /* linkedOrConsumed = */ false);
+                    /* state = */ StreamLSL.__$lsl_States.Initialized, 
+                    /* storage = */ newStorage, 
+                    /* length = */ newLength, 
+                    /* closeHandlers = */ this.closeHandlers, 
+                    /* isParallel = */ false, 
+                    /* linkedOrConsumed = */ false
+                );
             }
             this.linkedOrConsumed = true;
         }
