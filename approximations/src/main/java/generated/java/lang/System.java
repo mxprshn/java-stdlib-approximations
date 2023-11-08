@@ -100,7 +100,6 @@ public final class System implements LibSLRuntime.Automaton {
                 /* closed = */ false, 
                 /* error = */ false
             ));
-            VM.initializeOSEnvironment();
             VM.initLevel(1);
         }
     }
