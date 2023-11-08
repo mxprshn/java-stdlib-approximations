@@ -34,6 +34,7 @@ import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 import org.usvm.api.SymbolicList;
 import runtime.LibSLRuntime;
+import stub.java.util.LongStreamLSLSpliterator;
 
 /**
  * LongStreamAutomaton for LongStreamLSL ~> java.util.stream.LongStreamLSL
@@ -144,14 +145,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
             Engine.assume(filteredLength <= this.length);
             long[] resultStorage = new long[filteredLength];
             LibSLRuntime.ArrayActions.copy(filteredStorage, 0, resultStorage, 0, filteredLength);
-            result = new LongStreamLSL((Void) null, 
+            result = (stub.java.util.stream.LongStreamLSL) ((Object) new LongStreamLSL((Void) null, 
                 /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
                 /* storage = */ resultStorage, 
                 /* length = */ filteredLength, 
                 /* closeHandlers = */ this.closeHandlers, 
                 /* isParallel = */ false, 
                 /* linkedOrConsumed = */ false
-            );
+            ));
             this.linkedOrConsumed = true;
         }
         return result;
@@ -175,14 +176,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
                 mappedStorage[i] = mapper.applyAsLong(storage[i]);
             }
             ;
-            result = new LongStreamLSL((Void) null, 
+            result = (stub.java.util.stream.LongStreamLSL) ((Object) new LongStreamLSL((Void) null, 
                 /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
                 /* storage = */ mappedStorage, 
                 /* length = */ this.length, 
                 /* closeHandlers = */ this.closeHandlers, 
                 /* isParallel = */ false, 
                 /* linkedOrConsumed = */ false
-            );
+            ));
             this.linkedOrConsumed = true;
         }
         return result;
@@ -203,14 +204,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
                 objStorage[i] = mapper.apply(storage[i]);
             }
             ;
-            result = new StreamLSL((Void) null, 
+            result = (stub.java.util.stream.StreamLSL) ((Object) new StreamLSL((Void) null, 
                 /* state = */ StreamLSL.__$lsl_States.Initialized, 
                 /* storage = */ objStorage, 
                 /* length = */ this.length, 
                 /* closeHandlers = */ this.closeHandlers, 
                 /* isParallel = */ false, 
                 /* linkedOrConsumed = */ false
-            );
+            ));
             this.linkedOrConsumed = true;
         }
         return result;
@@ -234,14 +235,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
                 mappedStorage[i] = mapper.applyAsInt(storage[i]);
             }
             ;
-            result = new IntStreamLSL((Void) null, 
+            result = (stub.java.util.stream.IntStreamLSL) ((Object) new IntStreamLSL((Void) null, 
                 /* state = */ IntStreamLSL.__$lsl_States.Initialized, 
                 /* storage = */ mappedStorage, 
                 /* length = */ this.length, 
                 /* closeHandlers = */ this.closeHandlers, 
                 /* isParallel = */ false, 
                 /* linkedOrConsumed = */ false
-            );
+            ));
             this.linkedOrConsumed = true;
         }
         return result;
@@ -265,14 +266,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
                 mappedStorage[i] = mapper.applyAsDouble(storage[i]);
             }
             ;
-            result = new DoubleStreamLSL((Void) null, 
+            result = (stub.java.util.stream.DoubleStreamLSL) ((Object) new DoubleStreamLSL((Void) null, 
                 /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
                 /* storage = */ mappedStorage, 
                 /* length = */ this.length, 
                 /* closeHandlers = */ this.closeHandlers, 
                 /* isParallel = */ false, 
                 /* linkedOrConsumed = */ false
-            );
+            ));
             this.linkedOrConsumed = true;
         }
         return result;
@@ -307,14 +308,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
                 throw new IllegalStateException();
             }
             if (this.length == 0) {
-                result = new LongStreamLSL((Void) null, 
+                result = (stub.java.util.stream.LongStreamLSL) ((Object) new LongStreamLSL((Void) null, 
                     /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
                     /* storage = */ this.storage, 
                     /* length = */ 0, 
                     /* closeHandlers = */ this.closeHandlers, 
                     /* isParallel = */ false, 
                     /* linkedOrConsumed = */ false
-                );
+                ));
             } else {
                 Engine.assume(this.length > 0);
                 final int outerLimit = this.length - 1;
@@ -336,14 +337,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
                     ;
                 }
                 ;
-                result = new LongStreamLSL((Void) null, 
+                result = (stub.java.util.stream.LongStreamLSL) ((Object) new LongStreamLSL((Void) null, 
                     /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
                     /* storage = */ this.storage, 
                     /* length = */ this.length, 
                     /* closeHandlers = */ this.closeHandlers, 
                     /* isParallel = */ false, 
                     /* linkedOrConsumed = */ false
-                );
+                ));
             }
             this.linkedOrConsumed = true;
         }
@@ -394,14 +395,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
                 }
                 ;
             }
-            result = new LongStreamLSL((Void) null, 
+            result = (stub.java.util.stream.LongStreamLSL) ((Object) new LongStreamLSL((Void) null, 
                 /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
                 /* storage = */ distinctStorage, 
                 /* length = */ distinctLength, 
                 /* closeHandlers = */ this.closeHandlers, 
                 /* isParallel = */ false, 
                 /* linkedOrConsumed = */ false
-            );
+            ));
             this.linkedOrConsumed = true;
         }
         return result;
@@ -417,14 +418,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
                 throw new IllegalStateException();
             }
             _actionApply(_action);
-            result = new LongStreamLSL((Void) null, 
+            result = (stub.java.util.stream.LongStreamLSL) ((Object) new LongStreamLSL((Void) null, 
                 /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
                 /* storage = */ this.storage, 
                 /* length = */ this.length, 
                 /* closeHandlers = */ this.closeHandlers, 
                 /* isParallel = */ false, 
                 /* linkedOrConsumed = */ false
-            );
+            ));
             this.linkedOrConsumed = true;
         }
         return result;
@@ -444,35 +445,35 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
                 throw new IllegalArgumentException();
             }
             if (maxSizeInt == 0) {
-                result = new LongStreamLSL((Void) null, 
+                result = (stub.java.util.stream.LongStreamLSL) ((Object) new LongStreamLSL((Void) null, 
                     /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
                     /* storage = */ this.storage, 
                     /* length = */ 0, 
                     /* closeHandlers = */ this.closeHandlers, 
                     /* isParallel = */ false, 
                     /* linkedOrConsumed = */ false
-                );
+                ));
             } else {
                 if (maxSizeInt > this.length) {
-                    result = new LongStreamLSL((Void) null, 
+                    result = (stub.java.util.stream.LongStreamLSL) ((Object) new LongStreamLSL((Void) null, 
                         /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
                         /* storage = */ this.storage, 
                         /* length = */ this.length, 
                         /* closeHandlers = */ this.closeHandlers, 
                         /* isParallel = */ false, 
                         /* linkedOrConsumed = */ false
-                    );
+                    ));
                 } else {
                     final long[] limitStorage = new long[maxSizeInt];
                     LibSLRuntime.ArrayActions.copy(this.storage, 0, limitStorage, 0, maxSizeInt);
-                    result = new LongStreamLSL((Void) null, 
+                    result = (stub.java.util.stream.LongStreamLSL) ((Object) new LongStreamLSL((Void) null, 
                         /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
                         /* storage = */ limitStorage, 
                         /* length = */ maxSizeInt, 
                         /* closeHandlers = */ this.closeHandlers, 
                         /* isParallel = */ false, 
                         /* linkedOrConsumed = */ false
-                    );
+                    ));
                 }
             }
             this.linkedOrConsumed = true;
@@ -494,25 +495,25 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
                 throw new IllegalArgumentException();
             }
             if (offset == 0) {
-                result = new LongStreamLSL((Void) null, 
+                result = (stub.java.util.stream.LongStreamLSL) ((Object) new LongStreamLSL((Void) null, 
                     /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
                     /* storage = */ this.storage, 
                     /* length = */ this.length, 
                     /* closeHandlers = */ this.closeHandlers, 
                     /* isParallel = */ false, 
                     /* linkedOrConsumed = */ false
-                );
+                ));
             } else {
                 if (offset >= this.length) {
                     long[] newArray = {};
-                    result = new LongStreamLSL((Void) null, 
+                    result = (stub.java.util.stream.LongStreamLSL) ((Object) new LongStreamLSL((Void) null, 
                         /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
                         /* storage = */ newArray, 
                         /* length = */ 0, 
                         /* closeHandlers = */ this.closeHandlers, 
                         /* isParallel = */ false, 
                         /* linkedOrConsumed = */ false
-                    );
+                    ));
                 } else {
                     final int newLength = this.length - offset;
                     final long[] skipStorage = new long[newLength];
@@ -523,14 +524,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
                         skipIndex += 1;
                     }
                     ;
-                    result = new LongStreamLSL((Void) null, 
+                    result = (stub.java.util.stream.LongStreamLSL) ((Object) new LongStreamLSL((Void) null, 
                         /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
                         /* storage = */ skipStorage, 
                         /* length = */ newLength, 
                         /* closeHandlers = */ this.closeHandlers, 
                         /* isParallel = */ false, 
                         /* linkedOrConsumed = */ false
-                    );
+                    ));
                 }
             }
             this.linkedOrConsumed = true;
@@ -856,11 +857,11 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
             if (this.linkedOrConsumed) {
                 throw new IllegalStateException();
             }
-            result = new LongStreamLSLIterator((Void) null, 
+            result = (stub.java.util.stream.LongStreamLSLIterator) ((Object) new LongStreamLSLIterator((Void) null, 
                 /* state = */ LongStreamLSLIterator.__$lsl_States.Initialized, 
                 /* parent = */ this, 
                 /* cursor = */ 0
-            );
+            ));
             this.linkedOrConsumed = true;
         }
         return result;
@@ -875,8 +876,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
             if (this.linkedOrConsumed) {
                 throw new IllegalStateException();
             }
-            result = Engine.makeSymbolic(Spliterator.OfLong.class);
-            Engine.assume(result != null);
+            final int default_characteristics = LibSLGlobals.SPLITERATOR_ORDERED | LibSLGlobals.SPLITERATOR_IMMUTABLE | LibSLGlobals.SPLITERATOR_SIZED | LibSLGlobals.SPLITERATOR_SUBSIZED;
+            result = (LongStreamLSLSpliterator) ((Object) new generated.java.util.LongStreamLSLSpliterator((Void) null, 
+                /* state = */ generated.java.util.LongStreamLSLSpliterator.__$lsl_States.Initialized, 
+                /* parent = */ this, 
+                /* characteristics = */ default_characteristics, 
+                /* fence = */ this.length, 
+                /* index = */ 0
+            ));
             this.linkedOrConsumed = true;
         }
         return result;
@@ -926,14 +933,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
             if (this.linkedOrConsumed) {
                 throw new IllegalStateException();
             }
-            result = new LongStreamLSL((Void) null, 
+            result = (stub.java.util.stream.LongStreamLSL) ((Object) new LongStreamLSL((Void) null, 
                 /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
                 /* storage = */ this.storage, 
                 /* length = */ this.length, 
                 /* closeHandlers = */ this.closeHandlers, 
                 /* isParallel = */ false, 
                 /* linkedOrConsumed = */ false
-            );
+            ));
             this.linkedOrConsumed = true;
         }
         return result;
@@ -986,14 +993,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
             }
             if (this.length == 0) {
                 final long[] emptyStorage = new long[0];
-                result = new LongStreamLSL((Void) null, 
+                result = (stub.java.util.stream.LongStreamLSL) ((Object) new LongStreamLSL((Void) null, 
                     /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
                     /* storage = */ emptyStorage, 
                     /* length = */ 0, 
                     /* closeHandlers = */ this.closeHandlers, 
                     /* isParallel = */ false, 
                     /* linkedOrConsumed = */ false
-                );
+                ));
             } else {
                 Engine.assume(this.length > 0);
                 int dropLength = 0;
@@ -1004,14 +1011,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
                 }
                 ;
                 if (dropLength == 0) {
-                    result = new LongStreamLSL((Void) null, 
+                    result = (stub.java.util.stream.LongStreamLSL) ((Object) new LongStreamLSL((Void) null, 
                         /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
                         /* storage = */ this.storage, 
                         /* length = */ this.length, 
                         /* closeHandlers = */ this.closeHandlers, 
                         /* isParallel = */ false, 
                         /* linkedOrConsumed = */ false
-                    );
+                    ));
                 } else {
                     final int newLength = this.length - dropLength;
                     final long[] newStorage = new long[newLength];
@@ -1023,14 +1030,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
                         i += 1;
                     }
                     ;
-                    result = new LongStreamLSL((Void) null, 
+                    result = (stub.java.util.stream.LongStreamLSL) ((Object) new LongStreamLSL((Void) null, 
                         /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
                         /* storage = */ newStorage, 
                         /* length = */ newLength, 
                         /* closeHandlers = */ this.closeHandlers, 
                         /* isParallel = */ false, 
                         /* linkedOrConsumed = */ false
-                    );
+                    ));
                 }
             }
             this.linkedOrConsumed = true;
@@ -1052,14 +1059,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
             }
             if (this.length == 0) {
                 final long[] emptyStorage = new long[0];
-                result = new LongStreamLSL((Void) null, 
+                result = (stub.java.util.stream.LongStreamLSL) ((Object) new LongStreamLSL((Void) null, 
                     /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
                     /* storage = */ emptyStorage, 
                     /* length = */ 0, 
                     /* closeHandlers = */ this.closeHandlers, 
                     /* isParallel = */ false, 
                     /* linkedOrConsumed = */ false
-                );
+                ));
             } else {
                 Engine.assume(this.length > 0);
                 int takeLength = 0;
@@ -1070,14 +1077,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
                 }
                 ;
                 if (takeLength == this.length) {
-                    result = new LongStreamLSL((Void) null, 
+                    result = (stub.java.util.stream.LongStreamLSL) ((Object) new LongStreamLSL((Void) null, 
                         /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
                         /* storage = */ this.storage, 
                         /* length = */ this.length, 
                         /* closeHandlers = */ this.closeHandlers, 
                         /* isParallel = */ false, 
                         /* linkedOrConsumed = */ false
-                    );
+                    ));
                 } else {
                     final int newLength = takeLength;
                     final long[] newStorage = new long[newLength];
@@ -1089,14 +1096,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
                         i += 1;
                     }
                     ;
-                    result = new LongStreamLSL((Void) null, 
+                    result = (stub.java.util.stream.LongStreamLSL) ((Object) new LongStreamLSL((Void) null, 
                         /* state = */ LongStreamLSL.__$lsl_States.Initialized, 
                         /* storage = */ newStorage, 
                         /* length = */ newLength, 
                         /* closeHandlers = */ this.closeHandlers, 
                         /* isParallel = */ false, 
                         /* linkedOrConsumed = */ false
-                    );
+                    ));
                 }
             }
             this.linkedOrConsumed = true;
@@ -1115,14 +1122,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
             }
             if (this.length == 0) {
                 final double[] emptyArray = {};
-                result = new DoubleStreamLSL((Void) null, 
+                result = (stub.java.util.stream.DoubleStreamLSL) ((Object) new DoubleStreamLSL((Void) null, 
                     /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
                     /* storage = */ emptyArray, 
                     /* length = */ 0, 
                     /* closeHandlers = */ this.closeHandlers, 
                     /* isParallel = */ false, 
                     /* linkedOrConsumed = */ false
-                );
+                ));
             } else {
                 Engine.assume(this.length > 0);
                 final double[] newStorage = new double[this.length];
@@ -1131,14 +1138,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
                     newStorage[i] = ((double) storage[i]);
                 }
                 ;
-                result = new DoubleStreamLSL((Void) null, 
+                result = (stub.java.util.stream.DoubleStreamLSL) ((Object) new DoubleStreamLSL((Void) null, 
                     /* state = */ DoubleStreamLSL.__$lsl_States.Initialized, 
                     /* storage = */ newStorage, 
                     /* length = */ this.length, 
                     /* closeHandlers = */ this.closeHandlers, 
                     /* isParallel = */ false, 
                     /* linkedOrConsumed = */ false
-                );
+                ));
             }
             this.linkedOrConsumed = true;
         }
@@ -1216,14 +1223,14 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
                 longArray[i] = storage[i];
             }
             ;
-            result = new StreamLSL((Void) null, 
+            result = (stub.java.util.stream.StreamLSL) ((Object) new StreamLSL((Void) null, 
                 /* state = */ StreamLSL.__$lsl_States.Initialized, 
                 /* storage = */ longArray, 
                 /* length = */ this.length, 
                 /* closeHandlers = */ this.closeHandlers, 
                 /* isParallel = */ false, 
                 /* linkedOrConsumed = */ false
-            );
+            ));
             this.linkedOrConsumed = true;
         }
         return result;

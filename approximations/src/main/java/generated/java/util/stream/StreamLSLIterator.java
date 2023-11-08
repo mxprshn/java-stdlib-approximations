@@ -45,7 +45,7 @@ public class StreamLSLIterator implements LibSLRuntime.Automaton, Iterator {
         boolean result = false;
         /* body */ {
             Engine.assume(this.parent != null);
-            result = this.cursor != ((StreamLSL) this.parent).length;
+            result = this.cursor != ((StreamLSL) ((Object) this.parent)).length;
         }
         return result;
     }
@@ -57,9 +57,9 @@ public class StreamLSLIterator implements LibSLRuntime.Automaton, Iterator {
         Object result = null;
         /* body */ {
             Engine.assume(this.parent != null);
-            final Object[] parentStorage = ((StreamLSL) this.parent).storage;
+            final Object[] parentStorage = ((StreamLSL) ((Object) this.parent)).storage;
             final int i = this.cursor;
-            if (i >= ((StreamLSL) this.parent).length) {
+            if (i >= ((StreamLSL) ((Object) this.parent)).length) {
                 throw new NoSuchElementException();
             }
             this.cursor = i + 1;
@@ -87,9 +87,9 @@ public class StreamLSLIterator implements LibSLRuntime.Automaton, Iterator {
                 throw new NullPointerException();
             }
             int i = this.cursor;
-            final int size = ((StreamLSL) this.parent).length;
+            final int size = ((StreamLSL) ((Object) this.parent)).length;
             if (i != size) {
-                final Object[] pStorage = ((StreamLSL) this.parent).storage;
+                final Object[] pStorage = ((StreamLSL) ((Object) this.parent)).storage;
                 while (i < size) {
                     final Object item = pStorage[i];
                     userAction.accept(item);

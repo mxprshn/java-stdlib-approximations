@@ -5,12 +5,13 @@ package stub.java.util;
 
 import java.lang.InternalError;
 import java.lang.Void;
+import java.util.Comparator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 import runtime.LibSLRuntime;
 
-public final class ArrayList_SubList$Spliterator implements LibSLRuntime.HasAutomaton, Spliterator {
-    private ArrayList_SubList$Spliterator(Void a, Void b) {
+public class StreamLSLSpliterator implements LibSLRuntime.HasAutomaton, Spliterator {
+    private StreamLSLSpliterator(Void a, Void b) {
         super();
     }
 
@@ -18,7 +19,7 @@ public final class ArrayList_SubList$Spliterator implements LibSLRuntime.HasAuto
         throw new InternalError();
     }
 
-    public long estimateSize() {
+    public Spliterator trySplit() {
         throw new InternalError();
     }
 
@@ -26,15 +27,23 @@ public final class ArrayList_SubList$Spliterator implements LibSLRuntime.HasAuto
         throw new InternalError();
     }
 
-    public long getExactSizeIfKnown() {
-        throw new InternalError();
-    }
-
     public boolean tryAdvance(Consumer _action) {
         throw new InternalError();
     }
 
-    public Spliterator trySplit() {
+    public long estimateSize() {
+        throw new InternalError();
+    }
+
+    public Comparator getComparator() {
+        throw new InternalError();
+    }
+
+    public long getExactSizeIfKnown() {
+        throw new InternalError();
+    }
+
+    public boolean hasCharacteristics(int _characteristics) {
         throw new InternalError();
     }
 }

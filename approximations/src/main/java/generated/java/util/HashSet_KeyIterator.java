@@ -75,7 +75,7 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
      */
     private void _checkForComodification() {
         /* body */ {
-            final int modCount = ((HashSet) this.parent).modCount;
+            final int modCount = ((HashSet) ((Object) this.parent)).modCount;
             if (this.expectedModCount != modCount) {
                 throw new ConcurrentModificationException();
             }
@@ -90,7 +90,7 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             Engine.assume(this.parent != null);
-            final int length = ((HashSet) this.parent).length;
+            final int length = ((HashSet) ((Object) this.parent)).length;
             result = this.index < length;
         }
         return result;
@@ -105,7 +105,7 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
         /* body */ {
             Engine.assume(this.parent != null);
             _checkForComodification();
-            final int length = ((HashSet) this.parent).length;
+            final int length = ((HashSet) ((Object) this.parent)).length;
             final boolean atValidPosition = this.index < length;
             if (!atValidPosition) {
                 throw new NoSuchElementException();
@@ -113,7 +113,7 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
             final Object key = Engine.makeSymbolic(Object.class);
             Engine.assume(key != null);
             Engine.assume(key != this.currentKey);
-            final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) this.parent).storage;
+            final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) ((Object) this.parent)).storage;
             final boolean sourceStorageHasKey = parentStorage.hasKey(key);
             Engine.assume(sourceStorageHasKey);
             final boolean dstStorageHasKey = this.visitedKeys.hasKey(key);
@@ -134,16 +134,16 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             Engine.assume(this.parent != null);
-            final int length = ((HashSet) this.parent).length;
+            final int length = ((HashSet) ((Object) this.parent)).length;
             final boolean atValidPosition = this.index < length;
             if (!atValidPosition || !this.nextWasCalled) {
                 throw new IllegalStateException();
             }
             this.nextWasCalled = false;
             _checkForComodification();
-            final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) this.parent).storage;
+            final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) ((Object) this.parent)).storage;
             parentStorage.remove(this.currentKey);
-            this.expectedModCount = ((HashSet) this.parent).modCount;
+            this.expectedModCount = ((HashSet) ((Object) this.parent)).modCount;
         }
     }
 
@@ -157,14 +157,14 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
             if (userAction == null) {
                 throw new NullPointerException();
             }
-            final int length = ((HashSet) this.parent).length;
+            final int length = ((HashSet) ((Object) this.parent)).length;
             int i = this.index;
             while (i < length) {
                 _checkForComodification();
                 final Object key = Engine.makeSymbolic(Object.class);
                 Engine.assume(key != null);
                 Engine.assume(key != this.currentKey);
-                final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) this.parent).storage;
+                final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) ((Object) this.parent)).storage;
                 final boolean sourceStorageHasKey = parentStorage.hasKey(key);
                 Engine.assume(sourceStorageHasKey);
                 final boolean destStorageHasKey = this.visitedKeys.hasKey(key);

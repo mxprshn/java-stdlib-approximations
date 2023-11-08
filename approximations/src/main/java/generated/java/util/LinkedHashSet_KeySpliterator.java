@@ -80,9 +80,9 @@ public final class LinkedHashSet_KeySpliterator implements LibSLRuntime.Automato
             Engine.assume(this.parent != null);
             int hi = this.fence;
             if (hi < 0) {
-                final LibSLRuntime.Map<Object, Object> parentStorage = ((LinkedHashSet) this.parent).storage;
-                this.est = ((LinkedHashSet) this.parent).length;
-                this.expectedModCount = ((LinkedHashSet) this.parent).modCount;
+                final LibSLRuntime.Map<Object, Object> parentStorage = ((LinkedHashSet) ((Object) this.parent)).storage;
+                this.est = ((LinkedHashSet) ((Object) this.parent)).length;
+                this.expectedModCount = ((LinkedHashSet) ((Object) this.parent)).modCount;
                 this.fence = this.est;
                 hi = this.fence;
             }
@@ -96,7 +96,7 @@ public final class LinkedHashSet_KeySpliterator implements LibSLRuntime.Automato
      */
     private void _checkForComodification() {
         /* body */ {
-            final int modCount = ((LinkedHashSet) this.parent).modCount;
+            final int modCount = ((LinkedHashSet) ((Object) this.parent)).modCount;
             if (this.expectedModCount != modCount) {
                 throw new ConcurrentModificationException();
             }
@@ -125,7 +125,7 @@ public final class LinkedHashSet_KeySpliterator implements LibSLRuntime.Automato
         /* body */ {
             Engine.assume(this.parent != null);
             int mask = 0;
-            final int length = ((LinkedHashSet) this.parent).length;
+            final int length = ((LinkedHashSet) ((Object) this.parent)).length;
             if ((this.fence < 0) || (this.est == length)) {
                 mask = LibSLGlobals.SPLITERATOR_SIZED;
             }
@@ -147,9 +147,9 @@ public final class LinkedHashSet_KeySpliterator implements LibSLRuntime.Automato
             int hi = this.fence;
             int mc = this.expectedModCount;
             int i = this.index;
-            final int length = ((LinkedHashSet) this.parent).length;
+            final int length = ((LinkedHashSet) ((Object) this.parent)).length;
             if (hi < 0) {
-                this.expectedModCount = ((LinkedHashSet) this.parent).modCount;
+                this.expectedModCount = ((LinkedHashSet) ((Object) this.parent)).modCount;
                 mc = this.expectedModCount;
                 this.fence = length;
                 hi = this.fence;
@@ -164,7 +164,7 @@ public final class LinkedHashSet_KeySpliterator implements LibSLRuntime.Automato
                     i += 1;
                 }
                 ;
-                final int modCount = ((LinkedHashSet) this.parent).modCount;
+                final int modCount = ((LinkedHashSet) ((Object) this.parent)).modCount;
                 if (modCount != mc) {
                     throw new ConcurrentModificationException();
                 }
@@ -198,10 +198,10 @@ public final class LinkedHashSet_KeySpliterator implements LibSLRuntime.Automato
     }
 
     /**
-     * [FUNCTION] LinkedHashSet_KeySpliteratorAutomaton::trySplit(LinkedHashSet_KeySpliterator) -> LinkedHashSet_KeySpliterator
+     * [FUNCTION] LinkedHashSet_KeySpliteratorAutomaton::trySplit(LinkedHashSet_KeySpliterator) -> Spliterator
      */
-    public LinkedHashSet_KeySpliterator trySplit() {
-        LinkedHashSet_KeySpliterator result = null;
+    public Spliterator trySplit() {
+        Spliterator result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             Engine.assume(this.parent != null);
@@ -213,7 +213,7 @@ public final class LinkedHashSet_KeySpliterator implements LibSLRuntime.Automato
             } else {
                 this.est = this.est >>> 1;
                 this.index = mid;
-                result = new LinkedHashSet_KeySpliterator((Void) null, 
+                result = (stub.java.util.LinkedHashSet_KeySpliterator) ((Object) new LinkedHashSet_KeySpliterator((Void) null, 
                     /* state = */ LinkedHashSet_KeySpliterator.__$lsl_States.Initialized, 
                     /* keysStorage = */ this.keysStorage, 
                     /* index = */ lo, 
@@ -221,7 +221,7 @@ public final class LinkedHashSet_KeySpliterator implements LibSLRuntime.Automato
                     /* est = */ this.est, 
                     /* expectedModCount = */ this.expectedModCount, 
                     /* parent = */ this.parent
-                );
+                ));
             }
         }
         return result;

@@ -3,12 +3,12 @@
 //
 package generated.runtime;
 
-import generated.java.util.Optional;
-import generated.java.util.OptionalDouble;
-import generated.java.util.OptionalInt;
-import generated.java.util.OptionalLong;
 import java.lang.Object;
 import java.lang.Void;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 
@@ -60,30 +60,40 @@ public final class LibSLGlobals {
 
     public static final boolean SYSTEM_IS_WINDOWS;
 
+    public static final int VM_JAVA_LANG_SYSTEM_INITED;
+
+    public static final int VM_MODULE_SYSTEM_INITED;
+
+    public static final int VM_SYSTEM_BOOTED;
+
+    public static final int VM_SYSTEM_LOADER_INITIALIZING;
+
+    public static final int VM_SYSTEM_SHUTDOWN;
+
     static {
         CONSOLE_IS_TTY = Engine.makeSymbolicBoolean();
         DOUBLE_NAN = 0.0d / 0.0d;
         DOUBLE_NEGATIVE_INFINITY = -1.0d / 0.0d;
         DOUBLE_POSITIVE_INFINITY = 1.0d / 0.0d;
-        EMPTY_OPTIONAL = new Optional((Void) null, 
-                    /* state = */ Optional.__$lsl_States.Initialized, 
+        EMPTY_OPTIONAL = (Optional) ((Object) new generated.java.util.Optional((Void) null, 
+                    /* state = */ generated.java.util.Optional.__$lsl_States.Initialized, 
                     /* value = */ null
-                );
-        EMPTY_OPTIONAL_DOUBLE = new OptionalDouble((Void) null, 
-                    /* state = */ OptionalDouble.__$lsl_States.Initialized, 
+                ));
+        EMPTY_OPTIONAL_DOUBLE = (OptionalDouble) ((Object) new generated.java.util.OptionalDouble((Void) null, 
+                    /* state = */ generated.java.util.OptionalDouble.__$lsl_States.Initialized, 
                     /* value = */ 0.0d, 
                     /* present = */ false
-                );
-        EMPTY_OPTIONAL_INT = new OptionalInt((Void) null, 
-                    /* state = */ OptionalInt.__$lsl_States.Initialized, 
+                ));
+        EMPTY_OPTIONAL_INT = (OptionalInt) ((Object) new generated.java.util.OptionalInt((Void) null, 
+                    /* state = */ generated.java.util.OptionalInt.__$lsl_States.Initialized, 
                     /* value = */ 0, 
                     /* present = */ false
-                );
-        EMPTY_OPTIONAL_LONG = new OptionalLong((Void) null, 
-                    /* state = */ OptionalLong.__$lsl_States.Initialized, 
+                ));
+        EMPTY_OPTIONAL_LONG = (OptionalLong) ((Object) new generated.java.util.OptionalLong((Void) null, 
+                    /* state = */ generated.java.util.OptionalLong.__$lsl_States.Initialized, 
                     /* value = */ 0L, 
                     /* present = */ false
-                );
+                ));
         MAX_CODE_POINT = 1114111;
         MIN_CODE_POINT = 0;
         MIN_HIGH_SURROGATE = 55296;
@@ -99,6 +109,11 @@ public final class LibSLGlobals {
         SPLITERATOR_SORTED = 4;
         SPLITERATOR_SUBSIZED = 16384;
         SYSTEM_IS_WINDOWS = Engine.makeSymbolicBoolean();
+        VM_JAVA_LANG_SYSTEM_INITED = 1;
+        VM_MODULE_SYSTEM_INITED = 2;
+        VM_SYSTEM_BOOTED = 4;
+        VM_SYSTEM_LOADER_INITIALIZING = 3;
+        VM_SYSTEM_SHUTDOWN = 5;
     }
 
     @Approximate(LibSLGlobals.class)

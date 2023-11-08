@@ -68,62 +68,51 @@ public final class Optional implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [SUBROUTINE] OptionalAutomaton::_makeEmpty() -> LSLOptional
+     * [FUNCTION] OptionalAutomaton::empty() -> Optional
      */
-    private static Optional _makeEmpty() {
-        Optional result = null;
-        /* body */ {
-            result = LibSLGlobals.EMPTY_OPTIONAL;
-        }
-        return result;
-    }
-
-    /**
-     * [FUNCTION] OptionalAutomaton::empty() -> LSLOptional
-     */
-    public static Optional empty() {
-        Optional result = null;
+    public static java.util.Optional empty() {
+        java.util.Optional result = null;
         // WARNING: no state checks in static context
         /* body */ {
-            result = _makeEmpty();
+            result = LibSLGlobals.EMPTY_OPTIONAL;
         }
         // WARNING: no state transitions in static context
         return result;
     }
 
     /**
-     * [FUNCTION] OptionalAutomaton::of(Object) -> LSLOptional
+     * [FUNCTION] OptionalAutomaton::of(Object) -> Optional
      */
-    public static Optional of(Object obj) {
-        Optional result = null;
+    public static java.util.Optional of(Object obj) {
+        java.util.Optional result = null;
         // WARNING: no state checks in static context
         /* body */ {
             if (obj == null) {
                 throw new NullPointerException();
             }
-            result = new Optional((Void) null, 
+            result = (java.util.Optional) ((Object) new Optional((Void) null, 
                 /* state = */ Optional.__$lsl_States.Initialized, 
                 /* value = */ obj
-            );
+            ));
         }
         // WARNING: no state transitions in static context
         return result;
     }
 
     /**
-     * [FUNCTION] OptionalAutomaton::ofNullable(Object) -> LSLOptional
+     * [FUNCTION] OptionalAutomaton::ofNullable(Object) -> Optional
      */
-    public static Optional ofNullable(Object obj) {
-        Optional result = null;
+    public static java.util.Optional ofNullable(Object obj) {
+        java.util.Optional result = null;
         // WARNING: no state checks in static context
         /* body */ {
             if (obj == null) {
-                result = _makeEmpty();
+                result = LibSLGlobals.EMPTY_OPTIONAL;
             } else {
-                result = new Optional((Void) null, 
+                result = (java.util.Optional) ((Object) new Optional((Void) null, 
                     /* state = */ Optional.__$lsl_States.Initialized, 
                     /* value = */ obj
-                );
+                ));
             }
         }
         // WARNING: no state transitions in static context
@@ -142,7 +131,7 @@ public final class Optional implements LibSLRuntime.Automaton {
             } else {
                 final boolean isSameType = Engine.typeEquals(this, other);
                 if (isSameType) {
-                    final Object otherValue = ((Optional) other).value;
+                    final Object otherValue = ((Optional) ((Object) other)).value;
                     result = LibSLRuntime.equals(this.value, otherValue);
                 } else {
                     result = false;
@@ -169,7 +158,7 @@ public final class Optional implements LibSLRuntime.Automaton {
                 if (sat) {
                     result = this;
                 } else {
-                    result = _makeEmpty();
+                    result = ((Optional) ((Object) LibSLGlobals.EMPTY_OPTIONAL));
                 }
             }
         }
@@ -177,19 +166,19 @@ public final class Optional implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalAutomaton::flatMap(LSLOptional, Function) -> LSLOptional
+     * [FUNCTION] OptionalAutomaton::flatMap(LSLOptional, Function) -> Optional
      */
-    public Optional flatMap(Function mapper) {
-        Optional result = null;
+    public java.util.Optional flatMap(Function mapper) {
+        java.util.Optional result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (mapper == null) {
                 throw new NullPointerException();
             }
             if (this.value == null) {
-                result = _makeEmpty();
+                result = LibSLGlobals.EMPTY_OPTIONAL;
             } else {
-                result = ((Optional) mapper.apply(this.value));
+                result = ((java.util.Optional) mapper.apply(this.value));
                 if (result == null) {
                     throw new NullPointerException();
                 }
@@ -285,26 +274,26 @@ public final class Optional implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalAutomaton::map(LSLOptional, Function) -> LSLOptional
+     * [FUNCTION] OptionalAutomaton::map(LSLOptional, Function) -> Optional
      */
-    public Optional map(Function mapper) {
-        Optional result = null;
+    public java.util.Optional map(Function mapper) {
+        java.util.Optional result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (mapper == null) {
                 throw new NullPointerException();
             }
             if (this.value == null) {
-                result = _makeEmpty();
+                result = LibSLGlobals.EMPTY_OPTIONAL;
             } else {
                 final Object mappedValue = mapper.apply(this.value);
                 if (mappedValue == null) {
-                    result = _makeEmpty();
+                    result = LibSLGlobals.EMPTY_OPTIONAL;
                 } else {
-                    result = new Optional((Void) null, 
+                    result = (java.util.Optional) ((Object) new Optional((Void) null, 
                         /* state = */ Optional.__$lsl_States.Initialized, 
                         /* value = */ mappedValue
-                    );
+                    ));
                 }
             }
         }
@@ -312,22 +301,22 @@ public final class Optional implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalAutomaton::or(LSLOptional, Supplier) -> LSLOptional
+     * [FUNCTION] OptionalAutomaton::or(LSLOptional, Supplier) -> Optional
      */
-    public Optional or(Supplier supplier) {
-        Optional result = null;
+    public java.util.Optional or(Supplier supplier) {
+        java.util.Optional result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (supplier == null) {
                 throw new NullPointerException();
             }
             if (this.value == null) {
-                result = ((Optional) supplier.get());
+                result = ((java.util.Optional) supplier.get());
                 if (result == null) {
                     throw new NullPointerException();
                 }
             } else {
-                result = this;
+                result = ((java.util.Optional) ((Object) this));
             }
         }
         return result;

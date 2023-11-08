@@ -36,7 +36,7 @@ public final class HashSet_KeySpliterator implements LibSLRuntime.HasAutomaton, 
         throw new InternalError();
     }
 
-    public HashSet_KeySpliterator trySplit() {
+    public Spliterator trySplit() {
         throw new InternalError();
     }
 }

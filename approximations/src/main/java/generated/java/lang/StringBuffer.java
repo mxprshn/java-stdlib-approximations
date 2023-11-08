@@ -375,13 +375,14 @@ public final class StringBuffer implements LibSLRuntime.Automaton, Serializable,
         StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (sb == null) {
+            final Object s = sb;
+            if (s == null) {
                 this.storage = this.storage.concat("null");
                 this.length += 4;
             } else {
-                if ((sb != null && sb.getClass() == StringBuffer.class)) {
-                    this.storage = this.storage.concat(((StringBuffer) sb).storage);
-                    this.length += ((StringBuffer) sb).length;
+                if ((s != null && s.getClass() == java.lang.StringBuffer.class)) {
+                    this.storage = this.storage.concat(((StringBuffer) ((Object) sb)).storage);
+                    this.length += ((StringBuffer) ((Object) sb)).length;
                 }
             }
             result = this;
@@ -652,7 +653,7 @@ public final class StringBuffer implements LibSLRuntime.Automaton, Serializable,
             if (another == this) {
                 result = 0;
             } else {
-                final String anotherString = ((StringBuffer) another).storage;
+                final String anotherString = ((StringBuffer) ((Object) another)).storage;
                 result = this.storage.compareTo(anotherString);
             }
         }

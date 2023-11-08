@@ -5,6 +5,7 @@ package generated.java.util.stream;
 
 import java.lang.Double;
 import java.lang.NullPointerException;
+import java.lang.Object;
 import java.lang.UnsupportedOperationException;
 import java.lang.Void;
 import java.util.NoSuchElementException;
@@ -47,7 +48,7 @@ public class DoubleStreamLSLIterator implements LibSLRuntime.Automaton, Primitiv
         boolean result = false;
         /* body */ {
             Engine.assume(this.parent != null);
-            result = this.cursor != ((DoubleStreamLSL) this.parent).length;
+            result = this.cursor != ((DoubleStreamLSL) ((Object) this.parent)).length;
         }
         return result;
     }
@@ -59,9 +60,9 @@ public class DoubleStreamLSLIterator implements LibSLRuntime.Automaton, Primitiv
         Double result = null;
         /* body */ {
             Engine.assume(this.parent != null);
-            final double[] parentStorage = ((DoubleStreamLSL) this.parent).storage;
+            final double[] parentStorage = ((DoubleStreamLSL) ((Object) this.parent)).storage;
             final int i = this.cursor;
-            if (i >= ((DoubleStreamLSL) this.parent).length) {
+            if (i >= ((DoubleStreamLSL) ((Object) this.parent)).length) {
                 throw new NoSuchElementException();
             }
             this.cursor = i + 1;
@@ -77,9 +78,9 @@ public class DoubleStreamLSLIterator implements LibSLRuntime.Automaton, Primitiv
         double result = 0.0d;
         /* body */ {
             Engine.assume(this.parent != null);
-            final double[] parentStorage = ((DoubleStreamLSL) this.parent).storage;
+            final double[] parentStorage = ((DoubleStreamLSL) ((Object) this.parent)).storage;
             final int i = this.cursor;
-            if (i >= ((DoubleStreamLSL) this.parent).length) {
+            if (i >= ((DoubleStreamLSL) ((Object) this.parent)).length) {
                 throw new NoSuchElementException();
             }
             this.cursor = i + 1;
@@ -107,9 +108,9 @@ public class DoubleStreamLSLIterator implements LibSLRuntime.Automaton, Primitiv
                 throw new NullPointerException();
             }
             int i = this.cursor;
-            final int size = ((DoubleStreamLSL) this.parent).length;
+            final int size = ((DoubleStreamLSL) ((Object) this.parent)).length;
             if (i != size) {
-                final double[] pStorage = ((DoubleStreamLSL) this.parent).storage;
+                final double[] pStorage = ((DoubleStreamLSL) ((Object) this.parent)).storage;
                 while (i < size) {
                     final double item = pStorage[i];
                     userAction.accept(item);
@@ -131,9 +132,9 @@ public class DoubleStreamLSLIterator implements LibSLRuntime.Automaton, Primitiv
                 throw new NullPointerException();
             }
             int i = this.cursor;
-            final int size = ((DoubleStreamLSL) this.parent).length;
+            final int size = ((DoubleStreamLSL) ((Object) this.parent)).length;
             if (i != size) {
-                final double[] pStorage = ((DoubleStreamLSL) this.parent).storage;
+                final double[] pStorage = ((DoubleStreamLSL) ((Object) this.parent)).storage;
                 while (i < size) {
                     final double item = pStorage[i];
                     userAction.accept(item);

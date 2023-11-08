@@ -14,7 +14,6 @@ import java.lang.Object;
 import java.lang.Void;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.Spliterator;
@@ -30,7 +29,7 @@ import runtime.LibSLRuntime;
  * LinkedHashSetAutomaton for LinkedHashSet ~> java.util.LinkedHashSet
  */
 @Approximate(java.util.LinkedHashSet.class)
-public class LinkedHashSet extends HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializable {
+public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializable {
     private static final long serialVersionUID = -2851667679971038690L;
 
     static {
@@ -212,12 +211,12 @@ public class LinkedHashSet extends HashSet implements LibSLRuntime.Automaton, Se
         /* body */ {
             final LibSLRuntime.Map<Object, Object> storageCopy = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
             storageCopy.union(this.storage);
-            result = new LinkedHashSet((Void) null, 
+            result = (java.util.LinkedHashSet) ((Object) new LinkedHashSet((Void) null, 
                 /* state = */ LinkedHashSet.__$lsl_States.Initialized, 
                 /* storage = */ storageCopy, 
                 /* length = */ this.length, 
                 /* modCount = */ 0
-            );
+            ));
         }
         return result;
     }
@@ -258,7 +257,7 @@ public class LinkedHashSet extends HashSet implements LibSLRuntime.Automaton, Se
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final LibSLRuntime.Map<Object, Object> visitedKeysMap = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
-            result = new LinkedHashSet_KeyIterator((Void) null, 
+            result = (stub.java.util.LinkedHashSet_KeyIterator) ((Object) new LinkedHashSet_KeyIterator((Void) null, 
                 /* state = */ LinkedHashSet_KeyIterator.__$lsl_States.Initialized, 
                 /* expectedModCount = */ this.modCount, 
                 /* visitedKeys = */ visitedKeysMap, 
@@ -266,7 +265,7 @@ public class LinkedHashSet extends HashSet implements LibSLRuntime.Automaton, Se
                 /* index = */ 0, 
                 /* currentKey = */ 0, 
                 /* nextWasCalled = */ false
-            );
+            ));
         }
         return result;
     }
@@ -319,7 +318,7 @@ public class LinkedHashSet extends HashSet implements LibSLRuntime.Automaton, Se
                 visitedKeys.set(key, LibSLGlobals.SOMETHING);
             }
             ;
-            result = new LinkedHashSet_KeySpliterator((Void) null, 
+            result = (stub.java.util.LinkedHashSet_KeySpliterator) ((Object) new LinkedHashSet_KeySpliterator((Void) null, 
                 /* state = */ LinkedHashSet_KeySpliterator.__$lsl_States.Initialized, 
                 /* keysStorage = */ keysStorageArray, 
                 /* index = */ 0, 
@@ -327,7 +326,7 @@ public class LinkedHashSet extends HashSet implements LibSLRuntime.Automaton, Se
                 /* est = */ 0, 
                 /* expectedModCount = */ this.modCount, 
                 /* parent = */ this
-            );
+            ));
         }
         return result;
     }
@@ -345,15 +344,15 @@ public class LinkedHashSet extends HashSet implements LibSLRuntime.Automaton, Se
                 final boolean isSameType = Engine.typeEquals(this, other);
                 if (isSameType) {
                     final int expectedModCount = this.modCount;
-                    final int otherExpectedModCount = ((LinkedHashSet) other).modCount;
-                    final LibSLRuntime.Map<Object, Object> otherStorage = ((LinkedHashSet) other).storage;
-                    final int otherLength = ((LinkedHashSet) other).length;
+                    final int otherExpectedModCount = ((LinkedHashSet) ((Object) other)).modCount;
+                    final LibSLRuntime.Map<Object, Object> otherStorage = ((LinkedHashSet) ((Object) other)).storage;
+                    final int otherLength = ((LinkedHashSet) ((Object) other)).length;
                     if (this.length == otherLength) {
                         result = LibSLRuntime.equals(this.storage, otherStorage);
                     } else {
                         result = false;
                     }
-                    ((LinkedHashSet) other)._checkForComodification(otherExpectedModCount);
+                    ((LinkedHashSet) ((Object) other))._checkForComodification(otherExpectedModCount);
                     _checkForComodification(expectedModCount);
                 } else {
                     result = false;

@@ -3,6 +3,7 @@
 //
 package generated.java.lang;
 
+import java.lang.Object;
 import java.lang.Void;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
@@ -26,15 +27,15 @@ public final class Integer implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] IntegerAutomaton::valueOf(int) -> LSLInteger
+     * [FUNCTION] IntegerAutomaton::valueOf(int) -> Integer
      */
-    public static Integer valueOf(int i) {
-        Integer result = null;
+    public static java.lang.Integer valueOf(int i) {
+        java.lang.Integer result = null;
         /* body */ {
-            result = new Integer((Void) null, 
+            result = (java.lang.Integer) ((Object) new Integer((Void) null, 
                 /* state = */ Integer.__$lsl_States.Initialized, 
                 /* value = */ i
-            );
+            ));
         }
         return result;
     }

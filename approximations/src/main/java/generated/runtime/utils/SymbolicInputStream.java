@@ -4,7 +4,6 @@
 package generated.runtime.utils;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.IllegalArgumentException;
 import java.lang.IndexOutOfBoundsException;
@@ -18,7 +17,7 @@ import runtime.LibSLRuntime;
  * SymbolicInputStreamAutomaton for SymbolicInputStream ~> runtime.utils.SymbolicInputStream
  */
 @Approximate(stub.runtime.utils.SymbolicInputStream.class)
-public final class SymbolicInputStream extends InputStream implements LibSLRuntime.Automaton {
+public final class SymbolicInputStream implements LibSLRuntime.Automaton {
     static {
         Engine.assume(true);
     }

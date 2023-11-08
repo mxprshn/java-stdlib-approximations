@@ -39,7 +39,7 @@ public final class ArrayList_Spliterator implements LibSLRuntime.HasAutomaton, S
         throw new InternalError();
     }
 
-    public ArrayList_Spliterator trySplit() {
+    public Spliterator trySplit() {
         throw new InternalError();
     }
 }

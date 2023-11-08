@@ -36,7 +36,7 @@ public final class LinkedHashSet_KeySpliterator implements LibSLRuntime.HasAutom
         throw new InternalError();
     }
 
-    public LinkedHashSet_KeySpliterator trySplit() {
+    public Spliterator trySplit() {
         throw new InternalError();
     }
 }

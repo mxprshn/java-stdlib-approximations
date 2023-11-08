@@ -70,10 +70,10 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalIntAutomaton::empty() -> LSLOptionalInt
+     * [FUNCTION] OptionalIntAutomaton::empty() -> OptionalInt
      */
-    public static OptionalInt empty() {
-        OptionalInt result = null;
+    public static java.util.OptionalInt empty() {
+        java.util.OptionalInt result = null;
         // WARNING: no state checks in static context
         /* body */ {
             result = LibSLGlobals.EMPTY_OPTIONAL_INT;
@@ -83,17 +83,17 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalIntAutomaton::of(int) -> LSLOptionalInt
+     * [FUNCTION] OptionalIntAutomaton::of(int) -> OptionalInt
      */
-    public static OptionalInt of(int x) {
-        OptionalInt result = null;
+    public static java.util.OptionalInt of(int x) {
+        java.util.OptionalInt result = null;
         // WARNING: no state checks in static context
         /* body */ {
-            result = new OptionalInt((Void) null, 
+            result = (java.util.OptionalInt) ((Object) new OptionalInt((Void) null, 
                 /* state = */ OptionalInt.__$lsl_States.Initialized, 
                 /* value = */ x, 
                 /* present = */ true
-            );
+            ));
         }
         // WARNING: no state transitions in static context
         return result;
@@ -111,8 +111,8 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
             } else {
                 final boolean isSameType = Engine.typeEquals(this, other);
                 if (isSameType) {
-                    final int otherValue = ((OptionalInt) other).value;
-                    final boolean otherPresent = ((OptionalInt) other).present;
+                    final int otherValue = ((OptionalInt) ((Object) other)).value;
+                    final boolean otherPresent = ((OptionalInt) ((Object) other)).present;
                     if (this.present && otherPresent) {
                         result = this.value == otherValue;
                     } else {

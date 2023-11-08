@@ -69,8 +69,8 @@ public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spli
         /* body */ {
             if (this.fence == -1) {
                 Engine.assume(this.parent != null);
-                this.expectedModCount = ((ArrayList) this.parent).modCount;
-                this.fence = ((ArrayList) this.parent).length;
+                this.expectedModCount = ((ArrayList) ((Object) this.parent)).modCount;
+                this.fence = ((ArrayList) ((Object) this.parent)).length;
             }
             result = this.fence;
         }
@@ -111,19 +111,19 @@ public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spli
                 throw new NullPointerException();
             }
             Engine.assume(this.parent != null);
-            final SymbolicList<Object> a = ((ArrayList) this.parent).storage;
+            final SymbolicList<Object> a = ((ArrayList) ((Object) this.parent)).storage;
             if (a == null) {
                 throw new ConcurrentModificationException();
             }
             int hi = this.fence;
             int mc = this.expectedModCount;
             if (hi == -1) {
-                hi = ((ArrayList) this.parent).length;
-                mc = ((ArrayList) this.parent).modCount;
+                hi = ((ArrayList) ((Object) this.parent)).length;
+                mc = ((ArrayList) ((Object) this.parent)).modCount;
             }
             int i = this.index;
             this.index = hi;
-            if ((i < 0) || (hi > ((ArrayList) this.parent).length)) {
+            if ((i < 0) || (hi > ((ArrayList) ((Object) this.parent)).length)) {
                 throw new ConcurrentModificationException();
             }
             for (i = i; i < hi; i += 1) {
@@ -131,7 +131,7 @@ public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spli
                 _action.accept(item);
             }
             ;
-            if (mc != ((ArrayList) this.parent).modCount) {
+            if (mc != ((ArrayList) ((Object) this.parent)).modCount) {
                 throw new ConcurrentModificationException();
             }
         }
@@ -164,10 +164,10 @@ public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spli
             if (i < hi) {
                 Engine.assume(this.parent != null);
                 this.index = i + 1;
-                final SymbolicList<Object> parentStorage = ((ArrayList) this.parent).storage;
+                final SymbolicList<Object> parentStorage = ((ArrayList) ((Object) this.parent)).storage;
                 final Object item = parentStorage.get(i);
                 _action.accept(item);
-                if (((ArrayList) this.parent).modCount != this.expectedModCount) {
+                if (((ArrayList) ((Object) this.parent)).modCount != this.expectedModCount) {
                     throw new ConcurrentModificationException();
                 }
                 result = true;
@@ -179,10 +179,10 @@ public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spli
     }
 
     /**
-     * [FUNCTION] ArrayList_SpliteratorAutomaton::trySplit(ArrayList_Spliterator) -> ArrayList_Spliterator
+     * [FUNCTION] ArrayList_SpliteratorAutomaton::trySplit(ArrayList_Spliterator) -> Spliterator
      */
-    public ArrayList_Spliterator trySplit() {
-        ArrayList_Spliterator result = null;
+    public Spliterator trySplit() {
+        Spliterator result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final int hi = _getFence();
@@ -191,13 +191,13 @@ public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spli
             if (lo >= mid) {
                 result = null;
             } else {
-                result = new ArrayList_Spliterator((Void) null, 
+                result = (stub.java.util.ArrayList_Spliterator) ((Object) new ArrayList_Spliterator((Void) null, 
                     /* state = */ ArrayList_Spliterator.__$lsl_States.Initialized, 
                     /* parent = */ this.parent, 
                     /* index = */ lo, 
                     /* fence = */ mid, 
                     /* expectedModCount = */ this.expectedModCount
-                );
+                ));
             }
             this.index = mid;
         }

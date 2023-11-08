@@ -35,12 +35,12 @@ public interface List extends LibSLRuntime.Automaton, java.util.List {
                 size += 1;
             }
             ;
-            result = new ArrayList((Void) null, 
+            result = (java.util.ArrayList) ((Object) new ArrayList((Void) null, 
                 /* state = */ ArrayList.__$lsl_States.Initialized, 
                 /* storage = */ data, 
                 /* length = */ size, 
                 /* modCount = */ 0
-            );
+            ));
         }
         return result;
     }
@@ -51,12 +51,12 @@ public interface List extends LibSLRuntime.Automaton, java.util.List {
     static java.util.List of() {
         java.util.List result = null;
         /* body */ {
-            result = new ArrayList((Void) null, 
+            result = (java.util.ArrayList) ((Object) new ArrayList((Void) null, 
                 /* state = */ ArrayList.__$lsl_States.Initialized, 
                 /* storage = */ Engine.makeSymbolicList(), 
                 /* length = */ 0, 
                 /* modCount = */ 0
-            );
+            ));
         }
         return result;
     }
@@ -69,12 +69,12 @@ public interface List extends LibSLRuntime.Automaton, java.util.List {
         /* body */ {
             final SymbolicList<Object> data = Engine.makeSymbolicList();
             data.insert(0, e1);
-            result = new ArrayList((Void) null, 
+            result = (java.util.ArrayList) ((Object) new ArrayList((Void) null, 
                 /* state = */ ArrayList.__$lsl_States.Initialized, 
                 /* storage = */ data, 
                 /* length = */ 1, 
                 /* modCount = */ 0
-            );
+            ));
         }
         return result;
     }
@@ -88,12 +88,12 @@ public interface List extends LibSLRuntime.Automaton, java.util.List {
             final SymbolicList<Object> data = Engine.makeSymbolicList();
             data.insert(0, e1);
             data.insert(1, e2);
-            result = new ArrayList((Void) null, 
+            result = (java.util.ArrayList) ((Object) new ArrayList((Void) null, 
                 /* state = */ ArrayList.__$lsl_States.Initialized, 
                 /* storage = */ data, 
                 /* length = */ 2, 
                 /* modCount = */ 0
-            );
+            ));
         }
         return result;
     }
@@ -108,12 +108,12 @@ public interface List extends LibSLRuntime.Automaton, java.util.List {
             data.insert(0, e1);
             data.insert(1, e2);
             data.insert(2, e3);
-            result = new ArrayList((Void) null, 
+            result = (java.util.ArrayList) ((Object) new ArrayList((Void) null, 
                 /* state = */ ArrayList.__$lsl_States.Initialized, 
                 /* storage = */ data, 
                 /* length = */ 3, 
                 /* modCount = */ 0
-            );
+            ));
         }
         return result;
     }
@@ -129,12 +129,12 @@ public interface List extends LibSLRuntime.Automaton, java.util.List {
             data.insert(1, e2);
             data.insert(2, e3);
             data.insert(3, e4);
-            result = new ArrayList((Void) null, 
+            result = (java.util.ArrayList) ((Object) new ArrayList((Void) null, 
                 /* state = */ ArrayList.__$lsl_States.Initialized, 
                 /* storage = */ data, 
                 /* length = */ 4, 
                 /* modCount = */ 0
-            );
+            ));
         }
         return result;
     }
@@ -151,12 +151,12 @@ public interface List extends LibSLRuntime.Automaton, java.util.List {
             data.insert(2, e3);
             data.insert(3, e4);
             data.insert(4, e5);
-            result = new ArrayList((Void) null, 
+            result = (java.util.ArrayList) ((Object) new ArrayList((Void) null, 
                 /* state = */ ArrayList.__$lsl_States.Initialized, 
                 /* storage = */ data, 
                 /* length = */ 5, 
                 /* modCount = */ 0
-            );
+            ));
         }
         return result;
     }
@@ -174,12 +174,12 @@ public interface List extends LibSLRuntime.Automaton, java.util.List {
             data.insert(3, e4);
             data.insert(4, e5);
             data.insert(5, e6);
-            result = new ArrayList((Void) null, 
+            result = (java.util.ArrayList) ((Object) new ArrayList((Void) null, 
                 /* state = */ ArrayList.__$lsl_States.Initialized, 
                 /* storage = */ data, 
                 /* length = */ 6, 
                 /* modCount = */ 0
-            );
+            ));
         }
         return result;
     }
@@ -199,12 +199,12 @@ public interface List extends LibSLRuntime.Automaton, java.util.List {
             data.insert(4, e5);
             data.insert(5, e6);
             data.insert(6, e7);
-            result = new ArrayList((Void) null, 
+            result = (java.util.ArrayList) ((Object) new ArrayList((Void) null, 
                 /* state = */ ArrayList.__$lsl_States.Initialized, 
                 /* storage = */ data, 
                 /* length = */ 7, 
                 /* modCount = */ 0
-            );
+            ));
         }
         return result;
     }
@@ -225,12 +225,12 @@ public interface List extends LibSLRuntime.Automaton, java.util.List {
             data.insert(5, e6);
             data.insert(6, e7);
             data.insert(7, e8);
-            result = new ArrayList((Void) null, 
+            result = (java.util.ArrayList) ((Object) new ArrayList((Void) null, 
                 /* state = */ ArrayList.__$lsl_States.Initialized, 
                 /* storage = */ data, 
                 /* length = */ 8, 
                 /* modCount = */ 0
-            );
+            ));
         }
         return result;
     }
@@ -252,12 +252,12 @@ public interface List extends LibSLRuntime.Automaton, java.util.List {
             data.insert(6, e7);
             data.insert(7, e8);
             data.insert(8, e9);
-            result = new ArrayList((Void) null, 
+            result = (java.util.ArrayList) ((Object) new ArrayList((Void) null, 
                 /* state = */ ArrayList.__$lsl_States.Initialized, 
                 /* storage = */ data, 
                 /* length = */ 9, 
                 /* modCount = */ 0
-            );
+            ));
         }
         return result;
     }
@@ -280,12 +280,12 @@ public interface List extends LibSLRuntime.Automaton, java.util.List {
             data.insert(7, e8);
             data.insert(8, e9);
             data.insert(9, e10);
-            result = new ArrayList((Void) null, 
+            result = (java.util.ArrayList) ((Object) new ArrayList((Void) null, 
                 /* state = */ ArrayList.__$lsl_States.Initialized, 
                 /* storage = */ data, 
                 /* length = */ 10, 
                 /* modCount = */ 0
-            );
+            ));
         }
         return result;
     }
@@ -306,12 +306,12 @@ public interface List extends LibSLRuntime.Automaton, java.util.List {
                 }
                 ;
             }
-            result = new ArrayList((Void) null, 
+            result = (java.util.ArrayList) ((Object) new ArrayList((Void) null, 
                 /* state = */ ArrayList.__$lsl_States.Initialized, 
                 /* storage = */ data, 
                 /* length = */ size, 
                 /* modCount = */ 0
-            );
+            ));
         }
         return result;
     }

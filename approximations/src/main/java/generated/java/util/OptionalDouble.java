@@ -70,10 +70,10 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalDoubleAutomaton::empty() -> LSLOptionalDouble
+     * [FUNCTION] OptionalDoubleAutomaton::empty() -> OptionalDouble
      */
-    public static OptionalDouble empty() {
-        OptionalDouble result = null;
+    public static java.util.OptionalDouble empty() {
+        java.util.OptionalDouble result = null;
         // WARNING: no state checks in static context
         /* body */ {
             result = LibSLGlobals.EMPTY_OPTIONAL_DOUBLE;
@@ -83,17 +83,17 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalDoubleAutomaton::of(double) -> LSLOptionalDouble
+     * [FUNCTION] OptionalDoubleAutomaton::of(double) -> OptionalDouble
      */
-    public static OptionalDouble of(double x) {
-        OptionalDouble result = null;
+    public static java.util.OptionalDouble of(double x) {
+        java.util.OptionalDouble result = null;
         // WARNING: no state checks in static context
         /* body */ {
-            result = new OptionalDouble((Void) null, 
+            result = (java.util.OptionalDouble) ((Object) new OptionalDouble((Void) null, 
                 /* state = */ OptionalDouble.__$lsl_States.Initialized, 
                 /* value = */ x, 
                 /* present = */ true
-            );
+            ));
         }
         // WARNING: no state transitions in static context
         return result;
@@ -111,8 +111,8 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
             } else {
                 final boolean isSameType = Engine.typeEquals(this, other);
                 if (isSameType) {
-                    final double otherValue = ((OptionalDouble) other).value;
-                    final boolean otherPresent = ((OptionalDouble) other).present;
+                    final double otherValue = ((OptionalDouble) ((Object) other)).value;
+                    final boolean otherPresent = ((OptionalDouble) ((Object) other)).present;
                     if (this.present && otherPresent) {
                         result = LibSLRuntime.equals(this.value, otherValue);
                     } else {

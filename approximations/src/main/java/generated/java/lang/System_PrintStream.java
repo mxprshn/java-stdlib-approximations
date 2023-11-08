@@ -3,8 +3,6 @@
 //
 package generated.java.lang;
 
-import generated.java.io.OutputStream$Void;
-import java.io.PrintStream;
 import java.lang.CharSequence;
 import java.lang.IndexOutOfBoundsException;
 import java.lang.NullPointerException;
@@ -20,7 +18,7 @@ import runtime.LibSLRuntime;
  * System_PrintStreamAutomaton for System_PrintStream ~> java.lang.System_PrintStream
  */
 @Approximate(stub.java.lang.System_PrintStream.class)
-public final class System_PrintStream extends PrintStream implements LibSLRuntime.Automaton {
+public final class System_PrintStream implements LibSLRuntime.Automaton {
     static {
         Engine.assume(true);
     }
@@ -32,11 +30,6 @@ public final class System_PrintStream extends PrintStream implements LibSLRuntim
     @LibSLRuntime.AutomatonConstructor
     public System_PrintStream(Void __$lsl_token, final byte p0, final boolean p1,
             final boolean p2) {
-        // System_PrintStreamAutomaton::__super__()
-        super(new OutputStream$Void((Void) null, 
-                    /* state = */ OutputStream$Void.__$lsl_States.Initialized, 
-                    /* closed = */ false
-                ));
         this.closed = p1;
         this.error = p2;
     }
@@ -47,10 +40,10 @@ public final class System_PrintStream extends PrintStream implements LibSLRuntim
     }
 
     /**
-     * [FUNCTION] System_PrintStreamAutomaton::append(System_PrintStream, CharSequence) -> PrintStream
+     * [FUNCTION] System_PrintStreamAutomaton::append(System_PrintStream, CharSequence) -> System_PrintStream
      */
-    public PrintStream append(CharSequence csq) {
-        PrintStream result = null;
+    public System_PrintStream append(CharSequence csq) {
+        System_PrintStream result = null;
         /* body */ {
             if (csq == null) {
                 throw new NullPointerException();
@@ -64,10 +57,10 @@ public final class System_PrintStream extends PrintStream implements LibSLRuntim
     }
 
     /**
-     * [FUNCTION] System_PrintStreamAutomaton::append(System_PrintStream, CharSequence, int, int) -> PrintStream
+     * [FUNCTION] System_PrintStreamAutomaton::append(System_PrintStream, CharSequence, int, int) -> System_PrintStream
      */
-    public PrintStream append(CharSequence csq, int start, int end) {
-        PrintStream result = null;
+    public System_PrintStream append(CharSequence csq, int start, int end) {
+        System_PrintStream result = null;
         /* body */ {
             if (csq == null) {
                 throw new NullPointerException();
@@ -85,10 +78,10 @@ public final class System_PrintStream extends PrintStream implements LibSLRuntim
     }
 
     /**
-     * [FUNCTION] System_PrintStreamAutomaton::append(System_PrintStream, char) -> PrintStream
+     * [FUNCTION] System_PrintStreamAutomaton::append(System_PrintStream, char) -> System_PrintStream
      */
-    public PrintStream append(char c) {
-        PrintStream result = null;
+    public System_PrintStream append(char c) {
+        System_PrintStream result = null;
         /* body */ {
             if (this.closed) {
                 this.error = true;
@@ -130,10 +123,10 @@ public final class System_PrintStream extends PrintStream implements LibSLRuntim
     }
 
     /**
-     * [FUNCTION] System_PrintStreamAutomaton::format(System_PrintStream, Locale, String, array<Object>) -> PrintStream
+     * [FUNCTION] System_PrintStreamAutomaton::format(System_PrintStream, Locale, String, array<Object>) -> System_PrintStream
      */
-    public PrintStream format(Locale l, String format, Object[] args) {
-        PrintStream result = null;
+    public System_PrintStream format(Locale l, String format, Object[] args) {
+        System_PrintStream result = null;
         /* body */ {
             if ((l == null) || (format == null) || (args == null)) {
                 throw new NullPointerException();
@@ -147,10 +140,10 @@ public final class System_PrintStream extends PrintStream implements LibSLRuntim
     }
 
     /**
-     * [FUNCTION] System_PrintStreamAutomaton::format(System_PrintStream, String, array<Object>) -> PrintStream
+     * [FUNCTION] System_PrintStreamAutomaton::format(System_PrintStream, String, array<Object>) -> System_PrintStream
      */
-    public PrintStream format(String format, Object[] args) {
-        PrintStream result = null;
+    public System_PrintStream format(String format, Object[] args) {
+        System_PrintStream result = null;
         /* body */ {
             if ((format == null) || (args == null)) {
                 throw new NullPointerException();
@@ -266,10 +259,10 @@ public final class System_PrintStream extends PrintStream implements LibSLRuntim
     }
 
     /**
-     * [FUNCTION] System_PrintStreamAutomaton::printf(System_PrintStream, Locale, String, array<Object>) -> PrintStream
+     * [FUNCTION] System_PrintStreamAutomaton::printf(System_PrintStream, Locale, String, array<Object>) -> System_PrintStream
      */
-    public PrintStream printf(Locale l, String format, Object[] args) {
-        PrintStream result = null;
+    public System_PrintStream printf(Locale l, String format, Object[] args) {
+        System_PrintStream result = null;
         /* body */ {
             if ((l == null) || (format == null) || (args == null)) {
                 throw new NullPointerException();
@@ -283,10 +276,10 @@ public final class System_PrintStream extends PrintStream implements LibSLRuntim
     }
 
     /**
-     * [FUNCTION] System_PrintStreamAutomaton::printf(System_PrintStream, String, array<Object>) -> PrintStream
+     * [FUNCTION] System_PrintStreamAutomaton::printf(System_PrintStream, String, array<Object>) -> System_PrintStream
      */
-    public PrintStream printf(String format, Object[] args) {
-        PrintStream result = null;
+    public System_PrintStream printf(String format, Object[] args) {
+        System_PrintStream result = null;
         /* body */ {
             if ((format == null) || (args == null)) {
                 throw new NullPointerException();

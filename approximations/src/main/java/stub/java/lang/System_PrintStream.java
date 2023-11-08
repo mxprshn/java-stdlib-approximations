@@ -3,6 +3,7 @@
 //
 package stub.java.lang;
 
+import java.io.OutputStream;
 import java.io.PrintStream;
 import java.lang.CharSequence;
 import java.lang.InternalError;
@@ -11,22 +12,21 @@ import java.lang.String;
 import java.lang.Void;
 import java.util.Locale;
 import runtime.LibSLRuntime;
-import stub.java.io.OutputStream$Void;
 
 public final class System_PrintStream extends PrintStream implements LibSLRuntime.HasAutomaton {
     private System_PrintStream(Void a, Void b) {
-        super((OutputStream$Void) null);
+        super((OutputStream) null);
     }
 
-    public PrintStream append(CharSequence csq) {
+    public System_PrintStream append(CharSequence csq) {
         throw new InternalError();
     }
 
-    public PrintStream append(CharSequence csq, int start, int end) {
+    public System_PrintStream append(CharSequence csq, int start, int end) {
         throw new InternalError();
     }
 
-    public PrintStream append(char c) {
+    public System_PrintStream append(char c) {
         throw new InternalError();
     }
 
@@ -42,11 +42,11 @@ public final class System_PrintStream extends PrintStream implements LibSLRuntim
         throw new InternalError();
     }
 
-    public PrintStream format(Locale l, String format, Object[] args) {
+    public System_PrintStream format(Locale l, String format, Object[] args) {
         throw new InternalError();
     }
 
-    public PrintStream format(String format, Object[] args) {
+    public System_PrintStream format(String format, Object[] args) {
         throw new InternalError();
     }
 
@@ -86,11 +86,11 @@ public final class System_PrintStream extends PrintStream implements LibSLRuntim
         throw new InternalError();
     }
 
-    public PrintStream printf(Locale l, String format, Object[] args) {
+    public System_PrintStream printf(Locale l, String format, Object[] args) {
         throw new InternalError();
     }
 
-    public PrintStream printf(String format, Object[] args) {
+    public System_PrintStream printf(String format, Object[] args) {
         throw new InternalError();
     }
 

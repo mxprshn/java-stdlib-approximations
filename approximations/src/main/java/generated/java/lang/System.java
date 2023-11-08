@@ -4,7 +4,6 @@
 package generated.java.lang;
 
 import generated.runtime.LibSLGlobals;
-import generated.runtime.utils.SymbolicInputStream;
 import java.io.Console;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -12,15 +11,20 @@ import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.String;
 import java.lang.Void;
+import java.util.Properties;
+import jdk.internal.misc.VM;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 import runtime.LibSLRuntime;
+import stub.runtime.utils.SymbolicInputStream;
 
 /**
  * SystemAutomaton for LSLSystem ~> java.lang.System
  */
 @Approximate(java.lang.System.class)
 public final class System implements LibSLRuntime.Automaton {
+    private static Properties props = null;
+
     private static Console console = null;
 
     public static InputStream in = null;
@@ -35,28 +39,9 @@ public final class System implements LibSLRuntime.Automaton {
 
     static {
         /* SystemAutomaton::__clinit__() */ {
-            final InputStream newInput = new SymbolicInputStream((Void) null, 
-                /* state = */ SymbolicInputStream.__$lsl_States.Initialized, 
-                /* maxSize = */ 1000, 
-                /* supportMarks = */ false, 
-                /* dataSize = */ -1, 
-                /* data = */ null, 
-                /* closed = */ false, 
-                /* pos = */ 0, 
-                /* markPos = */ -1, 
-                /* markLimit = */ 0
-            );
-            in = newInput;
-            out = new System_PrintStream((Void) null, 
-                /* state = */ System_PrintStream.__$lsl_States.Initialized, 
-                /* closed = */ false, 
-                /* error = */ false
-            );
-            err = new System_PrintStream((Void) null, 
-                /* state = */ System_PrintStream.__$lsl_States.Initialized, 
-                /* closed = */ false, 
-                /* error = */ false
-            );
+            initPhase1();
+            initPhase2();
+            initPhase3();
         }
     }
 
@@ -75,6 +60,70 @@ public final class System implements LibSLRuntime.Automaton {
     private System() {
         this((Void) null);
         /* body */ {
+        }
+    }
+
+    /**
+     * [SUBROUTINE] SystemAutomaton::_initProperties() -> void
+     */
+    private static void _initProperties() {
+        /* body */ {
+            props = null;
+        }
+    }
+
+    /**
+     * [SUBROUTINE] SystemAutomaton::initPhase1() -> void
+     */
+    private static void initPhase1() {
+        /* body */ {
+            _initProperties();
+            final InputStream newInput = (SymbolicInputStream) ((Object) new generated.runtime.utils.SymbolicInputStream((Void) null, 
+                /* state = */ generated.runtime.utils.SymbolicInputStream.__$lsl_States.Initialized, 
+                /* maxSize = */ 1000, 
+                /* supportMarks = */ false, 
+                /* dataSize = */ -1, 
+                /* data = */ null, 
+                /* closed = */ false, 
+                /* pos = */ 0, 
+                /* markPos = */ -1, 
+                /* markLimit = */ 0
+            ));
+            in = newInput;
+            out = (stub.java.lang.System_PrintStream) ((Object) new System_PrintStream((Void) null, 
+                /* state = */ System_PrintStream.__$lsl_States.Initialized, 
+                /* closed = */ false, 
+                /* error = */ false
+            ));
+            err = (stub.java.lang.System_PrintStream) ((Object) new System_PrintStream((Void) null, 
+                /* state = */ System_PrintStream.__$lsl_States.Initialized, 
+                /* closed = */ false, 
+                /* error = */ false
+            ));
+            VM.initializeOSEnvironment();
+            VM.initLevel(1);
+        }
+    }
+
+    /**
+     * [SUBROUTINE] SystemAutomaton::initPhase2() -> int
+     */
+    private static int initPhase2() {
+        int result = 0;
+        /* body */ {
+            VM.initLevel(2);
+            result = 0;
+        }
+        return result;
+    }
+
+    /**
+     * [SUBROUTINE] SystemAutomaton::initPhase3() -> void
+     */
+    private static void initPhase3() {
+        /* body */ {
+            VM.initLevel(3);
+            VM.initLevel(4);
         }
     }
 

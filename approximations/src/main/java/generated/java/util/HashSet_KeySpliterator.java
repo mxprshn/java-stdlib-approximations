@@ -80,9 +80,9 @@ public final class HashSet_KeySpliterator implements LibSLRuntime.Automaton, Spl
             Engine.assume(this.parent != null);
             int hi = this.fence;
             if (hi < 0) {
-                final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) this.parent).storage;
-                this.est = ((HashSet) this.parent).length;
-                this.expectedModCount = ((HashSet) this.parent).modCount;
+                final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) ((Object) this.parent)).storage;
+                this.est = ((HashSet) ((Object) this.parent)).length;
+                this.expectedModCount = ((HashSet) ((Object) this.parent)).modCount;
                 this.fence = this.est;
                 hi = this.fence;
             }
@@ -96,7 +96,7 @@ public final class HashSet_KeySpliterator implements LibSLRuntime.Automaton, Spl
      */
     private void _checkForComodification() {
         /* body */ {
-            final int modCount = ((HashSet) this.parent).modCount;
+            final int modCount = ((HashSet) ((Object) this.parent)).modCount;
             if (this.expectedModCount != modCount) {
                 throw new ConcurrentModificationException();
             }
@@ -125,7 +125,7 @@ public final class HashSet_KeySpliterator implements LibSLRuntime.Automaton, Spl
         /* body */ {
             Engine.assume(this.parent != null);
             int mask = 0;
-            final int length = ((HashSet) this.parent).length;
+            final int length = ((HashSet) ((Object) this.parent)).length;
             if ((this.fence < 0) || (this.est == length)) {
                 mask = LibSLGlobals.SPLITERATOR_SIZED;
             }
@@ -147,9 +147,9 @@ public final class HashSet_KeySpliterator implements LibSLRuntime.Automaton, Spl
             int hi = this.fence;
             int mc = this.expectedModCount;
             int i = this.index;
-            final int length = ((HashSet) this.parent).length;
+            final int length = ((HashSet) ((Object) this.parent)).length;
             if (hi < 0) {
-                this.expectedModCount = ((HashSet) this.parent).modCount;
+                this.expectedModCount = ((HashSet) ((Object) this.parent)).modCount;
                 mc = this.expectedModCount;
                 this.fence = length;
                 hi = this.fence;
@@ -164,7 +164,7 @@ public final class HashSet_KeySpliterator implements LibSLRuntime.Automaton, Spl
                     i += 1;
                 }
                 ;
-                final int modCount = ((HashSet) this.parent).modCount;
+                final int modCount = ((HashSet) ((Object) this.parent)).modCount;
                 if (modCount != mc) {
                     throw new ConcurrentModificationException();
                 }
@@ -198,10 +198,10 @@ public final class HashSet_KeySpliterator implements LibSLRuntime.Automaton, Spl
     }
 
     /**
-     * [FUNCTION] HashSet_KeySpliteratorAutomaton::trySplit(HashSet_KeySpliterator) -> HashSet_KeySpliterator
+     * [FUNCTION] HashSet_KeySpliteratorAutomaton::trySplit(HashSet_KeySpliterator) -> Spliterator
      */
-    public HashSet_KeySpliterator trySplit() {
-        HashSet_KeySpliterator result = null;
+    public Spliterator trySplit() {
+        Spliterator result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             Engine.assume(this.parent != null);
@@ -213,7 +213,7 @@ public final class HashSet_KeySpliterator implements LibSLRuntime.Automaton, Spl
             } else {
                 this.est = this.est >>> 1;
                 this.index = mid;
-                result = new HashSet_KeySpliterator((Void) null, 
+                result = (stub.java.util.HashSet_KeySpliterator) ((Object) new HashSet_KeySpliterator((Void) null, 
                     /* state = */ HashSet_KeySpliterator.__$lsl_States.Initialized, 
                     /* keysStorage = */ this.keysStorage, 
                     /* index = */ lo, 
@@ -221,7 +221,7 @@ public final class HashSet_KeySpliterator implements LibSLRuntime.Automaton, Spl
                     /* est = */ this.est, 
                     /* expectedModCount = */ this.expectedModCount, 
                     /* parent = */ this.parent
-                );
+                ));
             }
         }
         return result;

@@ -62,7 +62,7 @@ public final class ArrayList_SubList$ListIterator implements LibSLRuntime.Automa
      */
     private void _checkForComodification() {
         /* body */ {
-            final int modCount = ((ArrayList) this.root).modCount;
+            final int modCount = ((ArrayList) ((Object) this.root)).modCount;
             if (modCount != this.expectedModCount) {
                 throw new ConcurrentModificationException();
             }
@@ -122,10 +122,10 @@ public final class ArrayList_SubList$ListIterator implements LibSLRuntime.Automa
             Engine.assume(this.root != null);
             _checkForComodification();
             final int i = this.offset + this.cursor;
-            if (i >= ((ArrayList) this.root).length) {
+            if (i >= ((ArrayList) ((Object) this.root)).length) {
                 throw new NoSuchElementException();
             }
-            final SymbolicList<Object> rootStorage = ((ArrayList) this.root).storage;
+            final SymbolicList<Object> rootStorage = ((ArrayList) ((Object) this.root)).storage;
             if (i >= rootStorage.size()) {
                 throw new ConcurrentModificationException();
             }
@@ -148,7 +148,7 @@ public final class ArrayList_SubList$ListIterator implements LibSLRuntime.Automa
             if (i < this.offset) {
                 throw new NoSuchElementException();
             }
-            final SymbolicList<Object> rootStorage = ((ArrayList) this.root).storage;
+            final SymbolicList<Object> rootStorage = ((ArrayList) ((Object) this.root)).storage;
             if (i >= rootStorage.size()) {
                 throw new ConcurrentModificationException();
             }
@@ -172,9 +172,9 @@ public final class ArrayList_SubList$ListIterator implements LibSLRuntime.Automa
             if (this.lastRet >= this.size) {
                 throw new ConcurrentModificationException();
             } else {
-                ((ArrayList) this.root)._deleteElement(this.offset + this.lastRet);
-                ((ArrayList_SubList) this.sublist)._updateSizeAndModCount(-1);
-                this.expectedModCount = ((ArrayList) this.root).modCount;
+                ((ArrayList) ((Object) this.root))._deleteElement(this.offset + this.lastRet);
+                ((ArrayList_SubList) ((Object) this.sublist))._updateSizeAndModCount(-1);
+                this.expectedModCount = ((ArrayList) ((Object) this.root)).modCount;
                 this.size -= 1;
             }
             this.cursor = this.lastRet;
@@ -193,10 +193,10 @@ public final class ArrayList_SubList$ListIterator implements LibSLRuntime.Automa
             }
             _checkForComodification();
             final int index = this.offset + this.lastRet;
-            if (index >= ((ArrayList) this.root).length) {
+            if (index >= ((ArrayList) ((Object) this.root)).length) {
                 throw new ConcurrentModificationException();
             } else {
-                ((ArrayList) this.root).storage.set(index, e);
+                ((ArrayList) ((Object) this.root)).storage.set(index, e);
             }
         }
     }
@@ -209,12 +209,12 @@ public final class ArrayList_SubList$ListIterator implements LibSLRuntime.Automa
             Engine.assume(this.root != null);
             _checkForComodification();
             final int i = this.offset + this.cursor;
-            if ((this.offset + this.lastRet) > ((ArrayList) this.root).length) {
+            if ((this.offset + this.lastRet) > ((ArrayList) ((Object) this.root)).length) {
                 throw new ConcurrentModificationException();
             } else {
-                ((ArrayList) this.root)._addElement(i, e);
-                ((ArrayList_SubList) this.sublist)._updateSizeAndModCount(1);
-                this.expectedModCount = ((ArrayList) this.root).modCount;
+                ((ArrayList) ((Object) this.root))._addElement(i, e);
+                ((ArrayList_SubList) ((Object) this.sublist))._updateSizeAndModCount(1);
+                this.expectedModCount = ((ArrayList) ((Object) this.root)).modCount;
                 this.size += 1;
             }
             this.cursor += 1;
@@ -234,7 +234,7 @@ public final class ArrayList_SubList$ListIterator implements LibSLRuntime.Automa
             int i = this.cursor;
             if (i < this.size) {
                 i += this.offset;
-                final SymbolicList<Object> es = ((ArrayList) this.root).storage;
+                final SymbolicList<Object> es = ((ArrayList) ((Object) this.root)).storage;
                 if (i >= es.size()) {
                     throw new ConcurrentModificationException();
                 }

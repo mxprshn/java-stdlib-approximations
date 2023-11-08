@@ -4,7 +4,6 @@
 package generated.java.io;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.IllegalArgumentException;
 import java.lang.IndexOutOfBoundsException;
@@ -18,7 +17,7 @@ import runtime.LibSLRuntime;
  * VoidInputStreamAutomaton for VoidInputStream ~> java.io.InputStream$Void
  */
 @Approximate(stub.java.io.InputStream$Void.class)
-public final class InputStream$Void extends InputStream implements LibSLRuntime.Automaton {
+public final class InputStream$Void implements LibSLRuntime.Automaton {
     static {
         Engine.assume(true);
     }

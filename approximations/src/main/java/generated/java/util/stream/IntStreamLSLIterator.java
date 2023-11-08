@@ -5,6 +5,7 @@ package generated.java.util.stream;
 
 import java.lang.Integer;
 import java.lang.NullPointerException;
+import java.lang.Object;
 import java.lang.UnsupportedOperationException;
 import java.lang.Void;
 import java.util.NoSuchElementException;
@@ -47,7 +48,7 @@ public class IntStreamLSLIterator implements LibSLRuntime.Automaton, PrimitiveIt
         boolean result = false;
         /* body */ {
             Engine.assume(this.parent != null);
-            result = this.cursor != ((IntStreamLSL) this.parent).length;
+            result = this.cursor != ((IntStreamLSL) ((Object) this.parent)).length;
         }
         return result;
     }
@@ -59,9 +60,9 @@ public class IntStreamLSLIterator implements LibSLRuntime.Automaton, PrimitiveIt
         Integer result = null;
         /* body */ {
             Engine.assume(this.parent != null);
-            final int[] parentStorage = ((IntStreamLSL) this.parent).storage;
+            final int[] parentStorage = ((IntStreamLSL) ((Object) this.parent)).storage;
             final int i = this.cursor;
-            if (i >= ((IntStreamLSL) this.parent).length) {
+            if (i >= ((IntStreamLSL) ((Object) this.parent)).length) {
                 throw new NoSuchElementException();
             }
             this.cursor = i + 1;
@@ -77,9 +78,9 @@ public class IntStreamLSLIterator implements LibSLRuntime.Automaton, PrimitiveIt
         int result = 0;
         /* body */ {
             Engine.assume(this.parent != null);
-            final int[] parentStorage = ((IntStreamLSL) this.parent).storage;
+            final int[] parentStorage = ((IntStreamLSL) ((Object) this.parent)).storage;
             final int i = this.cursor;
-            if (i >= ((IntStreamLSL) this.parent).length) {
+            if (i >= ((IntStreamLSL) ((Object) this.parent)).length) {
                 throw new NoSuchElementException();
             }
             this.cursor = i + 1;
@@ -107,9 +108,9 @@ public class IntStreamLSLIterator implements LibSLRuntime.Automaton, PrimitiveIt
                 throw new NullPointerException();
             }
             int i = this.cursor;
-            final int size = ((IntStreamLSL) this.parent).length;
+            final int size = ((IntStreamLSL) ((Object) this.parent)).length;
             if (i != size) {
-                final int[] pStorage = ((IntStreamLSL) this.parent).storage;
+                final int[] pStorage = ((IntStreamLSL) ((Object) this.parent)).storage;
                 while (i < size) {
                     final int item = pStorage[i];
                     userAction.accept(item);
@@ -131,9 +132,9 @@ public class IntStreamLSLIterator implements LibSLRuntime.Automaton, PrimitiveIt
                 throw new NullPointerException();
             }
             int i = this.cursor;
-            final int size = ((IntStreamLSL) this.parent).length;
+            final int size = ((IntStreamLSL) ((Object) this.parent)).length;
             if (i != size) {
-                final int[] pStorage = ((IntStreamLSL) this.parent).storage;
+                final int[] pStorage = ((IntStreamLSL) ((Object) this.parent)).storage;
                 while (i < size) {
                     final int item = pStorage[i];
                     userAction.accept(item);

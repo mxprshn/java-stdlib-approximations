@@ -11,7 +11,6 @@ import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.String;
 import java.lang.Void;
-import java.util.AbstractSequentialList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.ConcurrentModificationException;
@@ -35,7 +34,7 @@ import runtime.LibSLRuntime;
  * LinkedListAutomaton for LinkedList ~> java.util.LinkedList
  */
 @Approximate(java.util.LinkedList.class)
-public class LinkedList extends AbstractSequentialList implements LibSLRuntime.Automaton, List, Deque, Cloneable, Serializable {
+public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneable, Serializable {
     private static final long serialVersionUID = 876323262645176354L;
 
     static {
@@ -293,12 +292,12 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
             int i = from;
             int otherLength = 0;
             SymbolicList<Object> otherStorage = null;
-            if ((other != null && other.getClass() == LinkedList.class)) {
-                otherLength = ((LinkedList) other).size;
+            if ((other != null && other.getClass() == java.util.LinkedList.class)) {
+                otherLength = ((LinkedList) ((Object) other)).size;
                 Engine.assume(otherLength >= 0);
                 result = to == otherLength;
                 if (result) {
-                    otherStorage = ((LinkedList) other).storage;
+                    otherStorage = ((LinkedList) ((Object) other)).storage;
                     Engine.assume(otherStorage != null);
                     while (result && (i < to)) {
                         final Object a = otherStorage.get(i);
@@ -354,8 +353,8 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
                     int i = 0;
                     start -= 1;
                     end -= 1;
-                    if ((c != null && c.getClass() == LinkedList.class)) {
-                        final SymbolicList<Object> otherStorage = ((LinkedList) c).storage;
+                    if ((c != null && c.getClass() == java.util.LinkedList.class)) {
+                        final SymbolicList<Object> otherStorage = ((LinkedList) ((Object) c)).storage;
                         Engine.assume(otherStorage != null);
                         for (i = end; i > start; i += -1) {
                             final Object item = this.storage.get(i);
@@ -521,12 +520,12 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         /* body */ {
             final SymbolicList<Object> storageCopy = Engine.makeSymbolicList();
             this.storage.copy(storageCopy, 0, 0, this.size);
-            result = new LinkedList((Void) null, 
+            result = (java.util.LinkedList) ((Object) new LinkedList((Void) null, 
                 /* state = */ LinkedList.__$lsl_States.Initialized, 
                 /* storage = */ storageCopy, 
                 /* size = */ this.size, 
                 /* modCount = */ 0
-            );
+            ));
         }
         return result;
     }
@@ -551,9 +550,9 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             result = true;
-            if ((c != null && c.getClass() == LinkedList.class)) {
-                final SymbolicList<Object> otherStorage = ((LinkedList) c).storage;
-                final int otherSize = ((LinkedList) c).size;
+            if ((c != null && c.getClass() == java.util.LinkedList.class)) {
+                final SymbolicList<Object> otherStorage = ((LinkedList) ((Object) c)).storage;
+                final int otherSize = ((LinkedList) ((Object) c)).size;
                 Engine.assume(otherStorage != null);
                 Engine.assume(otherSize >= 0);
                 int i = 0;
@@ -610,17 +609,17 @@ public class LinkedList extends AbstractSequentialList implements LibSLRuntime.A
             if (this == o) {
                 result = true;
             } else {
-                if ((o != null && o.getClass() == LinkedList.class)) {
+                if ((o != null && o.getClass() == java.util.LinkedList.class)) {
                     final int expectedModCount = this.modCount;
-                    final int otherExpectedModCount = ((LinkedList) o).modCount;
-                    final SymbolicList<Object> otherStorage = ((LinkedList) o).storage;
-                    final int otherSize = ((LinkedList) o).size;
+                    final int otherExpectedModCount = ((LinkedList) ((Object) o)).modCount;
+                    final SymbolicList<Object> otherStorage = ((LinkedList) ((Object) o)).storage;
+                    final int otherSize = ((LinkedList) ((Object) o)).size;
                     if (this.size == otherSize) {
                         result = LibSLRuntime.equals(this.storage, otherStorage);
                     } else {
                         result = false;
                     }
-                    ((LinkedList) o)._checkForComodification(otherExpectedModCount);
+                    ((LinkedList) ((Object) o))._checkForComodification(otherExpectedModCount);
                     _checkForComodification(expectedModCount);
                 } else {
                     result = false;

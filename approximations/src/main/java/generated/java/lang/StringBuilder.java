@@ -559,7 +559,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
             if (another == this) {
                 result = 0;
             } else {
-                final String anotherString = ((StringBuilder) another).storage;
+                final String anotherString = ((StringBuilder) ((Object) another)).storage;
                 result = this.storage.compareTo(anotherString);
             }
         }
