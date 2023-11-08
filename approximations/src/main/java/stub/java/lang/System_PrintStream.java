@@ -18,15 +18,15 @@ public final class System_PrintStream extends PrintStream implements LibSLRuntim
         super((OutputStream) null);
     }
 
-    public System_PrintStream append(CharSequence csq) {
+    public PrintStream append(CharSequence csq) {
         throw new InternalError();
     }
 
-    public System_PrintStream append(CharSequence csq, int start, int end) {
+    public PrintStream append(CharSequence csq, int start, int end) {
         throw new InternalError();
     }
 
-    public System_PrintStream append(char c) {
+    public PrintStream append(char c) {
         throw new InternalError();
     }
 
@@ -42,11 +42,11 @@ public final class System_PrintStream extends PrintStream implements LibSLRuntim
         throw new InternalError();
     }
 
-    public System_PrintStream format(Locale l, String format, Object[] args) {
+    public PrintStream format(Locale l, String format, Object[] args) {
         throw new InternalError();
     }
 
-    public System_PrintStream format(String format, Object[] args) {
+    public PrintStream format(String format, Object[] args) {
         throw new InternalError();
     }
 
@@ -86,11 +86,11 @@ public final class System_PrintStream extends PrintStream implements LibSLRuntim
         throw new InternalError();
     }
 
-    public System_PrintStream printf(Locale l, String format, Object[] args) {
+    public PrintStream printf(Locale l, String format, Object[] args) {
         throw new InternalError();
     }
 
-    public System_PrintStream printf(String format, Object[] args) {
+    public PrintStream printf(String format, Object[] args) {
         throw new InternalError();
     }
 

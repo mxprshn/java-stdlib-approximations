@@ -301,22 +301,22 @@ public final class Optional implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] OptionalAutomaton::or(LSLOptional, Supplier) -> Optional
+     * [FUNCTION] OptionalAutomaton::or(LSLOptional, Supplier) -> LSLOptional
      */
-    public java.util.Optional or(Supplier supplier) {
-        java.util.Optional result = null;
+    public Optional or(Supplier supplier) {
+        Optional result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (supplier == null) {
                 throw new NullPointerException();
             }
             if (this.value == null) {
-                result = ((java.util.Optional) supplier.get());
+                result = ((Optional) supplier.get());
                 if (result == null) {
                     throw new NullPointerException();
                 }
             } else {
-                result = ((java.util.Optional) ((Object) this));
+                result = this;
             }
         }
         return result;

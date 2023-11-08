@@ -3,6 +3,7 @@
 //
 package generated.java.lang;
 
+import java.io.PrintStream;
 import java.lang.CharSequence;
 import java.lang.IndexOutOfBoundsException;
 import java.lang.NullPointerException;
@@ -40,10 +41,10 @@ public final class System_PrintStream implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] System_PrintStreamAutomaton::append(System_PrintStream, CharSequence) -> System_PrintStream
+     * [FUNCTION] System_PrintStreamAutomaton::append(System_PrintStream, CharSequence) -> PrintStream
      */
-    public System_PrintStream append(CharSequence csq) {
-        System_PrintStream result = null;
+    public PrintStream append(CharSequence csq) {
+        PrintStream result = null;
         /* body */ {
             if (csq == null) {
                 throw new NullPointerException();
@@ -51,16 +52,16 @@ public final class System_PrintStream implements LibSLRuntime.Automaton {
             if (this.closed) {
                 this.error = true;
             }
-            result = this;
+            result = ((PrintStream) ((Object) this));
         }
         return result;
     }
 
     /**
-     * [FUNCTION] System_PrintStreamAutomaton::append(System_PrintStream, CharSequence, int, int) -> System_PrintStream
+     * [FUNCTION] System_PrintStreamAutomaton::append(System_PrintStream, CharSequence, int, int) -> PrintStream
      */
-    public System_PrintStream append(CharSequence csq, int start, int end) {
-        System_PrintStream result = null;
+    public PrintStream append(CharSequence csq, int start, int end) {
+        PrintStream result = null;
         /* body */ {
             if (csq == null) {
                 throw new NullPointerException();
@@ -72,21 +73,21 @@ public final class System_PrintStream implements LibSLRuntime.Automaton {
             if (this.closed) {
                 this.error = true;
             }
-            result = this;
+            result = ((PrintStream) ((Object) this));
         }
         return result;
     }
 
     /**
-     * [FUNCTION] System_PrintStreamAutomaton::append(System_PrintStream, char) -> System_PrintStream
+     * [FUNCTION] System_PrintStreamAutomaton::append(System_PrintStream, char) -> PrintStream
      */
-    public System_PrintStream append(char c) {
-        System_PrintStream result = null;
+    public PrintStream append(char c) {
+        PrintStream result = null;
         /* body */ {
             if (this.closed) {
                 this.error = true;
             }
-            result = this;
+            result = ((PrintStream) ((Object) this));
         }
         return result;
     }
@@ -123,10 +124,10 @@ public final class System_PrintStream implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] System_PrintStreamAutomaton::format(System_PrintStream, Locale, String, array<Object>) -> System_PrintStream
+     * [FUNCTION] System_PrintStreamAutomaton::format(System_PrintStream, Locale, String, array<Object>) -> PrintStream
      */
-    public System_PrintStream format(Locale l, String format, Object[] args) {
-        System_PrintStream result = null;
+    public PrintStream format(Locale l, String format, Object[] args) {
+        PrintStream result = null;
         /* body */ {
             if ((l == null) || (format == null) || (args == null)) {
                 throw new NullPointerException();
@@ -134,16 +135,16 @@ public final class System_PrintStream implements LibSLRuntime.Automaton {
             if (this.closed) {
                 this.error = true;
             }
-            result = this;
+            result = ((PrintStream) ((Object) this));
         }
         return result;
     }
 
     /**
-     * [FUNCTION] System_PrintStreamAutomaton::format(System_PrintStream, String, array<Object>) -> System_PrintStream
+     * [FUNCTION] System_PrintStreamAutomaton::format(System_PrintStream, String, array<Object>) -> PrintStream
      */
-    public System_PrintStream format(String format, Object[] args) {
-        System_PrintStream result = null;
+    public PrintStream format(String format, Object[] args) {
+        PrintStream result = null;
         /* body */ {
             if ((format == null) || (args == null)) {
                 throw new NullPointerException();
@@ -151,7 +152,7 @@ public final class System_PrintStream implements LibSLRuntime.Automaton {
             if (this.closed) {
                 this.error = true;
             }
-            result = this;
+            result = ((PrintStream) ((Object) this));
         }
         return result;
     }
@@ -259,10 +260,10 @@ public final class System_PrintStream implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] System_PrintStreamAutomaton::printf(System_PrintStream, Locale, String, array<Object>) -> System_PrintStream
+     * [FUNCTION] System_PrintStreamAutomaton::printf(System_PrintStream, Locale, String, array<Object>) -> PrintStream
      */
-    public System_PrintStream printf(Locale l, String format, Object[] args) {
-        System_PrintStream result = null;
+    public PrintStream printf(Locale l, String format, Object[] args) {
+        PrintStream result = null;
         /* body */ {
             if ((l == null) || (format == null) || (args == null)) {
                 throw new NullPointerException();
@@ -270,16 +271,16 @@ public final class System_PrintStream implements LibSLRuntime.Automaton {
             if (this.closed) {
                 this.error = true;
             }
-            result = this;
+            result = ((PrintStream) ((Object) this));
         }
         return result;
     }
 
     /**
-     * [FUNCTION] System_PrintStreamAutomaton::printf(System_PrintStream, String, array<Object>) -> System_PrintStream
+     * [FUNCTION] System_PrintStreamAutomaton::printf(System_PrintStream, String, array<Object>) -> PrintStream
      */
-    public System_PrintStream printf(String format, Object[] args) {
-        System_PrintStream result = null;
+    public PrintStream printf(String format, Object[] args) {
+        PrintStream result = null;
         /* body */ {
             if ((format == null) || (args == null)) {
                 throw new NullPointerException();
@@ -287,7 +288,7 @@ public final class System_PrintStream implements LibSLRuntime.Automaton {
             if (this.closed) {
                 this.error = true;
             }
-            result = this;
+            result = ((PrintStream) ((Object) this));
         }
         return result;
     }
