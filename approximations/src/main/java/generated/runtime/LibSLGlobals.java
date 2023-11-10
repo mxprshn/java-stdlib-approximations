@@ -58,6 +58,8 @@ public final class LibSLGlobals {
 
     public static final int SPLITERATOR_SUBSIZED;
 
+    public static final boolean SYSTEM_IS_MAC;
+
     public static final boolean SYSTEM_IS_WINDOWS;
 
     public static final int VM_JAVA_LANG_SYSTEM_INITED;
@@ -108,7 +110,8 @@ public final class LibSLGlobals {
         SPLITERATOR_SIZED = 64;
         SPLITERATOR_SORTED = 4;
         SPLITERATOR_SUBSIZED = 16384;
-        SYSTEM_IS_WINDOWS = Engine.makeSymbolicBoolean();
+        SYSTEM_IS_MAC = Engine.makeSymbolicBoolean();
+        SYSTEM_IS_WINDOWS = !LibSLGlobals.SYSTEM_IS_MAC && Engine.makeSymbolicBoolean();
         VM_JAVA_LANG_SYSTEM_INITED = 1;
         VM_MODULE_SYSTEM_INITED = 2;
         VM_SYSTEM_BOOTED = 4;
