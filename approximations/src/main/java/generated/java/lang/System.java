@@ -70,60 +70,12 @@ public final class System implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [SUBROUTINE] SystemAutomaton::_makeValidString(int, int) -> String
-     */
-    private static String _makeValidString(int minLen, int maxLen) {
-        String result = null;
-        /* body */ {
-            final int len = Engine.makeSymbolicInt();
-            Engine.assume(len >= minLen);
-            Engine.assume(len < maxLen);
-            final int lastCharIdx = len - 1;
-            final char[] chars = new char[len];
-            final String forbidenLetters = ":/\\*\"'?<>|";
-            int spaces = 0;
-            int i = 0;
-            for (i = 0; i < len; i += 1) {
-                final char c = Engine.makeSymbolicChar();
-                Engine.assume(c >= 20);
-                Engine.assume(forbidenLetters.indexOf(c) == -1);
-                if (c == 20) {
-                    spaces += 1;
-                }
-                chars[i] = c;
-            }
-            ;
-            Engine.assume((spaces + 1) < maxLen);
-            Engine.assume(chars[lastCharIdx] != 20);
-            result = LibSLRuntime.toString(chars);
-        }
-        return result;
-    }
-
-    /**
-     * [SUBROUTINE] SystemAutomaton::_getRandomDriveLetter() -> String
-     */
-    private String _getRandomDriveLetter() {
-        String result = null;
-        /* body */ {
-            final String[] letters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
-            final int idx = Engine.makeSymbolicInt();
-            Engine.assume(idx >= 0);
-            Engine.assume(idx < letters.length);
-            result = letters[idx];
-        }
-        return result;
-    }
-
-    /**
      * [SUBROUTINE] SystemAutomaton::_initProperties() -> void
      */
     private static void _initProperties() {
         /* body */ {
-            final int javaVersion = Engine.makeSymbolicInt();
-            Engine.assume(javaVersion >= 8);
-            Engine.assume(javaVersion <= 11);
-            final String userName = _makeValidString(1, 25);
+            final int javaVersion = 8;
+            final String userName = "Admin";
             propsMap.set("file.encoding", "Cp1251");
             propsMap.set("sun.io.unicode.encoding", "UnicodeLittle");
             propsMap.set("sun.jnu.encoding", "Cp1251");
@@ -350,12 +302,11 @@ public final class System implements LibSLRuntime.Automaton {
     public static String getenv(String name) {
         String result = null;
         /* body */ {
-            final int symbolCount = Engine.makeSymbolicInt();
-            Engine.assume(symbolCount >= 0);
-            Engine.assume(symbolCount < 256);
-            final char[] symbols = Engine.makeSymbolicCharArray(symbolCount);
-            Engine.assume(symbols != null);
-            result = LibSLRuntime.toString(symbols);
+            result = Engine.makeSymbolic(String.class);
+            Engine.assume(result != null);
+            final int len = result.length();
+            Engine.assume(len >= 0);
+            Engine.assume(len < 250);
         }
         return result;
     }
