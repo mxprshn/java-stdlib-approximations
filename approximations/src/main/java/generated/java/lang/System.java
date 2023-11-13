@@ -8,10 +8,13 @@ import java.io.Console;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.lang.IllegalArgumentException;
+import java.lang.Integer;
 import java.lang.NullPointerException;
 import java.lang.Object;
+import java.lang.SecurityException;
 import java.lang.SecurityManager;
 import java.lang.String;
+import java.lang.UnsatisfiedLinkError;
 import java.lang.Void;
 import java.util.Properties;
 import jdk.internal.misc.VM;
@@ -42,6 +45,8 @@ public final class System implements LibSLRuntime.Automaton {
     private static final long NANOTIME_BEGINNING_OF_TIME = 1000L;
 
     private static final long NANOTIME_WARP_MAX = 1000L;
+
+    private static final LibSLRuntime.Map<Object, Integer> identityHashCodeMap = new LibSLRuntime.Map<>(new LibSLRuntime.IdentityMapContainer<>());
 
     static {
         /* SystemAutomaton::__clinit__() */ {
@@ -317,7 +322,19 @@ public final class System implements LibSLRuntime.Automaton {
     public static int identityHashCode(Object x) {
         int result = 0;
         /* body */ {
-            result = Engine.makeSymbolicInt();
+            if (x == null) {
+                result = 0;
+            } else {
+                if (identityHashCodeMap.hasKey(x)) {
+                    final Integer value = identityHashCodeMap.get(x);
+                    Engine.assume(value != null);
+                    result = value.intValue();
+                } else {
+                    result = identityHashCodeMap.size();
+                    final Integer hash = Integer.valueOf(result);
+                    identityHashCodeMap.set(x, hash);
+                }
+            }
         }
         return result;
     }
@@ -331,6 +348,40 @@ public final class System implements LibSLRuntime.Automaton {
             result = propsMap.get("line.separator");
         }
         return result;
+    }
+
+    /**
+     * [FUNCTION] SystemAutomaton::load(String) -> void
+     */
+    public static void load(String filename) {
+        /* body */ {
+            if (filename == null) {
+                throw new NullPointerException();
+            }
+            if (Engine.makeSymbolicBoolean()) {
+                throw new SecurityException("<message>");
+            }
+            if (Engine.makeSymbolicBoolean()) {
+                throw new UnsatisfiedLinkError("<message>");
+            }
+        }
+    }
+
+    /**
+     * [FUNCTION] SystemAutomaton::loadLibrary(String) -> void
+     */
+    public static void loadLibrary(String libname) {
+        /* body */ {
+            if (libname == null) {
+                throw new NullPointerException();
+            }
+            if (Engine.makeSymbolicBoolean()) {
+                throw new SecurityException("<message>");
+            }
+            if (Engine.makeSymbolicBoolean()) {
+                throw new UnsatisfiedLinkError("<message>");
+            }
+        }
     }
 
     /**
