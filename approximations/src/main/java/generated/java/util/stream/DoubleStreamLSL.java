@@ -33,7 +33,6 @@ import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 import org.usvm.api.SymbolicList;
 import runtime.LibSLRuntime;
-import stub.java.util.DoubleStreamLSLSpliterator;
 
 /**
  * DoubleStreamAutomaton for DoubleStreamLSL ~> java.util.stream.DoubleStreamLSL
@@ -904,8 +903,8 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
                 throw new IllegalStateException();
             }
             final int default_characteristics = LibSLGlobals.SPLITERATOR_ORDERED | LibSLGlobals.SPLITERATOR_IMMUTABLE | LibSLGlobals.SPLITERATOR_SIZED | LibSLGlobals.SPLITERATOR_SUBSIZED;
-            result = (DoubleStreamLSLSpliterator) ((Object) new generated.java.util.DoubleStreamLSLSpliterator((Void) null, 
-                /* state = */ generated.java.util.DoubleStreamLSLSpliterator.__$lsl_States.Initialized, 
+            result = (stub.java.util.stream.DoubleStreamLSLSpliterator) ((Object) new DoubleStreamLSLSpliterator((Void) null, 
+                /* state = */ DoubleStreamLSLSpliterator.__$lsl_States.Initialized, 
                 /* parent = */ this, 
                 /* characteristics = */ default_characteristics, 
                 /* fence = */ this.length, 

@@ -34,7 +34,6 @@ import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 import org.usvm.api.SymbolicList;
 import runtime.LibSLRuntime;
-import stub.java.util.LongStreamLSLSpliterator;
 
 /**
  * LongStreamAutomaton for LongStreamLSL ~> java.util.stream.LongStreamLSL
@@ -877,8 +876,8 @@ public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
                 throw new IllegalStateException();
             }
             final int default_characteristics = LibSLGlobals.SPLITERATOR_ORDERED | LibSLGlobals.SPLITERATOR_IMMUTABLE | LibSLGlobals.SPLITERATOR_SIZED | LibSLGlobals.SPLITERATOR_SUBSIZED;
-            result = (LongStreamLSLSpliterator) ((Object) new generated.java.util.LongStreamLSLSpliterator((Void) null, 
-                /* state = */ generated.java.util.LongStreamLSLSpliterator.__$lsl_States.Initialized, 
+            result = (stub.java.util.stream.LongStreamLSLSpliterator) ((Object) new LongStreamLSLSpliterator((Void) null, 
+                /* state = */ LongStreamLSLSpliterator.__$lsl_States.Initialized, 
                 /* parent = */ this, 
                 /* characteristics = */ default_characteristics, 
                 /* fence = */ this.length, 

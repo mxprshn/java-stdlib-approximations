@@ -36,7 +36,6 @@ import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 import org.usvm.api.SymbolicList;
 import runtime.LibSLRuntime;
-import stub.java.util.StreamLSLSpliterator;
 
 /**
  * StreamAutomaton for StreamLSL ~> java.util.stream.StreamLSL
@@ -1087,8 +1086,8 @@ public class StreamLSL implements LibSLRuntime.Automaton, Stream {
                 throw new IllegalStateException();
             }
             final int default_characteristics = LibSLGlobals.SPLITERATOR_ORDERED | LibSLGlobals.SPLITERATOR_SIZED | LibSLGlobals.SPLITERATOR_SUBSIZED;
-            result = (StreamLSLSpliterator) ((Object) new generated.java.util.StreamLSLSpliterator((Void) null, 
-                /* state = */ generated.java.util.StreamLSLSpliterator.__$lsl_States.Initialized, 
+            result = (stub.java.util.stream.StreamLSLSpliterator) ((Object) new StreamLSLSpliterator((Void) null, 
+                /* state = */ StreamLSLSpliterator.__$lsl_States.Initialized, 
                 /* parent = */ this, 
                 /* characteristics = */ default_characteristics, 
                 /* fence = */ this.length, 
