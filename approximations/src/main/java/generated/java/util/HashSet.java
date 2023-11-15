@@ -106,7 +106,7 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
             if (initialCapacity < 0) {
                 throw new IllegalArgumentException();
             }
-            if ((loadFactor <= 0) || Float.isNaN(loadFactor)) {
+            if ((loadFactor <= 0) || (loadFactor != loadFactor)) {
                 throw new IllegalArgumentException();
             }
             this.storage = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());

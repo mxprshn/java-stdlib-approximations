@@ -285,7 +285,7 @@ public class Random implements LibSLRuntime.Automaton, Serializable {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             result = Engine.makeSymbolicDouble();
-            final boolean isNaN = Double.isNaN(result);
+            final boolean isNaN = result != result;
             Engine.assume(!isNaN);
         }
         return result;

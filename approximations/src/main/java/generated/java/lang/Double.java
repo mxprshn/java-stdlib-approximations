@@ -39,7 +39,7 @@ public final class Double implements LibSLRuntime.Automaton {
 
     public static final double NaN = 0.0d / 0.0d;
 
-    public static final Class TYPE = Double.class;
+    public static final Class TYPE = java.lang.Double.class;
 
     static {
         Engine.assume(true);

@@ -39,6 +39,12 @@ import runtime.LibSLRuntime;
  */
 @Approximate(stub.java.util.stream.DoubleStreamLSL.class)
 public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
+    private static final double DOUBLE_POSITIVE_INFINITY = 1.0d / 0.0d;
+
+    private static final double DOUBLE_NEGATIVE_INFINITY = -1.0d / 0.0d;
+
+    private static final double DOUBLE_NAN = 0.0d / 0.0d;
+
     static {
         Engine.assume(true);
     }
@@ -115,28 +121,28 @@ public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
                 for (i = 0; i < this.length; i += 1) {
                     final double element = storage[i];
                     result += element;
-                    if (Double.isNaN(element)) {
+                    if (element != element) {
                         anyNaN = true;
                     }
-                    if (element == LibSLGlobals.DOUBLE_POSITIVE_INFINITY) {
+                    if (element == DOUBLE_POSITIVE_INFINITY) {
                         anyPositiveInfinity = true;
                     }
-                    if (element == LibSLGlobals.DOUBLE_NEGATIVE_INFINITY) {
+                    if (element == DOUBLE_NEGATIVE_INFINITY) {
                         anyNegativeInfinity = true;
                     }
                 }
                 ;
                 if (anyNaN) {
-                    result = LibSLGlobals.DOUBLE_NAN;
+                    result = DOUBLE_NAN;
                 } else {
                     if (anyPositiveInfinity && anyNegativeInfinity) {
-                        result = LibSLGlobals.DOUBLE_NAN;
+                        result = DOUBLE_NAN;
                     } else {
-                        if (anyPositiveInfinity && (result == LibSLGlobals.DOUBLE_NEGATIVE_INFINITY)) {
-                            result = LibSLGlobals.DOUBLE_NAN;
+                        if (anyPositiveInfinity && (result == DOUBLE_NEGATIVE_INFINITY)) {
+                            result = DOUBLE_NAN;
                         } else {
-                            if (anyNegativeInfinity && (result == LibSLGlobals.DOUBLE_POSITIVE_INFINITY)) {
-                                result = LibSLGlobals.DOUBLE_NAN;
+                            if (anyNegativeInfinity && (result == DOUBLE_POSITIVE_INFINITY)) {
+                                result = DOUBLE_NAN;
                             }
                         }
                     }

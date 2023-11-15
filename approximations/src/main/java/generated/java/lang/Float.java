@@ -39,7 +39,7 @@ public final class Float implements LibSLRuntime.Automaton {
 
     public static final float NaN = 0.0f / 0.0f;
 
-    public static final Class TYPE = Float.class;
+    public static final Class TYPE = java.lang.Float.class;
 
     static {
         Engine.assume(true);

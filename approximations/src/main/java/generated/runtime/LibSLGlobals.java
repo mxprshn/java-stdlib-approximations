@@ -16,12 +16,6 @@ import org.usvm.api.Engine;
 public final class LibSLGlobals {
     public static final boolean CONSOLE_IS_TTY;
 
-    public static final double DOUBLE_NAN;
-
-    public static final double DOUBLE_NEGATIVE_INFINITY;
-
-    public static final double DOUBLE_POSITIVE_INFINITY;
-
     public static final Optional EMPTY_OPTIONAL;
 
     public static final OptionalDouble EMPTY_OPTIONAL_DOUBLE;
@@ -74,9 +68,6 @@ public final class LibSLGlobals {
 
     static {
         CONSOLE_IS_TTY = Engine.makeSymbolicBoolean();
-        DOUBLE_NAN = 0.0d / 0.0d;
-        DOUBLE_NEGATIVE_INFINITY = -1.0d / 0.0d;
-        DOUBLE_POSITIVE_INFINITY = 1.0d / 0.0d;
         EMPTY_OPTIONAL = (Optional) ((Object) new generated.java.util.Optional((Void) null, 
                     /* state = */ generated.java.util.Optional.__$lsl_States.Initialized, 
                     /* value = */ null

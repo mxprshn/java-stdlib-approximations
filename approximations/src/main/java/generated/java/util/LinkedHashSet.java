@@ -108,7 +108,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
             if (initialCapacity < 0) {
                 throw new IllegalArgumentException();
             }
-            if ((loadFactor <= 0) || Float.isNaN(loadFactor)) {
+            if ((loadFactor <= 0) || (loadFactor != loadFactor)) {
                 throw new IllegalArgumentException();
             }
             this.storage = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
