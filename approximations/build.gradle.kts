@@ -8,7 +8,8 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.jacodb:jacodb-approximations:1.2.0")
+    compileOnly("org.jacodb:jacodb-api:1.4.0")
+    compileOnly("org.jacodb:jacodb-approximations:1.4.0")
     compileOnly(files(rootDir.resolve("usvm-api/usvm-api.jar")))
 }
 
