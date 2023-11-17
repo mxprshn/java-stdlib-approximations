@@ -9,7 +9,6 @@ import org.usvm.api.decoder.DecoderFor;
 import org.usvm.api.decoder.ObjectData;
 import org.usvm.api.decoder.ObjectDecoder;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 @DecoderFor(Optional.class)
@@ -22,15 +21,17 @@ public class Optional_Decoder extends BaseDecoder implements ObjectDecoder {
         {
             JcField value = getField(approx.getDeclaredFields(), "value");
 
-            T valueDecoded = approxData.decodeField(value);
-            if (valueDecoded != null) {
-                JcMethod m_of = getMethod(approx.getDeclaredMethods(), "of", "java.lang.Object");
-
-                result = decoder.invokeMethod(m_of, Arrays.asList(valueDecoded));
-            } else {
+            final ObjectData<T> valueData = approxData.getObjectField(value);
+            if (valueData == null) {
                 JcMethod m_empty = getMethod(approx.getDeclaredMethods(), "empty");
 
-                result = decoder.invokeMethod(m_empty, Arrays.asList());
+                result = callStatic(decoder, m_empty);
+            } else {
+                JcMethod m_of = getMethod(approx.getDeclaredMethods(), "of", "java.lang.Object");
+
+                result = callStatic(decoder, m_of,
+                        approxData.decodeField(value)
+                );
             }
         }
         return result;
