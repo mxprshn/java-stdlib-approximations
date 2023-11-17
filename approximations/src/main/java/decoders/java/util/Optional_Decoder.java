@@ -24,7 +24,7 @@ public class Optional_Decoder extends BaseDecoder implements ObjectDecoder {
 
             T valueDecoded = approxData.decodeField(value);
             if (valueDecoded != null) {
-                JcMethod m_of = getMethod(approx.getDeclaredMethods(), "ofNullable", "java.lang.Object");
+                JcMethod m_of = getMethod(approx.getDeclaredMethods(), "of", "java.lang.Object");
 
                 result = decoder.invokeMethod(m_of, Arrays.asList(valueDecoded));
             } else {
