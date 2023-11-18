@@ -5,7 +5,7 @@ import java.util.Optional;
 @SuppressWarnings({"unused", "OptionalUsedAsFieldOrParameterType"})
 public final class Optional_DecoderTests {
 
-    public static int symbolicList(final Optional<Integer> obj) {
+    public static int test_0(final Optional<Integer> obj) {
         if (!obj.isPresent()) {
             return 0;
         }
