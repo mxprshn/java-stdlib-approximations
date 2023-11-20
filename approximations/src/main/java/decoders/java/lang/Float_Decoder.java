@@ -33,7 +33,7 @@ public class Float_Decoder implements ObjectDecoder {
 
                 List<JcParameter> params = m.getParameters();
                 if (params.size() != 1) continue;
-                if (!"double".equals(params.get(0).getType().getTypeName())) continue;
+                if (!"float".equals(params.get(0).getType().getTypeName())) continue;
 
                 cached_Float_ctor = ctor = m;
                 break;
@@ -49,10 +49,10 @@ public class Float_Decoder implements ObjectDecoder {
             }
         }
         // extract the info
-        final double value = approximationData.getDoubleField(cached_Float_value);
+        final float value = approximationData.getFloatField(cached_Float_value);
 
         // assemble into a call
-        final List<T> args = Collections.singletonList(decoder.createDoubleConst(value));
+        final List<T> args = Collections.singletonList(decoder.createFloatConst(value));
         return decoder.invokeMethod(ctor, args);
     }
 
