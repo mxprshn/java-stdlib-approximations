@@ -1,6 +1,9 @@
 package decoders.java.lang;
 
-import org.jacodb.api.*;
+import org.jacodb.api.JcClassOrInterface;
+import org.jacodb.api.JcField;
+import org.jacodb.api.JcMethod;
+import org.jacodb.api.JcParameter;
 import org.usvm.api.decoder.DecoderApi;
 import org.usvm.api.decoder.DecoderFor;
 import org.usvm.api.decoder.ObjectData;
@@ -9,17 +12,17 @@ import org.usvm.api.decoder.ObjectDecoder;
 import java.util.Collections;
 import java.util.List;
 
-@DecoderFor(Integer.class)
-public final class Integer_Decoder implements ObjectDecoder {
-    private volatile static JcMethod cached_Integer_ctor = null;
-    private volatile static JcField cached_Integer_value = null;
+@DecoderFor(StringBuffer.class)
+public final class StringBuffer_Decoder implements ObjectDecoder {
+    private volatile static JcMethod cached_StringBuffer_ctor = null;
+    private volatile static JcField cached_StringBuffer_value = null;
 
     @Override
     public <T> T createInstance(final JcClassOrInterface approximation,
                                 final ObjectData<T> approximationData,
                                 final DecoderApi<T> decoder) {
         // TODO: add class-based synchronization if needed
-        JcMethod ctor = cached_Integer_ctor;
+        JcMethod ctor = cached_StringBuffer_ctor;
         if (ctor == null) {
             // looking for constructor and data field
             final List<JcMethod> methods = approximation.getDeclaredMethods();
@@ -30,27 +33,27 @@ public final class Integer_Decoder implements ObjectDecoder {
 
                 List<JcParameter> params = m.getParameters();
                 if (params.size() != 1) continue;
-                if (!"int".equals(params.get(0).getType().getTypeName())) continue;
+                if (!"java.lang.String".equals(params.get(0).getType().getTypeName())) continue;
 
-                cached_Integer_ctor = ctor = m;
+                cached_StringBuffer_ctor = ctor = m;
                 break;
             }
 
             final List<JcField> fields = approximation.getDeclaredFields();
             for (int i = 0, c = fields.size(); i != c; i++) {
                 JcField f = fields.get(i);
-                if ("value".equals(f.getName())) {
-                    cached_Integer_value = f;
+                if ("storage".equals(f.getName())) {
+                    cached_StringBuffer_value = f;
                     break;
                 }
             }
         }
 
         // extract the info
-        final int value = approximationData.getIntField(cached_Integer_value);
+        final T value = approximationData.decodeField(cached_StringBuffer_value);
 
         // assemble into a call
-        final List<T> args = Collections.singletonList(decoder.createIntConst(value));
+        final List<T> args = Collections.singletonList(value);
         return decoder.invokeMethod(ctor, args);
     }
 
