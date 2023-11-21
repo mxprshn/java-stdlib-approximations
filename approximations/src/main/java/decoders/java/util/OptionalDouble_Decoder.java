@@ -1,7 +1,5 @@
 package decoders.java.util;
 
-import decoders.BaseDecoder;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.OptionalDouble;
