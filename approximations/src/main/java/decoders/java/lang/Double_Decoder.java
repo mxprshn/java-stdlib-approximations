@@ -9,7 +9,6 @@ import org.usvm.api.decoder.DecoderFor;
 import org.usvm.api.decoder.ObjectData;
 import org.usvm.api.decoder.ObjectDecoder;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
