@@ -1,12 +1,12 @@
 package decoders.java.util;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 @SuppressWarnings({"unused", "UnnecessaryUnboxing"})
-public final class HashSet_DecoderTests {
+public final class ArrayList_DecoderTests {
 
-    public static int test_0(final HashSet<Integer> obj) {
+    public static int test_0(final ArrayList<Integer> obj) {
         if (obj.isEmpty())
             return 0;
 
@@ -21,14 +21,11 @@ public final class HashSet_DecoderTests {
         if (value == null)
             return 3;
 
-        if (value.intValue() == 123)
+        if (value.intValue() == 32)
             return 4;
 
-        if (obj.size() == 2) {
-            final String numbers = obj.toString();
-            if ("[4, 5]".equals(numbers) || "[5, 4]".equals(numbers))
-                return 5;
-        }
+        if (obj.size() == 2 && "[4, 5]".equals(obj.toString()))
+            return 5;
 
         return 6;
     }

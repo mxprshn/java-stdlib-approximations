@@ -75,6 +75,6 @@ public class Optional_Decoder implements ObjectDecoder {
                                        final ObjectData<T> approxData,
                                        final T instance,
                                        final DecoderApi<T> decoder) {
-        // nothing
+        // nothing: Optional cannot contain itself
     }
 }
