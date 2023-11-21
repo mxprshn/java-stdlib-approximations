@@ -1,9 +1,6 @@
 package decoders.java.util;
 
-import org.jacodb.api.JcClassOrInterface;
-import org.jacodb.api.JcField;
-import org.jacodb.api.JcMethod;
-import org.jacodb.api.JcParameter;
+import org.jacodb.api.*;
 import org.usvm.api.SymbolicMap;
 import org.usvm.api.decoder.DecoderApi;
 import org.usvm.api.decoder.DecoderFor;
@@ -18,9 +15,11 @@ import java.util.List;
 public class LinkedHashSet_Decoder implements ObjectDecoder {
     private volatile static Object cachedConstructor = null;
     private volatile static JcMethod[] cachedMethods = null;
-    private volatile static JcMethod cached_HashSet_add = null;
-    private volatile static JcField cached_HashSet_length = null;
-    private volatile static JcField cached_HashSet_storage = null;
+    private volatile static JcMethod cached_LinkedHashSet_add = null;
+    private volatile static JcField cached_LinkedHashSet_length = null;
+    private volatile static JcField cached_LinkedHashSet_storage = null;
+    private volatile static JcField cached_Map_map = null;
+    private volatile static JcField cached_HashMapContainer_map = null;
 
     @SuppressWarnings("unchecked")
     @Override
@@ -65,8 +64,8 @@ public class LinkedHashSet_Decoder implements ObjectDecoder {
                                        final ObjectData<T> approximationData,
                                        final T outputInstance,
                                        final DecoderApi<T> decoder) {
-        JcField f_hs_storage = cached_HashSet_storage;
-        JcField f_hs_length = cached_HashSet_length;
+        JcField f_hs_storage = cached_LinkedHashSet_storage;
+        JcField f_hs_length = cached_LinkedHashSet_length;
         if (f_hs_length == null) {
             // TODO: add class-level synchronization if needed
             final List<JcField> fields = approximation.getDeclaredFields();
@@ -81,8 +80,8 @@ public class LinkedHashSet_Decoder implements ObjectDecoder {
                 if (f_hs_length != null && f_hs_storage != null)
                     break;
             }
-            cached_HashSet_length = f_hs_length;
-            cached_HashSet_storage = f_hs_storage;
+            cached_LinkedHashSet_length = f_hs_length;
+            cached_LinkedHashSet_storage = f_hs_storage;
         }
 
         // skip empty or erroneous objects
@@ -96,7 +95,7 @@ public class LinkedHashSet_Decoder implements ObjectDecoder {
             throw new InternalError("Invalid container: storage is NULL");
 
         // get primary method
-        JcMethod m_add = cached_HashSet_add;
+        JcMethod m_add = cached_LinkedHashSet_add;
         if (m_add == null) {
             // TODO: add synchronization if needed
             final JcMethod[] methods = cachedMethods;
@@ -111,10 +110,40 @@ public class LinkedHashSet_Decoder implements ObjectDecoder {
                 m_add = m;
                 break;
             }
-            cached_HashSet_add = m_add;
+            cached_LinkedHashSet_add = m_add;
         }
-        // Can we write in such way ?
-        final SymbolicMap<T, T> map = approximationData.decodeSymbolicMapField(f_hs_storage);
+
+        // prepare field references (inlined)
+        JcField f_m_map = cached_Map_map;
+        if (f_m_map == null) {
+            JcClasspath cp = approximation.getClasspath();
+            {
+                List<JcField> fields = cp.findClassOrNull("runtime.LibSLRuntime$Map").getDeclaredFields();
+                for (int i = 0, c = fields.size(); i != c; i++) {
+                    JcField field = fields.get(i);
+
+                    if ("map".equals(field.getName())) {
+                        cached_Map_map = f_m_map = field;
+                        break;
+                    }
+                }
+            }
+            {
+                List<JcField> fields = cp.findClassOrNull("runtime.LibSLRuntime$HashMapContainer").getDeclaredFields();
+                for (int i = 0, c = fields.size(); i != c; i++) {
+                    JcField field = fields.get(i);
+
+                    if ("map".equals(field.getName())) {
+                        cached_HashMapContainer_map = field;
+                        break;
+                    }
+                }
+            }
+        }
+
+        // get and parse the underlying symbolic map
+        final ObjectData<T> rtMapContainerData = storageData.getObjectField(f_m_map);
+        final SymbolicMap<T, T> map = rtMapContainerData.decodeSymbolicMapField(cached_HashMapContainer_map);
 
         while (length != 0) {
             T key = map.anyKey();
