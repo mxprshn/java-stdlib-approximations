@@ -36,8 +36,8 @@ public class OptionalDouble_Decoder implements ObjectDecoder {
                 }
             }
 
-            JcMethod Optional_empty = null;
-            JcMethod Optional_of = null;
+            JcMethod OptionalDouble_empty = null;
+            JcMethod OptionalDouble_of = null;
             final List<JcMethod> methods = approximation.getDeclaredMethods();
             for (int i = 0, c = methods.size(); i < c; i++) {
                 JcMethod m = methods.get(i);
@@ -47,23 +47,23 @@ public class OptionalDouble_Decoder implements ObjectDecoder {
                 String name = m.getName();
                 int paramCount = m.getParameters().size();
 
-                if (Optional_of == null && "of".equals(name) && paramCount == 1) {
-                    Optional_of = m;
+                if (OptionalDouble_of == null && "of".equals(name) && paramCount == 1) {
+                    OptionalDouble_of = m;
                     continue;
                 }
-                if (Optional_empty == null && "empty".equals(name) && paramCount == 0) {
-                    Optional_empty = m;
+                if (OptionalDouble_empty == null && "empty".equals(name) && paramCount == 0) {
+                    OptionalDouble_empty = m;
                 }
 
-                if (Optional_of != null && Optional_empty != null)
+                if (OptionalDouble_of != null && OptionalDouble_empty != null)
                     break;
             }
 
-            cached_OptionalDouble_of = Optional_of;
-            cached_decoded_OptionalDouble_empty = decoder.invokeMethod(Optional_empty, Collections.emptyList());
+            cached_OptionalDouble_of = OptionalDouble_of;
+            cached_decoded_OptionalDouble_empty = decoder.invokeMethod(OptionalDouble_empty, Collections.emptyList());
         }
 
-        if (approximationData.getObjectField(f_value) == null)
+        if (((Double) approximationData.decodeField(f_value)) == 0.0d)
             return (T) cached_decoded_OptionalDouble_empty;
         else
             return decoder.invokeMethod(cached_OptionalDouble_of, Collections.singletonList(
