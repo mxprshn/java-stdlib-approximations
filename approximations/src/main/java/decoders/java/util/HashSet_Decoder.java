@@ -1,7 +1,6 @@
 package decoders.java.util;
 
 import org.jacodb.api.*;
-import org.usvm.api.SymbolicIdentityMap;
 import org.usvm.api.SymbolicMap;
 import org.usvm.api.decoder.DecoderApi;
 import org.usvm.api.decoder.DecoderFor;
@@ -14,18 +13,13 @@ import java.util.List;
 
 @DecoderFor(HashSet.class)
 public final class HashSet_Decoder implements ObjectDecoder {
-    private static final byte KIND_HASHMAP = 1;
-    private static final byte KIND_IDENTITY_MAP = 2;
-
     private volatile static Object cachedConstructor = null;
     private volatile static JcMethod[] cachedMethods = null;
     private volatile static JcMethod cached_HashSet_add = null;
     private volatile static JcField cached_HashSet_length = null;
     private volatile static JcField cached_HashSet_storage = null;
     private volatile static JcField cached_Map_map = null;
-    private volatile static JcField cached_Map_Container_kind = null;
     private volatile static JcField cached_HashMapContainer_map = null;
-    private volatile static JcField cached_IdentityMapContainer_map = null;
 
     @SuppressWarnings("unchecked")
     @Override
@@ -135,17 +129,6 @@ public final class HashSet_Decoder implements ObjectDecoder {
                 }
             }
             {
-                List<JcField> fields = cp.findClassOrNull("runtime.LibSLRuntime$Map$Container").getDeclaredFields();
-                for (int i = 0, c = fields.size(); i != c; i++) {
-                    JcField field = fields.get(i);
-
-                    if ("kind".equals(field.getName())) {
-                        cached_Map_Container_kind = field;
-                        break;
-                    }
-                }
-            }
-            {
                 List<JcField> fields = cp.findClassOrNull("runtime.LibSLRuntime$HashMapContainer").getDeclaredFields();
                 for (int i = 0, c = fields.size(); i != c; i++) {
                     JcField field = fields.get(i);
@@ -156,60 +139,22 @@ public final class HashSet_Decoder implements ObjectDecoder {
                     }
                 }
             }
-            {
-                List<JcField> fields = cp.findClassOrNull("runtime.LibSLRuntime$IdentityMapContainer").getDeclaredFields();
-                for (int i = 0, c = fields.size(); i != c; i++) {
-                    JcField field = fields.get(i);
-
-                    if ("map".equals(field.getName())) {
-                        cached_IdentityMapContainer_map = field;
-                        break;
-                    }
-                }
-            }
         }
 
         // get and parse the underlying symbolic map
         final ObjectData<T> rtMapContainerData = storageData.getObjectField(f_m_map);
-        switch (rtMapContainerData.getByteField(cached_Map_Container_kind)) {
-            case KIND_HASHMAP: {
-                final SymbolicMap<T, T> map = rtMapContainerData.decodeSymbolicMapField(
-                        cached_HashMapContainer_map);
+        final SymbolicMap<T, T> map = rtMapContainerData.decodeSymbolicMapField(cached_HashMapContainer_map);
 
-                while (length != 0) {
-                    T key = map.anyKey();
+        while (length != 0) {
+            T key = map.anyKey();
 
-                    ArrayList<T> args = new ArrayList<>();
-                    args.add(outputInstance);
-                    args.add(key);
-                    decoder.invokeMethod(m_add, args);
+            ArrayList<T> args = new ArrayList<>();
+            args.add(outputInstance);
+            args.add(key);
+            decoder.invokeMethod(m_add, args);
 
-                    map.remove(key);
-                    length -= 1;
-                }
-                return;
-            }
-
-            case KIND_IDENTITY_MAP: {
-                final SymbolicIdentityMap<T, T> map = rtMapContainerData.decodeSymbolicIdentityMapField(
-                        cached_IdentityMapContainer_map);
-
-                while (length != 0) {
-                    T key = map.anyKey();
-
-                    ArrayList<T> args = new ArrayList<>();
-                    args.add(outputInstance);
-                    args.add(key);
-                    decoder.invokeMethod(m_add, args);
-
-                    map.remove(key);
-                    length -= 1;
-                }
-                return;
-            }
-
-            default:
-                throw new InternalError("Unexpected Map.Container kind");
+            map.remove(key);
+            length -= 1;
         }
     }
 }

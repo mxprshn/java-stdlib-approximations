@@ -24,7 +24,13 @@ public final class HashSet_DecoderTests {
         if (value.intValue() == 123)
             return 4;
 
-        return 5;
+        if (obj.size() == 2) {
+            final String numbers = obj.toString();
+            if ("[4, 5]".equals(numbers) || "[5, 4]".equals(numbers))
+                return 5;
+        }
+
+        return 6;
     }
 
 }
