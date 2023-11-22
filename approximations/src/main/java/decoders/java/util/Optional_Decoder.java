@@ -34,40 +34,45 @@ public class Optional_Decoder implements ObjectDecoder {
                     break;
                 }
             }
-
-            JcMethod Optional_empty = null;
-            JcMethod Optional_of = null;
-            final List<JcMethod> methods = approx.getDeclaredMethods();
-            for (int i = 0, c = methods.size(); i < c; i++) {
-                JcMethod m = methods.get(i);
-
-                if (!m.isStatic()) continue;
-
-                String name = m.getName();
-                int paramCount = m.getParameters().size();
-
-                if (Optional_of == null && "of".equals(name) && paramCount == 1) {
-                    Optional_of = m;
-                    continue;
-                }
-                if (Optional_empty == null && "empty".equals(name) && paramCount == 0) {
-                    Optional_empty = m;
-                }
-
-                if (Optional_of != null && Optional_empty != null)
-                    break;
-            }
-
-            cached_Optional_of = Optional_of;
-            cached_decoded_Optional_empty = decoder.invokeMethod(Optional_empty, Collections.emptyList());
         }
 
-        if (approxData.getObjectField(f_value) == null)
-            return (T) cached_decoded_Optional_empty;
-        else
-            return decoder.invokeMethod(cached_Optional_of, Collections.singletonList(
+        // NOTE: multiple "invokeMethod"s are not allowed - caching based on branch
+        if (approxData.getObjectField(f_value) == null) {
+            Object ctor = cached_decoded_Optional_empty;
+            // TODO: add class-based synchronization if needed
+            if (ctor == null) {
+                final List<JcMethod> methods = approx.getDeclaredMethods();
+                for (int i = 0, c = methods.size(); i < c; i++) {
+                    JcMethod m = methods.get(i);
+
+                    if (!m.isStatic()) continue;
+                    if (!"empty".equals(m.getName())) continue;
+                    if (!m.getParameters().isEmpty()) continue;
+
+                    return (T) (cached_decoded_Optional_empty = decoder.invokeMethod(m, Collections.emptyList()));
+                }
+            }
+            return (T) ctor;
+        } else {
+            JcMethod m_of = cached_Optional_of;
+            // TODO: add class-based synchronization if needed
+            if (m_of == null) {
+                final List<JcMethod> methods = approx.getDeclaredMethods();
+                for (int i = 0, c = methods.size(); i < c; i++) {
+                    JcMethod m = methods.get(i);
+
+                    if (!m.isStatic()) continue;
+                    if (!"of".equals(m.getName())) continue;
+
+                    cached_Optional_of = m_of = m;
+                    break;
+                }
+            }
+
+            return decoder.invokeMethod(m_of, Collections.singletonList(
                     approxData.decodeField(f_value)
             ));
+        }
     }
 
     @Override
