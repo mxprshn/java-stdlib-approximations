@@ -14,10 +14,10 @@ import java.util.OptionalInt;
 
 @DecoderFor(OptionalInt.class)
 public class OptionalInt_Decoder implements ObjectDecoder {
-    private volatile static JcField cached_OptionalInt_value = null;
     private volatile static JcField cached_OptionalInt_present = null;
+    private volatile static JcField cached_OptionalInt_value = null;
     private volatile static JcMethod cached_OptionalInt_of = null;
-    private volatile static Object cached_decoded_OptionalInt_empty = null;
+    private volatile static JcMethod cached_OptionalInt_empty = null;
 
     @SuppressWarnings({"unchecked", "ForLoopReplaceableByForEach"})
     @Override
@@ -33,14 +33,12 @@ public class OptionalInt_Decoder implements ObjectDecoder {
                 JcField f = fields.get(i);
                 String name = f.getName();
 
+                // NOTE: this is an example on how to join discovery process for multiple targets
                 if ("value".equals(name)) {
                     f_value = f;
-                    continue;
-                }
-                if ("present".equals(name)) {
+                } else if ("present".equals(name)) {
                     f_present = f;
                 }
-
                 if (f_value != null && f_present != null)
                     break;
             }
@@ -69,21 +67,22 @@ public class OptionalInt_Decoder implements ObjectDecoder {
                     decoder.createIntConst(value)
             ));
         } else {
-            Object ctor = cached_decoded_OptionalInt_empty;
+            JcMethod m_empty = cached_OptionalInt_empty;
             // TODO: add class-based synchronization if needed
-            if (ctor == null) {
+            if (m_empty == null) {
                 final List<JcMethod> methods = approx.getDeclaredMethods();
                 for (int i = 0, c = methods.size(); i < c; i++) {
                     JcMethod m = methods.get(i);
 
                     if (!m.isStatic()) continue;
                     if (!"empty".equals(m.getName())) continue;
-                    if (!m.getParameters().isEmpty()) continue;
 
-                    return (T) (cached_decoded_OptionalInt_empty = decoder.invokeMethod(m, Collections.emptyList()));
+                    cached_OptionalInt_empty = m_empty = m;
+                    break;
                 }
             }
-            return (T) ctor;
+
+            return decoder.invokeMethod(m_empty, (List<T>) Collections.EMPTY_LIST);
         }
     }
 

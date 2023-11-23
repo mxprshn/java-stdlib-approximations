@@ -13,50 +13,49 @@ import java.util.List;
 
 @DecoderFor(HashSet.class)
 public final class HashSet_Decoder implements ObjectDecoder {
-    private volatile static Object cachedConstructor = null;
     private volatile static JcMethod[] cachedMethods = null;
+    private volatile static JcMethod cached_HashSet_ctor = null;
     private volatile static JcMethod cached_HashSet_add = null;
     private volatile static JcField cached_HashSet_length = null;
     private volatile static JcField cached_HashSet_storage = null;
     private volatile static JcField cached_Map_map = null;
     private volatile static JcField cached_HashMapContainer_map = null;
 
-    @SuppressWarnings("unchecked")
     @Override
     public <T> T createInstance(final JcClassOrInterface approximation,
                                 final ObjectData<T> approximationData,
                                 final DecoderApi<T> decoder) {
-        final Object constructor = cachedConstructor;
-        if (constructor != null)
-            return (T) constructor;
-
+        JcMethod ctor = cached_HashSet_ctor;
         // TODO: add class-level synchronization if needed
-        final List<JcMethod> methodList = approximation.getDeclaredMethods();
-        final int methodCount = methodList.size();
-        JcMethod[] methods = new JcMethod[methodCount];
-        cachedMethods = methods = methodList.toArray(methods);
+        if (ctor == null) {
+            final List<JcMethod> methodList = approximation.getDeclaredMethods();
+            final int methodCount = methodList.size();
+            JcMethod[] methods = new JcMethod[methodCount];
+            cachedMethods = methods = methodList.toArray(methods);
 
-        for (int i = 0; i != methodCount; i++) {
-            JcMethod m = methods[i];
+            for (int i = 0; i != methodCount; i++) {
+                JcMethod m = methods[i];
 
-            if (m.isConstructor()) {
-                List<JcParameter> params = m.getParameters();
+                if (m.isConstructor()) {
+                    List<JcParameter> params = m.getParameters();
 
-                // example: looking for java.util.HashSet.HashSet(int, float)
-                if (params.size() != 2) continue;
-                if (!"int".equals(params.get(0).getType().getTypeName())) continue;
-                if (!"float".equals(params.get(1).getType().getTypeName())) continue;
+                    // example: looking for java.util.HashSet.HashSet(int, float)
+                    if (params.size() != 2) continue;
+                    if (!"int".equals(params.get(0).getType().getTypeName())) continue;
+                    if (!"float".equals(params.get(1).getType().getTypeName())) continue;
 
-                // prepare parameters
-                final ArrayList<T> args = new ArrayList<>();
-                args.add(decoder.createIntConst(123));
-                args.add(decoder.createFloatConst(0.75f));
-
-                // construct invocation, update global "cache" and exit immediately
-                return (T) (cachedConstructor = decoder.invokeMethod(m, args));
+                    // update global "cache" and stop the search
+                    cached_HashSet_ctor = ctor = m;
+                    break;
+                }
             }
         }
-        throw new InternalError("Constructor not found");
+
+        // prepare parameters "in-place" and construct a new call
+        final ArrayList<T> args = new ArrayList<>();
+        args.add(decoder.createIntConst(123));
+        args.add(decoder.createFloatConst(0.75f));
+        return decoder.invokeMethod(ctor, args);
     }
 
     @Override

@@ -17,8 +17,8 @@ import java.util.concurrent.atomic.AtomicReference;
 @SuppressWarnings("ForLoopReplaceableByForEach")
 @DecoderFor(AtomicReference.class)
 public class AtomicReference_Decoder implements ObjectDecoder {
-    private volatile static Object cached_decoded_ctor = null;
     private volatile static JcField cached_AtomicReference_value = null;
+    private volatile static JcMethod cached_AtomicReference_ctor = null;
     private volatile static JcMethod cached_AtomicReference_set = null;
 
     @SuppressWarnings({"unchecked"})
@@ -26,11 +26,9 @@ public class AtomicReference_Decoder implements ObjectDecoder {
     public <T> T createInstance(final JcClassOrInterface approx,
                                 final ObjectData<T> approxData,
                                 final DecoderApi<T> decoder) {
-        Object ctor = cached_decoded_ctor;
-        if (ctor == null) {
-            // TODO: add class-based synchronization if needed
-
-            JcMethod m_ctor = null;
+        JcMethod m_ctor = cached_AtomicReference_ctor;
+        // TODO: add class-based synchronization if needed
+        if (m_ctor == null) {
             JcMethod m_set = null;
 
             final List<JcMethod> methods = approx.getDeclaredMethods();
@@ -41,7 +39,7 @@ public class AtomicReference_Decoder implements ObjectDecoder {
                     if (m_ctor != null) continue;
                     if (!m.getParameters().isEmpty()) continue;
 
-                    m_ctor = m;
+                    cached_AtomicReference_ctor = m_ctor = m;
                 } else {
                     if (m_set != null) continue;
 
@@ -51,17 +49,15 @@ public class AtomicReference_Decoder implements ObjectDecoder {
                     if (params.size() != 1) continue;
                     if (!"java.lang.Object".equals(params.get(0).getType().getTypeName())) continue;
 
-                    m_set = m;
+                    cached_AtomicReference_set = m_set = m;
                 }
 
                 if (m_ctor != null && m_set != null)
                     break;
             }
-
-            cached_AtomicReference_set = m_set;
-            cached_decoded_ctor = ctor = decoder.invokeMethod(m_ctor, Collections.emptyList());
         }
-        return (T) ctor;
+
+        return decoder.invokeMethod(m_ctor, (List<T>) Collections.EMPTY_LIST);
     }
 
     @Override
