@@ -21,8 +21,8 @@ public class Float_Decoder implements ObjectDecoder {
     public <T> T createInstance(JcClassOrInterface approximation,
                                 ObjectData<T> approximationData,
                                 DecoderApi<T> decoder) {
-        // TODO: add class-based synchronization if needed
         JcMethod ctor = cached_Float_ctor;
+        // TODO: add class-based synchronization if needed
         if (ctor == null) {
             // looking for constructor and data field
             final List<JcMethod> methods = approximation.getDeclaredMethods();

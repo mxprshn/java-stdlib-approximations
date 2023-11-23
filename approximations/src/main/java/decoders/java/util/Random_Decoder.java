@@ -14,27 +14,28 @@ import java.util.Random;
 
 @DecoderFor(Random.class)
 public class Random_Decoder implements ObjectDecoder {
-    private volatile static Object cachedConstructor = null;
+    private volatile static JcMethod cached_Random_ctor = null;
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "ForLoopReplaceableByForEach"})
     @Override
     public <T> T createInstance(final JcClassOrInterface approximation,
                                 final ObjectData<T> approximationData,
                                 final DecoderApi<T> decoder) {
-        final Object constructor = cachedConstructor;
-        if (constructor != null)
-            return (T) constructor;
-
+        JcMethod ctor = cached_Random_ctor;
         // TODO: add class-level synchronization if needed
-        final List<JcMethod> methods = approximation.getDeclaredMethods();
-        for (int i = 0, c = methods.size(); i != c; i++) {
-            JcMethod m = methods.get(i);
+        if (ctor == null) {
+            final List<JcMethod> methods = approximation.getDeclaredMethods();
+            for (int i = 0, c = methods.size(); i != c; i++) {
+                JcMethod m = methods.get(i);
 
-            if (m.isConstructor() && m.getParameters().size() == 0)
-                // construct invocation, update global "cache" and exit immediately
-                return (T) (cachedConstructor = decoder.invokeMethod(m, Collections.EMPTY_LIST));
+                if (m.isConstructor() && m.getParameters().size() == 0) {
+                    cached_Random_ctor = ctor = m;
+                    break;
+                }
+            }
         }
-        throw new InternalError("Constructor not found");
+
+        return decoder.invokeMethod(ctor, (List<T>) Collections.EMPTY_LIST);
     }
 
     @Override

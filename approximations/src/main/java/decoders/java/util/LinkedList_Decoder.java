@@ -26,8 +26,8 @@ public class LinkedList_Decoder implements ObjectDecoder {
     public <T> T createInstance(final JcClassOrInterface approximation,
                                 final ObjectData<T> approximationData,
                                 final DecoderApi<T> decoder) {
-        // TODO: add class-based synchronization if needed
         JcMethod ctor = cached_LinkedList_ctor;
+        // TODO: add class-based synchronization if needed
         if (ctor == null) {
             // looking for constructor
             // TODO: add class-level synchronization if needed
