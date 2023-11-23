@@ -15,8 +15,8 @@ import java.util.Optional;
 @DecoderFor(Optional.class)
 public class Optional_Decoder implements ObjectDecoder {
     private volatile static JcField cached_Optional_value = null;
+    private volatile static JcMethod cached_Optional_empty = null;
     private volatile static JcMethod cached_Optional_of = null;
-    private volatile static Object cached_decoded_Optional_empty = null;
 
     @SuppressWarnings({"unchecked", "ForLoopReplaceableByForEach"})
     @Override
@@ -36,23 +36,24 @@ public class Optional_Decoder implements ObjectDecoder {
             }
         }
 
-        // NOTE: multiple "invokeMethod"s are not allowed - caching based on branch
+        // NOTE: caching of "invokeMethod"s is not allowed
         if (approxData.getObjectField(f_value) == null) {
-            Object ctor = cached_decoded_Optional_empty;
+            JcMethod m_empty = cached_Optional_empty;
             // TODO: add class-based synchronization if needed
-            if (ctor == null) {
+            if (m_empty == null) {
                 final List<JcMethod> methods = approx.getDeclaredMethods();
                 for (int i = 0, c = methods.size(); i < c; i++) {
                     JcMethod m = methods.get(i);
 
                     if (!m.isStatic()) continue;
                     if (!"empty".equals(m.getName())) continue;
-                    if (!m.getParameters().isEmpty()) continue;
 
-                    return (T) (cached_decoded_Optional_empty = decoder.invokeMethod(m, Collections.emptyList()));
+                    cached_Optional_empty = m_empty = m;
+                    break;
                 }
             }
-            return (T) ctor;
+
+            return decoder.invokeMethod(m_empty, (List<T>) Collections.EMPTY_LIST);
         } else {
             JcMethod m_of = cached_Optional_of;
             // TODO: add class-based synchronization if needed

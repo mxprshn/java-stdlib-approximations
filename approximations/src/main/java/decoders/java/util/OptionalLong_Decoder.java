@@ -14,10 +14,10 @@ import java.util.OptionalLong;
 
 @DecoderFor(OptionalLong.class)
 public class OptionalLong_Decoder implements ObjectDecoder {
-    private volatile static JcField cached_OptionalLong_value = null;
     private volatile static JcField cached_OptionalLong_present = null;
+    private volatile static JcField cached_OptionalLong_value = null;
     private volatile static JcMethod cached_OptionalLong_of = null;
-    private volatile static Object cached_decoded_OptionalLong_empty = null;
+    private volatile static JcMethod cached_OptionalLong_empty = null;
 
     @SuppressWarnings({"unchecked", "ForLoopReplaceableByForEach"})
     @Override
@@ -35,9 +35,7 @@ public class OptionalLong_Decoder implements ObjectDecoder {
 
                 if ("value".equals(name)) {
                     f_value = f;
-                    continue;
-                }
-                if ("present".equals(name)) {
+                } else if ("present".equals(name)) {
                     f_present = f;
                 }
 
@@ -69,21 +67,22 @@ public class OptionalLong_Decoder implements ObjectDecoder {
                     decoder.createLongConst(value)
             ));
         } else {
-            Object ctor = cached_decoded_OptionalLong_empty;
+            JcMethod m_empty = cached_OptionalLong_empty;
             // TODO: add class-based synchronization if needed
-            if (ctor == null) {
+            if (m_empty == null) {
                 final List<JcMethod> methods = approx.getDeclaredMethods();
                 for (int i = 0, c = methods.size(); i < c; i++) {
                     JcMethod m = methods.get(i);
 
                     if (!m.isStatic()) continue;
                     if (!"empty".equals(m.getName())) continue;
-                    if (!m.getParameters().isEmpty()) continue;
 
-                    return (T) (cached_decoded_OptionalLong_empty = decoder.invokeMethod(m, Collections.emptyList()));
+                    cached_OptionalLong_empty = m_empty = m;
+                    break;
                 }
             }
-            return (T) ctor;
+
+            return decoder.invokeMethod(m_empty, (List<T>) Collections.EMPTY_LIST);
         }
     }
 
