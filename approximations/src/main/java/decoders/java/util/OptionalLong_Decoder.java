@@ -14,10 +14,10 @@ import java.util.OptionalLong;
 
 @DecoderFor(OptionalLong.class)
 public class OptionalLong_Decoder implements ObjectDecoder {
-    private volatile static JcField cached_OptionalLong_value = null;
     private volatile static JcField cached_OptionalLong_present = null;
+    private volatile static JcField cached_OptionalLong_value = null;
     private volatile static JcMethod cached_OptionalLong_of = null;
-    private volatile static Object cached_decoded_OptionalLong_empty = null;
+    private volatile static JcMethod cached_OptionalLong_empty = null;
 
     @SuppressWarnings({"unchecked", "ForLoopReplaceableByForEach"})
     @Override
@@ -35,9 +35,7 @@ public class OptionalLong_Decoder implements ObjectDecoder {
 
                 if ("value".equals(name)) {
                     f_value = f;
-                    continue;
-                }
-                if ("present".equals(name)) {
+                } else if ("present".equals(name)) {
                     f_present = f;
                 }
 
@@ -46,41 +44,45 @@ public class OptionalLong_Decoder implements ObjectDecoder {
             }
             cached_OptionalLong_present = f_present;
             cached_OptionalLong_value = f_value;
-
-            JcMethod OptionalInt_empty = null;
-            JcMethod OptionalInt_of = null;
-            final List<JcMethod> methods = approx.getDeclaredMethods();
-            for (int i = 0, c = methods.size(); i < c; i++) {
-                JcMethod m = methods.get(i);
-
-                if (!m.isStatic()) continue;
-
-                String name = m.getName();
-                int paramCount = m.getParameters().size();
-
-                if (OptionalInt_of == null && "of".equals(name) && paramCount == 1) {
-                    OptionalInt_of = m;
-                    continue;
-                }
-                if (OptionalInt_empty == null && "empty".equals(name) && paramCount == 0) {
-                    OptionalInt_empty = m;
-                }
-
-                if (OptionalInt_of != null && OptionalInt_empty != null)
-                    break;
-            }
-
-            cached_OptionalLong_of = OptionalInt_of;
-            cached_decoded_OptionalLong_empty = decoder.invokeMethod(OptionalInt_empty, Collections.emptyList());
         }
 
         if (approxData.getBooleanField(f_present)) {
+            JcMethod m_of = cached_OptionalLong_of;
+            // TODO: add class-based synchronization if needed
+            if (m_of == null) {
+                final List<JcMethod> methods = approx.getDeclaredMethods();
+                for (int i = 0, c = methods.size(); i < c; i++) {
+                    JcMethod m = methods.get(i);
+
+                    if (!m.isStatic()) continue;
+                    if (!"of".equals(m.getName())) continue;
+
+                    cached_OptionalLong_of = m_of = m;
+                    break;
+                }
+            }
+
             final long value = approxData.getLongField(cached_OptionalLong_value);
-            return decoder.invokeMethod(cached_OptionalLong_of, Collections.singletonList(
+            return decoder.invokeMethod(m_of, Collections.singletonList(
                     decoder.createLongConst(value)
             ));
         } else {
-            return (T) cached_decoded_OptionalLong_empty;
+            JcMethod m_empty = cached_OptionalLong_empty;
+            // TODO: add class-based synchronization if needed
+            if (m_empty == null) {
+                final List<JcMethod> methods = approx.getDeclaredMethods();
+                for (int i = 0, c = methods.size(); i < c; i++) {
+                    JcMethod m = methods.get(i);
+
+                    if (!m.isStatic()) continue;
+                    if (!"empty".equals(m.getName())) continue;
+
+                    cached_OptionalLong_empty = m_empty = m;
+                    break;
+                }
+            }
+
+            return decoder.invokeMethod(m_empty, (List<T>) Collections.EMPTY_LIST);
         }
     }
 

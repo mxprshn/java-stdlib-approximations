@@ -14,10 +14,10 @@ import java.util.OptionalInt;
 
 @DecoderFor(OptionalInt.class)
 public class OptionalInt_Decoder implements ObjectDecoder {
-    private volatile static JcField cached_OptionalInt_value = null;
     private volatile static JcField cached_OptionalInt_present = null;
+    private volatile static JcField cached_OptionalInt_value = null;
     private volatile static JcMethod cached_OptionalInt_of = null;
-    private volatile static Object cached_decoded_OptionalInt_empty = null;
+    private volatile static JcMethod cached_OptionalInt_empty = null;
 
     @SuppressWarnings({"unchecked", "ForLoopReplaceableByForEach"})
     @Override
@@ -33,54 +33,56 @@ public class OptionalInt_Decoder implements ObjectDecoder {
                 JcField f = fields.get(i);
                 String name = f.getName();
 
+                // NOTE: this is an example on how to join discovery process for multiple targets
                 if ("value".equals(name)) {
                     f_value = f;
-                    continue;
-                }
-                if ("present".equals(name)) {
+                } else if ("present".equals(name)) {
                     f_present = f;
                 }
-
                 if (f_value != null && f_present != null)
                     break;
             }
             cached_OptionalInt_present = f_present;
             cached_OptionalInt_value = f_value;
-
-            JcMethod OptionalInt_empty = null;
-            JcMethod OptionalInt_of = null;
-            final List<JcMethod> methods = approx.getDeclaredMethods();
-            for (int i = 0, c = methods.size(); i < c; i++) {
-                JcMethod m = methods.get(i);
-
-                if (!m.isStatic()) continue;
-
-                String name = m.getName();
-                int paramCount = m.getParameters().size();
-
-                if (OptionalInt_of == null && "of".equals(name) && paramCount == 1) {
-                    OptionalInt_of = m;
-                    continue;
-                }
-                if (OptionalInt_empty == null && "empty".equals(name) && paramCount == 0) {
-                    OptionalInt_empty = m;
-                }
-
-                if (OptionalInt_of != null && OptionalInt_empty != null)
-                    break;
-            }
-
-            cached_OptionalInt_of = OptionalInt_of;
-            cached_decoded_OptionalInt_empty = decoder.invokeMethod(OptionalInt_empty, Collections.emptyList());
         }
 
         if (approxData.getBooleanField(f_present)) {
+            JcMethod m_of = cached_OptionalInt_of;
+            // TODO: add class-based synchronization if needed
+            if (m_of == null) {
+                final List<JcMethod> methods = approx.getDeclaredMethods();
+                for (int i = 0, c = methods.size(); i < c; i++) {
+                    JcMethod m = methods.get(i);
+
+                    if (!m.isStatic()) continue;
+                    if (!"of".equals(m.getName())) continue;
+
+                    cached_OptionalInt_of = m_of = m;
+                    break;
+                }
+            }
+
             final int value = approxData.getIntField(cached_OptionalInt_value);
-            return decoder.invokeMethod(cached_OptionalInt_of, Collections.singletonList(
+            return decoder.invokeMethod(m_of, Collections.singletonList(
                     decoder.createIntConst(value)
             ));
         } else {
-            return (T) cached_decoded_OptionalInt_empty;
+            JcMethod m_empty = cached_OptionalInt_empty;
+            // TODO: add class-based synchronization if needed
+            if (m_empty == null) {
+                final List<JcMethod> methods = approx.getDeclaredMethods();
+                for (int i = 0, c = methods.size(); i < c; i++) {
+                    JcMethod m = methods.get(i);
+
+                    if (!m.isStatic()) continue;
+                    if (!"empty".equals(m.getName())) continue;
+
+                    cached_OptionalInt_empty = m_empty = m;
+                    break;
+                }
+            }
+
+            return decoder.invokeMethod(m_empty, (List<T>) Collections.EMPTY_LIST);
         }
     }
 

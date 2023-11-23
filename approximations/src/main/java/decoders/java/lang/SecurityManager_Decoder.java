@@ -11,16 +11,16 @@ import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings("ForLoopReplaceableByForEach")
-@DecoderFor(Object.class)
-public final class Object_Decoder implements ObjectDecoder {
-    private volatile static JcMethod cached_Object_ctor = null;
+@DecoderFor(SecurityManager.class)
+public final class SecurityManager_Decoder implements ObjectDecoder {
+    private volatile static JcMethod cached_SecurityManager_ctor = null;
 
     @SuppressWarnings({"unchecked", "SizeReplaceableByIsEmpty"})
     @Override
     public <T> T createInstance(final JcClassOrInterface approximation,
                                 final ObjectData<T> approximationData,
                                 final DecoderApi<T> decoder) {
-        JcMethod ctor = cached_Object_ctor;
+        JcMethod ctor = cached_SecurityManager_ctor;
         // TODO: add class-based synchronization if needed
         if (ctor == null) {
             final List<JcMethod> methods = approximation.getDeclaredMethods();
@@ -28,7 +28,7 @@ public final class Object_Decoder implements ObjectDecoder {
                 JcMethod m = methods.get(i);
 
                 if (m.isConstructor() && m.getParameters().size() == 0) {
-                    cached_Object_ctor = ctor = m;
+                    cached_SecurityManager_ctor = ctor = m;
                     break;
                 }
             }

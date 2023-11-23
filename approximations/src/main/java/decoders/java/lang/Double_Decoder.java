@@ -21,8 +21,8 @@ public final class Double_Decoder implements ObjectDecoder {
     public <T> T createInstance(final JcClassOrInterface approximation,
                                 final ObjectData<T> approximationData,
                                 final DecoderApi<T> decoder) {
-        // TODO: add class-based synchronization if needed
         JcMethod ctor = cached_Double_ctor;
+        // TODO: add class-based synchronization if needed
         if (ctor == null) {
             // looking for constructor and data field
             final List<JcMethod> methods = approximation.getDeclaredMethods();
