@@ -13,20 +13,27 @@ public class LinkedHashSet_DecoderTests {
         if (obj.size() == 5)
             return 1;
 
-        Iterator<Integer> iter = obj.iterator();
+        final Iterator<Integer> iter = obj.iterator();
         if (!iter.hasNext())
             return 2;
 
-        Integer value = iter.next();
+        final Integer value = iter.next();
         if (value == null)
             return 3;
 
-        if (value.intValue() == 123)
+        if (value.intValue() == 128)
             return 4;
 
         if (obj.size() == 2) {
-            final String numbers = obj.toString();
-            if ("[4, 5]".equals(numbers) || "[5, 4]".equals(numbers))
+            Integer[] numbers = new Integer[2];
+            numbers = obj.toArray(numbers);
+
+            final Integer a = 2;
+            final Integer b = 4;
+
+            final boolean b1 = a.equals(numbers[0]) && b.equals(numbers[1]);
+            final boolean b2 = a.equals(numbers[1]) && b.equals(numbers[0]);
+            if (b1 || b2)
                 return 5;
         }
 

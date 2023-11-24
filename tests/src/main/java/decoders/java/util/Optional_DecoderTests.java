@@ -11,13 +11,10 @@ public final class Optional_DecoderTests {
 
         final Object value = obj.get();
 
-        if (value instanceof Integer && ((Integer) value).intValue() == 123)
+        if (value instanceof Integer && ((Integer) value).intValue() == 64)
             return 1;
 
-        if ("ABC".equals(value))
-            return 2;
-
-        return 3;
+        return 2;
     }
 
 }

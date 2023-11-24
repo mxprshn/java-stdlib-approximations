@@ -13,19 +13,24 @@ public final class ArrayList_DecoderTests {
         if (obj.size() == 5)
             return 1;
 
-        Iterator<Integer> iter = obj.iterator();
+        final Iterator<Integer> iter = obj.iterator();
         if (!iter.hasNext())
             return 2;
 
-        Integer value = iter.next();
+        final Integer value = iter.next();
         if (value == null)
             return 3;
 
         if (value.intValue() == 32)
             return 4;
 
-        if (obj.size() == 2 && "[4, 5]".equals(obj.toString()))
-            return 5;
+        if (obj.size() == 2) {
+            final Integer a = 2;
+            final Integer b = 4;
+
+            if (a.equals(obj.get(0)) && b.equals(obj.get(1)))
+                return 5;
+        }
 
         return 6;
     }

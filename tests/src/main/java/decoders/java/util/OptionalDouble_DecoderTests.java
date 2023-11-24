@@ -9,7 +9,7 @@ public class OptionalDouble_DecoderTests {
         if (!obj.isPresent())
             return 0;
 
-        if (obj.getAsDouble() == 3.14d)
+        if (obj.getAsDouble() == 2.d)
             return 1;
 
         return 2;

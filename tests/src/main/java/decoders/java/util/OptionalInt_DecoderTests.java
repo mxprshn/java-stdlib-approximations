@@ -9,7 +9,7 @@ public final class OptionalInt_DecoderTests {
         if (!obj.isPresent())
             return 0;
 
-        if (obj.getAsInt() == 128)
+        if (obj.getAsInt() == 32)
             return 1;
 
         return 2;

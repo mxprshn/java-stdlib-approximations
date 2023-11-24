@@ -11,13 +11,10 @@ public final class AtomicReference_DecoderTests {
         if (value == null)
             return 0;
 
-        if (value instanceof Integer && ((Integer) value).intValue() == 73)
+        if (value instanceof Integer && ((Integer) value).intValue() == 32)
             return 1;
 
-        if ("XYZ".equals(value))
-            return 2;
-
-        return 3;
+        return 2;
     }
 
 }

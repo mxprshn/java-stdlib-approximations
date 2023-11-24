@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public final class AtomicLong_DecoderTests {
 
     public static int test_0(final AtomicLong obj) {
-        return obj.get() == 321L ? 0 : 1;
+        return obj.get() == 16L ? 0 : 1;
     }
 
 }

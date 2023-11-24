@@ -6,10 +6,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public final class AtomicInteger_DecoderTests {
 
     public static int test_0(final AtomicInteger obj) {
-        if (obj.get() == 123)
+        if (obj.get() == 128)
             return 0;
 
-        if ("5".equals(obj.toString()))
+        if (obj.get() == 9)
             return 1;
 
         return 2;
