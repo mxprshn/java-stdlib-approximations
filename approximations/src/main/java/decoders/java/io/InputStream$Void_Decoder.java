@@ -2,6 +2,7 @@ package decoders.java.io;
 
 import org.jacodb.api.JcClassOrInterface;
 import org.jacodb.api.JcMethod;
+import org.jacodb.api.JcParameter;
 import org.jacodb.api.JcType;
 import org.usvm.api.decoder.DecoderApi;
 import org.usvm.api.decoder.DecoderFor;
@@ -32,7 +33,7 @@ public final class InputStream$Void_Decoder implements ObjectDecoder {
                 if (!m.isConstructor()) continue;
 
                 // NOTE: replacing our custom stream by a ByteArrayInputStream on empty buffer
-                var params = m.getParameters();
+                List<JcParameter> params = m.getParameters();
                 if (params.size() != 1) continue;
                 if (!"byte[]".equals(params.get(0).getType().getTypeName())) continue;
 
