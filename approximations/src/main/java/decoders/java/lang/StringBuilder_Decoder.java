@@ -9,7 +9,7 @@ import org.usvm.api.decoder.DecoderFor;
 import org.usvm.api.decoder.ObjectData;
 import org.usvm.api.decoder.ObjectDecoder;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 @DecoderFor(StringBuilder.class)
@@ -50,10 +50,14 @@ public final class StringBuilder_Decoder implements ObjectDecoder {
         }
 
         // extract the info
-        final T value = approximationData.decodeField(cached_StringBuilder_value);
+        final JcField f_value = cached_StringBuilder_value;
+        final T value = approximationData.getObjectField(f_value) != null
+                ? approximationData.decodeField(f_value)
+                : decoder.createStringConst("");
 
         // assemble into a call
-        final List<T> args = Collections.singletonList(value);
+        final List<T> args = new ArrayList<>();
+        args.add(value);
         return decoder.invokeMethod(ctor, args);
     }
 

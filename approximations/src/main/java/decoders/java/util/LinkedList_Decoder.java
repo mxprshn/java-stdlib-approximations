@@ -75,6 +75,9 @@ public class LinkedList_Decoder implements ObjectDecoder {
         }
 
         final SymbolicList<T> storage = approximationData.decodeSymbolicListField(f_storage);
+        if (storage == null)
+            return;
+
         for (int i = 0, c = storage.size(); i < c; i++) {
             ArrayList<T> args = new ArrayList<>();
             args.add(outputInstance);

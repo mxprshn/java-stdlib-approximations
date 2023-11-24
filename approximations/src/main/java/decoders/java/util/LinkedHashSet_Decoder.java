@@ -144,6 +144,8 @@ public class LinkedHashSet_Decoder implements ObjectDecoder {
         // get and parse the underlying symbolic map
         final ObjectData<T> rtMapContainerData = storageData.getObjectField(f_m_map);
         final SymbolicMap<T, T> map = rtMapContainerData.decodeSymbolicMapField(cached_HashMapContainer_map);
+        if (map == null)
+            return;
 
         while (length != 0) {
             T key = map.anyKey();
