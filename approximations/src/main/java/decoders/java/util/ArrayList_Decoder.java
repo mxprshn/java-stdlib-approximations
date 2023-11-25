@@ -17,9 +17,9 @@ import java.util.List;
 @SuppressWarnings("ForLoopReplaceableByForEach")
 @DecoderFor(ArrayList.class)
 public class ArrayList_Decoder implements ObjectDecoder {
-    private volatile static JcField cached_ArrayList_storage = null;
-    private volatile static JcMethod cached_ArrayList_ctor = null;
-    private volatile static JcMethod cached_ArrayList_add = null;
+    private volatile JcField cached_ArrayList_storage = null;
+    private volatile JcMethod cached_ArrayList_ctor = null;
+    private volatile JcMethod cached_ArrayList_add = null;
 
     @SuppressWarnings({"unchecked"})
     @Override
@@ -27,7 +27,7 @@ public class ArrayList_Decoder implements ObjectDecoder {
                                 final ObjectData<T> approxData,
                                 final DecoderApi<T> decoder) {
         JcMethod m_ctor = cached_ArrayList_ctor;
-        // TODO: add class-based synchronization if needed
+        // TODO: add synchronization if needed
         if (m_ctor == null) {
             JcMethod m_add = null;
             final List<JcMethod> methods = approx.getDeclaredMethods();
@@ -66,9 +66,8 @@ public class ArrayList_Decoder implements ObjectDecoder {
                                        final T instance,
                                        final DecoderApi<T> decoder) {
         JcField f_storage = cached_ArrayList_storage;
+        // TODO: add synchronization if needed
         if (f_storage == null) {
-            // TODO: add class-based synchronization if needed
-
             final List<JcField> fields = approx.getDeclaredFields();
             for (int i = 0, c = fields.size(); i < c; i++) {
                 JcField f = fields.get(i);
@@ -79,12 +78,15 @@ public class ArrayList_Decoder implements ObjectDecoder {
             }
         }
 
+        if (approxData.getObjectField(f_storage) == null)
+            return; // ignore invalid containers
+
         final SymbolicList<T> storage = approxData.decodeSymbolicListField(f_storage);
         if (storage == null)
-            return;
+            return; // ignore invalid container
 
         for (int i = 0, c = storage.size(); i < c; i++) {
-            ArrayList<T> args = new ArrayList<>();
+            List<T> args = new ArrayList<>();
             args.add(instance);
             args.add(storage.get(i));
 

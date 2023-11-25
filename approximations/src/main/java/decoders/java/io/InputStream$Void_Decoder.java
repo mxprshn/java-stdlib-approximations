@@ -16,15 +16,15 @@ import java.util.List;
 @SuppressWarnings("ForLoopReplaceableByForEach")
 @DecoderFor(InputStream$Void.class)
 public final class InputStream$Void_Decoder implements ObjectDecoder {
-    private volatile static JcMethod cached_ByteArrayInputStream_ctor = null;
-    private volatile static JcType cached_bytes = null;
+    private volatile JcMethod cached_ByteArrayInputStream_ctor = null;
+    private volatile JcType cached_bytes = null;
 
     @Override
     public <T> T createInstance(final JcClassOrInterface approximation,
                                 final ObjectData<T> approximationData,
                                 final DecoderApi<T> decoder) {
         JcMethod ctor = cached_ByteArrayInputStream_ctor;
-        // TODO: add class-based synchronization if needed
+        // TODO: add synchronization if needed
         if (ctor == null) {
             final List<JcMethod> methods = approximation.getDeclaredMethods();
             for (int i = 0, c = methods.size(); i < c; i++) {

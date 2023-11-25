@@ -14,10 +14,10 @@ import java.util.OptionalInt;
 
 @DecoderFor(OptionalInt.class)
 public class OptionalInt_Decoder implements ObjectDecoder {
-    private volatile static JcField cached_OptionalInt_present = null;
-    private volatile static JcField cached_OptionalInt_value = null;
-    private volatile static JcMethod cached_OptionalInt_of = null;
-    private volatile static JcMethod cached_OptionalInt_empty = null;
+    private volatile JcField cached_OptionalInt_present = null;
+    private volatile JcField cached_OptionalInt_value = null;
+    private volatile JcMethod cached_OptionalInt_of = null;
+    private volatile JcMethod cached_OptionalInt_empty = null;
 
     @SuppressWarnings({"unchecked", "ForLoopReplaceableByForEach"})
     @Override
@@ -25,7 +25,7 @@ public class OptionalInt_Decoder implements ObjectDecoder {
                                 final ObjectData<T> approxData,
                                 final DecoderApi<T> decoder) {
         JcField f_present = cached_OptionalInt_present;
-        // TODO: add class-based synchronization if needed
+        // TODO: add synchronization if needed
         if (f_present == null) {
             JcField f_value = null;
             final List<JcField> fields = approx.getDeclaredFields();
@@ -48,7 +48,7 @@ public class OptionalInt_Decoder implements ObjectDecoder {
 
         if (approxData.getBooleanField(f_present)) {
             JcMethod m_of = cached_OptionalInt_of;
-            // TODO: add class-based synchronization if needed
+            // TODO: add synchronization if needed
             if (m_of == null) {
                 final List<JcMethod> methods = approx.getDeclaredMethods();
                 for (int i = 0, c = methods.size(); i < c; i++) {
@@ -68,7 +68,7 @@ public class OptionalInt_Decoder implements ObjectDecoder {
             ));
         } else {
             JcMethod m_empty = cached_OptionalInt_empty;
-            // TODO: add class-based synchronization if needed
+            // TODO: add synchronization if needed
             if (m_empty == null) {
                 final List<JcMethod> methods = approx.getDeclaredMethods();
                 for (int i = 0, c = methods.size(); i < c; i++) {

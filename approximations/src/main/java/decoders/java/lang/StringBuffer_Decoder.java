@@ -14,15 +14,15 @@ import java.util.List;
 
 @DecoderFor(StringBuffer.class)
 public final class StringBuffer_Decoder implements ObjectDecoder {
-    private volatile static JcMethod cached_StringBuffer_ctor = null;
-    private volatile static JcField cached_StringBuffer_value = null;
+    private volatile JcMethod cached_StringBuffer_ctor = null;
+    private volatile JcField cached_StringBuffer_value = null;
 
     @Override
     public <T> T createInstance(final JcClassOrInterface approximation,
                                 final ObjectData<T> approximationData,
                                 final DecoderApi<T> decoder) {
         JcMethod ctor = cached_StringBuffer_ctor;
-        // TODO: add class-based synchronization if needed
+        // TODO: add synchronization if needed
         if (ctor == null) {
             // looking for constructor and data field
             final List<JcMethod> methods = approximation.getDeclaredMethods();

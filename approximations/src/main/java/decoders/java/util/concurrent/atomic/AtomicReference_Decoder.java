@@ -17,9 +17,9 @@ import java.util.concurrent.atomic.AtomicReference;
 @SuppressWarnings("ForLoopReplaceableByForEach")
 @DecoderFor(AtomicReference.class)
 public class AtomicReference_Decoder implements ObjectDecoder {
-    private volatile static JcField cached_AtomicReference_value = null;
-    private volatile static JcMethod cached_AtomicReference_ctor = null;
-    private volatile static JcMethod cached_AtomicReference_set = null;
+    private volatile JcField cached_AtomicReference_value = null;
+    private volatile JcMethod cached_AtomicReference_ctor = null;
+    private volatile JcMethod cached_AtomicReference_set = null;
 
     @SuppressWarnings({"unchecked"})
     @Override
@@ -77,7 +77,10 @@ public class AtomicReference_Decoder implements ObjectDecoder {
             }
         }
 
-        final ArrayList<T> args = new ArrayList<>();
+        if (approxData.getObjectField(f_value) == null)
+            return; // do nothing for null references
+
+        final List<T> args = new ArrayList<>();
         args.add(instance);
         args.add(approxData.decodeField(f_value)); // AtomicReference may contain itself
 

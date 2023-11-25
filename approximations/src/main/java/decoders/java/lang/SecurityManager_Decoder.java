@@ -13,7 +13,7 @@ import java.util.List;
 @SuppressWarnings("ForLoopReplaceableByForEach")
 @DecoderFor(SecurityManager.class)
 public final class SecurityManager_Decoder implements ObjectDecoder {
-    private volatile static JcMethod cached_SecurityManager_ctor = null;
+    private volatile JcMethod cached_SecurityManager_ctor = null;
 
     @SuppressWarnings({"unchecked", "SizeReplaceableByIsEmpty"})
     @Override
@@ -21,7 +21,7 @@ public final class SecurityManager_Decoder implements ObjectDecoder {
                                 final ObjectData<T> approximationData,
                                 final DecoderApi<T> decoder) {
         JcMethod ctor = cached_SecurityManager_ctor;
-        // TODO: add class-based synchronization if needed
+        // TODO: add synchronization if needed
         if (ctor == null) {
             final List<JcMethod> methods = approximation.getDeclaredMethods();
             for (int i = 0, c = methods.size(); i < c; i++) {

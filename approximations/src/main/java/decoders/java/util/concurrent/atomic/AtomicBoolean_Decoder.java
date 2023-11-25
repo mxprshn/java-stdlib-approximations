@@ -15,8 +15,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 @DecoderFor(AtomicBoolean.class)
 public class AtomicBoolean_Decoder implements ObjectDecoder {
-    private volatile static JcField cached_AtomicBoolean_value = null;
-    private volatile static JcMethod cached_AtomicBoolean_ctor = null;
+    private volatile JcField cached_AtomicBoolean_value = null;
+    private volatile JcMethod cached_AtomicBoolean_ctor = null;
 
     @SuppressWarnings({"ForLoopReplaceableByForEach"})
     @Override
@@ -24,9 +24,8 @@ public class AtomicBoolean_Decoder implements ObjectDecoder {
                                 final ObjectData<T> approxData,
                                 final DecoderApi<T> decoder) {
         JcField f_value = cached_AtomicBoolean_value;
+        // TODO: add synchronization if needed
         if (f_value == null) {
-            // TODO: add class-based synchronization if needed
-
             final List<JcField> fields = approx.getDeclaredFields();
             for (int i = 0, c = fields.size(); i < c; i++) {
                 JcField f = fields.get(i);

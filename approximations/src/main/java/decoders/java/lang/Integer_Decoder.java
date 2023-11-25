@@ -11,15 +11,15 @@ import java.util.List;
 
 @DecoderFor(Integer.class)
 public final class Integer_Decoder implements ObjectDecoder {
-    private volatile static JcMethod cached_Integer_ctor = null;
-    private volatile static JcField cached_Integer_value = null;
+    private volatile JcMethod cached_Integer_ctor = null;
+    private volatile JcField cached_Integer_value = null;
 
     @Override
     public <T> T createInstance(final JcClassOrInterface approximation,
                                 final ObjectData<T> approximationData,
                                 final DecoderApi<T> decoder) {
         JcMethod ctor = cached_Integer_ctor;
-        // TODO: add class-based synchronization if needed
+        // TODO: add synchronization if needed
         if (ctor == null) {
             // looking for constructor and data field
             final List<JcMethod> methods = approximation.getDeclaredMethods();

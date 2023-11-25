@@ -14,15 +14,15 @@ import java.util.List;
 
 @DecoderFor(Double.class)
 public final class Double_Decoder implements ObjectDecoder {
-    private volatile static JcMethod cached_Double_ctor = null;
-    private volatile static JcField cached_Double_value = null;
+    private volatile JcMethod cached_Double_ctor = null;
+    private volatile JcField cached_Double_value = null;
 
     @Override
     public <T> T createInstance(final JcClassOrInterface approximation,
                                 final ObjectData<T> approximationData,
                                 final DecoderApi<T> decoder) {
         JcMethod ctor = cached_Double_ctor;
-        // TODO: add class-based synchronization if needed
+        // TODO: add synchronization if needed
         if (ctor == null) {
             // looking for constructor and data field
             final List<JcMethod> methods = approximation.getDeclaredMethods();

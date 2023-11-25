@@ -14,15 +14,15 @@ import java.util.Random;
 
 @DecoderFor(Random.class)
 public class Random_Decoder implements ObjectDecoder {
-    private volatile static JcMethod cached_Random_ctor = null;
+    private volatile JcMethod cached_Random_ctor = null;
 
-    @SuppressWarnings({"unchecked", "ForLoopReplaceableByForEach"})
+    @SuppressWarnings({"unchecked", "SizeReplaceableByIsEmpty"})
     @Override
     public <T> T createInstance(final JcClassOrInterface approximation,
                                 final ObjectData<T> approximationData,
                                 final DecoderApi<T> decoder) {
         JcMethod ctor = cached_Random_ctor;
-        // TODO: add class-level synchronization if needed
+        // TODO: add synchronization if needed
         if (ctor == null) {
             final List<JcMethod> methods = approximation.getDeclaredMethods();
             for (int i = 0, c = methods.size(); i != c; i++) {

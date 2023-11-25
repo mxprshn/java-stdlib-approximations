@@ -13,20 +13,19 @@ import java.util.List;
 
 @DecoderFor(HashSet.class)
 public final class HashSet_Decoder implements ObjectDecoder {
-    private volatile static JcMethod[] cachedMethods = null;
-    private volatile static JcMethod cached_HashSet_ctor = null;
-    private volatile static JcMethod cached_HashSet_add = null;
-    private volatile static JcField cached_HashSet_length = null;
-    private volatile static JcField cached_HashSet_storage = null;
-    private volatile static JcField cached_Map_map = null;
-    private volatile static JcField cached_HashMapContainer_map = null;
+    private volatile JcMethod[] cachedMethods = null;
+    private volatile JcMethod cached_HashSet_ctor = null;
+    private volatile JcMethod cached_HashSet_add = null;
+    private volatile JcField cached_HashSet_storage = null;
+    private volatile JcField cached_Map_map = null;
+    private volatile JcField cached_HashMapContainer_map = null;
 
     @Override
     public <T> T createInstance(final JcClassOrInterface approximation,
                                 final ObjectData<T> approximationData,
                                 final DecoderApi<T> decoder) {
         JcMethod ctor = cached_HashSet_ctor;
-        // TODO: add class-level synchronization if needed
+        // TODO: add synchronization if needed
         if (ctor == null) {
             final List<JcMethod> methodList = approximation.getDeclaredMethods();
             final int methodCount = methodList.size();
@@ -52,8 +51,8 @@ public final class HashSet_Decoder implements ObjectDecoder {
         }
 
         // prepare parameters "in-place" and construct a new call
-        final ArrayList<T> args = new ArrayList<>();
-        args.add(decoder.createIntConst(123));
+        final List<T> args = new ArrayList<>(2);
+        args.add(decoder.createIntConst(16));
         args.add(decoder.createFloatConst(0.75f));
         return decoder.invokeMethod(ctor, args);
     }
@@ -64,39 +63,30 @@ public final class HashSet_Decoder implements ObjectDecoder {
                                        final T outputInstance,
                                        final DecoderApi<T> decoder) {
         JcField f_hs_storage = cached_HashSet_storage;
-        JcField f_hs_length = cached_HashSet_length;
-        if (f_hs_length == null) {
-            // TODO: add class-level synchronization if needed
+        // TODO: add synchronization if needed
+        if (f_hs_storage == null) {
             final List<JcField> fields = approximation.getDeclaredFields();
             for (int i = 0, c = fields.size(); i != c; i++) {
                 JcField field = fields.get(i);
                 String fieldName = field.getName();
 
-                if ("storage".equals(fieldName)) f_hs_storage = field;
-                else if ("length".equals(fieldName)) f_hs_length = field;
+                if (!"storage".equals(fieldName)) continue;
 
                 // early termination
-                if (f_hs_length != null && f_hs_storage != null)
-                    break;
+                cached_HashSet_storage = f_hs_storage = field;
+                break;
             }
-            cached_HashSet_length = f_hs_length;
-            cached_HashSet_storage = f_hs_storage;
         }
 
-        // skip empty or erroneous objects
-        int length = approximationData.getIntField(f_hs_length);
-        if (length < 0)
-            throw new InternalError("Invalid container: negative size");
-        if (length == 0)
-            return;
+        // skip erroneous objects
         final ObjectData<T> storageData = approximationData.getObjectField(f_hs_storage);
         if (storageData == null)
-            throw new InternalError("Invalid container: storage is NULL");
+            return;
 
         // get primary method
         JcMethod m_add = cached_HashSet_add;
+        // TODO: add synchronization if needed
         if (m_add == null) {
-            // TODO: add synchronization if needed
             final JcMethod[] methods = cachedMethods;
             for (int i = 0, c = methods.length; i != c; i++) {
                 JcMethod m = methods[i];
@@ -114,6 +104,7 @@ public final class HashSet_Decoder implements ObjectDecoder {
 
         // prepare field references (inlined)
         JcField f_m_map = cached_Map_map;
+        // TODO: add synchronization if needed
         if (f_m_map == null) {
             JcClasspath cp = approximation.getClasspath();
             {
@@ -142,14 +133,21 @@ public final class HashSet_Decoder implements ObjectDecoder {
 
         // get and parse the underlying symbolic map
         final ObjectData<T> rtMapContainerData = storageData.getObjectField(f_m_map);
+        if (rtMapContainerData == null)
+            return; // ignore invalid containers
+
         final SymbolicMap<T, T> map = rtMapContainerData.decodeSymbolicMapField(cached_HashMapContainer_map);
         if (map == null)
-            return;
+            return; // ignore invalid containers
 
-        while (length != 0) {
+        int length = map.size();
+        if (length == Integer.MAX_VALUE)
+            return; // ignore invalid containers
+
+        while (length > 0) {
             T key = map.anyKey();
 
-            ArrayList<T> args = new ArrayList<>();
+            List<T> args = new ArrayList<>();
             args.add(outputInstance);
             args.add(key);
             decoder.invokeMethod(m_add, args);

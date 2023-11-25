@@ -13,21 +13,19 @@ import java.util.List;
 
 @DecoderFor(LinkedHashSet.class)
 public class LinkedHashSet_Decoder implements ObjectDecoder {
-    private volatile static JcMethod[] cachedMethods = null;
-    private volatile static JcMethod cached_LinkedHashSet_ctor = null;
-    private volatile static JcMethod cached_LinkedHashSet_add = null;
-    private volatile static JcField cached_LinkedHashSet_length = null;
-    private volatile static JcField cached_LinkedHashSet_storage = null;
-    private volatile static JcField cached_Map_map = null;
-    private volatile static JcField cached_HashMapContainer_map = null;
+    private volatile JcMethod[] cachedMethods = null;
+    private volatile JcMethod cached_LinkedHashSet_ctor = null;
+    private volatile JcMethod cached_LinkedHashSet_add = null;
+    private volatile JcField cached_LinkedHashSet_storage = null;
+    private volatile JcField cached_Map_map = null;
+    private volatile JcField cached_HashMapContainer_map = null;
 
-    @SuppressWarnings("unchecked")
     @Override
     public <T> T createInstance(final JcClassOrInterface approximation,
                                 final ObjectData<T> approximationData,
                                 final DecoderApi<T> decoder) {
         JcMethod m_ctor = cached_LinkedHashSet_ctor;
-        // TODO: add class-level synchronization if needed
+        // TODO: add synchronization if needed
         if (m_ctor == null) {
             final List<JcMethod> methodList = approximation.getDeclaredMethods();
             final int methodCount = methodList.size();
@@ -65,39 +63,30 @@ public class LinkedHashSet_Decoder implements ObjectDecoder {
                                        final T outputInstance,
                                        final DecoderApi<T> decoder) {
         JcField f_hs_storage = cached_LinkedHashSet_storage;
-        JcField f_hs_length = cached_LinkedHashSet_length;
-        if (f_hs_length == null) {
-            // TODO: add class-level synchronization if needed
+        // TODO: add synchronization if needed
+        if (f_hs_storage == null) {
             final List<JcField> fields = approximation.getDeclaredFields();
             for (int i = 0, c = fields.size(); i != c; i++) {
                 JcField field = fields.get(i);
                 String fieldName = field.getName();
 
-                if ("storage".equals(fieldName)) f_hs_storage = field;
-                else if ("length".equals(fieldName)) f_hs_length = field;
+                if ("storage".equals(fieldName)) continue;
 
                 // early termination
-                if (f_hs_length != null && f_hs_storage != null)
-                    break;
+                cached_LinkedHashSet_storage = f_hs_storage = field;
+                break;
             }
-            cached_LinkedHashSet_length = f_hs_length;
-            cached_LinkedHashSet_storage = f_hs_storage;
         }
 
         // skip empty or erroneous objects
-        int length = approximationData.getIntField(f_hs_length);
-        if (length < 0)
-            throw new InternalError("Invalid container: negative size");
-        if (length == 0)
-            return;
         final ObjectData<T> storageData = approximationData.getObjectField(f_hs_storage);
         if (storageData == null)
-            throw new InternalError("Invalid container: storage is NULL");
+            return;
 
         // get primary method
         JcMethod m_add = cached_LinkedHashSet_add;
+        // TODO: add synchronization if needed
         if (m_add == null) {
-            // TODO: add synchronization if needed
             final JcMethod[] methods = cachedMethods;
             for (int i = 0, c = methods.length; i != c; i++) {
                 JcMethod m = methods[i];
@@ -115,6 +104,7 @@ public class LinkedHashSet_Decoder implements ObjectDecoder {
 
         // prepare field references (inlined)
         JcField f_m_map = cached_Map_map;
+        // TODO: add synchronization if needed
         if (f_m_map == null) {
             JcClasspath cp = approximation.getClasspath();
             {
@@ -143,14 +133,21 @@ public class LinkedHashSet_Decoder implements ObjectDecoder {
 
         // get and parse the underlying symbolic map
         final ObjectData<T> rtMapContainerData = storageData.getObjectField(f_m_map);
+        if (rtMapContainerData == null)
+            return; // ignore invalid container
+
         final SymbolicMap<T, T> map = rtMapContainerData.decodeSymbolicMapField(cached_HashMapContainer_map);
         if (map == null)
-            return;
+            return; // ignore invalid container
 
-        while (length != 0) {
+        int length = map.size();
+        if (length == Integer.MAX_VALUE)
+            return; // ignore invalid container
+
+        while (length > 0) {
             T key = map.anyKey();
 
-            ArrayList<T> args = new ArrayList<>();
+            List<T> args = new ArrayList<>();
             args.add(outputInstance);
             args.add(key);
             decoder.invokeMethod(m_add, args);

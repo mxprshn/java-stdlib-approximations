@@ -14,10 +14,10 @@ import org.usvm.api.decoder.ObjectDecoder;
 
 @DecoderFor(OptionalDouble.class)
 public class OptionalDouble_Decoder implements ObjectDecoder {
-    private volatile static JcField cached_OptionalDouble_value = null;
-    private volatile static JcField cached_OptionalDouble_present = null;
-    private volatile static JcMethod cached_OptionalDouble_of = null;
-    private volatile static JcMethod cached_OptionalDouble_empty = null;
+    private volatile JcField cached_OptionalDouble_value = null;
+    private volatile JcField cached_OptionalDouble_present = null;
+    private volatile JcMethod cached_OptionalDouble_of = null;
+    private volatile JcMethod cached_OptionalDouble_empty = null;
 
     @SuppressWarnings({"unchecked", "ForLoopReplaceableByForEach"})
     @Override
@@ -25,7 +25,7 @@ public class OptionalDouble_Decoder implements ObjectDecoder {
                                 final ObjectData<T> approximationData,
                                 final DecoderApi<T> decoder) {
         JcField f_present = cached_OptionalDouble_present;
-        // TODO: add class-based synchronization if needed
+        // TODO: add synchronization if needed
         if (f_present == null) {
             JcField f_value = null;
             final List<JcField> fields = approximation.getDeclaredFields();
@@ -48,7 +48,7 @@ public class OptionalDouble_Decoder implements ObjectDecoder {
 
         if (approximationData.getBooleanField(f_present)) {
             JcMethod m_of = cached_OptionalDouble_of;
-            // TODO: add class-based synchronization if needed
+            // TODO: add synchronization if needed
             if (m_of == null) {
                 final List<JcMethod> methods = approximation.getDeclaredMethods();
                 for (int i = 0, c = methods.size(); i < c; i++) {
@@ -68,7 +68,7 @@ public class OptionalDouble_Decoder implements ObjectDecoder {
             ));
         } else {
             JcMethod m_empty = cached_OptionalDouble_empty;
-            // TODO: add class-based synchronization if needed
+            // TODO: add synchronization if needed
             if (m_empty == null) {
                 final List<JcMethod> methods = approximation.getDeclaredMethods();
                 for (int i = 0, c = methods.size(); i < c; i++) {

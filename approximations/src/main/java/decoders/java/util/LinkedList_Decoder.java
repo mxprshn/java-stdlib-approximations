@@ -12,18 +12,20 @@ import org.usvm.api.decoder.ObjectDecoder;
 
 import java.util.*;
 
+@SuppressWarnings("ForLoopReplaceableByForEach")
 @DecoderFor(LinkedList.class)
 public class LinkedList_Decoder implements ObjectDecoder {
-    private volatile static JcMethod cached_LinkedList_ctor = null;
-    private volatile static JcField cached_LinkedList_storage = null;
-    private volatile static JcMethod cached_LinkedList_add = null;
+    private volatile JcMethod cached_LinkedList_ctor = null;
+    private volatile JcField cached_LinkedList_storage = null;
+    private volatile JcMethod cached_LinkedList_add = null;
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T> T createInstance(final JcClassOrInterface approximation,
                                 final ObjectData<T> approximationData,
                                 final DecoderApi<T> decoder) {
         JcMethod m_ctor = cached_LinkedList_ctor;
-        // TODO: add class-based synchronization if needed
+        // TODO: add synchronization if needed
         if (m_ctor == null) {
             JcMethod m_add = null;
             final List<JcMethod> methods = approximation.getDeclaredMethods();
@@ -62,8 +64,8 @@ public class LinkedList_Decoder implements ObjectDecoder {
                                        final T outputInstance,
                                        final DecoderApi<T> decoder) {
         JcField f_storage = cached_LinkedList_storage;
+        // TODO: add synchronization if needed
         if (f_storage == null) {
-            // TODO: add class-based synchronization if needed
             final List<JcField> fields = approximation.getDeclaredFields();
             for (int i = 0, c = fields.size(); i < c; i++) {
                 JcField f = fields.get(i);
@@ -73,6 +75,9 @@ public class LinkedList_Decoder implements ObjectDecoder {
                 }
             }
         }
+
+        if (approximationData.getObjectField(f_storage) == null)
+            return;
 
         final SymbolicList<T> storage = approximationData.decodeSymbolicListField(f_storage);
         if (storage == null)

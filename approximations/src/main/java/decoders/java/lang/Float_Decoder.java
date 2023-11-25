@@ -14,15 +14,15 @@ import java.util.List;
 
 @DecoderFor(Float.class)
 public class Float_Decoder implements ObjectDecoder {
-    private volatile static JcMethod cached_Float_ctor = null;
-    private volatile static JcField cached_Float_value = null;
+    private volatile JcMethod cached_Float_ctor = null;
+    private volatile JcField cached_Float_value = null;
 
     @Override
     public <T> T createInstance(JcClassOrInterface approximation,
                                 ObjectData<T> approximationData,
                                 DecoderApi<T> decoder) {
         JcMethod ctor = cached_Float_ctor;
-        // TODO: add class-based synchronization if needed
+        // TODO: add synchronization if needed
         if (ctor == null) {
             // looking for constructor and data field
             final List<JcMethod> methods = approximation.getDeclaredMethods();
