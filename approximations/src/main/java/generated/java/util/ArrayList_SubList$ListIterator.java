@@ -121,13 +121,10 @@ public final class ArrayList_SubList$ListIterator implements LibSLRuntime.Automa
         /* body */ {
             Engine.assume(this.root != null);
             _checkForComodification();
-            final int i = this.offset + this.cursor;
-            if (i >= ((ArrayList) ((Object) this.root)).length) {
-                throw new NoSuchElementException();
-            }
             final SymbolicList<Object> rootStorage = ((ArrayList) ((Object) this.root)).storage;
+            final int i = this.offset + this.cursor;
             if (i >= rootStorage.size()) {
-                throw new ConcurrentModificationException();
+                throw new NoSuchElementException();
             }
             this.lastRet = this.cursor;
             this.cursor += 1;
@@ -192,11 +189,12 @@ public final class ArrayList_SubList$ListIterator implements LibSLRuntime.Automa
                 throw new IllegalStateException();
             }
             _checkForComodification();
+            final SymbolicList<Object> rootStorage = ((ArrayList) ((Object) this.root)).storage;
             final int index = this.offset + this.lastRet;
-            if (index >= ((ArrayList) ((Object) this.root)).length) {
+            if (index >= rootStorage.size()) {
                 throw new ConcurrentModificationException();
             } else {
-                ((ArrayList) ((Object) this.root)).storage.set(index, e);
+                rootStorage.set(index, e);
             }
         }
     }
@@ -209,7 +207,7 @@ public final class ArrayList_SubList$ListIterator implements LibSLRuntime.Automa
             Engine.assume(this.root != null);
             _checkForComodification();
             final int i = this.offset + this.cursor;
-            if ((this.offset + this.lastRet) > ((ArrayList) ((Object) this.root)).length) {
+            if ((this.offset + this.lastRet) > ((ArrayList) ((Object) this.root)).storage.size()) {
                 throw new ConcurrentModificationException();
             } else {
                 ((ArrayList) ((Object) this.root))._addElement(i, e);

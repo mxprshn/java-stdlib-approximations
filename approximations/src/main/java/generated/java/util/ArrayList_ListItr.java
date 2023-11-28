@@ -99,7 +99,7 @@ public final class ArrayList_ListItr implements LibSLRuntime.Automaton, ListIter
         boolean result = false;
         /* body */ {
             Engine.assume(this.parent != null);
-            result = this.cursor != ((ArrayList) ((Object) this.parent)).length;
+            result = this.cursor != ((ArrayList) ((Object) this.parent)).storage.size();
         }
         return result;
     }
@@ -114,11 +114,8 @@ public final class ArrayList_ListItr implements LibSLRuntime.Automaton, ListIter
             _checkForComodification();
             final SymbolicList<Object> parentStorage = ((ArrayList) ((Object) this.parent)).storage;
             final int i = this.cursor;
-            if (i >= ((ArrayList) ((Object) this.parent)).length) {
-                throw new NoSuchElementException();
-            }
             if (i >= parentStorage.size()) {
-                throw new ConcurrentModificationException();
+                throw new NoSuchElementException();
             }
             this.cursor = i + 1;
             this.lastRet = i;
@@ -166,7 +163,6 @@ public final class ArrayList_ListItr implements LibSLRuntime.Automaton, ListIter
             } else {
                 ((ArrayList) ((Object) this.parent)).modCount += 1;
                 pStorage.remove(this.lastRet);
-                ((ArrayList) ((Object) this.parent)).length -= 1;
             }
             this.cursor = this.lastRet;
             this.lastRet = -1;
@@ -207,7 +203,6 @@ public final class ArrayList_ListItr implements LibSLRuntime.Automaton, ListIter
             } else {
                 ((ArrayList) ((Object) this.parent)).modCount += 1;
                 pStorage.insert(i, e);
-                ((ArrayList) ((Object) this.parent)).length += 1;
             }
             this.cursor = i + 1;
             this.lastRet = -1;
@@ -225,12 +220,9 @@ public final class ArrayList_ListItr implements LibSLRuntime.Automaton, ListIter
                 throw new NullPointerException();
             }
             int i = this.cursor;
-            final int size = ((ArrayList) ((Object) this.parent)).length;
+            final SymbolicList<Object> es = ((ArrayList) ((Object) this.parent)).storage;
+            final int size = es.size();
             if (i < size) {
-                final SymbolicList<Object> es = ((ArrayList) ((Object) this.parent)).storage;
-                if (i >= es.size()) {
-                    throw new ConcurrentModificationException();
-                }
                 while ((i < size) && (((ArrayList) ((Object) this.parent)).modCount == this.expectedModCount)) {
                     final Object item = es.get(i);
                     userAction.accept(item);

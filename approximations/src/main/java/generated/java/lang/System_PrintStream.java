@@ -9,6 +9,7 @@ import java.lang.IndexOutOfBoundsException;
 import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.String;
+import java.lang.StringIndexOutOfBoundsException;
 import java.lang.Void;
 import java.util.Locale;
 import org.jacodb.approximation.annotation.Approximate;
@@ -46,9 +47,6 @@ public final class System_PrintStream implements LibSLRuntime.Automaton {
     public PrintStream append(CharSequence csq) {
         PrintStream result = null;
         /* body */ {
-            if (csq == null) {
-                throw new NullPointerException();
-            }
             if (this.closed) {
                 this.error = true;
             }
@@ -64,11 +62,11 @@ public final class System_PrintStream implements LibSLRuntime.Automaton {
         PrintStream result = null;
         /* body */ {
             if (csq == null) {
-                throw new NullPointerException();
+                csq = "null";
             }
             final int size = csq.length();
             if ((start < 0) || (end >= size)) {
-                throw new IndexOutOfBoundsException();
+                throw new StringIndexOutOfBoundsException();
             }
             if (this.closed) {
                 this.error = true;
@@ -129,7 +127,7 @@ public final class System_PrintStream implements LibSLRuntime.Automaton {
     public PrintStream format(Locale l, String format, Object[] args) {
         PrintStream result = null;
         /* body */ {
-            if ((l == null) || (format == null) || (args == null)) {
+            if (format == null) {
                 throw new NullPointerException();
             }
             if (this.closed) {
@@ -146,7 +144,7 @@ public final class System_PrintStream implements LibSLRuntime.Automaton {
     public PrintStream format(String format, Object[] args) {
         PrintStream result = null;
         /* body */ {
-            if ((format == null) || (args == null)) {
+            if (format == null) {
                 throw new NullPointerException();
             }
             if (this.closed) {

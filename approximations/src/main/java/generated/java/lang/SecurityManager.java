@@ -48,8 +48,7 @@ public class SecurityManager implements LibSLRuntime.Automaton {
         this((Void) null);
         Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
         /* body */ {
-            final String actionName = "createSecurityManager";
-            _do_checkPermission(new RuntimePermission(actionName));
+            _do_checkPermission(new RuntimePermission("createSecurityManager"));
         }
         this.__$lsl_state = __$lsl_States.Initialized;
     }

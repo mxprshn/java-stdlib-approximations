@@ -4,6 +4,7 @@
 package generated.java.lang;
 
 import java.lang.Class;
+import java.lang.Comparable;
 import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.String;
@@ -16,7 +17,7 @@ import runtime.LibSLRuntime;
  * DoubleAutomaton for LSLDouble ~> java.lang.Double
  */
 @Approximate(java.lang.Double.class)
-public final class Double implements LibSLRuntime.Automaton {
+public final class Double implements LibSLRuntime.Automaton, Comparable<Double> {
     private static final long serialVersionUID = -9172774392245257468L;
 
     public static final int BYTES = 8;
@@ -99,6 +100,11 @@ public final class Double implements LibSLRuntime.Automaton {
                                 Engine.assume(result != 0L);
                                 Engine.assume(result != 9218868437227405312L);
                                 Engine.assume(result != -4503599627370496L);
+                                if (v < 0.0d) {
+                                    Engine.assume(result < 0L);
+                                } else {
+                                    Engine.assume(result > 0L);
+                                }
                             }
                         }
                     }
@@ -189,7 +195,10 @@ public final class Double implements LibSLRuntime.Automaton {
         boolean result = false;
         // WARNING: no state checks in static context
         /* body */ {
-            result = (d != POSITIVE_INFINITY) && (d != NEGATIVE_INFINITY);
+            if (d <= 0.0d) {
+                d = 0.0d - d;
+            }
+            result = d <= MAX_VALUE;
         }
         // WARNING: no state transitions in static context
         return result;
@@ -248,6 +257,11 @@ public final class Double implements LibSLRuntime.Automaton {
                                 Engine.assume(result == result);
                                 Engine.assume(result != POSITIVE_INFINITY);
                                 Engine.assume(result != NEGATIVE_INFINITY);
+                                if (value < 0L) {
+                                    Engine.assume(result < 0.0d);
+                                } else {
+                                    Engine.assume(result > 0.0d);
+                                }
                             }
                         }
                     }
@@ -265,10 +279,18 @@ public final class Double implements LibSLRuntime.Automaton {
         double result = 0.0d;
         // WARNING: no state checks in static context
         /* body */ {
-            if (a > b) {
+            if (a != a) {
                 result = a;
             } else {
-                result = b;
+                if ((a == 0.0d) && (b == 0.0d) && ((1.0d / a) == NEGATIVE_INFINITY)) {
+                    result = b;
+                } else {
+                    if (a >= b) {
+                        result = a;
+                    } else {
+                        result = b;
+                    }
+                }
             }
         }
         // WARNING: no state transitions in static context
@@ -282,10 +304,18 @@ public final class Double implements LibSLRuntime.Automaton {
         double result = 0.0d;
         // WARNING: no state checks in static context
         /* body */ {
-            if (a < b) {
+            if (a != a) {
                 result = a;
             } else {
-                result = b;
+                if ((a == 0.0d) && (b == 0.0d) && ((1.0d / b) == NEGATIVE_INFINITY)) {
+                    result = b;
+                } else {
+                    if (a <= b) {
+                        result = a;
+                    } else {
+                        result = b;
+                    }
+                }
             }
         }
         // WARNING: no state transitions in static context
@@ -392,9 +422,9 @@ public final class Double implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] DoubleAutomaton::compareTo(LSLDouble, Double) -> int
+     * [FUNCTION] DoubleAutomaton::compareTo(LSLDouble, LSLDouble) -> int
      */
-    public int compareTo(java.lang.Double anotherDouble) {
+    public int compareTo(Double anotherDouble) {
         int result = 0;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {

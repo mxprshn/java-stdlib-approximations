@@ -79,68 +79,69 @@ public final class System implements LibSLRuntime.Automaton {
      */
     private static void _initProperties() {
         /* body */ {
+            final LibSLRuntime.Map<String, String> pm = propsMap;
             final int javaVersion = 8;
             final String userName = "Admin";
-            propsMap.set("file.encoding", "Cp1251");
-            propsMap.set("sun.io.unicode.encoding", "UnicodeLittle");
-            propsMap.set("sun.jnu.encoding", "Cp1251");
-            propsMap.set("sun.stderr.encoding", "cp866");
-            propsMap.set("sun.stdout.encoding", "cp866");
+            pm.set("file.encoding", "Cp1251");
+            pm.set("sun.io.unicode.encoding", "UnicodeLittle");
+            pm.set("sun.jnu.encoding", "Cp1251");
+            pm.set("sun.stderr.encoding", "cp866");
+            pm.set("sun.stdout.encoding", "cp866");
             final String[] versionStrings = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15" };
             final String versionString = versionStrings[javaVersion];
-            propsMap.set("java.specification.name", "Java Platform API Specification");
-            propsMap.set("java.specification.vendor", "Oracle Corporation");
-            propsMap.set("java.specification.version", versionString);
-            propsMap.set("java.vm.info", "mixed mode");
-            propsMap.set("java.vm.name", "OpenJDK 64-Bit Server VM");
-            propsMap.set("java.vm.specification.name", "Java Virtual Machine Specification");
-            propsMap.set("java.vm.specification.vendor", "Oracle Corporation");
-            propsMap.set("java.vm.specification.version", versionString);
-            propsMap.set("java.vm.vendor", "Eclipse Adoptium");
-            propsMap.set("java.vm.version", versionString.concat(".0.362+9"));
-            propsMap.set("java.library.path", "C:\\Program Files\\Eclipse Adoptium\\jdk-8.0.362.9-hotspot\\bin;C:\\Windows\\Sun\\Java\\bin;C:\\Windows\\system32;.");
-            propsMap.set("java.home", "C:\\Program Files\\Eclipse Adoptium\\jdk-8.0.362.9-hotspot");
-            propsMap.set("sun.boot.library.path", "C:\\Program Files\\Eclipse Adoptium\\jdk-8.0.362.9-hotspot\\bin");
-            propsMap.set("java.io.tmpdir", "T:\\Temp\\");
-            propsMap.set("java.class.path", ".");
+            pm.set("java.specification.name", "Java Platform API Specification");
+            pm.set("java.specification.vendor", "Oracle Corporation");
+            pm.set("java.specification.version", versionString);
+            pm.set("java.vm.info", "mixed mode");
+            pm.set("java.vm.name", "OpenJDK 64-Bit Server VM");
+            pm.set("java.vm.specification.name", "Java Virtual Machine Specification");
+            pm.set("java.vm.specification.vendor", "Oracle Corporation");
+            pm.set("java.vm.specification.version", versionString);
+            pm.set("java.vm.vendor", "Eclipse Adoptium");
+            pm.set("java.vm.version", versionString.concat(".0.362+9"));
+            pm.set("java.library.path", "C:\\Program Files\\Eclipse Adoptium\\jdk-8.0.362.9-hotspot\\bin;C:\\Windows\\Sun\\Java\\bin;C:\\Windows\\system32;.");
+            pm.set("java.home", "C:\\Program Files\\Eclipse Adoptium\\jdk-8.0.362.9-hotspot");
+            pm.set("sun.boot.library.path", "C:\\Program Files\\Eclipse Adoptium\\jdk-8.0.362.9-hotspot\\bin");
+            pm.set("java.io.tmpdir", "T:\\Temp\\");
+            pm.set("java.class.path", ".");
             if (LibSLGlobals.SYSTEM_IS_WINDOWS) {
-                propsMap.set("file.separator", "\\");
-                propsMap.set("line.separator", "\r\n");
-                propsMap.set("path.separator", ";");
+                pm.set("file.separator", "\\");
+                pm.set("line.separator", "\r\n");
+                pm.set("path.separator", ";");
             } else {
-                propsMap.set("file.separator", "/");
-                propsMap.set("line.separator", "\n");
-                propsMap.set("path.separator", ":");
+                pm.set("file.separator", "/");
+                pm.set("line.separator", "\n");
+                pm.set("path.separator", ":");
             }
-            propsMap.set("user.country", "RU");
-            propsMap.set("user.country.format", "US");
-            propsMap.set("user.language", "ru");
+            pm.set("user.country", "RU");
+            pm.set("user.country.format", "US");
+            pm.set("user.language", "ru");
             final String[] bytecodeVersions = { "?", "?", "?", "?", "?", "49.0", "50.0", "51.0", "52.0", "53.0", "54.0", "55.0", "?", "?", "?", "?" };
-            propsMap.set("java.class.version", bytecodeVersions[javaVersion]);
-            propsMap.set("os.arch", "amd64");
-            propsMap.set("os.name", "Windows 10");
-            propsMap.set("os.version", "10.0");
-            propsMap.set("sun.arch.data.model", "64");
-            propsMap.set("sun.cpu.endian", "little");
-            propsMap.set("sun.cpu.isalist", "amd64");
-            propsMap.set("sun.desktop", "windows");
-            propsMap.set("user.dir", "D:\\Company\\Prod\\Service");
-            propsMap.set("user.home", "C:\\Users\\".concat(userName));
-            propsMap.set("user.name", userName);
-            propsMap.set("user.script", "");
-            propsMap.set("user.timezone", "");
-            propsMap.set("user.variant", "");
-            propsMap.set("sun.java.command", "org.example.MainClass");
-            propsMap.set("awt.toolkit", "sun.awt.windows.WToolkit");
-            propsMap.set("java.awt.graphicsenv", "sun.awt.Win32GraphicsEnvironment");
-            propsMap.set("java.awt.printerjob", "sun.awt.windows.WPrinterJob");
-            propsMap.set("sun.java.launcher", "SUN_STANDARD");
-            propsMap.set("sun.management.compiler", "HotSpot 64-Bit Tiered Compilers");
-            propsMap.set("sun.nio.MaxDirectMemorySize", "-1");
-            propsMap.set("sun.os.patch.level", "");
-            propsMap.set("java.vm.compressedOopsMode", "Zero based");
-            propsMap.set("jdk.boot.class.path.append", "");
-            propsMap.set("jdk.debug", "release");
+            pm.set("java.class.version", bytecodeVersions[javaVersion]);
+            pm.set("os.arch", "amd64");
+            pm.set("os.name", "Windows 10");
+            pm.set("os.version", "10.0");
+            pm.set("sun.arch.data.model", "64");
+            pm.set("sun.cpu.endian", "little");
+            pm.set("sun.cpu.isalist", "amd64");
+            pm.set("sun.desktop", "windows");
+            pm.set("user.dir", "D:\\Company\\Prod\\Service");
+            pm.set("user.home", "C:\\Users\\".concat(userName));
+            pm.set("user.name", userName);
+            pm.set("user.script", "");
+            pm.set("user.timezone", "");
+            pm.set("user.variant", "");
+            pm.set("sun.java.command", "org.example.MainClass");
+            pm.set("awt.toolkit", "sun.awt.windows.WToolkit");
+            pm.set("java.awt.graphicsenv", "sun.awt.Win32GraphicsEnvironment");
+            pm.set("java.awt.printerjob", "sun.awt.windows.WPrinterJob");
+            pm.set("sun.java.launcher", "SUN_STANDARD");
+            pm.set("sun.management.compiler", "HotSpot 64-Bit Tiered Compilers");
+            pm.set("sun.nio.MaxDirectMemorySize", "-1");
+            pm.set("sun.os.patch.level", "");
+            pm.set("java.vm.compressedOopsMode", "Zero based");
+            pm.set("jdk.boot.class.path.append", "");
+            pm.set("jdk.debug", "release");
             props = null;
         }
     }
@@ -212,9 +213,14 @@ public final class System implements LibSLRuntime.Automaton {
             if (key.length() == 0) {
                 throw new NullPointerException("key can't be empty");
             }
-            if (propsMap.hasKey(key)) {
-                result = propsMap.get(key);
-                propsMap.remove(key);
+            final SecurityManager sm = security;
+            if (sm != null) {
+                sm.checkPermission(new java.util.PropertyPermission(key, "write"));
+            }
+            final LibSLRuntime.Map<String, String> pm = propsMap;
+            if (pm.hasKey(key)) {
+                result = pm.get(key);
+                pm.remove(key);
             }
         }
         return result;
@@ -254,6 +260,10 @@ public final class System implements LibSLRuntime.Automaton {
     public static Properties getProperties() {
         Properties result = null;
         /* body */ {
+            final SecurityManager sm = security;
+            if (sm != null) {
+                sm.checkPropertiesAccess();
+            }
             result = props;
         }
         return result;
@@ -271,8 +281,13 @@ public final class System implements LibSLRuntime.Automaton {
             if (key.length() == 0) {
                 throw new NullPointerException("key can't be empty");
             }
-            if (propsMap.hasKey(key)) {
-                result = propsMap.get(key);
+            final SecurityManager sm = security;
+            if (sm != null) {
+                sm.checkPropertyAccess(key);
+            }
+            final LibSLRuntime.Map<String, String> pm = propsMap;
+            if (pm.hasKey(key)) {
+                result = pm.get(key);
             } else {
                 result = null;
             }
@@ -292,11 +307,27 @@ public final class System implements LibSLRuntime.Automaton {
             if (key.length() == 0) {
                 throw new NullPointerException("key can't be empty");
             }
-            if (propsMap.hasKey(key)) {
-                result = propsMap.get(key);
+            final SecurityManager sm = security;
+            if (sm != null) {
+                sm.checkPropertyAccess(key);
+            }
+            final LibSLRuntime.Map<String, String> pm = propsMap;
+            if (pm.hasKey(key)) {
+                result = pm.get(key);
             } else {
                 result = def;
             }
+        }
+        return result;
+    }
+
+    /**
+     * [FUNCTION] SystemAutomaton::getSecurityManager() -> SecurityManager
+     */
+    public static SecurityManager getSecurityManager() {
+        SecurityManager result = null;
+        /* body */ {
+            result = security;
         }
         return result;
     }
@@ -307,6 +338,10 @@ public final class System implements LibSLRuntime.Automaton {
     public static String getenv(String name) {
         String result = null;
         /* body */ {
+            final SecurityManager sm = security;
+            if (sm != null) {
+                sm.checkPermission(new RuntimePermission("getenv.".concat(name)));
+            }
             result = Engine.makeSymbolic(String.class);
             Engine.assume(result != null);
             final int len = result.length();
@@ -423,8 +458,9 @@ public final class System implements LibSLRuntime.Automaton {
      */
     public static void setErr(PrintStream stream) {
         /* body */ {
-            if (stream == null) {
-                throw new NullPointerException();
+            final SecurityManager sm = security;
+            if (sm != null) {
+                sm.checkPermission(new RuntimePermission("setIO"));
             }
             err = stream;
         }
@@ -435,8 +471,9 @@ public final class System implements LibSLRuntime.Automaton {
      */
     public static void setIn(InputStream stream) {
         /* body */ {
-            if (stream == null) {
-                throw new NullPointerException();
+            final SecurityManager sm = security;
+            if (sm != null) {
+                sm.checkPermission(new RuntimePermission("setIO"));
             }
             in = stream;
         }
@@ -447,8 +484,9 @@ public final class System implements LibSLRuntime.Automaton {
      */
     public static void setOut(PrintStream stream) {
         /* body */ {
-            if (stream == null) {
-                throw new NullPointerException();
+            final SecurityManager sm = security;
+            if (sm != null) {
+                sm.checkPermission(new RuntimePermission("setIO"));
             }
             out = stream;
         }
@@ -459,6 +497,10 @@ public final class System implements LibSLRuntime.Automaton {
      */
     public static void setProperties(Properties p) {
         /* body */ {
+            final SecurityManager sm = security;
+            if (sm != null) {
+                sm.checkPropertiesAccess();
+            }
             props = p;
         }
     }
@@ -475,14 +517,32 @@ public final class System implements LibSLRuntime.Automaton {
             if (key.length() == 0) {
                 throw new NullPointerException("key can't be empty");
             }
-            if (propsMap.hasKey(key)) {
-                result = propsMap.get(key);
+            final SecurityManager sm = security;
+            if (sm != null) {
+                sm.checkPermission(new java.util.PropertyPermission(key, "write"));
+            }
+            final LibSLRuntime.Map<String, String> pm = propsMap;
+            if (pm.hasKey(key)) {
+                result = pm.get(key);
             } else {
                 result = null;
             }
-            propsMap.set(key, value);
+            pm.set(key, value);
         }
         return result;
+    }
+
+    /**
+     * [FUNCTION] SystemAutomaton::setSecurityManager(SecurityManager) -> void
+     */
+    public static void setSecurityManager(SecurityManager s) {
+        /* body */ {
+            final SecurityManager sm = security;
+            if (sm != null) {
+                sm.checkPermission(new RuntimePermission("setSecurityManager"));
+            }
+            security = s;
+        }
     }
 
     public static final class __$lsl_States {
