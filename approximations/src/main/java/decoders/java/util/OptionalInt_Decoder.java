@@ -10,52 +10,44 @@ import org.usvm.api.decoder.ObjectDecoder;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
+import java.util.OptionalInt;
 
-@DecoderFor(Optional.class)
-public class Optional_Decoder implements ObjectDecoder {
-    private volatile JcField cached_Optional_value = null;
-    private volatile JcMethod cached_Optional_empty = null;
-    private volatile JcMethod cached_Optional_of = null;
+@DecoderFor(OptionalInt.class)
+public class OptionalInt_Decoder implements ObjectDecoder {
+    private volatile JcField cached_OptionalInt_present = null;
+    private volatile JcField cached_OptionalInt_value = null;
+    private volatile JcMethod cached_OptionalInt_of = null;
+    private volatile JcMethod cached_OptionalInt_empty = null;
 
     @SuppressWarnings({"unchecked", "ForLoopReplaceableByForEach"})
     @Override
     public <T> T createInstance(final JcClassOrInterface approx,
                                 final ObjectData<T> approxData,
                                 final DecoderApi<T> decoder) {
-        JcField f_value = cached_Optional_value;
+        JcField f_present = cached_OptionalInt_present;
         // TODO: add synchronization if needed
-        if (f_value == null) {
+        if (f_present == null) {
+            JcField f_value = null;
             final List<JcField> fields = approx.getDeclaredFields();
             for (int i = 0, c = fields.size(); i < c; i++) {
                 JcField f = fields.get(i);
-                if ("value".equals(f.getName())) {
-                    cached_Optional_value = f_value = f;
-                    break;
+                String name = f.getName();
+
+                // NOTE: this is an example on how to join discovery process for multiple targets
+                if ("value".equals(name)) {
+                    f_value = f;
+                } else if ("present".equals(name)) {
+                    f_present = f;
                 }
+                if (f_value != null && f_present != null)
+                    break;
             }
+            cached_OptionalInt_present = f_present;
+            cached_OptionalInt_value = f_value;
         }
 
-        // NOTE: caching of "invokeMethod"s is not allowed
-        if (approxData.getObjectField(f_value) == null) {
-            JcMethod m_empty = cached_Optional_empty;
-            // TODO: add synchronization if needed
-            if (m_empty == null) {
-                final List<JcMethod> methods = approx.getDeclaredMethods();
-                for (int i = 0, c = methods.size(); i < c; i++) {
-                    JcMethod m = methods.get(i);
-
-                    if (!m.isStatic()) continue;
-                    if (!"empty".equals(m.getName())) continue;
-
-                    cached_Optional_empty = m_empty = m;
-                    break;
-                }
-            }
-
-            return decoder.invokeMethod(m_empty, (List<T>) Collections.EMPTY_LIST);
-        } else {
-            JcMethod m_of = cached_Optional_of;
+        if (approxData.getBooleanField(f_present)) {
+            JcMethod m_of = cached_OptionalInt_of;
             // TODO: add synchronization if needed
             if (m_of == null) {
                 final List<JcMethod> methods = approx.getDeclaredMethods();
@@ -65,14 +57,32 @@ public class Optional_Decoder implements ObjectDecoder {
                     if (!m.isStatic()) continue;
                     if (!"of".equals(m.getName())) continue;
 
-                    cached_Optional_of = m_of = m;
+                    cached_OptionalInt_of = m_of = m;
                     break;
                 }
             }
 
+            final int value = approxData.getIntField(cached_OptionalInt_value);
             return decoder.invokeMethod(m_of, Collections.singletonList(
-                    approxData.decodeField(f_value)
+                    decoder.createIntConst(value)
             ));
+        } else {
+            JcMethod m_empty = cached_OptionalInt_empty;
+            // TODO: add synchronization if needed
+            if (m_empty == null) {
+                final List<JcMethod> methods = approx.getDeclaredMethods();
+                for (int i = 0, c = methods.size(); i < c; i++) {
+                    JcMethod m = methods.get(i);
+
+                    if (!m.isStatic()) continue;
+                    if (!"empty".equals(m.getName())) continue;
+
+                    cached_OptionalInt_empty = m_empty = m;
+                    break;
+                }
+            }
+
+            return decoder.invokeMethod(m_empty, (List<T>) Collections.EMPTY_LIST);
         }
     }
 
@@ -81,6 +91,6 @@ public class Optional_Decoder implements ObjectDecoder {
                                        final ObjectData<T> approxData,
                                        final T instance,
                                        final DecoderApi<T> decoder) {
-        // nothing: Optional cannot contain itself
+        // nothing
     }
 }
