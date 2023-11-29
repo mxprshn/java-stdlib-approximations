@@ -22,7 +22,7 @@ import jdk.internal.misc.VM;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 import runtime.LibSLRuntime;
-import stub.runtime.utils.SymbolicInputStream;
+import stub.libsl.utils.SymbolicInputStream;
 
 /**
  * SystemAutomaton for LSLSystem ~> java.lang.System
@@ -154,8 +154,8 @@ public final class System implements LibSLRuntime.Automaton {
     private static void initPhase1() {
         /* body */ {
             _initProperties();
-            final InputStream newInput = (SymbolicInputStream) ((Object) new generated.runtime.utils.SymbolicInputStream((Void) null, 
-                /* state = */ generated.runtime.utils.SymbolicInputStream.__$lsl_States.Initialized, 
+            final InputStream newInput = (SymbolicInputStream) ((Object) new generated.libsl.utils.SymbolicInputStream((Void) null, 
+                /* state = */ generated.libsl.utils.SymbolicInputStream.__$lsl_States.Initialized, 
                 /* maxSize = */ 1000, 
                 /* supportMarks = */ false, 
                 /* dataSize = */ -1, 
