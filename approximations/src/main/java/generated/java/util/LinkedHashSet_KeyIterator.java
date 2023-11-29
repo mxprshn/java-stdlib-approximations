@@ -91,8 +91,8 @@ public final class LinkedHashSet_KeyIterator implements LibSLRuntime.Automaton, 
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             Engine.assume(this.parent != null);
-            final int length = ((LinkedHashSet) ((Object) this.parent)).length;
-            result = this.index < length;
+            final LibSLRuntime.Map<Object, Object> parentStorage = ((LinkedHashSet) ((Object) this.parent)).storage;
+            result = this.index < parentStorage.size();
         }
         return result;
     }
@@ -106,8 +106,8 @@ public final class LinkedHashSet_KeyIterator implements LibSLRuntime.Automaton, 
         /* body */ {
             Engine.assume(this.parent != null);
             _checkForComodification();
-            final int length = ((LinkedHashSet) ((Object) this.parent)).length;
-            final boolean atValidPosition = this.index < length;
+            final LibSLRuntime.Map<Object, Object> parentStorage = ((LinkedHashSet) ((Object) this.parent)).storage;
+            final boolean atValidPosition = this.index < parentStorage.size();
             if (!atValidPosition) {
                 throw new NoSuchElementException();
             }
@@ -129,14 +129,13 @@ public final class LinkedHashSet_KeyIterator implements LibSLRuntime.Automaton, 
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             Engine.assume(this.parent != null);
-            final int length = ((LinkedHashSet) ((Object) this.parent)).length;
-            final boolean atValidPosition = this.index < length;
+            final LibSLRuntime.Map<Object, Object> parentStorage = ((LinkedHashSet) ((Object) this.parent)).storage;
+            final boolean atValidPosition = this.index < parentStorage.size();
             if (!atValidPosition || !this.nextWasCalled) {
                 throw new IllegalStateException();
             }
             this.nextWasCalled = false;
             _checkForComodification();
-            final LibSLRuntime.Map<Object, Object> parentStorage = ((LinkedHashSet) ((Object) this.parent)).storage;
             parentStorage.remove(this.currentKey);
             this.expectedModCount = ((LinkedHashSet) ((Object) this.parent)).modCount;
         }
@@ -152,7 +151,8 @@ public final class LinkedHashSet_KeyIterator implements LibSLRuntime.Automaton, 
             if (userAction == null) {
                 throw new NullPointerException();
             }
-            final int length = ((LinkedHashSet) ((Object) this.parent)).length;
+            final LibSLRuntime.Map<Object, Object> parentStorage = ((LinkedHashSet) ((Object) this.parent)).storage;
+            final int length = parentStorage.size();
             int i = this.index;
             while (i < length) {
                 _checkForComodification();

@@ -199,10 +199,9 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            final LibSLRuntime.Map<Object, Object> storageCopy = this.storage.duplicate();
             result = (java.util.HashSet) ((Object) new HashSet((Void) null, 
                 /* state = */ HashSet.__$lsl_States.Initialized, 
-                /* storage = */ storageCopy, 
+                /* storage = */ this.storage.duplicate(), 
                 /* modCount = */ 0
             ));
         }
@@ -327,8 +326,7 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
             if (other == this) {
                 result = true;
             } else {
-                final boolean isSameType = Engine.typeEquals(this, other);
-                if (isSameType) {
+                if ((other != null && other.getClass() == java.util.HashSet.class)) {
                     final int expectedModCount = this.modCount;
                     final int otherExpectedModCount = ((HashSet) ((Object) other)).modCount;
                     final LibSLRuntime.Map<Object, Object> otherStorage = ((HashSet) ((Object) other)).storage;
