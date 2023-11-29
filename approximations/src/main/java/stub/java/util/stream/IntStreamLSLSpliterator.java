@@ -4,6 +4,7 @@
 package stub.java.util.stream;
 
 import java.lang.InternalError;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.Comparator;
 import java.util.Spliterator;
@@ -11,6 +12,7 @@ import java.util.function.Consumer;
 import java.util.function.IntConsumer;
 import runtime.LibSLRuntime;
 
+@SuppressWarnings({"all", "unchecked"})
 public class IntStreamLSLSpliterator implements LibSLRuntime.HasAutomaton, Spliterator.OfInt {
     private IntStreamLSLSpliterator(Void a, Void b) {
         super();

@@ -6,6 +6,7 @@ package generated.java.util.stream;
 import java.lang.Integer;
 import java.lang.NullPointerException;
 import java.lang.Object;
+import java.lang.SuppressWarnings;
 import java.lang.UnsupportedOperationException;
 import java.lang.Void;
 import java.util.NoSuchElementException;
@@ -19,6 +20,7 @@ import runtime.LibSLRuntime;
 /**
  * IntStreamIteratorAutomaton for IntStreamLSLIterator ~> java.util.stream.IntStreamLSLIterator
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.util.stream.IntStreamLSLIterator.class)
 public class IntStreamLSLIterator implements LibSLRuntime.Automaton, PrimitiveIterator.OfInt {
     static {

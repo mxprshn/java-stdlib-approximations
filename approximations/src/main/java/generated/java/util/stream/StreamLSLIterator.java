@@ -5,6 +5,7 @@ package generated.java.util.stream;
 
 import java.lang.NullPointerException;
 import java.lang.Object;
+import java.lang.SuppressWarnings;
 import java.lang.UnsupportedOperationException;
 import java.lang.Void;
 import java.util.Iterator;
@@ -17,6 +18,7 @@ import runtime.LibSLRuntime;
 /**
  * StreamIteratorAutomaton for StreamLSLIterator ~> java.util.stream.StreamLSLIterator
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.util.stream.StreamLSLIterator.class)
 public class StreamLSLIterator implements LibSLRuntime.Automaton, Iterator {
     static {

@@ -10,6 +10,7 @@ import java.lang.IndexOutOfBoundsException;
 import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.Collection;
 import java.util.Comparator;
@@ -33,6 +34,7 @@ import runtime.LibSLRuntime;
 /**
  * LinkedListAutomaton for LinkedList ~> java.util.LinkedList
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.util.LinkedList.class)
 public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneable, Serializable {
     private static final long serialVersionUID = 876323262645176354L;

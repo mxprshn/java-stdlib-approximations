@@ -5,6 +5,7 @@ package generated.java.util;
 
 import java.lang.Object;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.Collection;
 import java.util.Comparator;
@@ -26,6 +27,7 @@ import runtime.LibSLRuntime;
 /**
  * ArrayList_SubListAutomaton for ArrayList_SubList ~> java.util.ArrayList_SubList
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.util.ArrayList_SubList.class)
 public final class ArrayList_SubList implements LibSLRuntime.Automaton, List, RandomAccess {
     static {

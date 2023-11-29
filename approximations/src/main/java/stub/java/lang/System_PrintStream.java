@@ -9,10 +9,12 @@ import java.lang.CharSequence;
 import java.lang.InternalError;
 import java.lang.Object;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.Locale;
 import runtime.LibSLRuntime;
 
+@SuppressWarnings({"all", "unchecked"})
 public final class System_PrintStream extends PrintStream implements LibSLRuntime.HasAutomaton {
     private System_PrintStream(Void a, Void b) {
         super((OutputStream) null);

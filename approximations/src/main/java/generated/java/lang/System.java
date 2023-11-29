@@ -14,6 +14,7 @@ import java.lang.Object;
 import java.lang.SecurityException;
 import java.lang.SecurityManager;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.UnsatisfiedLinkError;
 import java.lang.Void;
 import java.util.Properties;
@@ -26,6 +27,7 @@ import stub.runtime.utils.SymbolicInputStream;
 /**
  * SystemAutomaton for LSLSystem ~> java.lang.System
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.lang.System.class)
 public final class System implements LibSLRuntime.Automaton {
     private static final LibSLRuntime.Map<String, String> propsMap = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());

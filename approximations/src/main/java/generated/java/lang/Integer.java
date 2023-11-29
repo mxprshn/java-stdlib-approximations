@@ -8,6 +8,7 @@ import java.lang.Comparable;
 import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
@@ -16,6 +17,7 @@ import runtime.LibSLRuntime;
 /**
  * IntegerAutomaton for LSLInteger ~> java.lang.Integer
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.lang.Integer.class)
 public final class Integer implements LibSLRuntime.Automaton, Comparable<Integer> {
     private static final long serialVersionUID = 1360826667806852920L;

@@ -8,6 +8,7 @@ import java.lang.Comparable;
 import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
@@ -16,6 +17,7 @@ import runtime.LibSLRuntime;
 /**
  * DoubleAutomaton for LSLDouble ~> java.lang.Double
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.lang.Double.class)
 public final class Double implements LibSLRuntime.Automaton, Comparable<Double> {
     private static final long serialVersionUID = -9172774392245257468L;

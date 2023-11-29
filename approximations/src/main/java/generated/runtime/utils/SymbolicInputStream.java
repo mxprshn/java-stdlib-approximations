@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.lang.IllegalArgumentException;
 import java.lang.IndexOutOfBoundsException;
 import java.lang.NullPointerException;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
@@ -16,6 +17,7 @@ import runtime.LibSLRuntime;
 /**
  * SymbolicInputStreamAutomaton for SymbolicInputStream ~> runtime.utils.SymbolicInputStream
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.runtime.utils.SymbolicInputStream.class)
 public final class SymbolicInputStream implements LibSLRuntime.Automaton {
     static {

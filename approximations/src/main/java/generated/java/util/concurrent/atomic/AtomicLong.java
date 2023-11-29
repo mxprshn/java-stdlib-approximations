@@ -5,6 +5,7 @@ package generated.java.util.concurrent.atomic;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.function.LongBinaryOperator;
 import java.util.function.LongUnaryOperator;
@@ -15,6 +16,7 @@ import runtime.LibSLRuntime;
 /**
  * AtomicLongAutomaton for LSLAtomicLong ~> java.util.concurrent.atomic.AtomicLong
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.util.concurrent.atomic.AtomicLong.class)
 public class AtomicLong implements LibSLRuntime.Automaton, Serializable {
     private static final long serialVersionUID = 1927816293512124184L;

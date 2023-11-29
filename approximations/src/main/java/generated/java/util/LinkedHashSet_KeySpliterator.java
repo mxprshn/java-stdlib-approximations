@@ -6,6 +6,7 @@ package generated.java.util;
 import generated.runtime.LibSLGlobals;
 import java.lang.NullPointerException;
 import java.lang.Object;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import runtime.LibSLRuntime;
 /**
  * LinkedHashSet_KeySpliteratorAutomaton for LinkedHashSet_KeySpliterator ~> java.util.LinkedHashSet_KeySpliterator
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.util.LinkedHashSet_KeySpliterator.class)
 public final class LinkedHashSet_KeySpliterator implements LibSLRuntime.Automaton, Spliterator {
     static {

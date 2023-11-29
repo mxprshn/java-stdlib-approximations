@@ -11,6 +11,8 @@ import java.lang.Cloneable;
 import java.lang.IllegalArgumentException;
 import java.lang.NullPointerException;
 import java.lang.Object;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
@@ -28,6 +30,7 @@ import runtime.LibSLRuntime;
 /**
  * LinkedHashSetAutomaton for LinkedHashSet ~> java.util.LinkedHashSet
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.util.LinkedHashSet.class)
 public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializable {
     private static final long serialVersionUID = -2851667679971038690L;
@@ -155,22 +158,6 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
     }
 
     /**
-     * [SUBROUTINE] LinkedHashSetAutomaton::_generateKey(map<Object, Object>) -> Object
-     */
-    private Object _generateKey(LibSLRuntime.Map<Object, Object> visitedKeys) {
-        Object result = null;
-        /* body */ {
-            result = Engine.makeSymbolic(Object.class);
-            Engine.assume(result != null);
-            final boolean isKeyExist = this.storage.hasKey(result);
-            Engine.assume(isKeyExist);
-            final boolean isKeyWasVisited = visitedKeys.hasKey(result);
-            Engine.assume(!isKeyWasVisited);
-        }
-        return result;
-    }
-
-    /**
      * [FUNCTION] LinkedHashSetAutomaton::add(LinkedHashSet, Object) -> boolean
      */
     public boolean add(Object obj) {
@@ -209,8 +196,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            final LibSLRuntime.Map<Object, Object> storageCopy = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
-            storageCopy.union(this.storage);
+            final LibSLRuntime.Map<Object, Object> storageCopy = this.storage.duplicate();
             result = (java.util.LinkedHashSet) ((Object) new LinkedHashSet((Void) null, 
                 /* state = */ LinkedHashSet.__$lsl_States.Initialized, 
                 /* storage = */ storageCopy, 
@@ -256,11 +242,11 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
         Iterator result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            final LibSLRuntime.Map<Object, Object> visitedKeysMap = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
+            final LibSLRuntime.Map<Object, Object> unseenKeys = this.storage.duplicate();
             result = (stub.java.util.LinkedHashSet_KeyIterator) ((Object) new LinkedHashSet_KeyIterator((Void) null, 
                 /* state = */ LinkedHashSet_KeyIterator.__$lsl_States.Initialized, 
                 /* expectedModCount = */ this.modCount, 
-                /* visitedKeys = */ visitedKeysMap, 
+                /* unseenKeys = */ unseenKeys, 
                 /* parent = */ this, 
                 /* index = */ 0, 
                 /* currentKey = */ 0, 
@@ -310,12 +296,12 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final Object[] keysStorageArray = new Object[this.length];
-            final LibSLRuntime.Map<Object, Object> visitedKeys = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
+            final LibSLRuntime.Map<Object, Object> unseenKeys = this.storage.duplicate();
             int i = 0;
             for (i = 0; i < this.length; i += 1) {
-                final Object key = _generateKey(visitedKeys);
+                final Object key = unseenKeys.anyKey();
+                unseenKeys.remove(key);
                 keysStorageArray[i] = key;
-                visitedKeys.set(key, LibSLGlobals.SOMETHING);
             }
             ;
             result = (stub.java.util.LinkedHashSet_KeySpliterator) ((Object) new LinkedHashSet_KeySpliterator((Void) null, 
@@ -400,15 +386,15 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
                 }
                 ;
             } else {
-                final LibSLRuntime.Map<Object, Object> visitedKeys = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
+                final LibSLRuntime.Map<Object, Object> unseenKeys = this.storage.duplicate();
                 while (i < this.length) {
-                    final Object key = _generateKey(visitedKeys);
+                    final Object key = unseenKeys.anyKey();
+                    unseenKeys.remove(key);
                     final boolean isCollectionContainsKey = c.contains(key);
                     if (isCollectionContainsKey) {
                         this.storage.remove(key);
                         this.length -= 1;
                     }
-                    visitedKeys.set(key, LibSLGlobals.SOMETHING);
                     i += 1;
                 }
                 ;
@@ -430,12 +416,12 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
             final int len = this.length;
             result = new Object[len];
             final int expectedModCount = this.modCount;
-            final LibSLRuntime.Map<Object, Object> visitedKeys = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
+            final LibSLRuntime.Map<Object, Object> unseenKeys = this.storage.duplicate();
             int i = 0;
             for (i = 0; i < len; i += 1) {
-                final Object key = _generateKey(visitedKeys);
+                final Object key = unseenKeys.anyKey();
+                unseenKeys.remove(key);
                 result[i] = key;
-                visitedKeys.set(key, LibSLGlobals.SOMETHING);
             }
             ;
             _checkForComodification(expectedModCount);
@@ -453,16 +439,16 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
             final int expectedModCount = this.modCount;
             final int aLen = a.length;
             final int len = this.length;
-            final LibSLRuntime.Map<Object, Object> visitedKeys = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
+            final LibSLRuntime.Map<Object, Object> unseenKeys = this.storage.duplicate();
             int i = 0;
             if (aLen < len) {
                 a = new Object[len];
             }
             result = a;
             for (i = 0; i < len; i += 1) {
-                final Object key = _generateKey(visitedKeys);
+                final Object key = unseenKeys.anyKey();
+                unseenKeys.remove(key);
                 result[i] = key;
-                visitedKeys.set(key, LibSLGlobals.SOMETHING);
             }
             ;
             if (aLen > this.length) {
@@ -486,12 +472,12 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
             final int len = this.length;
             result = ((Object[]) generator.apply(0));
             final int expectedModCount = this.modCount;
-            final LibSLRuntime.Map<Object, Object> visitedKeys = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
+            final LibSLRuntime.Map<Object, Object> unseenKeys = this.storage.duplicate();
             int i = 0;
             for (i = 0; i < len; i += 1) {
-                final Object key = _generateKey(visitedKeys);
+                final Object key = unseenKeys.anyKey();
+                unseenKeys.remove(key);
                 result[i] = key;
-                visitedKeys.set(key, LibSLGlobals.SOMETHING);
             }
             ;
             _checkForComodification(expectedModCount);
@@ -579,16 +565,16 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
             final int lengthBeforeAdd = this.length;
             final int expectedModCount = this.modCount;
             int i = 0;
-            final LibSLRuntime.Map<Object, Object> visitedKeys = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
+            final LibSLRuntime.Map<Object, Object> unseenKeys = this.storage.duplicate();
             while (i < lengthBeforeAdd) {
-                final Object key = _generateKey(visitedKeys);
+                final Object key = unseenKeys.anyKey();
+                unseenKeys.remove(key);
                 boolean isDelete = filter.test(key);
                 if (isDelete) {
                     this.storage.remove(key);
                     this.length -= 1;
                 }
                 i += 1;
-                visitedKeys.set(key, LibSLGlobals.SOMETHING);
             }
             ;
             _checkForComodification(expectedModCount);
@@ -613,12 +599,12 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
             }
             int i = 0;
             final int expectedModCount = this.modCount;
-            final LibSLRuntime.Map<Object, Object> visitedKeys = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
+            final LibSLRuntime.Map<Object, Object> unseenKeys = this.storage.duplicate();
             while (i < this.length) {
-                final Object key = _generateKey(visitedKeys);
+                final Object key = unseenKeys.anyKey();
+                unseenKeys.remove(key);
                 userAction.accept(key);
                 i += 1;
-                visitedKeys.set(key, LibSLGlobals.SOMETHING);
             }
             ;
             _checkForComodification(expectedModCount);
@@ -668,6 +654,18 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
         /* body */ {
             LibSLRuntime.not_implemented(/* no serialization support yet */);
         }
+    }
+
+    /**
+     * [FUNCTION] LinkedHashSetAutomaton::toString(LinkedHashSet) -> String
+     */
+    public String toString() {
+        String result = null;
+        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
+        /* body */ {
+            result = LibSLRuntime.toString(this.storage);
+        }
+        return result;
     }
 
     public static final class __$lsl_States {

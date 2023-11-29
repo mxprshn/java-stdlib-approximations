@@ -11,6 +11,8 @@ import java.lang.Cloneable;
 import java.lang.IllegalArgumentException;
 import java.lang.NullPointerException;
 import java.lang.Object;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
@@ -28,6 +30,7 @@ import runtime.LibSLRuntime;
 /**
  * HashSetAutomaton for HashSet ~> java.util.HashSet
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.util.HashSet.class)
 public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializable {
     private static final long serialVersionUID = -5024744406713321676L;
@@ -40,22 +43,19 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
 
     public LibSLRuntime.Map<Object, Object> storage;
 
-    public transient int length;
-
     public transient int modCount;
 
     @LibSLRuntime.AutomatonConstructor
     public HashSet(Void __$lsl_token, final byte p0, final LibSLRuntime.Map<Object, Object> p1,
-            final int p2, final int p3) {
+            final int p2) {
         this.__$lsl_state = p0;
         this.storage = p1;
-        this.length = p2;
-        this.modCount = p3;
+        this.modCount = p2;
     }
 
     @LibSLRuntime.AutomatonConstructor
     public HashSet(final Void __$lsl_token) {
-        this(__$lsl_token, __$lsl_States.Allocated, null, 0, 0);
+        this(__$lsl_token, __$lsl_States.Allocated, null, 0);
     }
 
     /**
@@ -143,39 +143,21 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
     private boolean _addAllElements(Collection c) {
         boolean result = false;
         /* body */ {
-            final int lengthBeforeAdd = this.length;
+            final int lengthBeforeAdd = this.storage.size();
             final Iterator iter = c.iterator();
             while (iter.hasNext()) {
                 final Object key = iter.next();
-                final boolean hasKey = this.storage.hasKey(key);
-                if (!hasKey) {
+                if (!this.storage.hasKey(key)) {
                     this.storage.set(key, LibSLGlobals.SOMETHING);
-                    this.length += 1;
                 }
             }
             ;
-            if (lengthBeforeAdd != this.length) {
+            if (lengthBeforeAdd != this.storage.size()) {
                 this.modCount += 1;
                 result = true;
             } else {
                 result = false;
             }
-        }
-        return result;
-    }
-
-    /**
-     * [SUBROUTINE] HashSetAutomaton::_generateKey(map<Object, Object>) -> Object
-     */
-    private Object _generateKey(LibSLRuntime.Map<Object, Object> visitedKeys) {
-        Object result = null;
-        /* body */ {
-            result = Engine.makeSymbolic(Object.class);
-            Engine.assume(result != null);
-            final boolean isKeyExist = this.storage.hasKey(result);
-            Engine.assume(isKeyExist);
-            final boolean isKeyWasVisited = visitedKeys.hasKey(result);
-            Engine.assume(!isKeyWasVisited);
         }
         return result;
     }
@@ -191,7 +173,6 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
             if (hasKey) {
                 result = false;
             } else {
-                this.length += 1;
                 this.storage.set(obj, LibSLGlobals.SOMETHING);
                 result = true;
             }
@@ -206,7 +187,6 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
     public void clear() {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            this.length = 0;
             this.storage = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
             this.modCount += 1;
         }
@@ -219,12 +199,10 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            final LibSLRuntime.Map<Object, Object> storageCopy = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
-            storageCopy.union(this.storage);
+            final LibSLRuntime.Map<Object, Object> storageCopy = this.storage.duplicate();
             result = (java.util.HashSet) ((Object) new HashSet((Void) null, 
                 /* state = */ HashSet.__$lsl_States.Initialized, 
                 /* storage = */ storageCopy, 
-                /* length = */ this.length, 
                 /* modCount = */ 0
             ));
         }
@@ -238,7 +216,7 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (this.length == 0) {
+            if (this.storage.size() == 0) {
                 result = false;
             } else {
                 result = this.storage.hasKey(obj);
@@ -254,7 +232,7 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = this.length == 0;
+            result = this.storage.size() == 0;
         }
         return result;
     }
@@ -266,11 +244,11 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
         Iterator result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            final LibSLRuntime.Map<Object, Object> visitedKeysMap = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
+            final LibSLRuntime.Map<Object, Object> unseenKeys = this.storage.duplicate();
             result = (stub.java.util.HashSet_KeyIterator) ((Object) new HashSet_KeyIterator((Void) null, 
                 /* state = */ HashSet_KeyIterator.__$lsl_States.Initialized, 
                 /* expectedModCount = */ this.modCount, 
-                /* visitedKeys = */ visitedKeysMap, 
+                /* unseenKeys = */ unseenKeys, 
                 /* parent = */ this, 
                 /* index = */ 0, 
                 /* currentKey = */ 0, 
@@ -287,10 +265,8 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            final boolean hasKey = this.storage.hasKey(obj);
-            if (hasKey) {
+            if (this.storage.hasKey(obj)) {
                 this.storage.remove(obj);
-                this.length -= 1;
                 this.modCount += 1;
                 result = true;
             } else {
@@ -307,7 +283,7 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
         int result = 0;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = this.length;
+            result = this.storage.size();
         }
         return result;
     }
@@ -319,13 +295,13 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
         Spliterator result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            final Object[] keysStorageArray = new Object[this.length];
-            final LibSLRuntime.Map<Object, Object> visitedKeys = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
+            final Object[] keysStorageArray = new Object[this.storage.size()];
+            final LibSLRuntime.Map<Object, Object> unseenKeys = this.storage.duplicate();
             int i = 0;
-            for (i = 0; i < this.length; i += 1) {
-                final Object key = _generateKey(visitedKeys);
+            for (i = 0; i < this.storage.size(); i += 1) {
+                final Object key = unseenKeys.anyKey();
+                unseenKeys.remove(key);
                 keysStorageArray[i] = key;
-                visitedKeys.set(key, LibSLGlobals.SOMETHING);
             }
             ;
             result = (stub.java.util.HashSet_KeySpliterator) ((Object) new HashSet_KeySpliterator((Void) null, 
@@ -356,8 +332,7 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
                     final int expectedModCount = this.modCount;
                     final int otherExpectedModCount = ((HashSet) ((Object) other)).modCount;
                     final LibSLRuntime.Map<Object, Object> otherStorage = ((HashSet) ((Object) other)).storage;
-                    final int otherLength = ((HashSet) ((Object) other)).length;
-                    if (this.length == otherLength) {
+                    if (this.storage.size() == otherStorage.size()) {
                         result = LibSLRuntime.equals(this.storage, otherStorage);
                     } else {
                         result = false;
@@ -397,35 +372,31 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
             final int expectedModCount = this.modCount;
             final int otherSize = c.size();
             final Iterator iter = c.iterator();
-            final int lengthBeforeRemoving = this.length;
+            final int lengthBeforeRemoving = this.storage.size();
             int i = 0;
-            if (this.length > otherSize) {
+            if (this.storage.size() > otherSize) {
                 while (iter.hasNext()) {
                     final Object key = iter.next();
-                    final boolean isKeyExist = this.storage.hasKey(key);
-                    if (isKeyExist) {
+                    if (this.storage.hasKey(key)) {
                         this.storage.remove(key);
-                        this.length -= 1;
                     }
                 }
                 ;
             } else {
-                final LibSLRuntime.Map<Object, Object> visitedKeys = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
-                while (i < this.length) {
-                    final Object key = _generateKey(visitedKeys);
-                    final boolean isCollectionContainsKey = c.contains(key);
-                    if (isCollectionContainsKey) {
+                final LibSLRuntime.Map<Object, Object> unseenKeys = this.storage.duplicate();
+                while (i < this.storage.size()) {
+                    final Object key = unseenKeys.anyKey();
+                    unseenKeys.remove(key);
+                    if (c.contains(key)) {
                         this.storage.remove(key);
-                        this.length -= 1;
                     }
-                    visitedKeys.set(key, LibSLGlobals.SOMETHING);
                     i += 1;
                 }
                 ;
             }
             _checkForComodification(expectedModCount);
             this.modCount += 1;
-            result = lengthBeforeRemoving != this.length;
+            result = lengthBeforeRemoving != this.storage.size();
         }
         return result;
     }
@@ -437,15 +408,15 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
         Object[] result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            final int len = this.length;
+            final int len = this.storage.size();
             result = new Object[len];
             final int expectedModCount = this.modCount;
-            final LibSLRuntime.Map<Object, Object> visitedKeys = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
+            final LibSLRuntime.Map<Object, Object> unseenKeys = this.storage.duplicate();
             int i = 0;
             for (i = 0; i < len; i += 1) {
-                final Object key = _generateKey(visitedKeys);
+                final Object key = unseenKeys.anyKey();
+                unseenKeys.remove(key);
                 result[i] = key;
-                visitedKeys.set(key, LibSLGlobals.SOMETHING);
             }
             ;
             _checkForComodification(expectedModCount);
@@ -462,21 +433,21 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
         /* body */ {
             final int expectedModCount = this.modCount;
             final int aLen = a.length;
-            final int len = this.length;
-            final LibSLRuntime.Map<Object, Object> visitedKeys = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
+            final int len = this.storage.size();
+            final LibSLRuntime.Map<Object, Object> unseenKeys = this.storage.duplicate();
             int i = 0;
             if (aLen < len) {
                 a = new Object[len];
             }
             result = a;
             for (i = 0; i < len; i += 1) {
-                final Object key = _generateKey(visitedKeys);
+                final Object key = unseenKeys.anyKey();
+                unseenKeys.remove(key);
                 result[i] = key;
-                visitedKeys.set(key, LibSLGlobals.SOMETHING);
             }
             ;
-            if (aLen > this.length) {
-                result[this.length] = null;
+            if (aLen > len) {
+                result[len] = null;
             }
             _checkForComodification(expectedModCount);
         }
@@ -493,15 +464,15 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
             if (generator == null) {
                 throw new NullPointerException();
             }
-            final int len = this.length;
+            final int len = this.storage.size();
             result = ((Object[]) generator.apply(0));
             final int expectedModCount = this.modCount;
-            final LibSLRuntime.Map<Object, Object> visitedKeys = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
+            final LibSLRuntime.Map<Object, Object> unseenKeys = this.storage.duplicate();
             int i = 0;
             for (i = 0; i < len; i += 1) {
-                final Object key = _generateKey(visitedKeys);
+                final Object key = unseenKeys.anyKey();
+                unseenKeys.remove(key);
                 result[i] = key;
-                visitedKeys.set(key, LibSLGlobals.SOMETHING);
             }
             ;
             _checkForComodification(expectedModCount);
@@ -555,18 +526,16 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
             if (c == null) {
                 throw new NullPointerException();
             }
-            final int lengthBeforeAdd = this.length;
+            final int lengthBeforeAdd = this.storage.size();
             final Iterator iter = c.iterator();
             while (iter.hasNext()) {
                 final Object key = iter.next();
-                final boolean hasKey = this.storage.hasKey(key);
-                if (!hasKey) {
+                if (!this.storage.hasKey(key)) {
                     this.storage.remove(key);
-                    this.length -= 1;
                 }
             }
             ;
-            if (lengthBeforeAdd != this.length) {
+            if (lengthBeforeAdd != this.storage.size()) {
                 this.modCount += 1;
                 result = true;
             } else {
@@ -586,23 +555,21 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
             if (filter == null) {
                 throw new NullPointerException();
             }
-            final int lengthBeforeAdd = this.length;
+            final int lengthBeforeAdd = this.storage.size();
             final int expectedModCount = this.modCount;
             int i = 0;
-            final LibSLRuntime.Map<Object, Object> visitedKeys = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
+            final LibSLRuntime.Map<Object, Object> unseenKeys = this.storage.duplicate();
             while (i < lengthBeforeAdd) {
-                final Object key = _generateKey(visitedKeys);
-                boolean isDelete = filter.test(key);
-                if (isDelete) {
+                final Object key = unseenKeys.anyKey();
+                unseenKeys.remove(key);
+                if (filter.test(key)) {
                     this.storage.remove(key);
-                    this.length -= 1;
                 }
                 i += 1;
-                visitedKeys.set(key, LibSLGlobals.SOMETHING);
             }
             ;
             _checkForComodification(expectedModCount);
-            if (lengthBeforeAdd != this.length) {
+            if (lengthBeforeAdd != this.storage.size()) {
                 this.modCount += 1;
                 result = true;
             } else {
@@ -622,13 +589,14 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
                 throw new NullPointerException();
             }
             int i = 0;
+            final int count = this.storage.size();
             final int expectedModCount = this.modCount;
-            final LibSLRuntime.Map<Object, Object> visitedKeys = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
-            while (i < this.length) {
-                final Object key = _generateKey(visitedKeys);
+            final LibSLRuntime.Map<Object, Object> unseenKeys = this.storage.duplicate();
+            while (i < count) {
+                final Object key = unseenKeys.anyKey();
+                unseenKeys.remove(key);
                 userAction.accept(key);
                 i += 1;
-                visitedKeys.set(key, LibSLGlobals.SOMETHING);
             }
             ;
             _checkForComodification(expectedModCount);
@@ -678,6 +646,18 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
         /* body */ {
             LibSLRuntime.not_implemented(/* no serialization support yet */);
         }
+    }
+
+    /**
+     * [FUNCTION] HashSetAutomaton::toString(HashSet) -> String
+     */
+    public String toString() {
+        String result = null;
+        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
+        /* body */ {
+            result = LibSLRuntime.toString(this.storage);
+        }
+        return result;
     }
 
     public static final class __$lsl_States {

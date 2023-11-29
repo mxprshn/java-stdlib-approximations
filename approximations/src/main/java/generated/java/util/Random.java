@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.io.ObjectStreamField;
 import java.io.Serializable;
 import java.lang.IllegalArgumentException;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
@@ -19,6 +20,7 @@ import runtime.LibSLRuntime;
 /**
  * RandomAutomaton for Random ~> java.util.Random
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.util.Random.class)
 public class Random implements LibSLRuntime.Automaton, Serializable {
     private static final long serialVersionUID = 3905348978240129619L;

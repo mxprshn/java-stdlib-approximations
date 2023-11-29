@@ -5,12 +5,14 @@ package stub.java.util.stream;
 
 import java.lang.Integer;
 import java.lang.InternalError;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.PrimitiveIterator;
 import java.util.function.Consumer;
 import java.util.function.IntConsumer;
 import runtime.LibSLRuntime;
 
+@SuppressWarnings({"all", "unchecked"})
 public class IntStreamLSLIterator implements LibSLRuntime.HasAutomaton, PrimitiveIterator.OfInt {
     private IntStreamLSLIterator(Void a, Void b) {
         super();

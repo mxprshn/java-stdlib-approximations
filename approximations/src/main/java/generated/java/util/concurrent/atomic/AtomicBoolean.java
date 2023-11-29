@@ -5,6 +5,7 @@ package generated.java.util.concurrent.atomic;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
@@ -13,6 +14,7 @@ import runtime.LibSLRuntime;
 /**
  * AtomicBooleanAutomaton for LSLAtomicBoolean ~> java.util.concurrent.atomic.AtomicBoolean
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.util.concurrent.atomic.AtomicBoolean.class)
 public class AtomicBoolean implements LibSLRuntime.Automaton, Serializable {
     private static final long serialVersionUID = 4654671469794556979L;

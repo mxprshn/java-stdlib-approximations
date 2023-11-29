@@ -13,6 +13,7 @@ import java.lang.IndexOutOfBoundsException;
 import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.Collection;
 import java.util.Comparator;
@@ -35,6 +36,7 @@ import runtime.LibSLRuntime;
 /**
  * ArrayListAutomaton for ArrayList ~> java.util.ArrayList
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.util.ArrayList.class)
 public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cloneable, Serializable {
     private static final long serialVersionUID = 8683452581122892189L;

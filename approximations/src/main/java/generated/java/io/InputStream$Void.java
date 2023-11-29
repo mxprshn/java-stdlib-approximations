@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.lang.IllegalArgumentException;
 import java.lang.IndexOutOfBoundsException;
 import java.lang.NullPointerException;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
@@ -16,6 +17,7 @@ import runtime.LibSLRuntime;
 /**
  * VoidInputStreamAutomaton for VoidInputStream ~> java.io.InputStream$Void
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.io.InputStream$Void.class)
 public final class InputStream$Void implements LibSLRuntime.Automaton {
     static {

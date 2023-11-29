@@ -7,6 +7,7 @@ import generated.runtime.LibSLGlobals;
 import java.lang.IllegalStateException;
 import java.lang.NullPointerException;
 import java.lang.Object;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.Comparator;
 import java.util.Spliterator;
@@ -19,6 +20,7 @@ import runtime.LibSLRuntime;
 /**
  * IntStreamSpliteratorAutomaton for IntStreamLSLSpliterator ~> java.util.stream.IntStreamLSLSpliterator
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.util.stream.IntStreamLSLSpliterator.class)
 public class IntStreamLSLSpliterator implements LibSLRuntime.Automaton, Spliterator.OfInt {
     static {

@@ -4,11 +4,13 @@
 package stub.java.util;
 
 import java.lang.InternalError;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 import runtime.LibSLRuntime;
 
+@SuppressWarnings({"all", "unchecked"})
 public final class ArrayList_SubList$Spliterator implements LibSLRuntime.HasAutomaton, Spliterator {
     private ArrayList_SubList$Spliterator(Void a, Void b) {
         super();

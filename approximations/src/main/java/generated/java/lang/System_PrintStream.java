@@ -10,6 +10,7 @@ import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.String;
 import java.lang.StringIndexOutOfBoundsException;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.Locale;
 import org.jacodb.approximation.annotation.Approximate;
@@ -19,6 +20,7 @@ import runtime.LibSLRuntime;
 /**
  * System_PrintStreamAutomaton for System_PrintStream ~> java.lang.System_PrintStream
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.lang.System_PrintStream.class)
 public final class System_PrintStream implements LibSLRuntime.Automaton {
     static {

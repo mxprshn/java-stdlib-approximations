@@ -8,6 +8,7 @@ import java.lang.Comparable;
 import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
@@ -16,6 +17,7 @@ import runtime.LibSLRuntime;
 /**
  * FloatAutomaton for LSLFloat ~> java.lang.Float
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.lang.Float.class)
 public final class Float implements LibSLRuntime.Automaton, Comparable<Float> {
     private static final long serialVersionUID = -2671257302660747028L;

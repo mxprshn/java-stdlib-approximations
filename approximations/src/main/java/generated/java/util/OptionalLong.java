@@ -8,6 +8,7 @@ import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.Runnable;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.NoSuchElementException;
 import java.util.function.LongConsumer;
@@ -21,6 +22,7 @@ import runtime.LibSLRuntime;
 /**
  * OptionalLongAutomaton for LSLOptionalLong ~> java.util.OptionalLong
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.util.OptionalLong.class)
 public final class OptionalLong implements LibSLRuntime.Automaton {
     static {

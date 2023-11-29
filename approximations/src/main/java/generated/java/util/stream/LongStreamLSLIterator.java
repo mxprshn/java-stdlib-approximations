@@ -6,6 +6,7 @@ package generated.java.util.stream;
 import java.lang.Long;
 import java.lang.NullPointerException;
 import java.lang.Object;
+import java.lang.SuppressWarnings;
 import java.lang.UnsupportedOperationException;
 import java.lang.Void;
 import java.util.NoSuchElementException;
@@ -19,6 +20,7 @@ import runtime.LibSLRuntime;
 /**
  * LongStreamIteratorAutomaton for LongStreamLSLIterator ~> java.util.stream.LongStreamLSLIterator
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.util.stream.LongStreamLSLIterator.class)
 public class LongStreamLSLIterator implements LibSLRuntime.Automaton, PrimitiveIterator.OfLong {
     static {

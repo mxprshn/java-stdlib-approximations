@@ -6,6 +6,7 @@ package stub.java.util.stream;
 import java.lang.InternalError;
 import java.lang.Object;
 import java.lang.Runnable;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.LongSummaryStatistics;
 import java.util.OptionalDouble;
@@ -28,6 +29,7 @@ import java.util.stream.LongStream;
 import java.util.stream.Stream;
 import runtime.LibSLRuntime;
 
+@SuppressWarnings({"all", "unchecked"})
 public class LongStreamLSL implements LibSLRuntime.HasAutomaton, LongStream {
     private LongStreamLSL(Void a, Void b) {
         super();

@@ -8,6 +8,7 @@ import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.Runnable;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
@@ -22,6 +23,7 @@ import runtime.LibSLRuntime;
 /**
  * OptionalAutomaton for LSLOptional ~> java.util.Optional
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.util.Optional.class)
 public final class Optional implements LibSLRuntime.Automaton {
     static {

@@ -6,6 +6,7 @@ package generated.java.util;
 import java.lang.IllegalStateException;
 import java.lang.NullPointerException;
 import java.lang.Object;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.ConcurrentModificationException;
 import java.util.ListIterator;
@@ -19,6 +20,7 @@ import runtime.LibSLRuntime;
 /**
  * ArrayList_ListIteratorAutomaton for ArrayList_ListIterator ~> java.util.ArrayList_ListItr
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.util.ArrayList_ListItr.class)
 public final class ArrayList_ListItr implements LibSLRuntime.Automaton, ListIterator {
     static {

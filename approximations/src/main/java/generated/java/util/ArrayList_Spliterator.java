@@ -6,6 +6,7 @@ package generated.java.util;
 import generated.runtime.LibSLGlobals;
 import java.lang.NullPointerException;
 import java.lang.Object;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.ConcurrentModificationException;
 import java.util.Spliterator;
@@ -18,6 +19,7 @@ import runtime.LibSLRuntime;
 /**
  * ArrayList_SpliteratorAutomaton for ArrayList_Spliterator ~> java.util.ArrayList_Spliterator
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.util.ArrayList_Spliterator.class)
 public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spliterator {
     static {

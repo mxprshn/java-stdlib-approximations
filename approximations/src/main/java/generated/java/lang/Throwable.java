@@ -6,6 +6,7 @@ package generated.java.lang;
 import java.io.Serializable;
 import java.lang.StackTraceElement;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
@@ -14,6 +15,7 @@ import runtime.LibSLRuntime;
 /**
  * ThrowableAutomaton for LSLThrowable ~> java.lang.Throwable
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.lang.Throwable.class)
 public class Throwable implements LibSLRuntime.Automaton, Serializable {
     private static final long serialVersionUID = -3042686055658047285L;

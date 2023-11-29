@@ -10,6 +10,7 @@ import java.lang.IllegalStateException;
 import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.Runnable;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.DoubleSummaryStatistics;
 import java.util.OptionalDouble;
@@ -37,6 +38,7 @@ import runtime.LibSLRuntime;
 /**
  * DoubleStreamAutomaton for DoubleStreamLSL ~> java.util.stream.DoubleStreamLSL
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.util.stream.DoubleStreamLSL.class)
 public class DoubleStreamLSL implements LibSLRuntime.Automaton, DoubleStream {
     private static final double DOUBLE_POSITIVE_INFINITY = 1.0d / 0.0d;

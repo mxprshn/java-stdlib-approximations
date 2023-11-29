@@ -5,6 +5,7 @@ package generated.java.util;
 
 import java.lang.Class;
 import java.lang.Object;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.Collection;
 import java.util.Iterator;
@@ -16,6 +17,7 @@ import runtime.LibSLRuntime;
 /**
  * ListAutomaton for LSLList ~> java.util.List
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.util.List.class)
 public interface List extends LibSLRuntime.Automaton, java.util.List {
     Class __$_lsl_INIT_INTERFACE_ListAutomaton_5013495c = Void.class;

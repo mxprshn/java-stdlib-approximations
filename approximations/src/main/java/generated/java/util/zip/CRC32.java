@@ -6,6 +6,7 @@ package generated.java.util.zip;
 import java.lang.ArrayIndexOutOfBoundsException;
 import java.lang.AssertionError;
 import java.lang.NullPointerException;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.nio.ByteBuffer;
 import java.util.zip.Checksum;
@@ -17,6 +18,7 @@ import sun.nio.ch.DirectBuffer;
 /**
  * CRC32Automaton for LSLCRC32 ~> java.util.zip.CRC32
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.util.zip.CRC32.class)
 public class CRC32 implements LibSLRuntime.Automaton, Checksum {
     static {

@@ -4,6 +4,7 @@
 package generated.java.lang;
 
 import java.lang.Class;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
@@ -12,6 +13,7 @@ import runtime.LibSLRuntime;
 /**
  * AutoCloseableAutomaton for LSLAutoCloseable ~> java.lang.AutoCloseable
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.lang.AutoCloseable.class)
 public interface AutoCloseable extends LibSLRuntime.Automaton {
     Class __$_lsl_INIT_INTERFACE_AutoCloseableAutomaton_d61c3b46 = Void.class;

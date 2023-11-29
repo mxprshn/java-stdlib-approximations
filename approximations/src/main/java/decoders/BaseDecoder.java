@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+@Deprecated
+@SuppressWarnings({"all", "unchecked"})
 public abstract class BaseDecoder {
 
     protected static JcMethod getMethod(final List<JcMethod> methods,

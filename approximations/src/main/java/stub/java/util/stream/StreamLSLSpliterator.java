@@ -4,12 +4,14 @@
 package stub.java.util.stream;
 
 import java.lang.InternalError;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.Comparator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 import runtime.LibSLRuntime;
 
+@SuppressWarnings({"all", "unchecked"})
 public class StreamLSLSpliterator implements LibSLRuntime.HasAutomaton, Spliterator {
     private StreamLSLSpliterator(Void a, Void b) {
         super();

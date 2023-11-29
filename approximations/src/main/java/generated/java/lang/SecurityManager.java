@@ -9,6 +9,7 @@ import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.SecurityException;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Thread;
 import java.lang.ThreadGroup;
 import java.lang.Void;
@@ -23,6 +24,7 @@ import runtime.LibSLRuntime;
 /**
  * SecurityManagerAutomaton for LSLSecurityManager ~> java.lang.SecurityManager
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.lang.SecurityManager.class)
 public class SecurityManager implements LibSLRuntime.Automaton {
     static {
