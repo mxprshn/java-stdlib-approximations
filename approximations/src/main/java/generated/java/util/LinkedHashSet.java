@@ -26,6 +26,7 @@ import java.util.stream.Stream;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 import runtime.LibSLRuntime;
+import stub.java.util.stream.StreamLSL;
 
 /**
  * LinkedHashSetAutomaton for LinkedHashSet ~> java.util.LinkedHashSet
@@ -148,6 +149,34 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
             } else {
                 result = false;
             }
+        }
+        return result;
+    }
+
+    /**
+     * [SUBROUTINE] LinkedHashSetAutomaton::_makeStream(boolean) -> Stream
+     */
+    private Stream _makeStream(boolean parallel) {
+        Stream result = null;
+        /* body */ {
+            final LibSLRuntime.Map<Object, Object> unseen = this.storage.duplicate();
+            final int count = unseen.size();
+            final Object[] items = new Object[count];
+            int i = 0;
+            for (i = 0; i < count; i += 1) {
+                final Object key = unseen.anyKey();
+                unseen.remove(key);
+                items[i] = key;
+            }
+            ;
+            result = (StreamLSL) ((Object) new generated.java.util.stream.StreamLSL((Void) null, 
+                /* state = */ generated.java.util.stream.StreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ items, 
+                /* length = */ count, 
+                /* closeHandlers = */ Engine.makeSymbolicList(), 
+                /* isParallel = */ parallel, 
+                /* linkedOrConsumed = */ false
+            ));
         }
         return result;
     }
@@ -597,8 +626,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
         Stream result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = Engine.makeSymbolic(Stream.class);
-            Engine.assume(result != null);
+            result = _makeStream(false);
         }
         return result;
     }
@@ -610,8 +638,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
         Stream result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = Engine.makeSymbolic(Stream.class);
-            Engine.assume(result != null);
+            result = _makeStream(true);
         }
         return result;
     }

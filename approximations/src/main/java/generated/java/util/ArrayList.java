@@ -32,6 +32,7 @@ import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 import org.usvm.api.SymbolicList;
 import runtime.LibSLRuntime;
+import stub.java.util.stream.StreamLSL;
 
 /**
  * ArrayListAutomaton for ArrayList ~> java.util.ArrayList
@@ -331,9 +332,21 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
     private Stream _makeStream(boolean parallel) {
         Stream result = null;
         /* body */ {
-            result = Engine.makeSymbolic(Stream.class);
-            Engine.assume(result != null);
-            Engine.assume(result.isParallel() == parallel);
+            final int count = this.storage.size();
+            final Object[] items = new Object[count];
+            int i = 0;
+            for (i = 0; i < count; i += 1) {
+                items[i] = this.storage.get(i);
+            }
+            ;
+            result = (StreamLSL) ((Object) new generated.java.util.stream.StreamLSL((Void) null, 
+                /* state = */ generated.java.util.stream.StreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ items, 
+                /* length = */ count, 
+                /* closeHandlers = */ Engine.makeSymbolicList(), 
+                /* isParallel = */ parallel, 
+                /* linkedOrConsumed = */ false
+            ));
         }
         return result;
     }
