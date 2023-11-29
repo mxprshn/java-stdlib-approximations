@@ -15,6 +15,7 @@ import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.String;
 import java.lang.StringIndexOutOfBoundsException;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.stream.IntStream;
 import org.jacodb.approximation.annotation.Approximate;
@@ -24,6 +25,7 @@ import runtime.LibSLRuntime;
 /**
  * StringBuilderAutomaton for StringBuilder ~> java.lang.StringBuilder
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.lang.StringBuilder.class)
 public final class StringBuilder implements LibSLRuntime.Automaton, Serializable, Comparable<StringBuilder>, CharSequence {
     private static final long serialVersionUID = 4383685877147921099L;

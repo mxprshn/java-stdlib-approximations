@@ -23,6 +23,7 @@ tasks.withType<JavaCompile> {
     options.compilerArgs.add("1.8")
     options.compilerArgs.add("-source")
     options.compilerArgs.add("1.8")
+    options.compilerArgs.add("-Xlint:unchecked")
 }
 
 publishing {

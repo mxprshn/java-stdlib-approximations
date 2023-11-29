@@ -10,6 +10,7 @@ import java.lang.Long;
 import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.Runnable;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.LongSummaryStatistics;
 import java.util.OptionalDouble;
@@ -38,6 +39,7 @@ import runtime.LibSLRuntime;
 /**
  * LongStreamAutomaton for LongStreamLSL ~> java.util.stream.LongStreamLSL
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.util.stream.LongStreamLSL.class)
 public class LongStreamLSL implements LibSLRuntime.Automaton, LongStream {
     static {

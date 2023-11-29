@@ -8,6 +8,7 @@ import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.Runnable;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.NoSuchElementException;
 import java.util.function.DoubleConsumer;
@@ -21,6 +22,7 @@ import runtime.LibSLRuntime;
 /**
  * OptionalDoubleAutomaton for LSLOptionalDouble ~> java.util.OptionalDouble
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.util.OptionalDouble.class)
 public final class OptionalDouble implements LibSLRuntime.Automaton {
     static {

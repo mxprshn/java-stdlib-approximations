@@ -10,6 +10,7 @@ import java.lang.IllegalStateException;
 import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.Runnable;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -40,6 +41,7 @@ import runtime.LibSLRuntime;
 /**
  * StreamAutomaton for StreamLSL ~> java.util.stream.StreamLSL
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.util.stream.StreamLSL.class)
 public class StreamLSL implements LibSLRuntime.Automaton, Stream {
     static {

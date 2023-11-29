@@ -4,9 +4,11 @@
 package generated.java.lang;
 
 import java.lang.Class;
+import java.lang.Comparable;
 import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
@@ -15,8 +17,9 @@ import runtime.LibSLRuntime;
 /**
  * FloatAutomaton for LSLFloat ~> java.lang.Float
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.lang.Float.class)
-public final class Float implements LibSLRuntime.Automaton {
+public final class Float implements LibSLRuntime.Automaton, Comparable<Float> {
     private static final long serialVersionUID = -2671257302660747028L;
 
     public static final int BYTES = 4;
@@ -111,6 +114,11 @@ public final class Float implements LibSLRuntime.Automaton {
                                 Engine.assume(result != 0);
                                 Engine.assume(result != 2139095040);
                                 Engine.assume(result != -8388608);
+                                if (v < 0.0f) {
+                                    Engine.assume(result < 0);
+                                } else {
+                                    Engine.assume(result > 0);
+                                }
                             }
                         }
                     }
@@ -221,6 +229,11 @@ public final class Float implements LibSLRuntime.Automaton {
                                 Engine.assume(result == result);
                                 Engine.assume(result != POSITIVE_INFINITY);
                                 Engine.assume(result != NEGATIVE_INFINITY);
+                                if (value < 0) {
+                                    Engine.assume(result < 0.0f);
+                                } else {
+                                    Engine.assume(result > 0.0f);
+                                }
                             }
                         }
                     }
@@ -238,7 +251,10 @@ public final class Float implements LibSLRuntime.Automaton {
         boolean result = false;
         // WARNING: no state checks in static context
         /* body */ {
-            result = (f != POSITIVE_INFINITY) && (f != NEGATIVE_INFINITY);
+            if (f <= 0.0f) {
+                f = 0.0f - f;
+            }
+            result = f <= MAX_VALUE;
         }
         // WARNING: no state transitions in static context
         return result;
@@ -277,10 +293,18 @@ public final class Float implements LibSLRuntime.Automaton {
         float result = 0.0f;
         // WARNING: no state checks in static context
         /* body */ {
-            if (a > b) {
+            if (a != a) {
                 result = a;
             } else {
-                result = b;
+                if ((a == 0.0f) && (b == 0.0f) && ((1.0f / a) == NEGATIVE_INFINITY)) {
+                    result = b;
+                } else {
+                    if (a >= b) {
+                        result = a;
+                    } else {
+                        result = b;
+                    }
+                }
             }
         }
         // WARNING: no state transitions in static context
@@ -294,10 +318,18 @@ public final class Float implements LibSLRuntime.Automaton {
         float result = 0.0f;
         // WARNING: no state checks in static context
         /* body */ {
-            if (a < b) {
+            if (a != a) {
                 result = a;
             } else {
-                result = b;
+                if ((a == 0.0f) && (b == 0.0f) && ((1.0f / b) == NEGATIVE_INFINITY)) {
+                    result = b;
+                } else {
+                    if (a <= b) {
+                        result = a;
+                    } else {
+                        result = b;
+                    }
+                }
             }
         }
         // WARNING: no state transitions in static context
@@ -404,14 +436,14 @@ public final class Float implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] FloatAutomaton::compareTo(LSLFloat, Float) -> int
+     * [FUNCTION] FloatAutomaton::compareTo(LSLFloat, LSLFloat) -> int
      */
-    public int compareTo(java.lang.Float anotherFloat) {
+    public int compareTo(Float anotherFloat) {
         int result = 0;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final float a = this.value;
-            final float b = anotherFloat.floatValue();
+            final float b = ((Float) ((Object) anotherFloat)).value;
             if ((a == b) || (a != a) || (b != b)) {
                 result = 0;
             } else {

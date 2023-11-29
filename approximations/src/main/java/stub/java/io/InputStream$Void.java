@@ -6,9 +6,11 @@ package stub.java.io;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.InternalError;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import runtime.LibSLRuntime;
 
+@SuppressWarnings({"all", "unchecked"})
 public final class InputStream$Void extends InputStream implements LibSLRuntime.HasAutomaton {
     private InputStream$Void(Void a, Void b) {
         super();

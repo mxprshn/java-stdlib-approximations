@@ -6,6 +6,7 @@ package generated.java.util.concurrent.atomic;
 import java.io.Serializable;
 import java.lang.Object;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.function.BinaryOperator;
 import java.util.function.UnaryOperator;
@@ -16,6 +17,7 @@ import runtime.LibSLRuntime;
 /**
  * AtomicReferenceAutomaton for LSLAtomicReference ~> java.util.concurrent.atomic.AtomicReference
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.util.concurrent.atomic.AtomicReference.class)
 public class AtomicReference implements LibSLRuntime.Automaton, Serializable {
     private static final long serialVersionUID = -1848883965231344442L;

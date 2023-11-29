@@ -10,6 +10,7 @@ import java.lang.IndexOutOfBoundsException;
 import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.Collection;
 import java.util.Comparator;
@@ -29,10 +30,12 @@ import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 import org.usvm.api.SymbolicList;
 import runtime.LibSLRuntime;
+import stub.java.util.stream.StreamLSL;
 
 /**
  * LinkedListAutomaton for LinkedList ~> java.util.LinkedList
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.util.LinkedList.class)
 public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneable, Serializable {
     private static final long serialVersionUID = 876323262645176354L;
@@ -45,22 +48,19 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
 
     public SymbolicList<Object> storage;
 
-    public transient int size;
-
     public transient int modCount;
 
     @LibSLRuntime.AutomatonConstructor
-    public LinkedList(Void __$lsl_token, final byte p0, final SymbolicList<Object> p1, final int p2,
-            final int p3) {
+    public LinkedList(Void __$lsl_token, final byte p0, final SymbolicList<Object> p1,
+            final int p2) {
         this.__$lsl_state = p0;
         this.storage = p1;
-        this.size = p2;
-        this.modCount = p3;
+        this.modCount = p2;
     }
 
     @LibSLRuntime.AutomatonConstructor
     public LinkedList(final Void __$lsl_token) {
-        this(__$lsl_token, __$lsl_States.Allocated, null, 0, 0);
+        this(__$lsl_token, __$lsl_States.Allocated, null, 0);
     }
 
     /**
@@ -71,7 +71,6 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
         /* body */ {
             this.storage = Engine.makeSymbolicList();
-            this.size = 0;
         }
         this.__$lsl_state = __$lsl_States.Initialized;
     }
@@ -87,8 +86,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
                 throw new NullPointerException();
             }
             this.storage = Engine.makeSymbolicList();
-            this.size = 0;
-            _addAllElements(this.size, c);
+            _addAllElements(this.storage.size(), c);
         }
         this.__$lsl_state = __$lsl_States.Initialized;
     }
@@ -112,7 +110,6 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         /* body */ {
             result = this.storage.get(index);
             this.storage.remove(index);
-            this.size -= 1;
             this.modCount += 1;
         }
         return result;
@@ -124,7 +121,6 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
     private void _linkAny(int index, Object e) {
         /* body */ {
             this.storage.insert(index, e);
-            this.size += 1;
             this.modCount += 1;
         }
     }
@@ -146,7 +142,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
     private boolean _isValidIndex(int index) {
         boolean result = false;
         /* body */ {
-            result = (0 <= index) && (index < this.size);
+            result = (0 <= index) && (index < this.storage.size());
         }
         return result;
     }
@@ -157,7 +153,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
     private boolean _isPositionIndex(int index) {
         boolean result = false;
         /* body */ {
-            result = (0 <= index) && (index <= this.size);
+            result = (0 <= index) && (index <= this.storage.size());
         }
         return result;
     }
@@ -179,7 +175,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
     private Object _unlinkFirst() {
         Object result = null;
         /* body */ {
-            if (this.size == 0) {
+            if (this.storage.size() == 0) {
                 throw new NoSuchElementException();
             }
             result = _unlinkAny(0);
@@ -193,11 +189,10 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
     private boolean _unlinkByFirstEqualsObject(Object o) {
         boolean result = false;
         /* body */ {
-            final int index = LibSLRuntime.ListActions.find(this.storage, o, 0, this.size);
+            final int index = LibSLRuntime.ListActions.find(this.storage, o, 0, this.storage.size());
             result = index != -1;
             if (result) {
                 this.storage.remove(index);
-                this.size -= 1;
                 this.modCount += 1;
             }
         }
@@ -216,7 +211,6 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
                 final Object item = iter.next();
                 this.storage.insert(index, item);
                 index += 1;
-                this.size += 1;
             }
             ;
             this.modCount += 1;
@@ -230,7 +224,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
     private Object _getFirstElement() {
         Object result = null;
         /* body */ {
-            if (this.size == 0) {
+            if (this.storage.size() == 0) {
                 throw new NoSuchElementException();
             }
             result = this.storage.get(0);
@@ -264,7 +258,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
             if (filter == null) {
                 throw new NullPointerException();
             }
-            final int oldSize = this.size;
+            final int oldSize = this.storage.size();
             final int expectedModCount = this.modCount;
             Engine.assume(start <= end);
             int i = 0;
@@ -272,12 +266,11 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
                 final Object item = this.storage.get(i);
                 if (filter.test(item)) {
                     this.storage.remove(i);
-                    this.size -= 1;
                 }
             }
             ;
             _checkForComodification(expectedModCount);
-            result = oldSize != this.size;
+            result = oldSize != this.storage.size();
         }
         return result;
     }
@@ -293,12 +286,10 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
             int otherLength = 0;
             SymbolicList<Object> otherStorage = null;
             if ((other != null && other.getClass() == java.util.LinkedList.class)) {
-                otherLength = ((LinkedList) ((Object) other)).size;
-                Engine.assume(otherLength >= 0);
+                otherStorage = ((LinkedList) ((Object) other)).storage;
+                otherLength = otherStorage.size();
                 result = to == otherLength;
                 if (result) {
-                    otherStorage = ((LinkedList) ((Object) other)).storage;
-                    Engine.assume(otherStorage != null);
                     while (result && (i < to)) {
                         final Object a = otherStorage.get(i);
                         final Object b = this.storage.get(i);
@@ -328,9 +319,21 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
     private Stream _makeStream(boolean parallel) {
         Stream result = null;
         /* body */ {
-            result = Engine.makeSymbolic(Stream.class);
-            Engine.assume(result != null);
-            Engine.assume(result.isParallel() == parallel);
+            final int count = this.storage.size();
+            final Object[] items = new Object[count];
+            int i = 0;
+            for (i = 0; i < count; i += 1) {
+                items[i] = this.storage.get(i);
+            }
+            ;
+            result = (StreamLSL) ((Object) new generated.java.util.stream.StreamLSL((Void) null, 
+                /* state = */ generated.java.util.stream.StreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ items, 
+                /* length = */ count, 
+                /* closeHandlers = */ Engine.makeSymbolicList(), 
+                /* isParallel = */ parallel, 
+                /* linkedOrConsumed = */ false
+            ));
         }
         return result;
     }
@@ -341,7 +344,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
     public boolean _batchRemove(Collection c, boolean complement, int start, int end) {
         boolean result = false;
         /* body */ {
-            final int oldSize = this.size;
+            final int oldSize = this.storage.size();
             if ((oldSize == 0) || (start >= end)) {
                 result = false;
             } else {
@@ -358,7 +361,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
                         Engine.assume(otherStorage != null);
                         for (i = end; i > start; i += -1) {
                             final Object item = this.storage.get(i);
-                            if ((LibSLRuntime.ListActions.find(otherStorage, item, 0, this.size) == -1) == complement) {
+                            if ((LibSLRuntime.ListActions.find(otherStorage, item, 0, this.storage.size()) == -1) == complement) {
                                 _unlinkAny(i);
                             }
                         }
@@ -372,7 +375,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
                         }
                         ;
                     }
-                    result = oldSize != this.size;
+                    result = oldSize != this.storage.size();
                 }
             }
         }
@@ -438,7 +441,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            _linkAny(this.size, e);
+            _linkAny(this.storage.size(), e);
             result = true;
         }
         return result;
@@ -462,7 +465,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = _addAllElements(this.size, c);
+            result = _addAllElements(this.storage.size(), c);
         }
         return result;
     }
@@ -495,7 +498,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
     public void addLast(Object e) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            _linkAny(this.size, e);
+            _linkAny(this.storage.size(), e);
         }
     }
 
@@ -506,7 +509,6 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             this.storage = Engine.makeSymbolicList();
-            this.size = 0;
             this.modCount += 1;
         }
     }
@@ -519,11 +521,10 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final SymbolicList<Object> storageCopy = Engine.makeSymbolicList();
-            this.storage.copy(storageCopy, 0, 0, this.size);
+            this.storage.copy(storageCopy, 0, 0, this.storage.size());
             result = (java.util.LinkedList) ((Object) new LinkedList((Void) null, 
                 /* state = */ LinkedList.__$lsl_States.Initialized, 
                 /* storage = */ storageCopy, 
-                /* size = */ this.size, 
                 /* modCount = */ 0
             ));
         }
@@ -537,7 +538,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = LibSLRuntime.ListActions.find(this.storage, o, 0, this.size) != -1;
+            result = LibSLRuntime.ListActions.find(this.storage, o, 0, this.storage.size()) != -1;
         }
         return result;
     }
@@ -552,13 +553,13 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
             result = true;
             if ((c != null && c.getClass() == java.util.LinkedList.class)) {
                 final SymbolicList<Object> otherStorage = ((LinkedList) ((Object) c)).storage;
-                final int otherSize = ((LinkedList) ((Object) c)).size;
+                final int otherSize = otherStorage.size();
                 Engine.assume(otherStorage != null);
                 Engine.assume(otherSize >= 0);
                 int i = 0;
                 while (result && (i < otherSize)) {
                     final Object item = otherStorage.get(i);
-                    result = LibSLRuntime.ListActions.find(this.storage, item, 0, this.size) != -1;
+                    result = LibSLRuntime.ListActions.find(this.storage, item, 0, this.storage.size()) != -1;
                     i += 1;
                 }
                 ;
@@ -566,7 +567,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
                 final Iterator iter = c.iterator();
                 while (result && iter.hasNext()) {
                     final Object item = iter.next();
-                    result = LibSLRuntime.ListActions.find(this.storage, item, 0, this.size) != -1;
+                    result = LibSLRuntime.ListActions.find(this.storage, item, 0, this.storage.size()) != -1;
                 }
                 ;
             }
@@ -613,8 +614,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
                     final int expectedModCount = this.modCount;
                     final int otherExpectedModCount = ((LinkedList) ((Object) o)).modCount;
                     final SymbolicList<Object> otherStorage = ((LinkedList) ((Object) o)).storage;
-                    final int otherSize = ((LinkedList) ((Object) o)).size;
-                    if (this.size == otherSize) {
+                    if (this.storage.size() == otherStorage.size()) {
                         result = LibSLRuntime.equals(this.storage, otherStorage);
                     } else {
                         result = false;
@@ -640,7 +640,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
             }
             final int expectedModCount = this.modCount;
             int i = 0;
-            while ((this.modCount == expectedModCount) && (i < this.size)) {
+            while ((this.modCount == expectedModCount) && (i < this.storage.size())) {
                 final Object item = this.storage.get(i);
                 _action.accept(item);
                 i += 1;
@@ -682,10 +682,10 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (this.size == 0) {
+            if (this.storage.size() == 0) {
                 throw new NoSuchElementException();
             }
-            result = this.storage.get(this.size - 1);
+            result = this.storage.get(this.storage.size() - 1);
         }
         return result;
     }
@@ -709,7 +709,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         int result = 0;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = LibSLRuntime.ListActions.find(this.storage, o, 0, this.size);
+            result = LibSLRuntime.ListActions.find(this.storage, o, 0, this.storage.size());
         }
         return result;
     }
@@ -721,7 +721,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = this.size == 0;
+            result = this.storage.size() == 0;
         }
         return result;
     }
@@ -746,11 +746,11 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         int result = 0;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = LibSLRuntime.ListActions.find(this.storage, o, 0, this.size);
+            result = LibSLRuntime.ListActions.find(this.storage, o, 0, this.storage.size());
             if (result != -1) {
                 final int nextIndex = result + 1;
-                if (nextIndex < this.size) {
-                    final int rightIndex = LibSLRuntime.ListActions.find(this.storage, o, nextIndex, this.size);
+                if (nextIndex < this.storage.size()) {
+                    final int rightIndex = LibSLRuntime.ListActions.find(this.storage, o, nextIndex, this.storage.size());
                     Engine.assume(rightIndex == -1);
                 }
             }
@@ -792,7 +792,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            _linkAny(this.size, e);
+            _linkAny(this.storage.size(), e);
             result = true;
         }
         return result;
@@ -818,7 +818,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            _linkAny(this.size, e);
+            _linkAny(this.storage.size(), e);
             result = true;
         }
         return result;
@@ -843,7 +843,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (this.size == 0) {
+            if (this.storage.size() == 0) {
                 result = null;
             } else {
                 result = this.storage.get(0);
@@ -859,7 +859,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (this.size == 0) {
+            if (this.storage.size() == 0) {
                 result = null;
             } else {
                 result = this.storage.get(0);
@@ -875,10 +875,10 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (this.size == 0) {
+            if (this.storage.size() == 0) {
                 result = null;
             } else {
-                result = this.storage.get(this.size - 1);
+                result = this.storage.get(this.storage.size() - 1);
             }
         }
         return result;
@@ -891,7 +891,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (this.size == 0) {
+            if (this.storage.size() == 0) {
                 result = null;
             } else {
                 result = _unlinkAny(0);
@@ -907,7 +907,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (this.size == 0) {
+            if (this.storage.size() == 0) {
                 result = null;
             } else {
                 result = _unlinkAny(0);
@@ -923,10 +923,10 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (this.size == 0) {
+            if (this.storage.size() == 0) {
                 result = null;
             } else {
-                result = _unlinkAny(this.size - 1);
+                result = _unlinkAny(this.storage.size() - 1);
             }
         }
         return result;
@@ -998,7 +998,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = _batchRemove(c, false, 0, this.size);
+            result = _batchRemove(c, false, 0, this.storage.size());
         }
         return result;
     }
@@ -1034,7 +1034,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = _removeIf(filter, 0, this.size);
+            result = _removeIf(filter, 0, this.storage.size());
         }
         return result;
     }
@@ -1046,10 +1046,10 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (this.size == 0) {
+            if (this.storage.size() == 0) {
                 throw new NoSuchElementException();
             }
-            result = _unlinkAny(this.size - 1);
+            result = _unlinkAny(this.storage.size() - 1);
         }
         return result;
     }
@@ -1061,18 +1061,17 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            final int index = LibSLRuntime.ListActions.find(this.storage, o, 0, this.size);
+            final int index = LibSLRuntime.ListActions.find(this.storage, o, 0, this.storage.size());
             if (index == -1) {
                 result = false;
             } else {
                 result = true;
                 final int nextIndex = index + 1;
-                if (nextIndex < this.size) {
-                    final int rightIndex = LibSLRuntime.ListActions.find(this.storage, o, nextIndex, this.size);
+                if (nextIndex < this.storage.size()) {
+                    final int rightIndex = LibSLRuntime.ListActions.find(this.storage, o, nextIndex, this.storage.size());
                     Engine.assume(rightIndex == -1);
                 }
                 this.storage.remove(index);
-                this.size -= 1;
                 this.modCount += 1;
             }
         }
@@ -1088,7 +1087,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
             if (op == null) {
                 throw new NullPointerException();
             }
-            _replaceAllRange(op, 0, this.size);
+            _replaceAllRange(op, 0, this.storage.size());
             this.modCount += 1;
         }
     }
@@ -1100,7 +1099,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = _batchRemove(c, true, 0, this.size);
+            result = _batchRemove(c, true, 0, this.storage.size());
         }
         return result;
     }
@@ -1126,7 +1125,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         int result = 0;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = this.size;
+            result = this.storage.size();
         }
         return result;
     }
@@ -1137,7 +1136,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
     public void sort(Comparator c) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            _do_sort(0, this.size, c);
+            _do_sort(0, this.storage.size(), c);
         }
     }
 
@@ -1185,7 +1184,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         Object[] result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            final int len = this.size;
+            final int len = this.storage.size();
             result = new Object[len];
             int i = 0;
             for (i = 0; i < len; i += 1) {
@@ -1205,7 +1204,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         /* body */ {
             final Object[] a = ((Object[]) generator.apply(0));
             final int aLen = a.length;
-            final int len = this.size;
+            final int len = this.storage.size();
             result = new Object[len];
             int i = 0;
             for (i = 0; i < len; i += 1) {
@@ -1224,7 +1223,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final int aLen = a.length;
-            final int len = this.size;
+            final int len = this.storage.size();
             int i = 0;
             if (aLen < len) {
                 result = new Object[len];

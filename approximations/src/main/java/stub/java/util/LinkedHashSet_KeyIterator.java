@@ -5,12 +5,14 @@ package stub.java.util;
 
 import java.lang.InternalError;
 import java.lang.Object;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.function.Consumer;
 import runtime.LibSLRuntime;
 
+@SuppressWarnings({"all", "unchecked"})
 public final class LinkedHashSet_KeyIterator implements LibSLRuntime.HasAutomaton, Iterator {
     private LinkedHashSet_KeyIterator(Void a, Void b) {
         super();

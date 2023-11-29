@@ -6,6 +6,7 @@ package generated.java.util;
 import generated.runtime.LibSLGlobals;
 import java.lang.NullPointerException;
 import java.lang.Object;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import runtime.LibSLRuntime;
 /**
  * LinkedHashSet_KeySpliteratorAutomaton for LinkedHashSet_KeySpliterator ~> java.util.LinkedHashSet_KeySpliterator
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.util.LinkedHashSet_KeySpliterator.class)
 public final class LinkedHashSet_KeySpliterator implements LibSLRuntime.Automaton, Spliterator {
     static {
@@ -81,7 +83,7 @@ public final class LinkedHashSet_KeySpliterator implements LibSLRuntime.Automato
             int hi = this.fence;
             if (hi < 0) {
                 final LibSLRuntime.Map<Object, Object> parentStorage = ((LinkedHashSet) ((Object) this.parent)).storage;
-                this.est = ((LinkedHashSet) ((Object) this.parent)).length;
+                this.est = parentStorage.size();
                 this.expectedModCount = ((LinkedHashSet) ((Object) this.parent)).modCount;
                 this.fence = this.est;
                 hi = this.fence;
@@ -124,12 +126,12 @@ public final class LinkedHashSet_KeySpliterator implements LibSLRuntime.Automato
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             Engine.assume(this.parent != null);
-            int mask = 0;
-            final int length = ((LinkedHashSet) ((Object) this.parent)).length;
-            if ((this.fence < 0) || (this.est == length)) {
-                mask = LibSLGlobals.SPLITERATOR_SIZED;
+            final LibSLRuntime.Map<Object, Object> parentStorage = ((LinkedHashSet) ((Object) this.parent)).storage;
+            result = 0;
+            if ((this.fence < 0) || (this.est == parentStorage.size())) {
+                result = LibSLGlobals.SPLITERATOR_SIZED;
             }
-            result = mask | LibSLGlobals.SPLITERATOR_DISTINCT;
+            result |= LibSLGlobals.SPLITERATOR_DISTINCT;
         }
         return result;
     }
@@ -147,7 +149,8 @@ public final class LinkedHashSet_KeySpliterator implements LibSLRuntime.Automato
             int hi = this.fence;
             int mc = this.expectedModCount;
             int i = this.index;
-            final int length = ((LinkedHashSet) ((Object) this.parent)).length;
+            final LibSLRuntime.Map<Object, Object> parentStorage = ((LinkedHashSet) ((Object) this.parent)).storage;
+            final int length = parentStorage.size();
             if (hi < 0) {
                 this.expectedModCount = ((LinkedHashSet) ((Object) this.parent)).modCount;
                 mc = this.expectedModCount;

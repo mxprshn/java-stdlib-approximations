@@ -7,6 +7,7 @@ import generated.runtime.LibSLGlobals;
 import java.lang.IllegalStateException;
 import java.lang.NullPointerException;
 import java.lang.Object;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.Comparator;
 import java.util.Spliterator;
@@ -19,6 +20,7 @@ import runtime.LibSLRuntime;
 /**
  * LongStreamSpliteratorAutomaton for LongStreamLSLSpliterator ~> java.util.stream.LongStreamLSLSpliterator
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.util.stream.LongStreamLSLSpliterator.class)
 public class LongStreamLSLSpliterator implements LibSLRuntime.Automaton, Spliterator.OfLong {
     static {

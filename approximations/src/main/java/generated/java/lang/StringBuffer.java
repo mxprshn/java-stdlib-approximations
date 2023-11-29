@@ -13,6 +13,7 @@ import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.String;
 import java.lang.StringIndexOutOfBoundsException;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.stream.IntStream;
 import org.jacodb.approximation.annotation.Approximate;
@@ -22,6 +23,7 @@ import runtime.LibSLRuntime;
 /**
  * StringBufferAutomaton for StringBuffer ~> java.lang.StringBuffer
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.lang.StringBuffer.class)
 public final class StringBuffer implements LibSLRuntime.Automaton, Serializable, Comparable<StringBuffer>, CharSequence {
     private static final long serialVersionUID = 3388685877147921107L;

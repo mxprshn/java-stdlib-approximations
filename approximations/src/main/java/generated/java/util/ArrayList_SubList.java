@@ -5,6 +5,7 @@ package generated.java.util;
 
 import java.lang.Object;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.Collection;
 import java.util.Comparator;
@@ -26,6 +27,7 @@ import runtime.LibSLRuntime;
 /**
  * ArrayList_SubListAutomaton for ArrayList_SubList ~> java.util.ArrayList_SubList
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.util.ArrayList_SubList.class)
 public final class ArrayList_SubList implements LibSLRuntime.Automaton, List, RandomAccess {
     static {
@@ -165,10 +167,10 @@ public final class ArrayList_SubList implements LibSLRuntime.Automaton, List, Ra
             Engine.assume(this.root != null);
             ((ArrayList) ((Object) this.root))._checkForComodification(this.modCount);
             if (this.length != 0) {
-                final int oldRootLength = ((ArrayList) ((Object) this.root)).length;
+                final int oldRootLength = ((ArrayList) ((Object) this.root)).storage.size();
                 result = ((ArrayList) ((Object) this.root))._batchRemove(c, complement, this.offset, this.offset + this.length);
                 if (result) {
-                    final int newRootLength = ((ArrayList) ((Object) this.root)).length;
+                    final int newRootLength = ((ArrayList) ((Object) this.root)).storage.size();
                     _updateSizeAndModCount(newRootLength - oldRootLength);
                 }
             } else {
@@ -251,7 +253,6 @@ public final class ArrayList_SubList implements LibSLRuntime.Automaton, List, Ra
                     rootStorage.remove(i);
                 }
                 ;
-                ((ArrayList) ((Object) this.root)).length -= size;
                 ((ArrayList) ((Object) this.root)).modCount += 1;
                 _updateSizeAndModCount(-size);
             }
@@ -592,10 +593,10 @@ public final class ArrayList_SubList implements LibSLRuntime.Automaton, List, Ra
             ((ArrayList) ((Object) this.root))._checkForComodification(this.modCount);
             final int size = this.length;
             if (size != 0) {
-                final int oldRootLength = ((ArrayList) ((Object) this.root)).length;
+                final int oldRootLength = ((ArrayList) ((Object) this.root)).storage.size();
                 result = ((ArrayList) ((Object) this.root))._removeIf(filter, this.offset, this.offset + this.length);
                 if (result) {
-                    final int newRootLength = ((ArrayList) ((Object) this.root)).length;
+                    final int newRootLength = ((ArrayList) ((Object) this.root)).storage.size();
                     _updateSizeAndModCount(newRootLength - oldRootLength);
                 }
             } else {

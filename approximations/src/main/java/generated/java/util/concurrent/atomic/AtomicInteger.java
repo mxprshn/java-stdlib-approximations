@@ -5,6 +5,7 @@ package generated.java.util.concurrent.atomic;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.function.IntBinaryOperator;
 import java.util.function.IntUnaryOperator;
@@ -15,6 +16,7 @@ import runtime.LibSLRuntime;
 /**
  * AtomicIntegerAutomaton for LSLAtomicInteger ~> java.util.concurrent.atomic.AtomicInteger
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.util.concurrent.atomic.AtomicInteger.class)
 public class AtomicInteger implements LibSLRuntime.Automaton, Serializable {
     private static final long serialVersionUID = 6214790243416807050L;

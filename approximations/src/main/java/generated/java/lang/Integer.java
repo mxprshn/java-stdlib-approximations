@@ -4,9 +4,11 @@
 package generated.java.lang;
 
 import java.lang.Class;
+import java.lang.Comparable;
 import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
@@ -15,8 +17,9 @@ import runtime.LibSLRuntime;
 /**
  * IntegerAutomaton for LSLInteger ~> java.lang.Integer
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.lang.Integer.class)
-public final class Integer implements LibSLRuntime.Automaton {
+public final class Integer implements LibSLRuntime.Automaton, Comparable<Integer> {
     private static final long serialVersionUID = 1360826667806852920L;
 
     public static final int MIN_VALUE = -2147483648;
@@ -256,28 +259,28 @@ public final class Integer implements LibSLRuntime.Automaton {
                 result = 32;
             } else {
                 int y = 0;
-                int n = 31;
+                result = 31;
                 y = i << 16;
                 if (y != 0) {
-                    n -= 16;
+                    result -= 16;
                     i = y;
                 }
                 y = i << 8;
                 if (y != 0) {
-                    n -= 8;
+                    result -= 8;
                     i = y;
                 }
                 y = i << 4;
                 if (y != 0) {
-                    n -= 4;
+                    result -= 4;
                     i = y;
                 }
                 y = i << 2;
                 if (y != 0) {
-                    n -= 2;
+                    result -= 2;
                     i = y;
                 }
-                result = n - ((i << 1) >>> 31);
+                result -= (i << 1) >>> 31;
             }
         }
         return result;
@@ -409,6 +412,27 @@ public final class Integer implements LibSLRuntime.Automaton {
         byte result = ((byte) 0);
         /* body */ {
             result = ((byte) this.value);
+        }
+        return result;
+    }
+
+    /**
+     * [FUNCTION] IntegerAutomaton::compareTo(LSLInteger, LSLInteger) -> int
+     */
+    public int compareTo(Integer anotherInteger) {
+        int result = 0;
+        /* body */ {
+            final int x = this.value;
+            final int y = ((Integer) ((Object) anotherInteger)).value;
+            if (x == y) {
+                result = 0;
+            } else {
+                if (x < y) {
+                    result = -1;
+                } else {
+                    result = 1;
+                }
+            }
         }
         return result;
     }

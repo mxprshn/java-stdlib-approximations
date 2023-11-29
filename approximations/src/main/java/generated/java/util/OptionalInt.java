@@ -8,6 +8,7 @@ import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.Runnable;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.NoSuchElementException;
 import java.util.function.IntConsumer;
@@ -21,6 +22,7 @@ import runtime.LibSLRuntime;
 /**
  * OptionalIntAutomaton for LSLOptionalInt ~> java.util.OptionalInt
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.util.OptionalInt.class)
 public final class OptionalInt implements LibSLRuntime.Automaton {
     static {

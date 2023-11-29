@@ -7,6 +7,7 @@ import generated.runtime.LibSLGlobals;
 import java.lang.IllegalStateException;
 import java.lang.NullPointerException;
 import java.lang.Object;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.Comparator;
 import java.util.Spliterator;
@@ -19,6 +20,7 @@ import runtime.LibSLRuntime;
 /**
  * DoubleStreamSpliteratorAutomaton for DoubleStreamLSLSpliterator ~> java.util.stream.DoubleStreamLSLSpliterator
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.util.stream.DoubleStreamLSLSpliterator.class)
 public class DoubleStreamLSLSpliterator implements LibSLRuntime.Automaton, Spliterator.OfDouble {
     static {

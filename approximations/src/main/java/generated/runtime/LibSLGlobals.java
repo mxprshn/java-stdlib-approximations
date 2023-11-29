@@ -26,6 +26,8 @@ public final class LibSLGlobals {
 
     public static final int MAX_CODE_POINT;
 
+    public static final int MAX_RANDOM_STREAM_SIZE;
+
     public static final int MIN_CODE_POINT;
 
     public static final int MIN_HIGH_SURROGATE;
@@ -88,6 +90,7 @@ public final class LibSLGlobals {
                     /* present = */ false
                 ));
         MAX_CODE_POINT = 1114111;
+        MAX_RANDOM_STREAM_SIZE = 100;
         MIN_CODE_POINT = 0;
         MIN_HIGH_SURROGATE = 55296;
         MIN_LOW_SURROGATE = 56320;

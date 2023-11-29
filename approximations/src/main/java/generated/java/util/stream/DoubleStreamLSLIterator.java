@@ -6,6 +6,7 @@ package generated.java.util.stream;
 import java.lang.Double;
 import java.lang.NullPointerException;
 import java.lang.Object;
+import java.lang.SuppressWarnings;
 import java.lang.UnsupportedOperationException;
 import java.lang.Void;
 import java.util.NoSuchElementException;
@@ -19,6 +20,7 @@ import runtime.LibSLRuntime;
 /**
  * DoubleStreamIteratorAutomaton for DoubleStreamLSLIterator ~> java.util.stream.DoubleStreamLSLIterator
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.util.stream.DoubleStreamLSLIterator.class)
 public class DoubleStreamLSLIterator implements LibSLRuntime.Automaton, PrimitiveIterator.OfDouble {
     static {

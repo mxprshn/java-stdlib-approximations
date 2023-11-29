@@ -6,6 +6,7 @@ package generated.java.util;
 import generated.runtime.LibSLGlobals;
 import java.lang.NullPointerException;
 import java.lang.Object;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.ConcurrentModificationException;
 import java.util.Spliterator;
@@ -18,6 +19,7 @@ import runtime.LibSLRuntime;
 /**
  * ArrayList_SpliteratorAutomaton for ArrayList_Spliterator ~> java.util.ArrayList_Spliterator
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.util.ArrayList_Spliterator.class)
 public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spliterator {
     static {
@@ -70,7 +72,7 @@ public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spli
             if (this.fence == -1) {
                 Engine.assume(this.parent != null);
                 this.expectedModCount = ((ArrayList) ((Object) this.parent)).modCount;
-                this.fence = ((ArrayList) ((Object) this.parent)).length;
+                this.fence = ((ArrayList) ((Object) this.parent)).storage.size();
             }
             result = this.fence;
         }
@@ -118,12 +120,12 @@ public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spli
             int hi = this.fence;
             int mc = this.expectedModCount;
             if (hi == -1) {
-                hi = ((ArrayList) ((Object) this.parent)).length;
+                hi = a.size();
                 mc = ((ArrayList) ((Object) this.parent)).modCount;
             }
             int i = this.index;
             this.index = hi;
-            if ((i < 0) || (hi > ((ArrayList) ((Object) this.parent)).length)) {
+            if ((i < 0) || (hi > a.size())) {
                 throw new ConcurrentModificationException();
             }
             for (i = i; i < hi; i += 1) {

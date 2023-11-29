@@ -4,6 +4,7 @@
 package generated.java.lang;
 
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
@@ -12,6 +13,7 @@ import runtime.LibSLRuntime;
 /**
  * ObjectAutomaton for LSLObject ~> java.lang.Object
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(java.lang.Object.class)
 public class Object implements LibSLRuntime.Automaton {
     static {

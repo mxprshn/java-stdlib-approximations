@@ -10,6 +10,7 @@ import java.lang.Integer;
 import java.lang.NullPointerException;
 import java.lang.Object;
 import java.lang.Runnable;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.IntSummaryStatistics;
 import java.util.OptionalDouble;
@@ -38,6 +39,7 @@ import runtime.LibSLRuntime;
 /**
  * IntStreamAutomaton for IntStreamLSL ~> java.util.stream.IntStreamLSL
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.util.stream.IntStreamLSL.class)
 public class IntStreamLSL implements LibSLRuntime.Automaton, IntStream {
     static {

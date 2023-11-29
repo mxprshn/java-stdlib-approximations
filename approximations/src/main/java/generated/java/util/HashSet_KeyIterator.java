@@ -3,10 +3,10 @@
 //
 package generated.java.util;
 
-import generated.runtime.LibSLGlobals;
 import java.lang.IllegalStateException;
 import java.lang.NullPointerException;
 import java.lang.Object;
+import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
@@ -20,6 +20,7 @@ import runtime.LibSLRuntime;
 /**
  * HashSet_KeyIteratorAutomaton for HashSet_KeyIterator ~> java.util.HashSet_KeyIterator
  */
+@SuppressWarnings({"all", "unchecked"})
 @Approximate(stub.java.util.HashSet_KeyIterator.class)
 public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterator {
     static {
@@ -30,7 +31,7 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
 
     public int expectedModCount;
 
-    public LibSLRuntime.Map<Object, Object> visitedKeys;
+    public LibSLRuntime.Map<Object, Object> unseenKeys;
 
     public HashSet parent;
 
@@ -46,7 +47,7 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
             final Object p5, final boolean p6) {
         this.__$lsl_state = p0;
         this.expectedModCount = p1;
-        this.visitedKeys = p2;
+        this.unseenKeys = p2;
         this.parent = p3;
         this.index = p4;
         this.currentKey = p5;
@@ -90,7 +91,8 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             Engine.assume(this.parent != null);
-            final int length = ((HashSet) ((Object) this.parent)).length;
+            final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) ((Object) this.parent)).storage;
+            final int length = parentStorage.size();
             result = this.index < length;
         }
         return result;
@@ -105,22 +107,17 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
         /* body */ {
             Engine.assume(this.parent != null);
             _checkForComodification();
-            final int length = ((HashSet) ((Object) this.parent)).length;
+            final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) ((Object) this.parent)).storage;
+            final int length = parentStorage.size();
             final boolean atValidPosition = this.index < length;
             if (!atValidPosition) {
                 throw new NoSuchElementException();
             }
-            final Object key = Engine.makeSymbolic(Object.class);
-            Engine.assume(key != null);
+            final Object key = this.unseenKeys.anyKey();
+            this.unseenKeys.remove(key);
             Engine.assume(key != this.currentKey);
-            final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) ((Object) this.parent)).storage;
-            final boolean sourceStorageHasKey = parentStorage.hasKey(key);
-            Engine.assume(sourceStorageHasKey);
-            final boolean dstStorageHasKey = this.visitedKeys.hasKey(key);
-            Engine.assume(!dstStorageHasKey);
             this.currentKey = key;
             result = key;
-            this.visitedKeys.set(this.currentKey, LibSLGlobals.SOMETHING);
             this.index += 1;
             this.nextWasCalled = true;
         }
@@ -134,14 +131,14 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             Engine.assume(this.parent != null);
-            final int length = ((HashSet) ((Object) this.parent)).length;
+            final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) ((Object) this.parent)).storage;
+            final int length = parentStorage.size();
             final boolean atValidPosition = this.index < length;
             if (!atValidPosition || !this.nextWasCalled) {
                 throw new IllegalStateException();
             }
             this.nextWasCalled = false;
             _checkForComodification();
-            final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) ((Object) this.parent)).storage;
             parentStorage.remove(this.currentKey);
             this.expectedModCount = ((HashSet) ((Object) this.parent)).modCount;
         }
@@ -157,20 +154,15 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
             if (userAction == null) {
                 throw new NullPointerException();
             }
-            final int length = ((HashSet) ((Object) this.parent)).length;
+            final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) ((Object) this.parent)).storage;
+            final int length = parentStorage.size();
             int i = this.index;
             while (i < length) {
                 _checkForComodification();
-                final Object key = Engine.makeSymbolic(Object.class);
-                Engine.assume(key != null);
+                final Object key = this.unseenKeys.anyKey();
+                this.unseenKeys.remove(key);
                 Engine.assume(key != this.currentKey);
-                final LibSLRuntime.Map<Object, Object> parentStorage = ((HashSet) ((Object) this.parent)).storage;
-                final boolean sourceStorageHasKey = parentStorage.hasKey(key);
-                Engine.assume(sourceStorageHasKey);
-                final boolean destStorageHasKey = this.visitedKeys.hasKey(key);
-                Engine.assume(!destStorageHasKey);
                 this.currentKey = key;
-                this.visitedKeys.set(this.currentKey, LibSLGlobals.SOMETHING);
                 userAction.accept(key);
                 i += 1;
             }
