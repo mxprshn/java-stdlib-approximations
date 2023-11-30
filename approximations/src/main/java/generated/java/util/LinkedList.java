@@ -6,6 +6,7 @@ package generated.java.util;
 import java.io.Serializable;
 import java.lang.Cloneable;
 import java.lang.Comparable;
+import java.lang.IllegalArgumentException;
 import java.lang.IndexOutOfBoundsException;
 import java.lang.NullPointerException;
 import java.lang.Object;
@@ -103,9 +104,26 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
     }
 
     /**
+     * [SUBROUTINE] LinkedListAutomaton::_subListRangeCheck(int, int, int) -> void
+     */
+    public void _subListRangeCheck(int fromIndex, int toIndex, int size) {
+        /* body */ {
+            if (fromIndex < 0) {
+                throw new IndexOutOfBoundsException();
+            }
+            if (toIndex > size) {
+                throw new IndexOutOfBoundsException();
+            }
+            if (fromIndex > toIndex) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    /**
      * [SUBROUTINE] LinkedListAutomaton::_unlinkAny(int) -> Object
      */
-    private Object _unlinkAny(int index) {
+    public Object _unlinkAny(int index) {
         Object result = null;
         /* body */ {
             result = this.storage.get(index);
@@ -118,7 +136,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
     /**
      * [SUBROUTINE] LinkedListAutomaton::_linkAny(int, Object) -> void
      */
-    private void _linkAny(int index, Object e) {
+    public void _linkAny(int index, Object e) {
         /* body */ {
             this.storage.insert(index, e);
             this.modCount += 1;
@@ -126,23 +144,23 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
     }
 
     /**
-     * [SUBROUTINE] LinkedListAutomaton::_checkElementIndex(int) -> void
+     * [SUBROUTINE] LinkedListAutomaton::_checkElementIndex(int, int) -> void
      */
-    private void _checkElementIndex(int index) {
+    public void _checkElementIndex(int index, int size) {
         /* body */ {
-            if (!_isValidIndex(index)) {
+            if (!_isValidIndex(index, size)) {
                 throw new IndexOutOfBoundsException();
             }
         }
     }
 
     /**
-     * [SUBROUTINE] LinkedListAutomaton::_isValidIndex(int) -> boolean
+     * [SUBROUTINE] LinkedListAutomaton::_isValidIndex(int, int) -> boolean
      */
-    private boolean _isValidIndex(int index) {
+    private boolean _isValidIndex(int index, int size) {
         boolean result = false;
         /* body */ {
-            result = (0 <= index) && (index < this.storage.size());
+            result = (0 <= index) && (index < size);
         }
         return result;
     }
@@ -161,7 +179,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
     /**
      * [SUBROUTINE] LinkedListAutomaton::_checkPositionIndex(int) -> void
      */
-    private void _checkPositionIndex(int index) {
+    public void _checkPositionIndex(int index) {
         /* body */ {
             if (!_isPositionIndex(index)) {
                 throw new IndexOutOfBoundsException();
@@ -202,9 +220,10 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
     /**
      * [SUBROUTINE] LinkedListAutomaton::_addAllElements(int, Collection) -> boolean
      */
-    private boolean _addAllElements(int index, Collection c) {
+    public boolean _addAllElements(int index, Collection c) {
         boolean result = false;
         /* body */ {
+            _checkPositionIndex(index);
             final Iterator iter = c.iterator();
             result = iter.hasNext();
             while (iter.hasNext()) {
@@ -657,7 +676,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            _checkElementIndex(index);
+            _checkElementIndex(index, this.storage.size());
             result = this.storage.get(index);
         }
         return result;
@@ -733,8 +752,13 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         Iterator result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = Engine.makeSymbolic(Iterator.class);
-            Engine.assume(result != null);
+            result = (stub.java.util.LinkedList_ListItr) ((Object) new LinkedList_ListItr((Void) null, 
+                /* state = */ LinkedList_ListItr.__$lsl_States.Initialized, 
+                /* parent = */ this, 
+                /* cursor = */ 0, 
+                /* expectedModCount = */ this.modCount, 
+                /* lastRet = */ -1
+            ));
         }
         return result;
     }
@@ -772,8 +796,13 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         ListIterator result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = Engine.makeSymbolic(ListIterator.class);
-            Engine.assume(result != null);
+            result = (stub.java.util.LinkedList_ListItr) ((Object) new LinkedList_ListItr((Void) null, 
+                /* state = */ LinkedList_ListItr.__$lsl_States.Initialized, 
+                /* parent = */ this, 
+                /* cursor = */ 0, 
+                /* expectedModCount = */ this.modCount, 
+                /* lastRet = */ -1
+            ));
         }
         return result;
     }
@@ -786,8 +815,13 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _checkPositionIndex(index);
-            result = Engine.makeSymbolic(ListIterator.class);
-            Engine.assume(result != null);
+            result = (stub.java.util.LinkedList_ListItr) ((Object) new LinkedList_ListItr((Void) null, 
+                /* state = */ LinkedList_ListItr.__$lsl_States.Initialized, 
+                /* parent = */ this, 
+                /* cursor = */ index, 
+                /* expectedModCount = */ this.modCount, 
+                /* lastRet = */ -1
+            ));
         }
         return result;
     }
@@ -992,7 +1026,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            _checkElementIndex(index);
+            _checkElementIndex(index, this.storage.size());
             result = _unlinkAny(index);
         }
         return result;
@@ -1118,7 +1152,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            _checkElementIndex(index);
+            _checkElementIndex(index, this.storage.size());
             result = this.storage.get(index);
             this.storage.set(index, element);
         }
@@ -1154,8 +1188,13 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         Spliterator result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = Engine.makeSymbolic(Spliterator.class);
-            Engine.assume(result != null);
+            result = (stub.java.util.LinkedList_Spliterator) ((Object) new LinkedList_Spliterator((Void) null, 
+                /* state = */ LinkedList_Spliterator.__$lsl_States.Initialized, 
+                /* parent = */ this, 
+                /* index = */ 0, 
+                /* fence = */ -1, 
+                /* expectedModCount = */ 0
+            ));
         }
         return result;
     }
@@ -1179,7 +1218,15 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         List result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            LibSLRuntime.todo();
+            _subListRangeCheck(fromIndex, toIndex, this.storage.size());
+            result = (stub.java.util.LinkedList_SubList) ((Object) new LinkedList_SubList((Void) null, 
+                /* state = */ LinkedList_SubList.__$lsl_States.Initialized, 
+                /* root = */ this, 
+                /* parentList = */ null, 
+                /* offset = */ fromIndex, 
+                /* length = */ toIndex - fromIndex, 
+                /* modCount = */ this.modCount
+            ));
         }
         return result;
     }
