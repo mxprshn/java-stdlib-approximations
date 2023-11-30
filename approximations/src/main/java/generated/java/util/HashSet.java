@@ -680,7 +680,26 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
         String result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = LibSLRuntime.toString(this.storage);
+            final LibSLRuntime.Map<Object, Object> items = this.storage;
+            int count = items.size();
+            if (count == 0) {
+                result = "[]";
+            } else {
+                Engine.assume(count > 0);
+                result = "[";
+                final LibSLRuntime.Map<Object, Object> unseen = items.duplicate();
+                while (count != 0) {
+                    final Object key = unseen.anyKey();
+                    unseen.remove(key);
+                    result = result.concat(LibSLRuntime.toString(key));
+                    if (count > 1) {
+                        result = result.concat(", ");
+                    }
+                    count -= 1;
+                }
+                ;
+                result = result.concat("]");
+            }
         }
         return result;
     }
