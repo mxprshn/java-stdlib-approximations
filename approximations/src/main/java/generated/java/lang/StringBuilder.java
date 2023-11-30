@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.lang.CharSequence;
+import java.lang.Character;
 import java.lang.Comparable;
 import java.lang.IllegalArgumentException;
 import java.lang.IndexOutOfBoundsException;
@@ -21,6 +22,7 @@ import java.util.stream.IntStream;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 import runtime.LibSLRuntime;
+import stub.java.util.stream.IntStreamLSL;
 
 /**
  * StringBuilderAutomaton for StringBuilder ~> java.lang.StringBuilder
@@ -292,8 +294,10 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
             final int sizeNewString = end - start;
             final char[] newStr = new char[sizeNewString];
             int i = 0;
+            int newStr_i = 0;
             for (i = start; i < end; i += 1) {
-                newStr[i] = this.storage.charAt(i);
+                newStr[newStr_i] = this.storage.charAt(i);
+                newStr_i += 1;
             }
             ;
             result = LibSLRuntime.toString(newStr);
@@ -675,7 +679,6 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
             int len = 4;
             if (obj != null) {
                 s = LibSLRuntime.toString(obj);
-            } else {
                 len = s.length();
             }
             _insertCharSequence(dstOffset, s, len, 0, len);
@@ -1053,6 +1056,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
             }
             ;
             newStr[index] = ch;
+            arrayIndex += 1;
             for (i = index + 1; i < this.length; i += 1) {
                 newStr[arrayIndex] = this.storage.charAt(i);
                 arrayIndex += 1;
@@ -1138,11 +1142,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
             if ((beginIndex < 0) || (endIndex > this.length) || (beginIndex > endIndex)) {
                 throw new IndexOutOfBoundsException();
             }
-            final int codePoint = Engine.makeSymbolicInt();
-            final int leftBorder = endIndex - beginIndex;
-            final int rightBorder = (endIndex - beginIndex) * 2;
-            Engine.assume(codePoint >= leftBorder);
-            Engine.assume(codePoint <= rightBorder);
+            result = this.storage.codePointCount(beginIndex, endIndex);
         }
         return result;
     }
@@ -1155,10 +1155,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _checkIndex(index);
-            final int codePoint = Engine.makeSymbolicInt();
-            Engine.assume(codePoint >= LibSLGlobals.MIN_CODE_POINT);
-            Engine.assume(codePoint <= LibSLGlobals.MAX_CODE_POINT);
-            result = codePoint;
+            result = this.storage.codePointAt(index);
         }
         return result;
     }
@@ -1172,10 +1169,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
         /* body */ {
             index -= 1;
             _checkIndex(index);
-            final int codePoint = Engine.makeSymbolicInt();
-            Engine.assume(codePoint >= LibSLGlobals.MIN_CODE_POINT);
-            Engine.assume(codePoint <= LibSLGlobals.MAX_CODE_POINT);
-            result = codePoint;
+            result = this.storage.codePointBefore(index);
         }
         return result;
     }
@@ -1200,8 +1194,21 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
         IntStream result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = Engine.makeSymbolic(IntStream.class);
-            Engine.assume(result != null);
+            final int[] intStorage = new int[this.length];
+            final char[] storageChars = this.storage.toCharArray();
+            int i = 0;
+            for (i = 0; i < this.length; i += 1) {
+                intStorage[i] = ((int) storageChars[i]);
+            }
+            ;
+            result = (IntStreamLSL) ((Object) new generated.java.util.stream.IntStreamLSL((Void) null, 
+                /* state = */ generated.java.util.stream.IntStreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ intStorage, 
+                /* length = */ this.length, 
+                /* closeHandlers = */ Engine.makeSymbolicList(), 
+                /* isParallel = */ false, 
+                /* linkedOrConsumed = */ false
+            ));
         }
         return result;
     }
@@ -1213,8 +1220,21 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
         IntStream result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = Engine.makeSymbolic(IntStream.class);
-            Engine.assume(result != null);
+            final int[] intStorage = new int[this.length];
+            final char[] storageChars = this.storage.toCharArray();
+            int i = 0;
+            for (i = 0; i < this.length; i += 1) {
+                intStorage[i] = ((int) storageChars[i]);
+            }
+            ;
+            result = (IntStreamLSL) ((Object) new generated.java.util.stream.IntStreamLSL((Void) null, 
+                /* state = */ generated.java.util.stream.IntStreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ intStorage, 
+                /* length = */ this.length, 
+                /* closeHandlers = */ Engine.makeSymbolicList(), 
+                /* isParallel = */ false, 
+                /* linkedOrConsumed = */ false
+            ));
         }
         return result;
     }

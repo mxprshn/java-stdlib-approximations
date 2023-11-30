@@ -59,8 +59,7 @@ public class Object implements LibSLRuntime.Automaton {
     public String toString() {
         String result = null;
         /* body */ {
-            result = Engine.makeSymbolic(String.class);
-            Engine.assume(result != null);
+            result = "java.lang.Object@735b5592";
         }
         return result;
     }
