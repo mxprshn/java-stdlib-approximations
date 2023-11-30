@@ -6,6 +6,7 @@ package generated.java.lang;
 import generated.runtime.LibSLGlobals;
 import java.io.Serializable;
 import java.lang.CharSequence;
+import java.lang.Character;
 import java.lang.Comparable;
 import java.lang.IllegalArgumentException;
 import java.lang.IndexOutOfBoundsException;
@@ -19,6 +20,7 @@ import java.util.stream.IntStream;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 import runtime.LibSLRuntime;
+import stub.java.util.stream.IntStreamLSL;
 
 /**
  * StringBufferAutomaton for StringBuffer ~> java.lang.StringBuffer
@@ -290,8 +292,10 @@ public final class StringBuffer implements LibSLRuntime.Automaton, Serializable,
             final int sizeNewString = end - start;
             final char[] newStr = new char[sizeNewString];
             int i = 0;
+            int newStr_i = 0;
             for (i = start; i < end; i += 1) {
-                newStr[i] = this.storage.charAt(i);
+                newStr[newStr_i] = this.storage.charAt(i);
+                newStr_i += 1;
             }
             ;
             result = LibSLRuntime.toString(newStr);
@@ -315,15 +319,16 @@ public final class StringBuffer implements LibSLRuntime.Automaton, Serializable,
     /**
      * [FUNCTION] StringBufferAutomaton::append(StringBuffer, CharSequence, int, int) -> StringBuffer
      */
-    public synchronized StringBuffer append(CharSequence seq, int start, int end) {
+    public synchronized StringBuffer append(CharSequence s, int start, int end) {
         StringBuffer result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             int seqLength = 4;
-            if (seq == null) {
-                seq = "null";
+            CharSequence seq = "null";
+            if (s != null) {
+                seq = s;
+                seqLength = s.length();
             }
-            seqLength = seq.length();
             _checkRange(start, end, seqLength);
             this.length += end - start;
             int i = 0;
@@ -584,8 +589,21 @@ public final class StringBuffer implements LibSLRuntime.Automaton, Serializable,
         IntStream result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = Engine.makeSymbolic(IntStream.class);
-            Engine.assume(result != null);
+            final int[] intStorage = new int[this.length];
+            final char[] storageChars = this.storage.toCharArray();
+            int i = 0;
+            for (i = 0; i < this.length; i += 1) {
+                intStorage[i] = ((int) storageChars[i]);
+            }
+            ;
+            result = (IntStreamLSL) ((Object) new generated.java.util.stream.IntStreamLSL((Void) null, 
+                /* state = */ generated.java.util.stream.IntStreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ intStorage, 
+                /* length = */ this.length, 
+                /* closeHandlers = */ Engine.makeSymbolicList(), 
+                /* isParallel = */ false, 
+                /* linkedOrConsumed = */ false
+            ));
         }
         return result;
     }
@@ -639,8 +657,21 @@ public final class StringBuffer implements LibSLRuntime.Automaton, Serializable,
         IntStream result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = Engine.makeSymbolic(IntStream.class);
-            Engine.assume(result != null);
+            final int[] intStorage = new int[this.length];
+            final char[] storageChars = this.storage.toCharArray();
+            int i = 0;
+            for (i = 0; i < this.length; i += 1) {
+                intStorage[i] = ((int) storageChars[i]);
+            }
+            ;
+            result = (IntStreamLSL) ((Object) new generated.java.util.stream.IntStreamLSL((Void) null, 
+                /* state = */ generated.java.util.stream.IntStreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ intStorage, 
+                /* length = */ this.length, 
+                /* closeHandlers = */ Engine.makeSymbolicList(), 
+                /* isParallel = */ false, 
+                /* linkedOrConsumed = */ false
+            ));
         }
         return result;
     }
@@ -756,12 +787,12 @@ public final class StringBuffer implements LibSLRuntime.Automaton, Serializable,
         /* body */ {
             _checkOffset(dstOffset);
             int len = 4;
-            if (s == null) {
-                s = "null";
-            } else {
+            CharSequence new_s = "null";
+            if (s != null) {
                 len = s.length();
+                new_s = s;
             }
-            _insertCharSequence(dstOffset, s, len, 0, len);
+            _insertCharSequence(dstOffset, new_s, len, 0, len);
             result = this;
         }
         return result;
@@ -776,12 +807,12 @@ public final class StringBuffer implements LibSLRuntime.Automaton, Serializable,
         /* body */ {
             _checkOffset(dstOffset);
             int len = 4;
-            if (s == null) {
-                s = "null";
-            } else {
+            CharSequence new_s = "null";
+            if (s != null) {
                 len = s.length();
+                new_s = s;
             }
-            _insertCharSequence(dstOffset, s, len, start, end);
+            _insertCharSequence(dstOffset, new_s, len, start, end);
             result = this;
         }
         return result;
@@ -799,7 +830,6 @@ public final class StringBuffer implements LibSLRuntime.Automaton, Serializable,
             int len = 4;
             if (obj != null) {
                 s = LibSLRuntime.toString(obj);
-            } else {
                 len = s.length();
             }
             _insertCharSequence(dstOffset, s, len, 0, len);
@@ -906,7 +936,7 @@ public final class StringBuffer implements LibSLRuntime.Automaton, Serializable,
             final int lenStr = str.length;
             _checkRangeSIOOBE(offset, offset + len, lenStr);
             final String s = LibSLRuntime.toString(str);
-            _insertCharSequence(index, s, len, offset, offset + len);
+            _insertCharSequence(index, s, lenStr, offset, offset + len);
             result = this;
         }
         return result;
@@ -1106,6 +1136,7 @@ public final class StringBuffer implements LibSLRuntime.Automaton, Serializable,
             }
             ;
             newStr[index] = ch;
+            arrayIndex += 1;
             for (i = index + 1; i < this.length; i += 1) {
                 newStr[arrayIndex] = this.storage.charAt(i);
                 arrayIndex += 1;

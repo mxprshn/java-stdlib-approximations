@@ -746,13 +746,20 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
         int result = 0;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = LibSLRuntime.ListActions.find(this.storage, o, 0, this.storage.size());
-            if (result != -1) {
-                final int nextIndex = result + 1;
-                if (nextIndex < this.storage.size()) {
-                    final int rightIndex = LibSLRuntime.ListActions.find(this.storage, o, nextIndex, this.storage.size());
-                    Engine.assume(rightIndex == -1);
+            result = -1;
+            final int size = this.storage.size();
+            if (size != 0) {
+                Engine.assume(size > 0);
+                final SymbolicList<Object> items = this.storage;
+                int i = 0;
+                for (i = size - 1; i > -1; i += -1) {
+                    final Object e = items.get(i);
+                    if (LibSLRuntime.equals(o, e)) {
+                        result = i;
+                        break;
+                    }
                 }
+                ;
             }
         }
         return result;
