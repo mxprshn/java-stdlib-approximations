@@ -5,7 +5,7 @@
 package stub.java.util.stream;
 
 import java.lang.Integer;
-import java.lang.InternalError;
+import java.lang.LinkageError;
 import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.PrimitiveIterator;
@@ -20,26 +20,26 @@ public class IntStreamLSLIterator implements LibSLRuntime.HasAutomaton, Primitiv
     }
 
     public boolean hasNext() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Integer next() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public int nextInt() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void remove() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void forEachRemaining(Consumer userAction) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void forEachRemaining(IntConsumer userAction) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 }

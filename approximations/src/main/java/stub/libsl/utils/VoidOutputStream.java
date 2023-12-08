@@ -5,7 +5,7 @@
 package stub.libsl.utils;
 
 import java.io.OutputStream;
-import java.lang.InternalError;
+import java.lang.LinkageError;
 import java.lang.SuppressWarnings;
 import java.lang.Void;
 import runtime.LibSLRuntime;
@@ -17,22 +17,22 @@ public final class VoidOutputStream extends OutputStream implements LibSLRuntime
     }
 
     public void close() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void flush() throws java.io.IOException {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void write(byte[] b) throws java.io.IOException {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void write(byte[] b, int off, int len) throws java.io.IOException {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void write(int b) throws java.io.IOException {
-        throw new InternalError();
+        throw new LinkageError();
     }
 }

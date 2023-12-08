@@ -4,7 +4,7 @@
 //
 package stub.java.util;
 
-import java.lang.InternalError;
+import java.lang.LinkageError;
 import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.HashMap;
@@ -20,26 +20,26 @@ public final class HashSet_KeySpliterator implements LibSLRuntime.HasAutomaton, 
 
     private HashSet_KeySpliterator(HashMap source, int origin, int fence, int est,
             int expectedModCount) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public long estimateSize() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public int characteristics() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void forEachRemaining(Consumer userAction) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public boolean tryAdvance(Consumer userAction) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Spliterator trySplit() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 }

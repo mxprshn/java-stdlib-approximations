@@ -4,7 +4,7 @@
 //
 package stub.java.util.stream;
 
-import java.lang.InternalError;
+import java.lang.LinkageError;
 import java.lang.Object;
 import java.lang.SuppressWarnings;
 import java.lang.Void;
@@ -19,18 +19,18 @@ public class StreamLSLIterator implements LibSLRuntime.HasAutomaton, Iterator {
     }
 
     public boolean hasNext() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Object next() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void remove() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void forEachRemaining(Consumer userAction) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 }

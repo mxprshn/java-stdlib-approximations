@@ -6,7 +6,7 @@ package stub.libsl.utils;
 
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.InternalError;
+import java.lang.LinkageError;
 import java.lang.SuppressWarnings;
 import java.lang.Void;
 import runtime.LibSLRuntime;
@@ -18,54 +18,54 @@ public final class SymbolicInputStream extends InputStream implements LibSLRunti
     }
 
     public int available() throws java.io.IOException {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void close() throws java.io.IOException {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void mark(int readlimit) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public boolean markSupported() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public int read() throws java.io.IOException {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public int read(byte[] b) throws java.io.IOException {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public int read(byte[] b, int off, int len) throws java.io.IOException {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public byte[] readAllBytes() throws java.io.IOException {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public int readNBytes(byte[] b, int off, int len) throws java.io.IOException {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public byte[] readNBytes(int len) throws java.io.IOException {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void reset() throws java.io.IOException {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public long skip(long n) throws java.io.IOException {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public long transferTo(OutputStream out) throws java.io.IOException {
-        throw new InternalError();
+        throw new LinkageError();
     }
 }

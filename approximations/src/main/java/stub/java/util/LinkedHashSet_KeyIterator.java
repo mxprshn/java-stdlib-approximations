@@ -4,7 +4,7 @@
 //
 package stub.java.util;
 
-import java.lang.InternalError;
+import java.lang.LinkageError;
 import java.lang.Object;
 import java.lang.SuppressWarnings;
 import java.lang.Void;
@@ -20,22 +20,22 @@ public final class LinkedHashSet_KeyIterator implements LibSLRuntime.HasAutomato
     }
 
     private LinkedHashSet_KeyIterator(HashMap source) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public boolean hasNext() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public final Object next() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void remove() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void forEachRemaining(Consumer userAction) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 }

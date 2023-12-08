@@ -4,7 +4,7 @@
 //
 package stub.java.util.stream;
 
-import java.lang.InternalError;
+import java.lang.LinkageError;
 import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.Comparator;
@@ -19,34 +19,34 @@ public class StreamLSLSpliterator implements LibSLRuntime.HasAutomaton, Splitera
     }
 
     public int characteristics() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Spliterator trySplit() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void forEachRemaining(Consumer _action) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public boolean tryAdvance(Consumer _action) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public long estimateSize() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Comparator getComparator() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public long getExactSizeIfKnown() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public boolean hasCharacteristics(int _characteristics) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 }

@@ -4,7 +4,7 @@
 //
 package stub.java.util;
 
-import java.lang.InternalError;
+import java.lang.LinkageError;
 import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.Spliterator;
@@ -18,26 +18,26 @@ public final class LinkedList_SubList$Spliterator implements LibSLRuntime.HasAut
     }
 
     public int characteristics() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public long estimateSize() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void forEachRemaining(Consumer _action) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public long getExactSizeIfKnown() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public boolean tryAdvance(Consumer _action) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Spliterator trySplit() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 }

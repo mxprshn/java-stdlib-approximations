@@ -37,6 +37,7 @@ import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 import org.usvm.api.SymbolicList;
 import runtime.LibSLRuntime;
+import stub.java.util.Spliterators_IntArraySpliterator;
 
 /**
  * IntStreamAutomaton for IntStreamLSL ~> java.util.stream.IntStreamLSL
@@ -909,13 +910,12 @@ public class IntStreamLSL implements LibSLRuntime.Automaton, IntStream {
             if (this.linkedOrConsumed) {
                 throw new IllegalStateException();
             }
-            final int default_characteristics = LibSLGlobals.SPLITERATOR_ORDERED | LibSLGlobals.SPLITERATOR_IMMUTABLE | LibSLGlobals.SPLITERATOR_SIZED | LibSLGlobals.SPLITERATOR_SUBSIZED;
-            result = (stub.java.util.stream.IntStreamLSLSpliterator) ((Object) new IntStreamLSLSpliterator((Void) null, 
-                /* state = */ IntStreamLSLSpliterator.__$lsl_States.Initialized, 
-                /* parent = */ this, 
-                /* characteristics = */ default_characteristics, 
+            result = (Spliterators_IntArraySpliterator) ((Object) new generated.java.util.Spliterators_IntArraySpliterator((Void) null, 
+                /* state = */ generated.java.util.Spliterators_IntArraySpliterator.__$lsl_States.Initialized, 
+                /* array = */ this.storage, 
+                /* index = */ 0, 
                 /* fence = */ this.length, 
-                /* index = */ 0
+                /* characteristics = */ LibSLGlobals.SPLITERATOR_ORDERED | LibSLGlobals.SPLITERATOR_IMMUTABLE | LibSLGlobals.SPLITERATOR_SIZED | LibSLGlobals.SPLITERATOR_SUBSIZED
             ));
             this.linkedOrConsumed = true;
         }
@@ -924,7 +924,7 @@ public class IntStreamLSL implements LibSLRuntime.Automaton, IntStream {
 
     /**
      * [FUNCTION] IntStreamAutomaton::isParallel(IntStream) -> boolean
-     * Source: java/util/stream/IntStream.main.lsl:922
+     * Source: java/util/stream/IntStream.main.lsl:921
      */
     public boolean isParallel() {
         boolean result = false;
@@ -936,7 +936,7 @@ public class IntStreamLSL implements LibSLRuntime.Automaton, IntStream {
 
     /**
      * [FUNCTION] IntStreamAutomaton::sequential(IntStream) -> IntStream
-     * Source: java/util/stream/IntStream.main.lsl:928
+     * Source: java/util/stream/IntStream.main.lsl:927
      */
     public IntStream sequential() {
         IntStream result = null;
@@ -949,7 +949,7 @@ public class IntStreamLSL implements LibSLRuntime.Automaton, IntStream {
 
     /**
      * [FUNCTION] IntStreamAutomaton::parallel(IntStream) -> IntStream
-     * Source: java/util/stream/IntStream.main.lsl:935
+     * Source: java/util/stream/IntStream.main.lsl:934
      */
     public IntStream parallel() {
         IntStream result = null;
@@ -962,7 +962,7 @@ public class IntStreamLSL implements LibSLRuntime.Automaton, IntStream {
 
     /**
      * [FUNCTION] IntStreamAutomaton::unordered(IntStream) -> IntStream
-     * Source: java/util/stream/IntStream.main.lsl:942
+     * Source: java/util/stream/IntStream.main.lsl:941
      */
     public IntStream unordered() {
         IntStream result = null;
@@ -985,7 +985,7 @@ public class IntStreamLSL implements LibSLRuntime.Automaton, IntStream {
 
     /**
      * [FUNCTION] IntStreamAutomaton::onClose(IntStream, Runnable) -> IntStream
-     * Source: java/util/stream/IntStream.main.lsl:955
+     * Source: java/util/stream/IntStream.main.lsl:954
      */
     public IntStream onClose(Runnable closeHandler) {
         IntStream result = null;
@@ -1002,7 +1002,7 @@ public class IntStreamLSL implements LibSLRuntime.Automaton, IntStream {
 
     /**
      * [FUNCTION] IntStreamAutomaton::close(IntStream) -> void
-     * Source: java/util/stream/IntStream.main.lsl:967
+     * Source: java/util/stream/IntStream.main.lsl:966
      */
     public void close() {
         /* body */ {
@@ -1020,7 +1020,7 @@ public class IntStreamLSL implements LibSLRuntime.Automaton, IntStream {
 
     /**
      * [FUNCTION] IntStreamAutomaton::dropWhile(IntStream, IntPredicate) -> IntStream
-     * Source: java/util/stream/IntStream.main.lsl:991
+     * Source: java/util/stream/IntStream.main.lsl:990
      */
     public IntStream dropWhile(IntPredicate predicate) {
         IntStream result = null;
@@ -1087,7 +1087,7 @@ public class IntStreamLSL implements LibSLRuntime.Automaton, IntStream {
 
     /**
      * [FUNCTION] IntStreamAutomaton::takeWhile(IntStream, IntPredicate) -> IntStream
-     * Source: java/util/stream/IntStream.main.lsl:1066
+     * Source: java/util/stream/IntStream.main.lsl:1065
      */
     public IntStream takeWhile(IntPredicate predicate) {
         IntStream result = null;
@@ -1154,7 +1154,7 @@ public class IntStreamLSL implements LibSLRuntime.Automaton, IntStream {
 
     /**
      * [FUNCTION] IntStreamAutomaton::asLongStream(IntStream) -> LongStream
-     * Source: java/util/stream/IntStream.main.lsl:1141
+     * Source: java/util/stream/IntStream.main.lsl:1140
      */
     public LongStream asLongStream() {
         LongStream result = null;
@@ -1196,7 +1196,7 @@ public class IntStreamLSL implements LibSLRuntime.Automaton, IntStream {
 
     /**
      * [FUNCTION] IntStreamAutomaton::asDoubleStream(IntStream) -> DoubleStream
-     * Source: java/util/stream/IntStream.main.lsl:1183
+     * Source: java/util/stream/IntStream.main.lsl:1182
      */
     public DoubleStream asDoubleStream() {
         DoubleStream result = null;
@@ -1238,7 +1238,7 @@ public class IntStreamLSL implements LibSLRuntime.Automaton, IntStream {
 
     /**
      * [FUNCTION] IntStreamAutomaton::sum(IntStream) -> int
-     * Source: java/util/stream/IntStream.main.lsl:1225
+     * Source: java/util/stream/IntStream.main.lsl:1224
      */
     public int sum() {
         int result = 0;
@@ -1254,7 +1254,7 @@ public class IntStreamLSL implements LibSLRuntime.Automaton, IntStream {
 
     /**
      * [FUNCTION] IntStreamAutomaton::average(IntStream) -> OptionalDouble
-     * Source: java/util/stream/IntStream.main.lsl:1235
+     * Source: java/util/stream/IntStream.main.lsl:1234
      */
     public OptionalDouble average() {
         OptionalDouble result = null;
@@ -1276,7 +1276,7 @@ public class IntStreamLSL implements LibSLRuntime.Automaton, IntStream {
 
     /**
      * [FUNCTION] IntStreamAutomaton::summaryStatistics(IntStream) -> IntSummaryStatistics
-     * Source: java/util/stream/IntStream.main.lsl:1254
+     * Source: java/util/stream/IntStream.main.lsl:1253
      */
     public IntSummaryStatistics summaryStatistics() {
         IntSummaryStatistics result = null;
@@ -1297,7 +1297,7 @@ public class IntStreamLSL implements LibSLRuntime.Automaton, IntStream {
 
     /**
      * [FUNCTION] IntStreamAutomaton::boxed(IntStream) -> Stream
-     * Source: java/util/stream/IntStream.main.lsl:1275
+     * Source: java/util/stream/IntStream.main.lsl:1274
      */
     public Stream boxed() {
         Stream result = null;

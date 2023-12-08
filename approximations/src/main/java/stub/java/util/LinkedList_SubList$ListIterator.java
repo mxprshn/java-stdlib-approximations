@@ -4,7 +4,7 @@
 //
 package stub.java.util;
 
-import java.lang.InternalError;
+import java.lang.LinkageError;
 import java.lang.Object;
 import java.lang.SuppressWarnings;
 import java.lang.Void;
@@ -19,42 +19,42 @@ public final class LinkedList_SubList$ListIterator implements LibSLRuntime.HasAu
     }
 
     public boolean hasPrevious() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public int nextIndex() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public int previousIndex() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public boolean hasNext() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Object next() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Object previous() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void remove() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void set(Object e) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void add(Object e) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void forEachRemaining(Consumer userAction) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 }

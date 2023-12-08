@@ -4,7 +4,7 @@
 //
 package stub.java.util.stream;
 
-import java.lang.InternalError;
+import java.lang.LinkageError;
 import java.lang.Object;
 import java.lang.Runnable;
 import java.lang.SuppressWarnings;
@@ -39,170 +39,170 @@ public class StreamLSL implements LibSLRuntime.HasAutomaton, Stream {
     }
 
     public Stream filter(Predicate predicate) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Stream map(Function mapper) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public IntStream mapToInt(ToIntFunction mapper) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public LongStream mapToLong(ToLongFunction mapper) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public DoubleStream mapToDouble(ToDoubleFunction mapper) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Stream flatMap(Function mapper) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public IntStream flatMapToInt(Function mapper) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public LongStream flatMapToLong(Function mapper) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public DoubleStream flatMapToDouble(Function mapper) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Stream distinct() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Stream sorted() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Stream sorted(Comparator comparator) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Stream peek(Consumer _action) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Stream limit(long maxSize) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Stream skip(long n) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void forEach(Consumer _action) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void forEachOrdered(Consumer _action) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Object[] toArray() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Object[] toArray(IntFunction generator) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Object reduce(Object identity, BinaryOperator accumulator) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Optional reduce(BinaryOperator accumulator) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Object reduce(Object identity, BiFunction accumulator, BinaryOperator combiner) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Object collect(Supplier supplier, BiConsumer accumulator, BiConsumer combiner) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Object collect(Collector collector) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Optional min(Comparator comparator) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Optional max(Comparator comparator) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public long count() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public boolean anyMatch(Predicate predicate) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public boolean allMatch(Predicate predicate) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public boolean noneMatch(Predicate predicate) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Optional findFirst() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Optional findAny() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Iterator iterator() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Spliterator spliterator() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public boolean isParallel() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public BaseStream sequential() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public BaseStream parallel() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public BaseStream unordered() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public BaseStream onClose(Runnable arg0) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void close() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Stream dropWhile(Predicate predicate) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Stream takeWhile(Predicate predicate) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 }

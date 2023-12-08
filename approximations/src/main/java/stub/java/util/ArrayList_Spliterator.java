@@ -4,7 +4,7 @@
 //
 package stub.java.util;
 
-import java.lang.InternalError;
+import java.lang.LinkageError;
 import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.ArrayList;
@@ -19,30 +19,30 @@ public final class ArrayList_Spliterator implements LibSLRuntime.HasAutomaton, S
     }
 
     private ArrayList_Spliterator(ArrayList _this, int origin, int fence, int expectedModCount) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public int characteristics() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public long estimateSize() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void forEachRemaining(Consumer _action) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public long getExactSizeIfKnown() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public boolean tryAdvance(Consumer _action) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Spliterator trySplit() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 }

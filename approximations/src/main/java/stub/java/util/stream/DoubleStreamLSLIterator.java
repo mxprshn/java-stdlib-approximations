@@ -5,7 +5,7 @@
 package stub.java.util.stream;
 
 import java.lang.Double;
-import java.lang.InternalError;
+import java.lang.LinkageError;
 import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.PrimitiveIterator;
@@ -20,26 +20,26 @@ public class DoubleStreamLSLIterator implements LibSLRuntime.HasAutomaton, Primi
     }
 
     public boolean hasNext() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public Double next() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public double nextDouble() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void remove() {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void forEachRemaining(Consumer userAction) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 
     public void forEachRemaining(DoubleConsumer userAction) {
-        throw new InternalError();
+        throw new LinkageError();
     }
 }
