@@ -39,21 +39,23 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     static {
         /* SecureRandomAutomaton::__clinit__() */ {
-            defaultProvidersMap.set("SUN", LibSLGlobals.SOMETHING);
-            defaultProvidersMap.set("SunRsaSign", LibSLGlobals.SOMETHING);
-            defaultProvidersMap.set("SunJSSE", LibSLGlobals.SOMETHING);
-            defaultProvidersMap.set("SunJCE", LibSLGlobals.SOMETHING);
-            defaultProvidersMap.set("Apple", LibSLGlobals.SOMETHING);
-            defaultProvidersMap.set("JdkLDAP", LibSLGlobals.SOMETHING);
-            defaultProvidersMap.set("SunJGSS", LibSLGlobals.SOMETHING);
-            defaultProvidersMap.set("SunSASL", LibSLGlobals.SOMETHING);
-            defaultProvidersMap.set("SunPCSC", LibSLGlobals.SOMETHING);
-            defaultProvidersMap.set("XMLDSig", LibSLGlobals.SOMETHING);
-            defaultProvidersMap.set("SunPKCS11", LibSLGlobals.SOMETHING);
-            defaultProvidersMap.set("SunEC", LibSLGlobals.SOMETHING);
-            defaultProvidersMap.set("SunMSCAPI", LibSLGlobals.SOMETHING);
-            defaultProvidersMap.set("OracleUcrypto", LibSLGlobals.SOMETHING);
-            defaultProvidersMap.set("JdkSASL", LibSLGlobals.SOMETHING);
+            final LibSLRuntime.Map<String, Object> dpMap = defaultProvidersMap;
+            final Object o = LibSLGlobals.SOMETHING;
+            dpMap.set("SUN", o);
+            dpMap.set("SunRsaSign", o);
+            dpMap.set("SunJSSE", o);
+            dpMap.set("SunJCE", o);
+            dpMap.set("Apple", o);
+            dpMap.set("JdkLDAP", o);
+            dpMap.set("SunJGSS", o);
+            dpMap.set("SunSASL", o);
+            dpMap.set("SunPCSC", o);
+            dpMap.set("XMLDSig", o);
+            dpMap.set("SunPKCS11", o);
+            dpMap.set("SunEC", o);
+            dpMap.set("SunMSCAPI", o);
+            dpMap.set("OracleUcrypto", o);
+            dpMap.set("JdkSASL", o);
         }
     }
 
@@ -81,7 +83,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [CONSTRUCTOR] SecureRandomAutomaton::SecureRandom(SecureRandom) -> SecureRandomLSL
-     * Source: java/security/SecureRandom.main.lsl:212
+     * Source: java/security/SecureRandom.main.lsl:217
      */
     public SecureRandom() {
         this((Void) null);
@@ -94,7 +96,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [CONSTRUCTOR] SecureRandomAutomaton::SecureRandom(SecureRandom, SecureRandomSpi, Provider) -> SecureRandomLSL
-     * Source: java/security/SecureRandom.main.lsl:219
+     * Source: java/security/SecureRandom.main.lsl:224
      */
     protected SecureRandom(SecureRandomSpi secureRandomSpi, Provider provider) {
         this((Void) null);
@@ -107,7 +109,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [CONSTRUCTOR] SecureRandomAutomaton::SecureRandom(SecureRandom, SecureRandomSpi, Provider, String) -> SecureRandomLSL
-     * Source: java/security/SecureRandom.main.lsl:226
+     * Source: java/security/SecureRandom.main.lsl:231
      */
     private SecureRandom(SecureRandomSpi secureRandomSpi, Provider provider, String algorithm) {
         this((Void) null);
@@ -120,7 +122,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [CONSTRUCTOR] SecureRandomAutomaton::SecureRandom(SecureRandom, array<byte>) -> SecureRandomLSL
-     * Source: java/security/SecureRandom.main.lsl:232
+     * Source: java/security/SecureRandom.main.lsl:237
      */
     public SecureRandom(byte[] seed) {
         this((Void) null);
@@ -161,79 +163,47 @@ public class SecureRandom implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [SUBROUTINE] SecureRandomAutomaton::_nextBytes(array<byte>, int) -> void
-     * Source: java/security/SecureRandom.main.lsl:146
-     */
-    private static void _nextBytes(byte[] result, int numBytes) {
-        /* body */ {
-            final byte[] symbolicArray = Engine.makeSymbolicByteArray(numBytes);
-            LibSLRuntime.ArrayActions.copy(symbolicArray, 0, result, 0, numBytes);
-        }
-    }
-
-    /**
      * [SUBROUTINE] SecureRandomAutomaton::_generateRandomIntegerArrayWithBounds(int, int, int) -> array<int>
-     * Source: java/security/SecureRandom.main.lsl:153
+     * Source: java/security/SecureRandom.main.lsl:146
      */
     private int[] _generateRandomIntegerArrayWithBounds(int size, int randomNumberOrigin,
             int randomNumberBound) {
         int[] result = null;
         /* body */ {
             result = Engine.makeSymbolicIntArray(size);
-            int i = 0;
-            for (i = 0; i < size; i += 1) {
-                Engine.assume(result[i] >= randomNumberOrigin);
-                Engine.assume(result[i] < randomNumberBound);
-            }
-            ;
         }
         return result;
     }
 
     /**
      * [SUBROUTINE] SecureRandomAutomaton::_generateRandomLongArrayWithBounds(int, long, long) -> array<long>
-     * Source: java/security/SecureRandom.main.lsl:171
+     * Source: java/security/SecureRandom.main.lsl:168
      */
     private long[] _generateRandomLongArrayWithBounds(int size, long randomNumberOrigin,
             long randomNumberBound) {
         long[] result = null;
         /* body */ {
             result = Engine.makeSymbolicLongArray(size);
-            int i = 0;
-            for (i = 0; i < size; i += 1) {
-                Engine.assume(result[i] >= randomNumberOrigin);
-                Engine.assume(result[i] < randomNumberBound);
-            }
-            ;
         }
         return result;
     }
 
     /**
      * [SUBROUTINE] SecureRandomAutomaton::_generateRandomDoubleArrayWithBounds(int, double, double) -> array<double>
-     * Source: java/security/SecureRandom.main.lsl:189
+     * Source: java/security/SecureRandom.main.lsl:190
      */
     private double[] _generateRandomDoubleArrayWithBounds(int size, double randomNumberOrigin,
             double randomNumberBound) {
         double[] result = null;
         /* body */ {
-            result = new double[size];
-            int i = 0;
-            for (i = 0; i < size; i += 1) {
-                final double item = Engine.makeSymbolicDouble();
-                Engine.assume(item == item);
-                Engine.assume(item >= randomNumberOrigin);
-                Engine.assume(item < randomNumberBound);
-                result[i] = item;
-            }
-            ;
+            result = Engine.makeSymbolicDoubleArray(size);
         }
         return result;
     }
 
     /**
      * [FUNCTION] SecureRandomAutomaton::getInstance(String) -> SecureRandom
-     * Source: java/security/SecureRandom.main.lsl:240
+     * Source: java/security/SecureRandom.main.lsl:245
      */
     public static java.security.SecureRandom getInstance(String _algorithm) throws
             java.security.NoSuchAlgorithmException {
@@ -260,7 +230,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::getInstance(String, Provider) -> SecureRandom
-     * Source: java/security/SecureRandom.main.lsl:260
+     * Source: java/security/SecureRandom.main.lsl:265
      */
     public static java.security.SecureRandom getInstance(String _algorithm, Provider provider)
             throws java.security.NoSuchAlgorithmException {
@@ -290,7 +260,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::getInstance(String, String) -> SecureRandom
-     * Source: java/security/SecureRandom.main.lsl:283
+     * Source: java/security/SecureRandom.main.lsl:288
      */
     public static java.security.SecureRandom getInstance(String _algorithm, String providerName)
             throws java.security.NoSuchAlgorithmException, java.security.NoSuchProviderException {
@@ -323,15 +293,14 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::getInstanceStrong() -> SecureRandom
-     * Source: java/security/SecureRandom.main.lsl:309
+     * Source: java/security/SecureRandom.main.lsl:314
      */
     public static java.security.SecureRandom getInstanceStrong() throws
             java.security.NoSuchAlgorithmException {
         java.security.SecureRandom result = null;
         // WARNING: no state checks in static context
         /* body */ {
-            final String propertyName = "securerandom.strongAlgorithms";
-            final String property = Security.getProperty(propertyName);
+            final String property = Security.getProperty("securerandom.strongAlgorithms");
             if (property == null) {
                 throw new NoSuchAlgorithmException();
             }
@@ -357,7 +326,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::getSeed(int) -> array<byte>
-     * Source: java/security/SecureRandom.main.lsl:339
+     * Source: java/security/SecureRandom.main.lsl:342
      */
     public static byte[] getSeed(int numBytes) {
         byte[] result = null;
@@ -366,8 +335,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
             if (numBytes < 0) {
                 throw new IllegalArgumentException();
             }
-            result = new byte[numBytes];
-            _nextBytes(result, numBytes);
+            result = Engine.makeSymbolicByteArray(numBytes);
         }
         // WARNING: no state transitions in static context
         return result;
@@ -375,7 +343,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::doubles(SecureRandom) -> DoubleStream
-     * Source: java/security/SecureRandom.main.lsl:351
+     * Source: java/security/SecureRandom.main.lsl:354
      */
     public DoubleStream doubles() {
         DoubleStream result = null;
@@ -395,7 +363,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::doubles(SecureRandom, double, double) -> DoubleStream
-     * Source: java/security/SecureRandom.main.lsl:362
+     * Source: java/security/SecureRandom.main.lsl:365
      */
     public DoubleStream doubles(double randomNumberOrigin, double randomNumberBound) {
         DoubleStream result = null;
@@ -418,7 +386,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::doubles(SecureRandom, long) -> DoubleStream
-     * Source: java/security/SecureRandom.main.lsl:375
+     * Source: java/security/SecureRandom.main.lsl:380
      */
     public DoubleStream doubles(long streamSize) {
         DoubleStream result = null;
@@ -445,7 +413,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::doubles(SecureRandom, long, double, double) -> DoubleStream
-     * Source: java/security/SecureRandom.main.lsl:393
+     * Source: java/security/SecureRandom.main.lsl:399
      */
     public DoubleStream doubles(long streamSize, double randomNumberOrigin,
             double randomNumberBound) {
@@ -476,7 +444,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::generateSeed(SecureRandom, int) -> array<byte>
-     * Source: java/security/SecureRandom.main.lsl:412
+     * Source: java/security/SecureRandom.main.lsl:419
      */
     public byte[] generateSeed(int numBytes) {
         byte[] result = null;
@@ -485,15 +453,14 @@ public class SecureRandom implements LibSLRuntime.Automaton {
             if (numBytes < 0) {
                 throw new IllegalArgumentException();
             }
-            result = new byte[numBytes];
-            _nextBytes(result, numBytes);
+            result = Engine.makeSymbolicByteArray(numBytes);
         }
         return result;
     }
 
     /**
      * [FUNCTION] SecureRandomAutomaton::getAlgorithm(SecureRandom) -> String
-     * Source: java/security/SecureRandom.main.lsl:422
+     * Source: java/security/SecureRandom.main.lsl:428
      */
     public String getAlgorithm() {
         String result = null;
@@ -506,7 +473,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::getProvider(SecureRandom) -> Provider
-     * Source: java/security/SecureRandom.main.lsl:428
+     * Source: java/security/SecureRandom.main.lsl:434
      */
     public final Provider getProvider() {
         Provider result = null;
@@ -519,7 +486,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::ints(SecureRandom) -> IntStream
-     * Source: java/security/SecureRandom.main.lsl:435
+     * Source: java/security/SecureRandom.main.lsl:441
      */
     public IntStream ints() {
         IntStream result = null;
@@ -539,7 +506,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::ints(SecureRandom, int, int) -> IntStream
-     * Source: java/security/SecureRandom.main.lsl:446
+     * Source: java/security/SecureRandom.main.lsl:452
      */
     public IntStream ints(int randomNumberOrigin, int randomNumberBound) {
         IntStream result = null;
@@ -562,7 +529,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::ints(SecureRandom, long) -> IntStream
-     * Source: java/security/SecureRandom.main.lsl:459
+     * Source: java/security/SecureRandom.main.lsl:466
      */
     public IntStream ints(long streamSize) {
         IntStream result = null;
@@ -589,7 +556,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::ints(SecureRandom, long, int, int) -> IntStream
-     * Source: java/security/SecureRandom.main.lsl:477
+     * Source: java/security/SecureRandom.main.lsl:485
      */
     public IntStream ints(long streamSize, int randomNumberOrigin, int randomNumberBound) {
         IntStream result = null;
@@ -619,7 +586,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::longs(SecureRandom) -> LongStream
-     * Source: java/security/SecureRandom.main.lsl:497
+     * Source: java/security/SecureRandom.main.lsl:506
      */
     public LongStream longs() {
         LongStream result = null;
@@ -639,7 +606,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::longs(SecureRandom, long) -> LongStream
-     * Source: java/security/SecureRandom.main.lsl:508
+     * Source: java/security/SecureRandom.main.lsl:517
      */
     public LongStream longs(long streamSize) {
         LongStream result = null;
@@ -666,7 +633,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::longs(SecureRandom, long, long) -> LongStream
-     * Source: java/security/SecureRandom.main.lsl:526
+     * Source: java/security/SecureRandom.main.lsl:536
      */
     public LongStream longs(long randomNumberOrigin, long randomNumberBound) {
         LongStream result = null;
@@ -689,7 +656,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::longs(SecureRandom, long, long, long) -> LongStream
-     * Source: java/security/SecureRandom.main.lsl:539
+     * Source: java/security/SecureRandom.main.lsl:550
      */
     public LongStream longs(long streamSize, long randomNumberOrigin, long randomNumberBound) {
         LongStream result = null;
@@ -719,7 +686,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::nextBoolean(SecureRandom) -> boolean
-     * Source: java/security/SecureRandom.main.lsl:559
+     * Source: java/security/SecureRandom.main.lsl:571
      */
     public boolean nextBoolean() {
         boolean result = false;
@@ -732,18 +699,20 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::nextBytes(SecureRandom, array<byte>) -> void
-     * Source: java/security/SecureRandom.main.lsl:565
+     * Source: java/security/SecureRandom.main.lsl:577
      */
     public void nextBytes(byte[] bytes) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            _nextBytes(bytes, bytes.length);
+            final int len = bytes.length;
+            final byte[] src = Engine.makeSymbolicByteArray(len);
+            LibSLRuntime.ArrayActions.copy(src, 0, bytes, 0, len);
         }
     }
 
     /**
      * [FUNCTION] SecureRandomAutomaton::nextDouble(SecureRandom) -> double
-     * Source: java/security/SecureRandom.main.lsl:578
+     * Source: java/security/SecureRandom.main.lsl:586
      */
     public double nextDouble() {
         double result = 0.0d;
@@ -758,7 +727,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::nextFloat(SecureRandom) -> float
-     * Source: java/security/SecureRandom.main.lsl:588
+     * Source: java/security/SecureRandom.main.lsl:596
      */
     public float nextFloat() {
         float result = 0.0f;
@@ -773,7 +742,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::nextGaussian(SecureRandom) -> double
-     * Source: java/security/SecureRandom.main.lsl:598
+     * Source: java/security/SecureRandom.main.lsl:606
      */
     public synchronized double nextGaussian() {
         double result = 0.0d;
@@ -788,7 +757,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::nextInt(SecureRandom) -> int
-     * Source: java/security/SecureRandom.main.lsl:607
+     * Source: java/security/SecureRandom.main.lsl:615
      */
     public int nextInt() {
         int result = 0;
@@ -801,7 +770,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::nextInt(SecureRandom, int) -> int
-     * Source: java/security/SecureRandom.main.lsl:614
+     * Source: java/security/SecureRandom.main.lsl:622
      */
     public int nextInt(int bound) {
         int result = 0;
@@ -819,7 +788,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::nextLong(SecureRandom) -> long
-     * Source: java/security/SecureRandom.main.lsl:627
+     * Source: java/security/SecureRandom.main.lsl:635
      */
     public long nextLong() {
         long result = 0L;
@@ -832,7 +801,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::setSeed(SecureRandom, array<byte>) -> void
-     * Source: java/security/SecureRandom.main.lsl:633
+     * Source: java/security/SecureRandom.main.lsl:641
      */
     public synchronized void setSeed(byte[] seed) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -847,7 +816,7 @@ public class SecureRandom implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] SecureRandomAutomaton::setSeed(SecureRandom, long) -> void
-     * Source: java/security/SecureRandom.main.lsl:644
+     * Source: java/security/SecureRandom.main.lsl:652
      */
     public void setSeed(long seed) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
