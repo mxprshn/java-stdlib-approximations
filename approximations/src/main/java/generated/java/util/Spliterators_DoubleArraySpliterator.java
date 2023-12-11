@@ -55,7 +55,7 @@ public final class Spliterators_DoubleArraySpliterator implements LibSLRuntime.A
     }
 
     /**
-     * [CONSTRUCTOR] Spliterators_DoubleArraySpliteratorAutomaton::init(Spliterators_DoubleArraySpliterator, array<double>, int) -> Spliterators_DoubleArraySpliterator
+     * [CONSTRUCTOR] Spliterators_DoubleArraySpliteratorAutomaton::<init>(Spliterators_DoubleArraySpliterator, array<double>, int) -> void
      * Source: java/util/Spliterators.DoubleArraySpliterator.lsl:80
      */
     public Spliterators_DoubleArraySpliterator(double[] arr, int additionalCharacteristics) {
@@ -71,7 +71,7 @@ public final class Spliterators_DoubleArraySpliterator implements LibSLRuntime.A
     }
 
     /**
-     * [CONSTRUCTOR] Spliterators_DoubleArraySpliteratorAutomaton::init(Spliterators_DoubleArraySpliterator, array<double>, int, int, int) -> Spliterators_DoubleArraySpliterator
+     * [CONSTRUCTOR] Spliterators_DoubleArraySpliteratorAutomaton::<init>(Spliterators_DoubleArraySpliterator, array<double>, int, int, int) -> void
      * Source: java/util/Spliterators.DoubleArraySpliterator.lsl:92
      */
     public Spliterators_DoubleArraySpliterator(double[] arr, int origin, int pFence,

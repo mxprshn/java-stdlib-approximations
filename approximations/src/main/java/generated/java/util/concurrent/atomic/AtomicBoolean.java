@@ -45,7 +45,7 @@ public class AtomicBoolean implements LibSLRuntime.Automaton, Serializable {
     }
 
     /**
-     * [CONSTRUCTOR] AtomicBooleanAutomaton::LSLAtomicBoolean(LSLAtomicBoolean) -> LSLAtomicBoolean
+     * [CONSTRUCTOR] AtomicBooleanAutomaton::<init>(LSLAtomicBoolean) -> void
      * Source: java/util/concurrent/atomic/AtomicBoolean.main.lsl:63
      */
     public AtomicBoolean() {
@@ -58,7 +58,7 @@ public class AtomicBoolean implements LibSLRuntime.Automaton, Serializable {
     }
 
     /**
-     * [CONSTRUCTOR] AtomicBooleanAutomaton::LSLAtomicBoolean(LSLAtomicBoolean, boolean) -> LSLAtomicBoolean
+     * [CONSTRUCTOR] AtomicBooleanAutomaton::<init>(LSLAtomicBoolean, boolean) -> void
      * Source: java/util/concurrent/atomic/AtomicBoolean.main.lsl:69
      */
     public AtomicBoolean(boolean initialValue) {

@@ -50,7 +50,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [CONSTRUCTOR] OptionalLongAutomaton::LSLOptionalLong(LSLOptionalLong) -> LSLOptionalLong
+     * [CONSTRUCTOR] OptionalLongAutomaton::<init>(LSLOptionalLong) -> void
      * Source: java/util/OptionalLong.automata.lsl:79
      */
     private OptionalLong() {
@@ -63,7 +63,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [CONSTRUCTOR] OptionalLongAutomaton::LSLOptionalLong(LSLOptionalLong, long) -> LSLOptionalLong
+     * [CONSTRUCTOR] OptionalLongAutomaton::<init>(LSLOptionalLong, long) -> void
      * Source: java/util/OptionalLong.automata.lsl:85
      */
     private OptionalLong(long x) {

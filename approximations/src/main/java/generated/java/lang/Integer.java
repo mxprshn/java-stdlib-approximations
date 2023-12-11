@@ -59,7 +59,7 @@ public final class Integer implements LibSLRuntime.Automaton, Comparable<Integer
     }
 
     /**
-     * [CONSTRUCTOR] IntegerAutomaton::Integer(LSLInteger, int) -> LSLInteger
+     * [CONSTRUCTOR] IntegerAutomaton::<init>(LSLInteger, int) -> void
      * Source: java/lang/Integer.main.lsl:113
      */
     public Integer(int v) {

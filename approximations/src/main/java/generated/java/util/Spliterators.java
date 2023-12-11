@@ -34,7 +34,7 @@ public final class Spliterators implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [CONSTRUCTOR] SpliteratorsAutomaton::init(Spliterators) -> Spliterators
+     * [CONSTRUCTOR] SpliteratorsAutomaton::<init>(Spliterators) -> void
      * Source: java/util/Spliterators.main.lsl:68
      */
     private Spliterators() {

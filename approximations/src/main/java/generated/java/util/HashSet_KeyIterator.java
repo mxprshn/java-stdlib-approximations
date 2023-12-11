@@ -62,7 +62,7 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
     }
 
     /**
-     * [CONSTRUCTOR] HashSet_KeyIteratorAutomaton::HashSet_KeyIterator(HashSet_KeyIterator, HashMap) -> HashSet_KeyIterator
+     * [CONSTRUCTOR] HashSet_KeyIteratorAutomaton::<init>(HashSet_KeyIterator, HashMap) -> void
      * Source: java/util/HashSet.KeyIterator.lsl:66
      */
     private HashSet_KeyIterator(HashMap source) {

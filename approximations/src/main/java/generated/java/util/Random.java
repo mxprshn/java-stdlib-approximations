@@ -51,7 +51,7 @@ public class Random implements LibSLRuntime.Automaton, Serializable {
     }
 
     /**
-     * [CONSTRUCTOR] RandomAutomaton::Random(Random) -> Random
+     * [CONSTRUCTOR] RandomAutomaton::<init>(Random) -> void
      * Source: java/util/Random.main.lsl:137
      */
     public Random() {
@@ -64,7 +64,7 @@ public class Random implements LibSLRuntime.Automaton, Serializable {
     }
 
     /**
-     * [CONSTRUCTOR] RandomAutomaton::Random(Random, long) -> Random
+     * [CONSTRUCTOR] RandomAutomaton::<init>(Random, long) -> void
      * Source: java/util/Random.main.lsl:143
      */
     public Random(long seed) {

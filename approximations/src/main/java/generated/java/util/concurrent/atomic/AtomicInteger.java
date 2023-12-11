@@ -43,7 +43,7 @@ public class AtomicInteger implements LibSLRuntime.Automaton, Serializable {
     }
 
     /**
-     * [CONSTRUCTOR] AtomicIntegerAutomaton::LSLAtomicInteger(LSLAtomicInteger) -> LSLAtomicInteger
+     * [CONSTRUCTOR] AtomicIntegerAutomaton::<init>(LSLAtomicInteger) -> void
      * Source: java/util/concurrent/atomic/AtomicInteger.main.lsl:82
      */
     public AtomicInteger() {
@@ -56,7 +56,7 @@ public class AtomicInteger implements LibSLRuntime.Automaton, Serializable {
     }
 
     /**
-     * [CONSTRUCTOR] AtomicIntegerAutomaton::LSLAtomicInteger(LSLAtomicInteger, int) -> LSLAtomicInteger
+     * [CONSTRUCTOR] AtomicIntegerAutomaton::<init>(LSLAtomicInteger, int) -> void
      * Source: java/util/concurrent/atomic/AtomicInteger.main.lsl:88
      */
     public AtomicInteger(int initialValue) {

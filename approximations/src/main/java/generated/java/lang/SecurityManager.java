@@ -46,7 +46,7 @@ public class SecurityManager implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [CONSTRUCTOR] SecurityManagerAutomaton::LSLSecurityManager(LSLSecurityManager) -> LSLSecurityManager
+     * [CONSTRUCTOR] SecurityManagerAutomaton::<init>(LSLSecurityManager) -> void
      * Source: java/lang/SecurityManager.main.lsl:99
      */
     public SecurityManager() {

@@ -54,7 +54,7 @@ public final class LinkedList_Spliterator implements LibSLRuntime.Automaton, Spl
     }
 
     /**
-     * [CONSTRUCTOR] LinkedList_SpliteratorAutomaton::LinkedList_Spliterator(LinkedList_Spliterator, LinkedList, int, int, int) -> LinkedList_Spliterator
+     * [CONSTRUCTOR] LinkedList_SpliteratorAutomaton::<init>(LinkedList_Spliterator, LinkedList, int, int, int) -> void
      * Source: java/util/LinkedList.Spliterator.lsl:80
      */
     private LinkedList_Spliterator(LinkedList _this, int origin, int fence, int expectedModCount) {
@@ -85,7 +85,7 @@ public final class LinkedList_Spliterator implements LibSLRuntime.Automaton, Spl
 
     /**
      * [FUNCTION] LinkedList_SpliteratorAutomaton::characteristics(LinkedList_Spliterator) -> int
-     * Source: java/util/LinkedList.Spliterator.lsl:94
+     * Source: java/util/LinkedList.Spliterator.lsl:93
      */
     public int characteristics() {
         int result = 0;
@@ -98,7 +98,7 @@ public final class LinkedList_Spliterator implements LibSLRuntime.Automaton, Spl
 
     /**
      * [FUNCTION] LinkedList_SpliteratorAutomaton::estimateSize(LinkedList_Spliterator) -> long
-     * Source: java/util/LinkedList.Spliterator.lsl:100
+     * Source: java/util/LinkedList.Spliterator.lsl:99
      */
     public long estimateSize() {
         long result = 0L;
@@ -111,7 +111,7 @@ public final class LinkedList_Spliterator implements LibSLRuntime.Automaton, Spl
 
     /**
      * [FUNCTION] LinkedList_SpliteratorAutomaton::forEachRemaining(LinkedList_Spliterator, Consumer) -> void
-     * Source: java/util/LinkedList.Spliterator.lsl:106
+     * Source: java/util/LinkedList.Spliterator.lsl:105
      */
     public void forEachRemaining(Consumer _action) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -148,7 +148,7 @@ public final class LinkedList_Spliterator implements LibSLRuntime.Automaton, Spl
 
     /**
      * [FUNCTION] LinkedList_SpliteratorAutomaton::getExactSizeIfKnown(LinkedList_Spliterator) -> long
-     * Source: java/util/LinkedList.Spliterator.lsl:153
+     * Source: java/util/LinkedList.Spliterator.lsl:152
      */
     public long getExactSizeIfKnown() {
         long result = 0L;
@@ -161,7 +161,7 @@ public final class LinkedList_Spliterator implements LibSLRuntime.Automaton, Spl
 
     /**
      * [FUNCTION] LinkedList_SpliteratorAutomaton::tryAdvance(LinkedList_Spliterator, Consumer) -> boolean
-     * Source: java/util/LinkedList.Spliterator.lsl:166
+     * Source: java/util/LinkedList.Spliterator.lsl:165
      */
     public boolean tryAdvance(Consumer _action) {
         boolean result = false;
@@ -191,7 +191,7 @@ public final class LinkedList_Spliterator implements LibSLRuntime.Automaton, Spl
 
     /**
      * [FUNCTION] LinkedList_SpliteratorAutomaton::trySplit(LinkedList_Spliterator) -> Spliterator
-     * Source: java/util/LinkedList.Spliterator.lsl:196
+     * Source: java/util/LinkedList.Spliterator.lsl:195
      */
     public Spliterator trySplit() {
         Spliterator result = null;

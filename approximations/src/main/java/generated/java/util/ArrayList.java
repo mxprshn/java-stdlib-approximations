@@ -68,7 +68,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
     }
 
     /**
-     * [CONSTRUCTOR] ArrayListAutomaton::ArrayList(ArrayList) -> ArrayList
+     * [CONSTRUCTOR] ArrayListAutomaton::<init>(ArrayList) -> void
      * Source: java/util/ArrayList.main.lsl:523
      */
     public ArrayList() {
@@ -81,7 +81,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
     }
 
     /**
-     * [CONSTRUCTOR] ArrayListAutomaton::ArrayList(ArrayList, Collection) -> ArrayList
+     * [CONSTRUCTOR] ArrayListAutomaton::<init>(ArrayList, Collection) -> void
      * Source: java/util/ArrayList.main.lsl:529
      */
     public ArrayList(Collection c) {
@@ -98,7 +98,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
     }
 
     /**
-     * [CONSTRUCTOR] ArrayListAutomaton::ArrayList(ArrayList, int) -> ArrayList
+     * [CONSTRUCTOR] ArrayListAutomaton::<init>(ArrayList, int) -> void
      * Source: java/util/ArrayList.main.lsl:540
      */
     public ArrayList(int initialCapacity) {

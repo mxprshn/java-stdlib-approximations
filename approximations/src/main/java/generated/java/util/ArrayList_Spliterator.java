@@ -54,7 +54,7 @@ public final class ArrayList_Spliterator implements LibSLRuntime.Automaton, Spli
     }
 
     /**
-     * [CONSTRUCTOR] ArrayList_SpliteratorAutomaton::ArrayList_Spliterator(ArrayList_Spliterator, ArrayList, int, int, int) -> ArrayList_Spliterator
+     * [CONSTRUCTOR] ArrayList_SpliteratorAutomaton::<init>(ArrayList_Spliterator, ArrayList, int, int, int) -> void
      * Source: java/util/ArrayList.Spliterator.lsl:80
      */
     private ArrayList_Spliterator(ArrayList _this, int origin, int fence, int expectedModCount) {

@@ -66,7 +66,7 @@ public final class Float implements LibSLRuntime.Automaton, Comparable<Float> {
     }
 
     /**
-     * [CONSTRUCTOR] FloatAutomaton::LSLFloat(LSLFloat, double) -> LSLFloat
+     * [CONSTRUCTOR] FloatAutomaton::<init>(LSLFloat, double) -> void
      * Source: java/lang/Float.main.lsl:125
      */
     public Float(double v) {
@@ -79,7 +79,7 @@ public final class Float implements LibSLRuntime.Automaton, Comparable<Float> {
     }
 
     /**
-     * [CONSTRUCTOR] FloatAutomaton::LSLFloat(LSLFloat, float) -> LSLFloat
+     * [CONSTRUCTOR] FloatAutomaton::<init>(LSLFloat, float) -> void
      * Source: java/lang/Float.main.lsl:131
      */
     public Float(float v) {

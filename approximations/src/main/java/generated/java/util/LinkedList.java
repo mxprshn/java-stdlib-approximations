@@ -67,7 +67,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
     }
 
     /**
-     * [CONSTRUCTOR] LinkedListAutomaton::LinkedList(LinkedList) -> LinkedList
+     * [CONSTRUCTOR] LinkedListAutomaton::<init>(LinkedList) -> void
      * Source: java/util/LinkedList.main.lsl:553
      */
     public LinkedList() {
@@ -80,7 +80,7 @@ public class LinkedList implements LibSLRuntime.Automaton, List, Deque, Cloneabl
     }
 
     /**
-     * [CONSTRUCTOR] LinkedListAutomaton::LinkedList(LinkedList, Collection) -> LinkedList
+     * [CONSTRUCTOR] LinkedListAutomaton::<init>(LinkedList, Collection) -> void
      * Source: java/util/LinkedList.main.lsl:559
      */
     public LinkedList(Collection c) {

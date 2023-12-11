@@ -62,7 +62,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
     }
 
     /**
-     * [CONSTRUCTOR] LinkedHashSetAutomaton::LinkedHashSet(LinkedHashSet) -> LinkedHashSet
+     * [CONSTRUCTOR] LinkedHashSetAutomaton::<init>(LinkedHashSet) -> void
      * Source: java/util/LinkedHashSet.main.lsl:159
      */
     public LinkedHashSet() {
@@ -75,7 +75,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
     }
 
     /**
-     * [CONSTRUCTOR] LinkedHashSetAutomaton::LinkedHashSet(LinkedHashSet, Collection) -> LinkedHashSet
+     * [CONSTRUCTOR] LinkedHashSetAutomaton::<init>(LinkedHashSet, Collection) -> void
      * Source: java/util/LinkedHashSet.main.lsl:165
      */
     public LinkedHashSet(Collection c) {
@@ -89,7 +89,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
     }
 
     /**
-     * [CONSTRUCTOR] LinkedHashSetAutomaton::LinkedHashSet(LinkedHashSet, int) -> LinkedHashSet
+     * [CONSTRUCTOR] LinkedHashSetAutomaton::<init>(LinkedHashSet, int) -> void
      * Source: java/util/LinkedHashSet.main.lsl:172
      */
     public LinkedHashSet(int initialCapacity) {
@@ -105,7 +105,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
     }
 
     /**
-     * [CONSTRUCTOR] LinkedHashSetAutomaton::LinkedHashSet(LinkedHashSet, int, float) -> LinkedHashSet
+     * [CONSTRUCTOR] LinkedHashSetAutomaton::<init>(LinkedHashSet, int, float) -> void
      * Source: java/util/LinkedHashSet.main.lsl:184
      */
     public LinkedHashSet(int initialCapacity, float loadFactor) {

@@ -53,7 +53,7 @@ public final class System implements LibSLRuntime.Automaton {
     private static final LibSLRuntime.Map<Object, Integer> identityHashCodeMap = new LibSLRuntime.Map<>(new LibSLRuntime.IdentityMapContainer<>());
 
     static {
-        /* SystemAutomaton::__clinit__() */ {
+        /* SystemAutomaton::<clinit>() */ {
             initPhase1();
             initPhase2();
             initPhase3();
@@ -70,7 +70,7 @@ public final class System implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [CONSTRUCTOR] SystemAutomaton::LSLSystem(LSLSystem) -> LSLSystem
+     * [CONSTRUCTOR] SystemAutomaton::<init>(LSLSystem) -> void
      * Source: java/lang/System.main.lsl:225
      */
     private System() {

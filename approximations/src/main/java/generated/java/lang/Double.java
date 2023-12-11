@@ -66,7 +66,7 @@ public final class Double implements LibSLRuntime.Automaton, Comparable<Double> 
     }
 
     /**
-     * [CONSTRUCTOR] DoubleAutomaton::Double(LSLDouble, double) -> LSLDouble
+     * [CONSTRUCTOR] DoubleAutomaton::<init>(LSLDouble, double) -> void
      * Source: java/lang/Double.main.lsl:124
      */
     public Double(double v) {

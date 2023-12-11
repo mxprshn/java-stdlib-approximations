@@ -48,7 +48,7 @@ public final class Optional implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [CONSTRUCTOR] OptionalAutomaton::LSLOptional(LSLOptional) -> LSLOptional
+     * [CONSTRUCTOR] OptionalAutomaton::<init>(LSLOptional) -> void
      * Source: java/util/Optional.automata.lsl:84
      */
     private Optional() {
@@ -61,7 +61,7 @@ public final class Optional implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [CONSTRUCTOR] OptionalAutomaton::LSLOptional(LSLOptional, Object) -> LSLOptional
+     * [CONSTRUCTOR] OptionalAutomaton::<init>(LSLOptional, Object) -> void
      * Source: java/util/Optional.automata.lsl:94
      */
     private Optional(Object obj) {

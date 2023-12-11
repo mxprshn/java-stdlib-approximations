@@ -60,7 +60,7 @@ public final class HashSet_KeySpliterator implements LibSLRuntime.Automaton, Spl
     }
 
     /**
-     * [CONSTRUCTOR] HashSet_KeySpliteratorAutomaton::HashSet_KeySpliterator(HashSet_KeySpliterator, HashMap, int, int, int, int) -> HashSet_KeySpliterator
+     * [CONSTRUCTOR] HashSet_KeySpliteratorAutomaton::<init>(HashSet_KeySpliterator, HashMap, int, int, int, int) -> void
      * Source: java/util/HashSet.Spliterator.lsl:89
      */
     private HashSet_KeySpliterator(HashMap source, int origin, int fence, int est,
@@ -112,7 +112,7 @@ public final class HashSet_KeySpliterator implements LibSLRuntime.Automaton, Spl
 
     /**
      * [FUNCTION] HashSet_KeySpliteratorAutomaton::estimateSize(HashSet_KeySpliterator) -> long
-     * Source: java/util/HashSet.Spliterator.lsl:100
+     * Source: java/util/HashSet.Spliterator.lsl:101
      */
     public long estimateSize() {
         long result = 0L;
@@ -126,7 +126,7 @@ public final class HashSet_KeySpliterator implements LibSLRuntime.Automaton, Spl
 
     /**
      * [FUNCTION] HashSet_KeySpliteratorAutomaton::characteristics(HashSet_KeySpliterator) -> int
-     * Source: java/util/HashSet.Spliterator.lsl:107
+     * Source: java/util/HashSet.Spliterator.lsl:108
      */
     public int characteristics() {
         int result = 0;
@@ -146,7 +146,7 @@ public final class HashSet_KeySpliterator implements LibSLRuntime.Automaton, Spl
 
     /**
      * [FUNCTION] HashSet_KeySpliteratorAutomaton::forEachRemaining(HashSet_KeySpliterator, Consumer) -> void
-     * Source: java/util/HashSet.Spliterator.lsl:121
+     * Source: java/util/HashSet.Spliterator.lsl:122
      */
     public void forEachRemaining(Consumer userAction) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -186,7 +186,7 @@ public final class HashSet_KeySpliterator implements LibSLRuntime.Automaton, Spl
 
     /**
      * [FUNCTION] HashSet_KeySpliteratorAutomaton::tryAdvance(HashSet_KeySpliterator, Consumer) -> boolean
-     * Source: java/util/HashSet.Spliterator.lsl:172
+     * Source: java/util/HashSet.Spliterator.lsl:173
      */
     public boolean tryAdvance(Consumer userAction) {
         boolean result = false;
@@ -212,7 +212,7 @@ public final class HashSet_KeySpliterator implements LibSLRuntime.Automaton, Spl
 
     /**
      * [FUNCTION] HashSet_KeySpliteratorAutomaton::trySplit(HashSet_KeySpliterator) -> Spliterator
-     * Source: java/util/HashSet.Spliterator.lsl:196
+     * Source: java/util/HashSet.Spliterator.lsl:197
      */
     public Spliterator trySplit() {
         Spliterator result = null;

@@ -55,7 +55,7 @@ public final class StringBuffer implements LibSLRuntime.Automaton, Serializable,
     }
 
     /**
-     * [CONSTRUCTOR] StringBufferAutomaton::StringBuffer(StringBuffer) -> StringBuffer
+     * [CONSTRUCTOR] StringBufferAutomaton::<init>(StringBuffer) -> void
      * Source: java/lang/StringBuffer.main.lsl:300
      */
     public StringBuffer() {
@@ -67,7 +67,7 @@ public final class StringBuffer implements LibSLRuntime.Automaton, Serializable,
     }
 
     /**
-     * [CONSTRUCTOR] StringBufferAutomaton::StringBuffer(StringBuffer, CharSequence) -> StringBuffer
+     * [CONSTRUCTOR] StringBufferAutomaton::<init>(StringBuffer, CharSequence) -> void
      * Source: java/lang/StringBuffer.main.lsl:307
      */
     public StringBuffer(CharSequence seq) {
@@ -83,7 +83,7 @@ public final class StringBuffer implements LibSLRuntime.Automaton, Serializable,
     }
 
     /**
-     * [CONSTRUCTOR] StringBufferAutomaton::StringBuffer(StringBuffer, String) -> StringBuffer
+     * [CONSTRUCTOR] StringBufferAutomaton::<init>(StringBuffer, String) -> void
      * Source: java/lang/StringBuffer.main.lsl:316
      */
     public StringBuffer(String str) {
@@ -99,7 +99,7 @@ public final class StringBuffer implements LibSLRuntime.Automaton, Serializable,
     }
 
     /**
-     * [CONSTRUCTOR] StringBufferAutomaton::StringBuffer(StringBuffer, int) -> StringBuffer
+     * [CONSTRUCTOR] StringBufferAutomaton::<init>(StringBuffer, int) -> void
      * Source: java/lang/StringBuffer.main.lsl:325
      */
     public StringBuffer(int capacity) {

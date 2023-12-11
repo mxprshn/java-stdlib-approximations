@@ -65,7 +65,7 @@ public final class ArrayList_SubList implements LibSLRuntime.Automaton, List, Ra
     }
 
     /**
-     * [CONSTRUCTOR] ArrayList_SubListAutomaton::SubList(ArrayList_SubList, ArrayList, int, int) -> ArrayList_SubList
+     * [CONSTRUCTOR] ArrayList_SubListAutomaton::<init>(ArrayList_SubList, ArrayList, int, int) -> void
      * Source: java/util/ArrayList.SubList.lsl:187
      */
     public ArrayList_SubList(ArrayList root, int fromIndex, int toIndex) {
@@ -78,7 +78,7 @@ public final class ArrayList_SubList implements LibSLRuntime.Automaton, List, Ra
     }
 
     /**
-     * [CONSTRUCTOR] ArrayList_SubListAutomaton::SubList(ArrayList_SubList, ArrayList_SubList, int, int) -> ArrayList_SubList
+     * [CONSTRUCTOR] ArrayList_SubListAutomaton::<init>(ArrayList_SubList, ArrayList_SubList, int, int) -> void
      * Source: java/util/ArrayList.SubList.lsl:194
      */
     private ArrayList_SubList(ArrayList_SubList parent, int fromIndex, int toIndex) {

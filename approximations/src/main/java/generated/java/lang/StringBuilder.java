@@ -57,7 +57,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [CONSTRUCTOR] StringBuilderAutomaton::StringBuilder(StringBuilder) -> StringBuilder
+     * [CONSTRUCTOR] StringBuilderAutomaton::<init>(StringBuilder) -> void
      * Source: java/lang/StringBuilder.main.lsl:302
      */
     public StringBuilder() {
@@ -69,7 +69,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [CONSTRUCTOR] StringBuilderAutomaton::StringBuilder(StringBuilder, CharSequence) -> StringBuilder
+     * [CONSTRUCTOR] StringBuilderAutomaton::<init>(StringBuilder, CharSequence) -> void
      * Source: java/lang/StringBuilder.main.lsl:309
      */
     public StringBuilder(CharSequence seq) {
@@ -85,7 +85,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [CONSTRUCTOR] StringBuilderAutomaton::StringBuilder(StringBuilder, String) -> StringBuilder
+     * [CONSTRUCTOR] StringBuilderAutomaton::<init>(StringBuilder, String) -> void
      * Source: java/lang/StringBuilder.main.lsl:318
      */
     public StringBuilder(String str) {
@@ -101,7 +101,7 @@ public final class StringBuilder implements LibSLRuntime.Automaton, Serializable
     }
 
     /**
-     * [CONSTRUCTOR] StringBuilderAutomaton::StringBuilder(StringBuilder, int) -> StringBuilder
+     * [CONSTRUCTOR] StringBuilderAutomaton::<init>(StringBuilder, int) -> void
      * Source: java/lang/StringBuilder.main.lsl:327
      */
     public StringBuilder(int capacity) {

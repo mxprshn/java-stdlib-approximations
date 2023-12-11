@@ -44,7 +44,7 @@ public class AtomicReference implements LibSLRuntime.Automaton, Serializable {
     }
 
     /**
-     * [CONSTRUCTOR] AtomicReferenceAutomaton::LSLAtomicReference(LSLAtomicReference) -> LSLAtomicReference
+     * [CONSTRUCTOR] AtomicReferenceAutomaton::<init>(LSLAtomicReference) -> void
      * Source: java/util/concurrent/atomic/AtomicReference.main.lsl:71
      */
     public AtomicReference() {
@@ -57,7 +57,7 @@ public class AtomicReference implements LibSLRuntime.Automaton, Serializable {
     }
 
     /**
-     * [CONSTRUCTOR] AtomicReferenceAutomaton::LSLAtomicReference(LSLAtomicReference, Object) -> LSLAtomicReference
+     * [CONSTRUCTOR] AtomicReferenceAutomaton::<init>(LSLAtomicReference, Object) -> void
      * Source: java/util/concurrent/atomic/AtomicReference.main.lsl:77
      */
     public AtomicReference(Object initialValue) {

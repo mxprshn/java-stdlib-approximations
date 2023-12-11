@@ -50,7 +50,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [CONSTRUCTOR] OptionalIntAutomaton::LSLOptionalInt(LSLOptionalInt) -> LSLOptionalInt
+     * [CONSTRUCTOR] OptionalIntAutomaton::<init>(LSLOptionalInt) -> void
      * Source: java/util/OptionalInt.automata.lsl:79
      */
     private OptionalInt() {
@@ -63,7 +63,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [CONSTRUCTOR] OptionalIntAutomaton::LSLOptionalInt(LSLOptionalInt, int) -> LSLOptionalInt
+     * [CONSTRUCTOR] OptionalIntAutomaton::<init>(LSLOptionalInt, int) -> void
      * Source: java/util/OptionalInt.automata.lsl:85
      */
     private OptionalInt(int x) {

@@ -55,7 +55,7 @@ public final class Spliterators_IntArraySpliterator implements LibSLRuntime.Auto
     }
 
     /**
-     * [CONSTRUCTOR] Spliterators_IntArraySpliteratorAutomaton::init(Spliterators_IntArraySpliterator, array<int>, int) -> Spliterators_IntArraySpliterator
+     * [CONSTRUCTOR] Spliterators_IntArraySpliteratorAutomaton::<init>(Spliterators_IntArraySpliterator, array<int>, int) -> void
      * Source: java/util/Spliterators.IntArraySpliterator.lsl:80
      */
     public Spliterators_IntArraySpliterator(int[] arr, int additionalCharacteristics) {
@@ -71,7 +71,7 @@ public final class Spliterators_IntArraySpliterator implements LibSLRuntime.Auto
     }
 
     /**
-     * [CONSTRUCTOR] Spliterators_IntArraySpliteratorAutomaton::init(Spliterators_IntArraySpliterator, array<int>, int, int, int) -> Spliterators_IntArraySpliterator
+     * [CONSTRUCTOR] Spliterators_IntArraySpliteratorAutomaton::<init>(Spliterators_IntArraySpliterator, array<int>, int, int, int) -> void
      * Source: java/util/Spliterators.IntArraySpliterator.lsl:92
      */
     public Spliterators_IntArraySpliterator(int[] arr, int origin, int pFence,

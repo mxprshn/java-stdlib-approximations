@@ -19,7 +19,7 @@ import runtime.LibSLRuntime;
 @Approximate(java.lang.Object.class)
 public class Object implements LibSLRuntime.Automaton {
     static {
-        /* ObjectAutomaton::__clinit__() */ {
+        /* ObjectAutomaton::<clinit>() */ {
             Engine.assume(true);
         }
     }

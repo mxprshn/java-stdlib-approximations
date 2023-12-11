@@ -43,7 +43,7 @@ public class CRC32 implements LibSLRuntime.Automaton, Checksum {
     }
 
     /**
-     * [CONSTRUCTOR] CRC32Automaton::CRC32(CRC32) -> LSLCRC32
+     * [CONSTRUCTOR] CRC32Automaton::<init>(CRC32) -> void
      * Source: java/util/zip/CRC32.automaton.lsl:98
      */
     public CRC32() {

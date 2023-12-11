@@ -65,7 +65,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
     }
 
     /**
-     * [CONSTRUCTOR] LinkedList_SubListAutomaton::SubList(LinkedList_SubList, LinkedList, int, int) -> LinkedList_SubList
+     * [CONSTRUCTOR] LinkedList_SubListAutomaton::<init>(LinkedList_SubList, LinkedList, int, int) -> void
      * Source: java/util/LinkedList.SubList.lsl:187
      */
     public LinkedList_SubList(LinkedList root, int fromIndex, int toIndex) {
@@ -78,7 +78,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
     }
 
     /**
-     * [CONSTRUCTOR] LinkedList_SubListAutomaton::SubList(LinkedList_SubList, LinkedList_SubList, int, int) -> LinkedList_SubList
+     * [CONSTRUCTOR] LinkedList_SubListAutomaton::<init>(LinkedList_SubList, LinkedList_SubList, int, int) -> void
      * Source: java/util/LinkedList.SubList.lsl:194
      */
     private LinkedList_SubList(LinkedList_SubList parent, int fromIndex, int toIndex) {

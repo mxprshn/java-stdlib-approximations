@@ -60,7 +60,7 @@ public final class LinkedHashSet_KeySpliterator implements LibSLRuntime.Automato
     }
 
     /**
-     * [CONSTRUCTOR] LinkedHashSet_KeySpliteratorAutomaton::LinkedHashSet_KeySpliterator(LinkedHashSet_KeySpliterator, HashMap, int, int, int, int) -> LinkedHashSet_KeySpliterator
+     * [CONSTRUCTOR] LinkedHashSet_KeySpliteratorAutomaton::<init>(LinkedHashSet_KeySpliterator, HashMap, int, int, int, int) -> void
      * Source: java/util/LinkedHashSet.Spliterator.lsl:89
      */
     private LinkedHashSet_KeySpliterator(HashMap source, int origin, int fence, int est,

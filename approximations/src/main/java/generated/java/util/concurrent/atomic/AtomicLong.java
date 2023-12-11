@@ -43,7 +43,7 @@ public class AtomicLong implements LibSLRuntime.Automaton, Serializable {
     }
 
     /**
-     * [CONSTRUCTOR] AtomicLongAutomaton::LSLAtomicLong(LSLAtomicLong) -> LSLAtomicLong
+     * [CONSTRUCTOR] AtomicLongAutomaton::<init>(LSLAtomicLong) -> void
      * Source: java/util/concurrent/atomic/AtomicLong.main.lsl:82
      */
     public AtomicLong() {
@@ -56,7 +56,7 @@ public class AtomicLong implements LibSLRuntime.Automaton, Serializable {
     }
 
     /**
-     * [CONSTRUCTOR] AtomicLongAutomaton::LSLAtomicLong(LSLAtomicLong, long) -> LSLAtomicLong
+     * [CONSTRUCTOR] AtomicLongAutomaton::<init>(LSLAtomicLong, long) -> void
      * Source: java/util/concurrent/atomic/AtomicLong.main.lsl:88
      */
     public AtomicLong(long initialValue) {

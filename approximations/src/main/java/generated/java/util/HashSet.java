@@ -62,7 +62,7 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
     }
 
     /**
-     * [CONSTRUCTOR] HashSetAutomaton::HashSet(HashSet) -> HashSet
+     * [CONSTRUCTOR] HashSetAutomaton::<init>(HashSet) -> void
      * Source: java/util/HashSet.main.lsl:160
      */
     public HashSet() {
@@ -75,7 +75,7 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
     }
 
     /**
-     * [CONSTRUCTOR] HashSetAutomaton::HashSet(HashSet, Collection) -> HashSet
+     * [CONSTRUCTOR] HashSetAutomaton::<init>(HashSet, Collection) -> void
      * Source: java/util/HashSet.main.lsl:166
      */
     public HashSet(Collection c) {
@@ -89,7 +89,7 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
     }
 
     /**
-     * [CONSTRUCTOR] HashSetAutomaton::HashSet(HashSet, int) -> HashSet
+     * [CONSTRUCTOR] HashSetAutomaton::<init>(HashSet, int) -> void
      * Source: java/util/HashSet.main.lsl:173
      */
     public HashSet(int initialCapacity) {
@@ -103,7 +103,7 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
     }
 
     /**
-     * [CONSTRUCTOR] HashSetAutomaton::HashSet(HashSet, int, float) -> HashSet
+     * [CONSTRUCTOR] HashSetAutomaton::<init>(HashSet, int, float) -> void
      * Source: java/util/HashSet.main.lsl:185
      */
     public HashSet(int initialCapacity, float loadFactor) {
@@ -122,7 +122,7 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
     }
 
     /**
-     * [CONSTRUCTOR] HashSetAutomaton::HashSet(HashSet, int, float, boolean) -> HashSet
+     * [CONSTRUCTOR] HashSetAutomaton::<init>(HashSet, int, float, boolean) -> void
      * Source: java/util/HashSet.main.lsl:203
      */
     private HashSet(int initialCapacity, float loadFactor, boolean dummy) {

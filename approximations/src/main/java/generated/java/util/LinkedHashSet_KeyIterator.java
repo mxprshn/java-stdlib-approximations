@@ -62,7 +62,7 @@ public final class LinkedHashSet_KeyIterator implements LibSLRuntime.Automaton, 
     }
 
     /**
-     * [CONSTRUCTOR] LinkedHashSet_KeyIteratorAutomaton::LinkedHashSet_KeyIterator(LinkedHashSet_KeyIterator, HashMap) -> LinkedHashSet_KeyIterator
+     * [CONSTRUCTOR] LinkedHashSet_KeyIteratorAutomaton::<init>(LinkedHashSet_KeyIterator, HashMap) -> void
      * Source: java/util/LinkedHashSet.KeyIterator.lsl:65
      */
     private LinkedHashSet_KeyIterator(HashMap source) {

@@ -50,7 +50,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [CONSTRUCTOR] OptionalDoubleAutomaton::LSLOptionalDouble(LSLOptionalDouble) -> LSLOptionalDouble
+     * [CONSTRUCTOR] OptionalDoubleAutomaton::<init>(LSLOptionalDouble) -> void
      * Source: java/util/OptionalDouble.automata.lsl:79
      */
     private OptionalDouble() {
@@ -63,7 +63,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [CONSTRUCTOR] OptionalDoubleAutomaton::LSLOptionalDouble(LSLOptionalDouble, double) -> LSLOptionalDouble
+     * [CONSTRUCTOR] OptionalDoubleAutomaton::<init>(LSLOptionalDouble, double) -> void
      * Source: java/util/OptionalDouble.automata.lsl:85
      */
     private OptionalDouble(double x) {
