@@ -301,7 +301,7 @@ public class SecurityManager implements LibSLRuntime.Automaton {
     public void checkPermission(Permission perm, Object context) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (context instanceof AccessControlContext) {
+            if ((context instanceof AccessControlContext)) {
                 if (perm == null) {
                     throw new NullPointerException();
                 }

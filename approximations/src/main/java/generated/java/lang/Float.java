@@ -500,7 +500,7 @@ public final class Float implements LibSLRuntime.Automaton, Comparable<Float> {
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (obj instanceof java.lang.Float) {
+            if ((obj instanceof java.lang.Float)) {
                 result = this.value == ((Float) ((Object) obj)).value;
             } else {
                 result = false;

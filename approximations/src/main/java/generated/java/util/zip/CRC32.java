@@ -147,7 +147,7 @@ public class CRC32 implements LibSLRuntime.Automaton, Checksum {
             }
             final int rem = limit - pos;
             if (rem > 0) {
-                if (buffer instanceof DirectBuffer) {
+                if ((buffer instanceof DirectBuffer)) {
                     final DirectBuffer directBuffer = ((DirectBuffer) buffer);
                     final long address = directBuffer.address();
                     this.crc = _updateByteBuffer(address);

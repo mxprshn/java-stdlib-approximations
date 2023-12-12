@@ -487,7 +487,7 @@ public final class Double implements LibSLRuntime.Automaton, Comparable<Double> 
         boolean result = false;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (obj instanceof java.lang.Double) {
+            if ((obj instanceof java.lang.Double)) {
                 result = this.value == ((Double) ((Object) obj)).value;
             } else {
                 result = false;

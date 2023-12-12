@@ -483,7 +483,7 @@ public final class Integer implements LibSLRuntime.Automaton, Comparable<Integer
     public boolean equals(Object obj) {
         boolean result = false;
         /* body */ {
-            if (obj instanceof java.lang.Integer) {
+            if ((obj instanceof java.lang.Integer)) {
                 result = this.value == ((Integer) ((Object) obj)).value;
             } else {
                 result = false;
