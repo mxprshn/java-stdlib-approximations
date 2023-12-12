@@ -12,8 +12,8 @@ import java.lang.Void;
 import runtime.LibSLRuntime;
 
 @SuppressWarnings({"all", "unchecked"})
-public final class VoldInputStream extends InputStream implements LibSLRuntime.HasAutomaton {
-    private VoldInputStream(Void a, Void b) {
+public final class VoidInputStream extends InputStream implements LibSLRuntime.HasAutomaton {
+    private VoidInputStream(Void a, Void b) {
         super();
     }
 
