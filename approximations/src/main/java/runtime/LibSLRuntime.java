@@ -658,11 +658,11 @@ public final class LibSLRuntime {
     public static <K, V> String toString(final Map<K, V> v) {
         int count = v.size();
         if (count == 0)
-            return "[]";
+            return "{}";
         Engine.assume(count > 0);
 
         // TODO: use less complex approach
-        String res = "[";
+        String res = "{";
 
         final Map.Container<K, V> unseen = v.map.duplicate();
         while (count != 0) {
@@ -679,7 +679,7 @@ public final class LibSLRuntime {
                 res = res.concat(", ");
         }
 
-        return res.concat("]");
+        return res.concat("}");
     }
 
     public static String toString(final Object v) {
