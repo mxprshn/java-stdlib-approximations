@@ -714,7 +714,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
                 while (count != 0) {
                     final Object key = unseen.anyKey();
                     unseen.remove(key);
-                    result = result.concat(LibSLRuntime.toString(key));
+                    result = result.concat(key == null ? "null" : key.toString());
                     if (count > 1) {
                         result = result.concat(", ");
                     }

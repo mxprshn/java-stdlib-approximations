@@ -864,7 +864,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
                 int counter = this.length;
                 for (i = i; i < end; i += 1) {
                     final Object item = rootStorage.get(i);
-                    result = result.concat(LibSLRuntime.toString(item));
+                    result = result.concat(item == null ? "null" : item.toString());
                     counter -= 1;
                     if (counter != 0) {
                         result = result.concat(", ");

@@ -441,7 +441,7 @@ public final class Optional implements LibSLRuntime.Automaton {
             if (this.value == null) {
                 result = "Optional.empty";
             } else {
-                final String valueStr = LibSLRuntime.toString(this.value);
+                final String valueStr = this.value.toString();
                 result = "Optional[".concat(valueStr).concat("]");
             }
         }

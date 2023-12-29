@@ -304,7 +304,8 @@ public class AtomicReference implements LibSLRuntime.Automaton, Serializable {
         String result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = LibSLRuntime.toString(this.value);
+            final Object v = this.value;
+            result = v == null ? "null" : v.toString();
         }
         return result;
     }
