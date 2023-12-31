@@ -5,9 +5,6 @@
 //
 package generated.java.lang;
 
-import java.lang.Class;
-import java.lang.CloneNotSupportedException;
-import java.lang.Cloneable;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.lang.Void;
@@ -49,27 +46,8 @@ public class Object implements LibSLRuntime.Automaton {
     }
 
     /**
-     * [FUNCTION] ObjectAutomaton::clone(LSLObject) -> Object
-     * Source: java/lang/Object.main.lsl:66
-     */
-    protected java.lang.Object clone() throws java.lang.CloneNotSupportedException {
-        java.lang.Object result = null;
-        /* body */ {
-            if (!(this instanceof Cloneable)) {
-                throw new CloneNotSupportedException();
-            }
-            result = Engine.makeSymbolic(java.lang.Object.class);
-            Engine.assume(result != null);
-            final Class thisType = this.getClass();
-            final Class cloneType = result.getClass();
-            Engine.assume(thisType == cloneType);
-        }
-        return result;
-    }
-
-    /**
      * [FUNCTION] ObjectAutomaton::hashCode(LSLObject) -> int
-     * Source: java/lang/Object.main.lsl:87
+     * Source: java/lang/Object.main.lsl:86
      */
     public int hashCode() {
         int result = 0;
@@ -81,7 +59,7 @@ public class Object implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] ObjectAutomaton::toString(LSLObject) -> String
-     * Source: java/lang/Object.main.lsl:105
+     * Source: java/lang/Object.main.lsl:104
      */
     public String toString() {
         String result = null;

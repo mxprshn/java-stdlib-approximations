@@ -351,8 +351,8 @@ public class SecureRandom implements LibSLRuntime.Automaton {
         /* body */ {
             result = (DoubleStreamLSL) ((Object) new generated.java.util.stream.DoubleStreamLSL((Void) null, 
                 /* state = */ generated.java.util.stream.DoubleStreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ _generateRandomDoubleArrayWithBounds(LibSLGlobals.MAX_RANDOM_STREAM_SIZE, 0, 1), 
-                /* length = */ LibSLGlobals.MAX_RANDOM_STREAM_SIZE, 
+                /* storage = */ _generateRandomDoubleArrayWithBounds(LibSLGlobals.RANDOM_STREAM_SIZE_MAX, 0, 1), 
+                /* length = */ LibSLGlobals.RANDOM_STREAM_SIZE_MAX, 
                 /* closeHandlers = */ Engine.makeSymbolicList(), 
                 /* isParallel = */ false, 
                 /* linkedOrConsumed = */ false
@@ -374,8 +374,8 @@ public class SecureRandom implements LibSLRuntime.Automaton {
             }
             result = (DoubleStreamLSL) ((Object) new generated.java.util.stream.DoubleStreamLSL((Void) null, 
                 /* state = */ generated.java.util.stream.DoubleStreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ _generateRandomDoubleArrayWithBounds(LibSLGlobals.MAX_RANDOM_STREAM_SIZE, randomNumberOrigin, randomNumberBound), 
-                /* length = */ LibSLGlobals.MAX_RANDOM_STREAM_SIZE, 
+                /* storage = */ _generateRandomDoubleArrayWithBounds(LibSLGlobals.RANDOM_STREAM_SIZE_MAX, randomNumberOrigin, randomNumberBound), 
+                /* length = */ LibSLGlobals.RANDOM_STREAM_SIZE_MAX, 
                 /* closeHandlers = */ Engine.makeSymbolicList(), 
                 /* isParallel = */ false, 
                 /* linkedOrConsumed = */ false
@@ -396,8 +396,8 @@ public class SecureRandom implements LibSLRuntime.Automaton {
             if (size < 0) {
                 throw new IllegalArgumentException();
             }
-            if (size > LibSLGlobals.MAX_RANDOM_STREAM_SIZE) {
-                size = LibSLGlobals.MAX_RANDOM_STREAM_SIZE;
+            if (size > LibSLGlobals.RANDOM_STREAM_SIZE_MAX) {
+                size = LibSLGlobals.RANDOM_STREAM_SIZE_MAX;
             }
             result = (DoubleStreamLSL) ((Object) new generated.java.util.stream.DoubleStreamLSL((Void) null, 
                 /* state = */ generated.java.util.stream.DoubleStreamLSL.__$lsl_States.Initialized, 
@@ -427,8 +427,8 @@ public class SecureRandom implements LibSLRuntime.Automaton {
             if (randomNumberOrigin >= randomNumberBound) {
                 throw new IllegalArgumentException();
             }
-            if (size > LibSLGlobals.MAX_RANDOM_STREAM_SIZE) {
-                size = LibSLGlobals.MAX_RANDOM_STREAM_SIZE;
+            if (size > LibSLGlobals.RANDOM_STREAM_SIZE_MAX) {
+                size = LibSLGlobals.RANDOM_STREAM_SIZE_MAX;
             }
             result = (DoubleStreamLSL) ((Object) new generated.java.util.stream.DoubleStreamLSL((Void) null, 
                 /* state = */ generated.java.util.stream.DoubleStreamLSL.__$lsl_States.Initialized, 
@@ -494,8 +494,8 @@ public class SecureRandom implements LibSLRuntime.Automaton {
         /* body */ {
             result = (IntStreamLSL) ((Object) new generated.java.util.stream.IntStreamLSL((Void) null, 
                 /* state = */ generated.java.util.stream.IntStreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ Engine.makeSymbolicIntArray(LibSLGlobals.MAX_RANDOM_STREAM_SIZE), 
-                /* length = */ LibSLGlobals.MAX_RANDOM_STREAM_SIZE, 
+                /* storage = */ Engine.makeSymbolicIntArray(LibSLGlobals.RANDOM_STREAM_SIZE_MAX), 
+                /* length = */ LibSLGlobals.RANDOM_STREAM_SIZE_MAX, 
                 /* closeHandlers = */ Engine.makeSymbolicList(), 
                 /* isParallel = */ false, 
                 /* linkedOrConsumed = */ false
@@ -517,8 +517,8 @@ public class SecureRandom implements LibSLRuntime.Automaton {
             }
             result = (IntStreamLSL) ((Object) new generated.java.util.stream.IntStreamLSL((Void) null, 
                 /* state = */ generated.java.util.stream.IntStreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ _generateRandomIntegerArrayWithBounds(LibSLGlobals.MAX_RANDOM_STREAM_SIZE, randomNumberOrigin, randomNumberBound), 
-                /* length = */ LibSLGlobals.MAX_RANDOM_STREAM_SIZE, 
+                /* storage = */ _generateRandomIntegerArrayWithBounds(LibSLGlobals.RANDOM_STREAM_SIZE_MAX, randomNumberOrigin, randomNumberBound), 
+                /* length = */ LibSLGlobals.RANDOM_STREAM_SIZE_MAX, 
                 /* closeHandlers = */ Engine.makeSymbolicList(), 
                 /* isParallel = */ false, 
                 /* linkedOrConsumed = */ false
@@ -539,8 +539,8 @@ public class SecureRandom implements LibSLRuntime.Automaton {
             if (size < 0) {
                 throw new IllegalArgumentException();
             }
-            if (size > LibSLGlobals.MAX_RANDOM_STREAM_SIZE) {
-                size = LibSLGlobals.MAX_RANDOM_STREAM_SIZE;
+            if (size > LibSLGlobals.RANDOM_STREAM_SIZE_MAX) {
+                size = LibSLGlobals.RANDOM_STREAM_SIZE_MAX;
             }
             result = (IntStreamLSL) ((Object) new generated.java.util.stream.IntStreamLSL((Void) null, 
                 /* state = */ generated.java.util.stream.IntStreamLSL.__$lsl_States.Initialized, 
@@ -569,8 +569,8 @@ public class SecureRandom implements LibSLRuntime.Automaton {
             if (randomNumberOrigin >= randomNumberBound) {
                 throw new IllegalArgumentException();
             }
-            if (size > LibSLGlobals.MAX_RANDOM_STREAM_SIZE) {
-                size = LibSLGlobals.MAX_RANDOM_STREAM_SIZE;
+            if (size > LibSLGlobals.RANDOM_STREAM_SIZE_MAX) {
+                size = LibSLGlobals.RANDOM_STREAM_SIZE_MAX;
             }
             result = (IntStreamLSL) ((Object) new generated.java.util.stream.IntStreamLSL((Void) null, 
                 /* state = */ generated.java.util.stream.IntStreamLSL.__$lsl_States.Initialized, 
@@ -594,8 +594,8 @@ public class SecureRandom implements LibSLRuntime.Automaton {
         /* body */ {
             result = (LongStreamLSL) ((Object) new generated.java.util.stream.LongStreamLSL((Void) null, 
                 /* state = */ generated.java.util.stream.LongStreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ Engine.makeSymbolicLongArray(LibSLGlobals.MAX_RANDOM_STREAM_SIZE), 
-                /* length = */ LibSLGlobals.MAX_RANDOM_STREAM_SIZE, 
+                /* storage = */ Engine.makeSymbolicLongArray(LibSLGlobals.RANDOM_STREAM_SIZE_MAX), 
+                /* length = */ LibSLGlobals.RANDOM_STREAM_SIZE_MAX, 
                 /* closeHandlers = */ Engine.makeSymbolicList(), 
                 /* isParallel = */ false, 
                 /* linkedOrConsumed = */ false
@@ -616,8 +616,8 @@ public class SecureRandom implements LibSLRuntime.Automaton {
             if (size < 0) {
                 throw new IllegalArgumentException();
             }
-            if (size > LibSLGlobals.MAX_RANDOM_STREAM_SIZE) {
-                size = LibSLGlobals.MAX_RANDOM_STREAM_SIZE;
+            if (size > LibSLGlobals.RANDOM_STREAM_SIZE_MAX) {
+                size = LibSLGlobals.RANDOM_STREAM_SIZE_MAX;
             }
             result = (LongStreamLSL) ((Object) new generated.java.util.stream.LongStreamLSL((Void) null, 
                 /* state = */ generated.java.util.stream.LongStreamLSL.__$lsl_States.Initialized, 
@@ -644,8 +644,8 @@ public class SecureRandom implements LibSLRuntime.Automaton {
             }
             result = (LongStreamLSL) ((Object) new generated.java.util.stream.LongStreamLSL((Void) null, 
                 /* state = */ generated.java.util.stream.LongStreamLSL.__$lsl_States.Initialized, 
-                /* storage = */ _generateRandomLongArrayWithBounds(LibSLGlobals.MAX_RANDOM_STREAM_SIZE, randomNumberOrigin, randomNumberBound), 
-                /* length = */ LibSLGlobals.MAX_RANDOM_STREAM_SIZE, 
+                /* storage = */ _generateRandomLongArrayWithBounds(LibSLGlobals.RANDOM_STREAM_SIZE_MAX, randomNumberOrigin, randomNumberBound), 
+                /* length = */ LibSLGlobals.RANDOM_STREAM_SIZE_MAX, 
                 /* closeHandlers = */ Engine.makeSymbolicList(), 
                 /* isParallel = */ false, 
                 /* linkedOrConsumed = */ false
@@ -669,8 +669,8 @@ public class SecureRandom implements LibSLRuntime.Automaton {
             if (randomNumberOrigin >= randomNumberBound) {
                 throw new IllegalArgumentException();
             }
-            if (size > LibSLGlobals.MAX_RANDOM_STREAM_SIZE) {
-                size = LibSLGlobals.MAX_RANDOM_STREAM_SIZE;
+            if (size > LibSLGlobals.RANDOM_STREAM_SIZE_MAX) {
+                size = LibSLGlobals.RANDOM_STREAM_SIZE_MAX;
             }
             result = (LongStreamLSL) ((Object) new generated.java.util.stream.LongStreamLSL((Void) null, 
                 /* state = */ generated.java.util.stream.LongStreamLSL.__$lsl_States.Initialized, 

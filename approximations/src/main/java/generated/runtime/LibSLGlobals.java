@@ -46,11 +46,6 @@ public final class LibSLGlobals {
     public static final int MAX_CODE_POINT;
 
     /**
-     * Source: java/util/Random.lsl:27
-     */
-    public static final int MAX_RANDOM_STREAM_SIZE;
-
-    /**
      * Source: java/lang/Character.lsl:32
      */
     public static final int MIN_CODE_POINT;
@@ -69,6 +64,11 @@ public final class LibSLGlobals {
      * Source: java/lang/Character.lsl:35
      */
     public static final int MIN_SUPPLEMENTARY_CODE_POINT;
+
+    /**
+     * Source: java/util/Random.lsl:27
+     */
+    public static final int RANDOM_STREAM_SIZE_MAX;
 
     /**
      * Source: java/lang/Object.lsl:26
@@ -172,11 +172,11 @@ public final class LibSLGlobals {
                     /* present = */ false
                 ));
         MAX_CODE_POINT = 1114111;
-        MAX_RANDOM_STREAM_SIZE = 100;
         MIN_CODE_POINT = 0;
         MIN_HIGH_SURROGATE = 55296;
         MIN_LOW_SURROGATE = 56320;
         MIN_SUPPLEMENTARY_CODE_POINT = 65536;
+        RANDOM_STREAM_SIZE_MAX = 100;
         SOMETHING = new java.lang.Object();
         SPLITERATOR_CONCURRENT = 4096;
         SPLITERATOR_DISTINCT = 1;

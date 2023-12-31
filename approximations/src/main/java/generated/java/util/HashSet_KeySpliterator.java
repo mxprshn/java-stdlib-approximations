@@ -11,7 +11,6 @@ import java.lang.Object;
 import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.ConcurrentModificationException;
-import java.util.HashMap;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 import org.jacodb.approximation.annotation.Approximate;
