@@ -27,8 +27,6 @@ public final class HashMap_KeySpliterator implements LibSLRuntime.Automaton, Spl
         Engine.assume(true);
     }
 
-    private byte __$lsl_state = __$lsl_States.Allocated;
-
     public Object[] keysStorage;
 
     public HashMap parent;
@@ -44,7 +42,6 @@ public final class HashMap_KeySpliterator implements LibSLRuntime.Automaton, Spl
     @LibSLRuntime.AutomatonConstructor
     public HashMap_KeySpliterator(Void __$lsl_token, final byte p0, final Object[] p1,
             final HashMap p2, final int p3, final int p4, final int p5, final int p6) {
-        this.__$lsl_state = p0;
         this.keysStorage = p1;
         this.parent = p2;
         this.index = p3;
@@ -55,26 +52,12 @@ public final class HashMap_KeySpliterator implements LibSLRuntime.Automaton, Spl
 
     @LibSLRuntime.AutomatonConstructor
     public HashMap_KeySpliterator(final Void __$lsl_token) {
-        this(__$lsl_token, __$lsl_States.Allocated, null, null, 0, -1, 0, 0);
-    }
-
-    /**
-     * [CONSTRUCTOR] HashMap_KeySpliteratorAutomaton::<init>(HashMap_KeySpliterator, HashMap, int, int, int, int) -> void
-     * Source: java/util/HashMap.KeySpliterator.lsl:90
-     */
-    private HashMap_KeySpliterator(HashMap m, int origin, int fence, int est,
-            int expectedModCount) {
-        this((Void) null);
-        Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
-        /* body */ {
-            LibSLRuntime.error("Private constructor call");
-        }
-        this.__$lsl_state = __$lsl_States.Initialized;
+        this(__$lsl_token, __$lsl_States.Initialized, null, null, 0, -1, 0, 0);
     }
 
     /**
      * [SUBROUTINE] HashMap_KeySpliteratorAutomaton::_getFence() -> int
-     * Source: java/util/HashMap.KeySpliterator.lsl:59
+     * Source: java/util/HashMap.KeySpliterator.lsl:53
      */
     private int _getFence() {
         int result = 0;
@@ -92,25 +75,11 @@ public final class HashMap_KeySpliterator implements LibSLRuntime.Automaton, Spl
     }
 
     /**
-     * [SUBROUTINE] HashMap_KeySpliteratorAutomaton::_checkForComodification() -> void
-     * Source: java/util/HashMap.KeySpliterator.lsl:80
-     */
-    private void _checkForComodification() {
-        /* body */ {
-            final int modCount = ((HashMap) ((Object) this.parent)).modCount;
-            if (this.expectedModCount != modCount) {
-                throw new ConcurrentModificationException();
-            }
-        }
-    }
-
-    /**
      * [FUNCTION] HashMap_KeySpliteratorAutomaton::characteristics(HashMap_KeySpliterator) -> int
-     * Source: java/util/HashMap.KeySpliterator.lsl:100
+     * Source: java/util/HashMap.KeySpliterator.lsl:87
      */
     public int characteristics() {
         int result = 0;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if ((this.fence < 0) || (this.est == this.keysStorage.length)) {
                 result = LibSLGlobals.SPLITERATOR_SIZED | LibSLGlobals.SPLITERATOR_DISTINCT;
@@ -123,11 +92,10 @@ public final class HashMap_KeySpliterator implements LibSLRuntime.Automaton, Spl
 
     /**
      * [FUNCTION] HashMap_KeySpliteratorAutomaton::estimateSize(HashMap_KeySpliterator) -> long
-     * Source: java/util/HashMap.KeySpliterator.lsl:110
+     * Source: java/util/HashMap.KeySpliterator.lsl:97
      */
     public final long estimateSize() {
         long result = 0L;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _getFence();
             result = ((long) this.est);
@@ -137,10 +105,9 @@ public final class HashMap_KeySpliterator implements LibSLRuntime.Automaton, Spl
 
     /**
      * [FUNCTION] HashMap_KeySpliteratorAutomaton::forEachRemaining(HashMap_KeySpliterator, Consumer) -> void
-     * Source: java/util/HashMap.KeySpliterator.lsl:117
+     * Source: java/util/HashMap.KeySpliterator.lsl:104
      */
     public void forEachRemaining(Consumer userAction) {
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (userAction == null) {
                 throw new NullPointerException();
@@ -173,11 +140,10 @@ public final class HashMap_KeySpliterator implements LibSLRuntime.Automaton, Spl
 
     /**
      * [FUNCTION] HashMap_KeySpliteratorAutomaton::getExactSizeIfKnown(HashMap_KeySpliterator) -> long
-     * Source: java/util/HashMap.KeySpliterator.lsl:167
+     * Source: java/util/HashMap.KeySpliterator.lsl:154
      */
     public long getExactSizeIfKnown() {
         long result = 0L;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             result = _getFence() - this.index;
         }
@@ -186,11 +152,10 @@ public final class HashMap_KeySpliterator implements LibSLRuntime.Automaton, Spl
 
     /**
      * [FUNCTION] HashMap_KeySpliteratorAutomaton::tryAdvance(HashMap_KeySpliterator, Consumer) -> boolean
-     * Source: java/util/HashMap.KeySpliterator.lsl:180
+     * Source: java/util/HashMap.KeySpliterator.lsl:167
      */
     public boolean tryAdvance(Consumer userAction) {
         boolean result = false;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (userAction == null) {
                 throw new NullPointerException();
@@ -198,24 +163,25 @@ public final class HashMap_KeySpliterator implements LibSLRuntime.Automaton, Spl
             int hi = _getFence();
             int i = this.index;
             if (i < hi) {
-                Object curKey = keysStorage[i];
-                userAction.accept(curKey);
-                this.index += 1;
-                _checkForComodification();
+                this.index = i + 1;
+                userAction.accept(keysStorage[i]);
+                if (this.expectedModCount != ((HashMap) ((Object) this.parent)).modCount) {
+                    throw new ConcurrentModificationException();
+                }
                 result = true;
+            } else {
+                result = false;
             }
-            result = false;
         }
         return result;
     }
 
     /**
      * [FUNCTION] HashMap_KeySpliteratorAutomaton::trySplit(HashMap_KeySpliterator) -> Spliterator
-     * Source: java/util/HashMap.KeySpliterator.lsl:201
+     * Source: java/util/HashMap.KeySpliterator.lsl:192
      */
     public Spliterator trySplit() {
         Spliterator result = null;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             Engine.assume(this.parent != null);
             final int hi = _getFence();
@@ -241,9 +207,7 @@ public final class HashMap_KeySpliterator implements LibSLRuntime.Automaton, Spl
     }
 
     public static final class __$lsl_States {
-        public static final byte Allocated = (byte) 0;
-
-        public static final byte Initialized = (byte) 1;
+        public static final byte Initialized = (byte) 0;
     }
 
     @Approximate(HashMap_KeySpliterator.class)

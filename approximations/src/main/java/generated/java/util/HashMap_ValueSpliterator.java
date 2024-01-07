@@ -75,21 +75,8 @@ public final class HashMap_ValueSpliterator implements LibSLRuntime.Automaton, S
     }
 
     /**
-     * [SUBROUTINE] HashMap_ValueSpliteratorAutomaton::_checkForComodification() -> void
-     * Source: java/util/HashMap.ValueSpliterator.lsl:75
-     */
-    private void _checkForComodification() {
-        /* body */ {
-            final int modCount = ((HashMap) ((Object) this.parent)).modCount;
-            if (this.expectedModCount != modCount) {
-                throw new ConcurrentModificationException();
-            }
-        }
-    }
-
-    /**
      * [FUNCTION] HashMap_ValueSpliteratorAutomaton::characteristics(HashMap_ValueSpliterator) -> int
-     * Source: java/util/HashMap.ValueSpliterator.lsl:89
+     * Source: java/util/HashMap.ValueSpliterator.lsl:88
      */
     public int characteristics() {
         int result = 0;
@@ -105,7 +92,7 @@ public final class HashMap_ValueSpliterator implements LibSLRuntime.Automaton, S
 
     /**
      * [FUNCTION] HashMap_ValueSpliteratorAutomaton::estimateSize(HashMap_ValueSpliterator) -> long
-     * Source: java/util/HashMap.ValueSpliterator.lsl:99
+     * Source: java/util/HashMap.ValueSpliterator.lsl:98
      */
     public final long estimateSize() {
         long result = 0L;
@@ -118,7 +105,7 @@ public final class HashMap_ValueSpliterator implements LibSLRuntime.Automaton, S
 
     /**
      * [FUNCTION] HashMap_ValueSpliteratorAutomaton::forEachRemaining(HashMap_ValueSpliterator, Consumer) -> void
-     * Source: java/util/HashMap.ValueSpliterator.lsl:106
+     * Source: java/util/HashMap.ValueSpliterator.lsl:105
      */
     public void forEachRemaining(Consumer userAction) {
         /* body */ {
@@ -130,16 +117,15 @@ public final class HashMap_ValueSpliterator implements LibSLRuntime.Automaton, S
             int i = this.index;
             final int storageSize = this.valuesStorage.length;
             if (hi < 0) {
-                this.expectedModCount = ((HashMap) ((Object) this.parent)).modCount;
-                mc = this.expectedModCount;
+                mc = ((HashMap) ((Object) this.parent)).modCount;
+                this.expectedModCount = mc;
                 this.fence = storageSize;
                 hi = storageSize;
             }
             this.index = hi;
             if ((storageSize > 0) && (storageSize >= hi) && (i >= 0) && (i < this.index)) {
                 while (i < hi) {
-                    Object curValue = valuesStorage[i];
-                    userAction.accept(curValue);
+                    userAction.accept(valuesStorage[i]);
                     i += 1;
                 }
                 ;
@@ -153,7 +139,7 @@ public final class HashMap_ValueSpliterator implements LibSLRuntime.Automaton, S
 
     /**
      * [FUNCTION] HashMap_ValueSpliteratorAutomaton::getExactSizeIfKnown(HashMap_ValueSpliterator) -> long
-     * Source: java/util/HashMap.ValueSpliterator.lsl:156
+     * Source: java/util/HashMap.ValueSpliterator.lsl:155
      */
     public long getExactSizeIfKnown() {
         long result = 0L;
@@ -165,7 +151,7 @@ public final class HashMap_ValueSpliterator implements LibSLRuntime.Automaton, S
 
     /**
      * [FUNCTION] HashMap_ValueSpliteratorAutomaton::tryAdvance(HashMap_ValueSpliterator, Consumer) -> boolean
-     * Source: java/util/HashMap.ValueSpliterator.lsl:169
+     * Source: java/util/HashMap.ValueSpliterator.lsl:168
      */
     public boolean tryAdvance(Consumer userAction) {
         boolean result = false;
@@ -176,20 +162,22 @@ public final class HashMap_ValueSpliterator implements LibSLRuntime.Automaton, S
             int hi = _getFence();
             int i = this.index;
             if (i < hi) {
-                Object curValue = valuesStorage[i];
-                userAction.accept(curValue);
-                this.index += 1;
-                _checkForComodification();
+                this.index = i + 1;
+                userAction.accept(valuesStorage[i]);
+                if (((HashMap) ((Object) this.parent)).modCount != this.expectedModCount) {
+                    throw new ConcurrentModificationException();
+                }
                 result = true;
+            } else {
+                result = false;
             }
-            result = false;
         }
         return result;
     }
 
     /**
      * [FUNCTION] HashMap_ValueSpliteratorAutomaton::trySplit(HashMap_ValueSpliterator) -> Spliterator
-     * Source: java/util/HashMap.ValueSpliterator.lsl:190
+     * Source: java/util/HashMap.ValueSpliterator.lsl:193
      */
     public Spliterator trySplit() {
         Spliterator result = null;

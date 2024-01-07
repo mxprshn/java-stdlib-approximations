@@ -29,8 +29,6 @@ public class HashMap_ValueIterator implements LibSLRuntime.Automaton, Iterator {
         Engine.assume(true);
     }
 
-    private byte __$lsl_state = __$lsl_States.Allocated;
-
     public HashMap parent;
 
     public LibSLRuntime.Map<Object, Map.Entry<Object, Object>> unseen;
@@ -43,7 +41,6 @@ public class HashMap_ValueIterator implements LibSLRuntime.Automaton, Iterator {
     public HashMap_ValueIterator(Void __$lsl_token, final byte p0, final HashMap p1,
             final LibSLRuntime.Map<Object, Map.Entry<Object, Object>> p2, final int p3,
             final Object p4) {
-        this.__$lsl_state = p0;
         this.parent = p1;
         this.unseen = p2;
         this.expectedModCount = p3;
@@ -52,55 +49,28 @@ public class HashMap_ValueIterator implements LibSLRuntime.Automaton, Iterator {
 
     @LibSLRuntime.AutomatonConstructor
     public HashMap_ValueIterator(final Void __$lsl_token) {
-        this(__$lsl_token, __$lsl_States.Allocated, null, null, 0, null);
-    }
-
-    /**
-     * [CONSTRUCTOR] HashMap_ValueIteratorAutomaton::<init>(HashMap_ValueIterator, HashMap) -> void
-     * Source: java/util/HashMap.ValueIterator.lsl:68
-     */
-    private HashMap_ValueIterator(HashMap _this) {
-        this((Void) null);
-        Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
-        /* body */ {
-            LibSLRuntime.error("Private constructor call");
-        }
-        this.__$lsl_state = __$lsl_States.Initialized;
-    }
-
-    /**
-     * [SUBROUTINE] HashMap_ValueIteratorAutomaton::_checkForComodification() -> void
-     * Source: java/util/HashMap.ValueIterator.lsl:58
-     */
-    private void _checkForComodification() {
-        /* body */ {
-            final int modCount = ((HashMap) ((Object) this.parent)).modCount;
-            if (modCount != this.expectedModCount) {
-                throw new ConcurrentModificationException();
-            }
-        }
+        this(__$lsl_token, __$lsl_States.Initialized, null, null, 0, null);
     }
 
     /**
      * [FUNCTION] HashMap_ValueIteratorAutomaton::forEachRemaining(HashMap_ValueIterator, Consumer) -> void
-     * Source: java/util/HashMap.ValueIterator.lsl:79
+     * Source: java/util/HashMap.ValueIterator.lsl:66
      */
     public void forEachRemaining(Consumer userAction) {
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (userAction == null) {
                 throw new NullPointerException();
             }
             int size = this.unseen.size();
             if (size != 0) {
-                final LibSLRuntime.Map<Object, Map.Entry<Object, Object>> parentStorage = ((HashMap) ((Object) this.parent)).storage;
                 while ((size != 0) && (((HashMap) ((Object) this.parent)).modCount == this.expectedModCount)) {
-                    _checkForComodification();
-                    final Object curKey = this.unseen.anyKey();
-                    final Map.Entry<Object, Object> entry = parentStorage.get(curKey);
-                    final Object curValue = ((AbstractMap_SimpleEntry) ((Object) entry)).value;
-                    userAction.accept(curValue);
-                    this.unseen.remove(curKey);
+                    if (((HashMap) ((Object) this.parent)).modCount != this.expectedModCount) {
+                        throw new ConcurrentModificationException();
+                    }
+                    final Object key = this.unseen.anyKey();
+                    final Map.Entry<Object, Object> entry = this.unseen.get(key);
+                    userAction.accept(((AbstractMap_SimpleEntry) ((Object) entry)).value);
+                    this.unseen.remove(key);
                     size -= 1;
                 }
                 ;
@@ -110,11 +80,10 @@ public class HashMap_ValueIterator implements LibSLRuntime.Automaton, Iterator {
 
     /**
      * [FUNCTION] HashMap_ValueIteratorAutomaton::hasNext(HashMap_ValueIterator) -> boolean
-     * Source: java/util/HashMap.ValueIterator.lsl:112
+     * Source: java/util/HashMap.ValueIterator.lsl:98
      */
     public final boolean hasNext() {
         boolean result = false;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             result = this.unseen.size() != 0;
         }
@@ -123,40 +92,42 @@ public class HashMap_ValueIterator implements LibSLRuntime.Automaton, Iterator {
 
     /**
      * [FUNCTION] HashMap_ValueIteratorAutomaton::next(HashMap_ValueIterator) -> Object
-     * Source: java/util/HashMap.ValueIterator.lsl:118
+     * Source: java/util/HashMap.ValueIterator.lsl:104
      */
     public final Object next() {
         Object result = null;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            _checkForComodification();
+            if (((HashMap) ((Object) this.parent)).modCount != this.expectedModCount) {
+                throw new ConcurrentModificationException();
+            }
             if (this.unseen.size() == 0) {
                 throw new NoSuchElementException();
             }
-            final Object curKey = this.unseen.anyKey();
-            final Map.Entry<Object, Object> entry = this.unseen.get(curKey);
+            final Object key = this.unseen.anyKey();
+            final Map.Entry<Object, Object> entry = this.unseen.get(key);
             result = ((AbstractMap_SimpleEntry) ((Object) entry)).value;
-            this.unseen.remove(curKey);
-            this.currentKey = curKey;
+            this.unseen.remove(key);
+            this.currentKey = key;
         }
         return result;
     }
 
     /**
      * [FUNCTION] HashMap_ValueIteratorAutomaton::remove(HashMap_ValueIterator) -> void
-     * Source: java/util/HashMap.ValueIterator.lsl:134
+     * Source: java/util/HashMap.ValueIterator.lsl:122
      */
     public final void remove() {
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             Engine.assume(this.parent != null);
+            final Object key = this.currentKey;
             if (this.currentKey == null) {
                 throw new IllegalStateException();
             }
-            _checkForComodification();
-            this.unseen.remove(this.currentKey);
-            final LibSLRuntime.Map<Object, Map.Entry<Object, Object>> parentStorage = ((HashMap) ((Object) this.parent)).storage;
-            parentStorage.remove(this.currentKey);
+            if (((HashMap) ((Object) this.parent)).modCount != this.expectedModCount) {
+                throw new ConcurrentModificationException();
+            }
+            this.unseen.remove(key);
+            ((HashMap) ((Object) this.parent)).storage.remove(key);
             ((HashMap) ((Object) this.parent)).modCount += 1;
             this.expectedModCount = ((HashMap) ((Object) this.parent)).modCount;
             this.currentKey = null;
@@ -164,9 +135,7 @@ public class HashMap_ValueIterator implements LibSLRuntime.Automaton, Iterator {
     }
 
     public static final class __$lsl_States {
-        public static final byte Allocated = (byte) 0;
-
-        public static final byte Initialized = (byte) 1;
+        public static final byte Initialized = (byte) 0;
     }
 
     @Approximate(HashMap_ValueIterator.class)

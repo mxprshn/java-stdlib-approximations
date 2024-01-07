@@ -130,8 +130,6 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
                 if (this.storageRef.hasKey(key)) {
                     final Map.Entry<Object, Object> entry = this.storageRef.get(key);
                     result = LibSLRuntime.equals(entry, oEntry);
-                } else {
-                    result = false;
                 }
             }
         }
@@ -140,7 +138,7 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_EntrySetAutomaton::containsAll(HashMap_EntrySet, Collection) -> boolean
-     * Source: java/util/HashMap.EntrySet.lsl:163
+     * Source: java/util/HashMap.EntrySet.lsl:159
      */
     public boolean containsAll(Collection c) {
         boolean result = false;
@@ -164,7 +162,7 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_EntrySetAutomaton::equals(HashMap_EntrySet, Object) -> boolean
-     * Source: java/util/HashMap.EntrySet.lsl:194
+     * Source: java/util/HashMap.EntrySet.lsl:190
      */
     public boolean equals(Object other) {
         boolean result = false;
@@ -205,23 +203,23 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_EntrySetAutomaton::forEach(HashMap_EntrySet, Consumer) -> void
-     * Source: java/util/HashMap.EntrySet.lsl:239
+     * Source: java/util/HashMap.EntrySet.lsl:235
      */
     public final void forEach(Consumer userAction) {
         /* body */ {
             if (userAction == null) {
                 throw new NullPointerException();
             }
-            int storageSize = this.storageRef.size();
-            if (storageSize > 0) {
+            final int size = this.storageRef.size();
+            if (size > 0) {
                 final int expectedModCount = ((HashMap) ((Object) this.parent)).modCount;
                 final LibSLRuntime.Map<Object, Map.Entry<Object, Object>> unseen = this.storageRef.duplicate();
-                while (storageSize != 0) {
+                int i = 0;
+                for (i = 0; i < size; i += 1) {
                     final Object key = unseen.anyKey();
                     final Map.Entry<Object, Object> entry = this.storageRef.get(key);
                     userAction.accept(entry);
                     unseen.remove(key);
-                    storageSize -= 1;
                 }
                 ;
                 ((HashMap) ((Object) this.parent))._checkForComodification(expectedModCount);
@@ -231,7 +229,7 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_EntrySetAutomaton::hashCode(HashMap_EntrySet) -> int
-     * Source: java/util/HashMap.EntrySet.lsl:273
+     * Source: java/util/HashMap.EntrySet.lsl:269
      */
     public int hashCode() {
         int result = 0;
@@ -243,7 +241,7 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_EntrySetAutomaton::isEmpty(HashMap_EntrySet) -> boolean
-     * Source: java/util/HashMap.EntrySet.lsl:280
+     * Source: java/util/HashMap.EntrySet.lsl:276
      */
     public boolean isEmpty() {
         boolean result = false;
@@ -255,7 +253,7 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_EntrySetAutomaton::iterator(HashMap_EntrySet) -> Iterator
-     * Source: java/util/HashMap.EntrySet.lsl:286
+     * Source: java/util/HashMap.EntrySet.lsl:282
      */
     public final Iterator iterator() {
         Iterator result = null;
@@ -273,7 +271,7 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_EntrySetAutomaton::parallelStream(HashMap_EntrySet) -> Stream
-     * Source: java/util/HashMap.EntrySet.lsl:297
+     * Source: java/util/HashMap.EntrySet.lsl:293
      */
     public Stream parallelStream() {
         Stream result = null;
@@ -284,7 +282,7 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
                 /* storage = */ items, 
                 /* length = */ items.length, 
                 /* closeHandlers = */ Engine.makeSymbolicList(), 
-                /* isParallel = */ false, 
+                /* isParallel = */ true, 
                 /* linkedOrConsumed = */ false
             ));
         }
@@ -293,7 +291,7 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_EntrySetAutomaton::remove(HashMap_EntrySet, Object) -> boolean
-     * Source: java/util/HashMap.EntrySet.lsl:309
+     * Source: java/util/HashMap.EntrySet.lsl:306
      */
     public final boolean remove(Object o) {
         boolean result = false;
@@ -317,7 +315,7 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_EntrySetAutomaton::removeAll(HashMap_EntrySet, Collection) -> boolean
-     * Source: java/util/HashMap.EntrySet.lsl:334
+     * Source: java/util/HashMap.EntrySet.lsl:331
      */
     public boolean removeAll(Collection c) {
         boolean result = false;
@@ -365,7 +363,7 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_EntrySetAutomaton::removeIf(HashMap_EntrySet, Predicate) -> boolean
-     * Source: java/util/HashMap.EntrySet.lsl:398
+     * Source: java/util/HashMap.EntrySet.lsl:395
      */
     public boolean removeIf(Predicate filter) {
         boolean result = false;
@@ -397,7 +395,7 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_EntrySetAutomaton::retainAll(HashMap_EntrySet, Collection) -> boolean
-     * Source: java/util/HashMap.EntrySet.lsl:435
+     * Source: java/util/HashMap.EntrySet.lsl:432
      */
     public boolean retainAll(Collection c) {
         boolean result = false;
@@ -429,7 +427,7 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_EntrySetAutomaton::size(HashMap_EntrySet) -> int
-     * Source: java/util/HashMap.EntrySet.lsl:471
+     * Source: java/util/HashMap.EntrySet.lsl:468
      */
     public final int size() {
         int result = 0;
@@ -441,7 +439,7 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_EntrySetAutomaton::spliterator(HashMap_EntrySet) -> Spliterator
-     * Source: java/util/HashMap.EntrySet.lsl:477
+     * Source: java/util/HashMap.EntrySet.lsl:474
      */
     public final Spliterator spliterator() {
         Spliterator result = null;
@@ -461,7 +459,7 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_EntrySetAutomaton::stream(HashMap_EntrySet) -> Stream
-     * Source: java/util/HashMap.EntrySet.lsl:487
+     * Source: java/util/HashMap.EntrySet.lsl:484
      */
     public Stream stream() {
         Stream result = null;
@@ -481,7 +479,7 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_EntrySetAutomaton::toArray(HashMap_EntrySet) -> array<Object>
-     * Source: java/util/HashMap.EntrySet.lsl:499
+     * Source: java/util/HashMap.EntrySet.lsl:497
      */
     public Object[] toArray() {
         Object[] result = null;
@@ -504,7 +502,7 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_EntrySetAutomaton::toArray(HashMap_EntrySet, IntFunction) -> array<Object>
-     * Source: java/util/HashMap.EntrySet.lsl:527
+     * Source: java/util/HashMap.EntrySet.lsl:525
      */
     public Object[] toArray(IntFunction generator) {
         Object[] result = null;
@@ -529,7 +527,7 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_EntrySetAutomaton::toArray(HashMap_EntrySet, array<Object>) -> array<Object>
-     * Source: java/util/HashMap.EntrySet.lsl:549
+     * Source: java/util/HashMap.EntrySet.lsl:547
      */
     public Object[] toArray(Object[] a) {
         Object[] result = null;
@@ -559,7 +557,7 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_EntrySetAutomaton::toString(HashMap_EntrySet) -> String
-     * Source: java/util/HashMap.EntrySet.lsl:575
+     * Source: java/util/HashMap.EntrySet.lsl:573
      */
     public String toString() {
         String result = null;
@@ -569,7 +567,7 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
                 result = "[]";
             } else {
                 result = "[";
-                final int endIndex = size - 1;
+                final int lastIndex = size - 1;
                 final LibSLRuntime.Map<Object, Map.Entry<Object, Object>> unseen = this.storageRef.duplicate();
                 int i = 0;
                 for (i = 0; i < size; i += 1) {
@@ -577,7 +575,7 @@ public final class HashMap_EntrySet implements LibSLRuntime.Automaton {
                     final Map.Entry<Object, Object> entry = unseen.get(key);
                     final Object value = ((AbstractMap_SimpleEntry) ((Object) entry)).value;
                     result = result.concat(LibSLRuntime.toString(key).concat("=").concat(LibSLRuntime.toString(value)));
-                    if (i != endIndex) {
+                    if (i != lastIndex) {
                         result = result.concat(", ");
                     }
                     unseen.remove(key);

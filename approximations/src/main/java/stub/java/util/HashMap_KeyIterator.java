@@ -8,7 +8,6 @@ import java.lang.LinkageError;
 import java.lang.Object;
 import java.lang.SuppressWarnings;
 import java.lang.Void;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.function.Consumer;
 import runtime.LibSLRuntime;
@@ -17,10 +16,6 @@ import runtime.LibSLRuntime;
 public final class HashMap_KeyIterator implements LibSLRuntime.HasAutomaton, Iterator {
     private HashMap_KeyIterator(Void a, Void b) {
         super();
-    }
-
-    private HashMap_KeyIterator(HashMap _this) {
-        throw new LinkageError();
     }
 
     public void forEachRemaining(Consumer userAction) {

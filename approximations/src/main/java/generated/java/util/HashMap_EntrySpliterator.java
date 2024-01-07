@@ -28,8 +28,6 @@ public final class HashMap_EntrySpliterator implements LibSLRuntime.Automaton, S
         Engine.assume(true);
     }
 
-    private byte __$lsl_state = __$lsl_States.Allocated;
-
     public HashMap parent;
 
     public Map.Entry<Object, Object>[] entryStorage;
@@ -46,7 +44,6 @@ public final class HashMap_EntrySpliterator implements LibSLRuntime.Automaton, S
     public HashMap_EntrySpliterator(Void __$lsl_token, final byte p0, final HashMap p1,
             final Map.Entry<Object, Object>[] p2, final int p3, final int p4, final int p5,
             final int p6) {
-        this.__$lsl_state = p0;
         this.parent = p1;
         this.entryStorage = p2;
         this.index = p3;
@@ -57,26 +54,12 @@ public final class HashMap_EntrySpliterator implements LibSLRuntime.Automaton, S
 
     @LibSLRuntime.AutomatonConstructor
     public HashMap_EntrySpliterator(final Void __$lsl_token) {
-        this(__$lsl_token, __$lsl_States.Allocated, null, null, 0, -1, 0, 0);
-    }
-
-    /**
-     * [CONSTRUCTOR] HashMap_EntrySpliteratorAutomaton::<init>(HashMap_EntrySpliterator, HashMap, int, int, int, int) -> void
-     * Source: java/util/HashMap.EntrySpliterator.lsl:90
-     */
-    private HashMap_EntrySpliterator(HashMap m, int origin, int fence, int est,
-            int expectedModCount) {
-        this((Void) null);
-        Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
-        /* body */ {
-            LibSLRuntime.error("Private constructor call");
-        }
-        this.__$lsl_state = __$lsl_States.Initialized;
+        this(__$lsl_token, __$lsl_States.Initialized, null, null, 0, -1, 0, 0);
     }
 
     /**
      * [SUBROUTINE] HashMap_EntrySpliteratorAutomaton::_getFence() -> int
-     * Source: java/util/HashMap.EntrySpliterator.lsl:59
+     * Source: java/util/HashMap.EntrySpliterator.lsl:53
      */
     private int _getFence() {
         int result = 0;
@@ -94,25 +77,11 @@ public final class HashMap_EntrySpliterator implements LibSLRuntime.Automaton, S
     }
 
     /**
-     * [SUBROUTINE] HashMap_EntrySpliteratorAutomaton::_checkForComodification() -> void
-     * Source: java/util/HashMap.EntrySpliterator.lsl:80
-     */
-    private void _checkForComodification() {
-        /* body */ {
-            final int modCount = ((HashMap) ((Object) this.parent)).modCount;
-            if (this.expectedModCount != modCount) {
-                throw new ConcurrentModificationException();
-            }
-        }
-    }
-
-    /**
      * [FUNCTION] HashMap_EntrySpliteratorAutomaton::characteristics(HashMap_EntrySpliterator) -> int
-     * Source: java/util/HashMap.EntrySpliterator.lsl:100
+     * Source: java/util/HashMap.EntrySpliterator.lsl:87
      */
     public int characteristics() {
         int result = 0;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if ((this.fence < 0) || (this.est == this.entryStorage.length)) {
                 result = LibSLGlobals.SPLITERATOR_SIZED | LibSLGlobals.SPLITERATOR_DISTINCT;
@@ -125,11 +94,10 @@ public final class HashMap_EntrySpliterator implements LibSLRuntime.Automaton, S
 
     /**
      * [FUNCTION] HashMap_EntrySpliteratorAutomaton::estimateSize(HashMap_EntrySpliterator) -> long
-     * Source: java/util/HashMap.EntrySpliterator.lsl:110
+     * Source: java/util/HashMap.EntrySpliterator.lsl:97
      */
     public final long estimateSize() {
         long result = 0L;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             _getFence();
             result = ((long) this.est);
@@ -139,10 +107,9 @@ public final class HashMap_EntrySpliterator implements LibSLRuntime.Automaton, S
 
     /**
      * [FUNCTION] HashMap_EntrySpliteratorAutomaton::forEachRemaining(HashMap_EntrySpliterator, Consumer) -> void
-     * Source: java/util/HashMap.EntrySpliterator.lsl:117
+     * Source: java/util/HashMap.EntrySpliterator.lsl:104
      */
     public void forEachRemaining(Consumer userAction) {
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (userAction == null) {
                 throw new NullPointerException();
@@ -152,8 +119,8 @@ public final class HashMap_EntrySpliterator implements LibSLRuntime.Automaton, S
             int i = this.index;
             final int storageSize = this.entryStorage.length;
             if (hi < 0) {
-                this.expectedModCount = ((HashMap) ((Object) this.parent)).modCount;
-                mc = this.expectedModCount;
+                mc = ((HashMap) ((Object) this.parent)).modCount;
+                this.expectedModCount = mc;
                 this.fence = storageSize;
                 hi = storageSize;
             }
@@ -165,8 +132,7 @@ public final class HashMap_EntrySpliterator implements LibSLRuntime.Automaton, S
                     i += 1;
                 }
                 ;
-                final int modCount = ((HashMap) ((Object) this.parent)).modCount;
-                if (modCount != mc) {
+                if (((HashMap) ((Object) this.parent)).modCount != mc) {
                     throw new ConcurrentModificationException();
                 }
             }
@@ -175,11 +141,10 @@ public final class HashMap_EntrySpliterator implements LibSLRuntime.Automaton, S
 
     /**
      * [FUNCTION] HashMap_EntrySpliteratorAutomaton::getExactSizeIfKnown(HashMap_EntrySpliterator) -> long
-     * Source: java/util/HashMap.EntrySpliterator.lsl:167
+     * Source: java/util/HashMap.EntrySpliterator.lsl:153
      */
     public long getExactSizeIfKnown() {
         long result = 0L;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             result = _getFence() - this.index;
         }
@@ -188,11 +153,10 @@ public final class HashMap_EntrySpliterator implements LibSLRuntime.Automaton, S
 
     /**
      * [FUNCTION] HashMap_EntrySpliteratorAutomaton::tryAdvance(HashMap_EntrySpliterator, Consumer) -> boolean
-     * Source: java/util/HashMap.EntrySpliterator.lsl:180
+     * Source: java/util/HashMap.EntrySpliterator.lsl:166
      */
     public boolean tryAdvance(Consumer userAction) {
         boolean result = false;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (userAction == null) {
                 throw new NullPointerException();
@@ -200,24 +164,25 @@ public final class HashMap_EntrySpliterator implements LibSLRuntime.Automaton, S
             int hi = _getFence();
             int i = this.index;
             if (i < hi) {
-                Map.Entry<Object, Object> entry = entryStorage[i];
-                userAction.accept(entry);
-                this.index += 1;
-                _checkForComodification();
+                this.index = i + 1;
+                userAction.accept(entryStorage[i]);
+                if (this.expectedModCount != ((HashMap) ((Object) this.parent)).modCount) {
+                    throw new ConcurrentModificationException();
+                }
                 result = true;
+            } else {
+                result = false;
             }
-            result = false;
         }
         return result;
     }
 
     /**
      * [FUNCTION] HashMap_EntrySpliteratorAutomaton::trySplit(HashMap_EntrySpliterator) -> Spliterator
-     * Source: java/util/HashMap.EntrySpliterator.lsl:201
+     * Source: java/util/HashMap.EntrySpliterator.lsl:191
      */
     public Spliterator trySplit() {
         Spliterator result = null;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             Engine.assume(this.parent != null);
             final int hi = _getFence();
@@ -243,9 +208,7 @@ public final class HashMap_EntrySpliterator implements LibSLRuntime.Automaton, S
     }
 
     public static final class __$lsl_States {
-        public static final byte Allocated = (byte) 0;
-
-        public static final byte Initialized = (byte) 1;
+        public static final byte Initialized = (byte) 0;
     }
 
     @Approximate(HashMap_EntrySpliterator.class)

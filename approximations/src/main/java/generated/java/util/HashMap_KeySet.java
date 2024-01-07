@@ -295,7 +295,7 @@ public final class HashMap_KeySet implements LibSLRuntime.Automaton {
                 /* storage = */ _mapToKeysArray(), 
                 /* length = */ items.length, 
                 /* closeHandlers = */ Engine.makeSymbolicList(), 
-                /* isParallel = */ false, 
+                /* isParallel = */ true, 
                 /* linkedOrConsumed = */ false
             ));
         }
@@ -304,7 +304,7 @@ public final class HashMap_KeySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_KeySetAutomaton::remove(HashMap_KeySet, Object) -> boolean
-     * Source: java/util/HashMap.KeySet.lsl:294
+     * Source: java/util/HashMap.KeySet.lsl:295
      */
     public final boolean remove(Object key) {
         boolean result = false;
@@ -322,7 +322,7 @@ public final class HashMap_KeySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_KeySetAutomaton::removeAll(HashMap_KeySet, Collection) -> boolean
-     * Source: java/util/HashMap.KeySet.lsl:307
+     * Source: java/util/HashMap.KeySet.lsl:308
      */
     public boolean removeAll(Collection c) {
         boolean result = false;
@@ -367,7 +367,7 @@ public final class HashMap_KeySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_KeySetAutomaton::removeIf(HashMap_KeySet, Predicate) -> boolean
-     * Source: java/util/HashMap.KeySet.lsl:366
+     * Source: java/util/HashMap.KeySet.lsl:367
      */
     public boolean removeIf(Predicate filter) {
         boolean result = false;
@@ -399,7 +399,7 @@ public final class HashMap_KeySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_KeySetAutomaton::retainAll(HashMap_KeySet, Collection) -> boolean
-     * Source: java/util/HashMap.KeySet.lsl:402
+     * Source: java/util/HashMap.KeySet.lsl:403
      */
     public boolean retainAll(Collection c) {
         boolean result = false;
@@ -432,7 +432,7 @@ public final class HashMap_KeySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_KeySetAutomaton::size(HashMap_KeySet) -> int
-     * Source: java/util/HashMap.KeySet.lsl:438
+     * Source: java/util/HashMap.KeySet.lsl:439
      */
     public final int size() {
         int result = 0;
@@ -445,7 +445,7 @@ public final class HashMap_KeySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_KeySetAutomaton::spliterator(HashMap_KeySet) -> Spliterator
-     * Source: java/util/HashMap.KeySet.lsl:444
+     * Source: java/util/HashMap.KeySet.lsl:445
      */
     public final Spliterator spliterator() {
         Spliterator result = null;
@@ -466,7 +466,7 @@ public final class HashMap_KeySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_KeySetAutomaton::stream(HashMap_KeySet) -> Stream
-     * Source: java/util/HashMap.KeySet.lsl:454
+     * Source: java/util/HashMap.KeySet.lsl:455
      */
     public Stream stream() {
         Stream result = null;
@@ -487,7 +487,7 @@ public final class HashMap_KeySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_KeySetAutomaton::toArray(HashMap_KeySet) -> array<Object>
-     * Source: java/util/HashMap.KeySet.lsl:467
+     * Source: java/util/HashMap.KeySet.lsl:469
      */
     public Object[] toArray() {
         Object[] result = null;
@@ -511,7 +511,7 @@ public final class HashMap_KeySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_KeySetAutomaton::toArray(HashMap_KeySet, IntFunction) -> array<Object>
-     * Source: java/util/HashMap.KeySet.lsl:493
+     * Source: java/util/HashMap.KeySet.lsl:495
      */
     public Object[] toArray(IntFunction generator) {
         Object[] result = null;
@@ -537,7 +537,7 @@ public final class HashMap_KeySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_KeySetAutomaton::toArray(HashMap_KeySet, array<Object>) -> array<Object>
-     * Source: java/util/HashMap.KeySet.lsl:515
+     * Source: java/util/HashMap.KeySet.lsl:517
      */
     public Object[] toArray(Object[] a) {
         Object[] result = null;
@@ -568,23 +568,31 @@ public final class HashMap_KeySet implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_KeySetAutomaton::toString(HashMap_KeySet) -> String
-     * Source: java/util/HashMap.KeySet.lsl:541
+     * Source: java/util/HashMap.KeySet.lsl:543
      */
     public String toString() {
         String result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            final int storageSize = this.storageRef.size();
-            final Object[] arrayKeys = new Object[storageSize];
-            final LibSLRuntime.Map<Object, Map.Entry<Object, Object>> unseen = this.storageRef.duplicate();
-            int i = 0;
-            for (i = 0; i < storageSize; i += 1) {
-                final Object curKey = unseen.anyKey();
-                arrayKeys[i] = curKey;
-                unseen.remove(curKey);
+            final int size = this.storageRef.size();
+            if (size == 0) {
+                result = "[]";
+            } else {
+                result = "[";
+                final int lastIndex = size - 1;
+                final LibSLRuntime.Map<Object, Map.Entry<Object, Object>> unseen = this.storageRef.duplicate();
+                int i = 0;
+                for (i = 0; i < size; i += 1) {
+                    final Object key = unseen.anyKey();
+                    result = result.concat(LibSLRuntime.toString(key));
+                    if (i != lastIndex) {
+                        result = result.concat(", ");
+                    }
+                    unseen.remove(key);
+                }
+                ;
+                result = result.concat("]");
             }
-            ;
-            result = LibSLRuntime.toString(arrayKeys);
         }
         return result;
     }

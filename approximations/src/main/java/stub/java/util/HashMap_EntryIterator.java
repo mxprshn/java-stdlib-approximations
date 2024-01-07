@@ -7,7 +7,6 @@ package stub.java.util;
 import java.lang.LinkageError;
 import java.lang.SuppressWarnings;
 import java.lang.Void;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -17,10 +16,6 @@ import runtime.LibSLRuntime;
 public final class HashMap_EntryIterator implements LibSLRuntime.HasAutomaton, Iterator {
     private HashMap_EntryIterator(Void a, Void b) {
         super();
-    }
-
-    private HashMap_EntryIterator(HashMap _this) {
-        throw new LinkageError();
     }
 
     public void forEachRemaining(Consumer userAction) {

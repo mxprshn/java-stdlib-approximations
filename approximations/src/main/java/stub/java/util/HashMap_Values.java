@@ -11,7 +11,6 @@ import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.AbstractCollection;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
@@ -24,10 +23,6 @@ import runtime.LibSLRuntime;
 public class HashMap_Values extends AbstractCollection implements LibSLRuntime.HasAutomaton {
     private HashMap_Values(Void a, Void b) {
         super();
-    }
-
-    private HashMap_Values(HashMap _this) {
-        throw new LinkageError();
     }
 
     public boolean add(Object e) {

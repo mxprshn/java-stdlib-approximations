@@ -34,8 +34,6 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
         Engine.assume(true);
     }
 
-    private byte __$lsl_state = __$lsl_States.Allocated;
-
     public LibSLRuntime.Map<Object, Map.Entry<Object, Object>> storageRef;
 
     public HashMap parent;
@@ -43,58 +41,45 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
     @LibSLRuntime.AutomatonConstructor
     public HashMap_Values(Void __$lsl_token, final byte p0,
             final LibSLRuntime.Map<Object, Map.Entry<Object, Object>> p1, final HashMap p2) {
-        this.__$lsl_state = p0;
         this.storageRef = p1;
         this.parent = p2;
     }
 
     @LibSLRuntime.AutomatonConstructor
     public HashMap_Values(final Void __$lsl_token) {
-        this(__$lsl_token, __$lsl_States.Allocated, null, null);
-    }
-
-    /**
-     * [CONSTRUCTOR] HashMap_ValuesAutomaton::<init>(HashMap_Values, HashMap) -> void
-     * Source: java/util/HashMap.Values.lsl:106
-     */
-    private HashMap_Values(HashMap _this) {
-        this((Void) null);
-        Engine.assume(this.__$lsl_state == __$lsl_States.Allocated);
-        /* body */ {
-            LibSLRuntime.error("Private constructor call");
-        }
-        this.__$lsl_state = __$lsl_States.Initialized;
+        this(__$lsl_token, __$lsl_States.Initialized, null, null);
     }
 
     /**
      * [SUBROUTINE] HashMap_ValuesAutomaton::_mapToValuesArray() -> array<Object>
-     * Source: java/util/HashMap.Values.lsl:82
+     * Source: java/util/HashMap.Values.lsl:76
      */
     private Object[] _mapToValuesArray() {
         Object[] result = null;
         /* body */ {
-            final int storageSize = this.storageRef.size();
-            result = new Object[storageSize];
-            final LibSLRuntime.Map<Object, Map.Entry<Object, Object>> unseen = this.storageRef.duplicate();
-            int i = 0;
-            for (i = 0; i < storageSize; i += 1) {
-                final Object curKey = unseen.anyKey();
-                final Map.Entry<Object, Object> entry = unseen.get(curKey);
-                result[i] = ((AbstractMap_SimpleEntry) ((Object) entry)).value;
-                unseen.remove(curKey);
+            final int size = this.storageRef.size();
+            result = new Object[size];
+            if (size != 0) {
+                final LibSLRuntime.Map<Object, Map.Entry<Object, Object>> unseen = this.storageRef.duplicate();
+                int i = 0;
+                for (i = 0; i < size; i += 1) {
+                    final Object curKey = unseen.anyKey();
+                    final Map.Entry<Object, Object> entry = unseen.get(curKey);
+                    result[i] = ((AbstractMap_SimpleEntry) ((Object) entry)).value;
+                    unseen.remove(curKey);
+                }
+                ;
             }
-            ;
         }
         return result;
     }
 
     /**
      * [FUNCTION] HashMap_ValuesAutomaton::add(HashMap_Values, Object) -> boolean
-     * Source: java/util/HashMap.Values.lsl:117
+     * Source: java/util/HashMap.Values.lsl:113
      */
     public boolean add(Object e) {
         boolean result = false;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (true) {
                 throw new UnsupportedOperationException();
@@ -105,11 +90,10 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_ValuesAutomaton::addAll(HashMap_Values, Collection) -> boolean
-     * Source: java/util/HashMap.Values.lsl:125
+     * Source: java/util/HashMap.Values.lsl:121
      */
     public boolean addAll(Collection c) {
         boolean result = false;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (true) {
                 throw new UnsupportedOperationException();
@@ -120,10 +104,9 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_ValuesAutomaton::clear(HashMap_Values) -> void
-     * Source: java/util/HashMap.Values.lsl:132
+     * Source: java/util/HashMap.Values.lsl:128
      */
     public final void clear() {
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             ((HashMap) ((Object) this.parent)).modCount += 1;
             final LibSLRuntime.Map<Object, Map.Entry<Object, Object>> newStorage = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
@@ -134,26 +117,24 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_ValuesAutomaton::contains(HashMap_Values, Object) -> boolean
-     * Source: java/util/HashMap.Values.lsl:142
+     * Source: java/util/HashMap.Values.lsl:138
      */
     public final boolean contains(Object value) {
         boolean result = false;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             result = false;
-            int storageSize = this.storageRef.size();
-            if (storageSize != 0) {
+            int size = this.storageRef.size();
+            if (size != 0) {
                 final LibSLRuntime.Map<Object, Map.Entry<Object, Object>> unseen = this.storageRef.duplicate();
-                int i = 0;
-                while ((result != true) && (storageSize != 0)) {
-                    final Object curKey = unseen.anyKey();
-                    final Map.Entry<Object, Object> entry = unseen.get(curKey);
+                while ((result != true) && (size != 0)) {
+                    final Object key = unseen.anyKey();
+                    final Map.Entry<Object, Object> entry = unseen.get(key);
                     final Object curValue = ((AbstractMap_SimpleEntry) ((Object) entry)).value;
                     if (LibSLRuntime.equals(curValue, value)) {
                         result = true;
                     }
-                    unseen.remove(curKey);
-                    storageSize -= 1;
+                    unseen.remove(key);
+                    size -= 1;
                 }
                 ;
             }
@@ -163,11 +144,10 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_ValuesAutomaton::containsAll(HashMap_Values, Collection) -> boolean
-     * Source: java/util/HashMap.Values.lsl:171
+     * Source: java/util/HashMap.Values.lsl:170
      */
     public boolean containsAll(Collection c) {
         boolean result = false;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             result = true;
             final int thisSize = this.storageRef.size();
@@ -205,25 +185,23 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_ValuesAutomaton::forEach(HashMap_Values, Consumer) -> void
-     * Source: java/util/HashMap.Values.lsl:267
+     * Source: java/util/HashMap.Values.lsl:268
      */
     public final void forEach(Consumer userAction) {
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (userAction == null) {
                 throw new NullPointerException();
             }
-            final int storageSize = this.storageRef.size();
-            if (storageSize > 0) {
-                final LibSLRuntime.Map<Object, Map.Entry<Object, Object>> unseen = this.storageRef.duplicate();
+            final int size = this.storageRef.size();
+            if (size > 0) {
                 final int expectedModCount = ((HashMap) ((Object) this.parent)).modCount;
+                final LibSLRuntime.Map<Object, Map.Entry<Object, Object>> unseen = this.storageRef.duplicate();
                 int i = 0;
-                for (i = 0; i < storageSize; i += 1) {
-                    final Object curKey = unseen.anyKey();
-                    final Map.Entry<Object, Object> entry = unseen.get(curKey);
-                    final Object curValue = ((AbstractMap_SimpleEntry) ((Object) entry)).value;
-                    userAction.accept(curValue);
-                    unseen.remove(curKey);
+                for (i = 0; i < size; i += 1) {
+                    final Object key = unseen.anyKey();
+                    final Map.Entry<Object, Object> entry = unseen.get(key);
+                    userAction.accept(((AbstractMap_SimpleEntry) ((Object) entry)).value);
+                    unseen.remove(key);
                 }
                 ;
                 ((HashMap) ((Object) this.parent))._checkForComodification(expectedModCount);
@@ -233,11 +211,10 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_ValuesAutomaton::isEmpty(HashMap_Values) -> boolean
-     * Source: java/util/HashMap.Values.lsl:298
+     * Source: java/util/HashMap.Values.lsl:304
      */
     public boolean isEmpty() {
         boolean result = false;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             result = this.storageRef.size() == 0;
         }
@@ -246,11 +223,10 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_ValuesAutomaton::iterator(HashMap_Values) -> Iterator
-     * Source: java/util/HashMap.Values.lsl:304
+     * Source: java/util/HashMap.Values.lsl:310
      */
     public final Iterator iterator() {
         Iterator result = null;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             result = (stub.java.util.HashMap_ValueIterator) ((Object) new HashMap_ValueIterator((Void) null, 
                 /* state = */ HashMap_ValueIterator.__$lsl_States.Initialized, 
@@ -265,11 +241,10 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_ValuesAutomaton::parallelStream(HashMap_Values) -> Stream
-     * Source: java/util/HashMap.Values.lsl:315
+     * Source: java/util/HashMap.Values.lsl:321
      */
     public Stream parallelStream() {
         Stream result = null;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final Object[] items = _mapToValuesArray();
             result = (StreamLSL) ((Object) new generated.java.util.stream.StreamLSL((Void) null, 
@@ -277,7 +252,7 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
                 /* storage = */ items, 
                 /* length = */ items.length, 
                 /* closeHandlers = */ Engine.makeSymbolicList(), 
-                /* isParallel = */ false, 
+                /* isParallel = */ true, 
                 /* linkedOrConsumed = */ false
             ));
         }
@@ -286,11 +261,10 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_ValuesAutomaton::remove(HashMap_Values, Object) -> boolean
-     * Source: java/util/HashMap.Values.lsl:328
+     * Source: java/util/HashMap.Values.lsl:335
      */
     public boolean remove(Object value) {
         boolean result = false;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             result = false;
             final LibSLRuntime.Map<Object, Map.Entry<Object, Object>> unseen = this.storageRef.duplicate();
@@ -331,11 +305,10 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_ValuesAutomaton::removeAll(HashMap_Values, Collection) -> boolean
-     * Source: java/util/HashMap.Values.lsl:385
+     * Source: java/util/HashMap.Values.lsl:392
      */
     public boolean removeAll(Collection c) {
         boolean result = false;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (c == null) {
                 throw new NullPointerException();
@@ -366,11 +339,10 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_ValuesAutomaton::removeIf(HashMap_Values, Predicate) -> boolean
-     * Source: java/util/HashMap.Values.lsl:424
+     * Source: java/util/HashMap.Values.lsl:431
      */
     public boolean removeIf(Predicate filter) {
         boolean result = false;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (filter == null) {
                 throw new NullPointerException();
@@ -400,11 +372,10 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_ValuesAutomaton::retainAll(HashMap_Values, Collection) -> boolean
-     * Source: java/util/HashMap.Values.lsl:462
+     * Source: java/util/HashMap.Values.lsl:469
      */
     public boolean retainAll(Collection c) {
         boolean result = false;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (c == null) {
                 throw new NullPointerException();
@@ -435,11 +406,10 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_ValuesAutomaton::size(HashMap_Values) -> int
-     * Source: java/util/HashMap.Values.lsl:500
+     * Source: java/util/HashMap.Values.lsl:507
      */
     public final int size() {
         int result = 0;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             result = this.storageRef.size();
         }
@@ -448,11 +418,10 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_ValuesAutomaton::spliterator(HashMap_Values) -> Spliterator
-     * Source: java/util/HashMap.Values.lsl:506
+     * Source: java/util/HashMap.Values.lsl:513
      */
     public final Spliterator spliterator() {
         Spliterator result = null;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             result = (stub.java.util.HashMap_ValueSpliterator) ((Object) new HashMap_ValueSpliterator((Void) null, 
                 /* state = */ HashMap_ValueSpliterator.__$lsl_States.Initialized, 
@@ -469,11 +438,10 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_ValuesAutomaton::stream(HashMap_Values) -> Stream
-     * Source: java/util/HashMap.Values.lsl:516
+     * Source: java/util/HashMap.Values.lsl:523
      */
     public Stream stream() {
         Stream result = null;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final Object[] items = _mapToValuesArray();
             result = (StreamLSL) ((Object) new generated.java.util.stream.StreamLSL((Void) null, 
@@ -490,11 +458,10 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_ValuesAutomaton::toArray(HashMap_Values) -> array<Object>
-     * Source: java/util/HashMap.Values.lsl:528
+     * Source: java/util/HashMap.Values.lsl:536
      */
     public Object[] toArray() {
         Object[] result = null;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final int len = this.storageRef.size();
             result = new Object[len];
@@ -502,10 +469,10 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
                 final LibSLRuntime.Map<Object, Map.Entry<Object, Object>> unseen = this.storageRef.duplicate();
                 int i = 0;
                 for (i = 0; i < len; i += 1) {
-                    final Object curKey = unseen.anyKey();
-                    final Map.Entry<Object, Object> entry = unseen.get(curKey);
+                    final Object key = unseen.anyKey();
+                    final Map.Entry<Object, Object> entry = unseen.get(key);
                     result[i] = ((AbstractMap_SimpleEntry) ((Object) entry)).value;
-                    unseen.remove(curKey);
+                    unseen.remove(key);
                 }
                 ;
             }
@@ -515,11 +482,10 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_ValuesAutomaton::toArray(HashMap_Values, IntFunction) -> array<Object>
-     * Source: java/util/HashMap.Values.lsl:555
+     * Source: java/util/HashMap.Values.lsl:565
      */
     public Object[] toArray(IntFunction generator) {
         Object[] result = null;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final Object[] a = ((Object[]) generator.apply(0));
             final int aLen = a.length;
@@ -529,10 +495,10 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
                 final LibSLRuntime.Map<Object, Map.Entry<Object, Object>> unseen = this.storageRef.duplicate();
                 int i = 0;
                 for (i = 0; i < len; i += 1) {
-                    final Object curKey = unseen.anyKey();
-                    final Map.Entry<Object, Object> entry = unseen.get(curKey);
+                    final Object key = unseen.anyKey();
+                    final Map.Entry<Object, Object> entry = unseen.get(key);
                     result[i] = ((AbstractMap_SimpleEntry) ((Object) entry)).value;
-                    unseen.remove(curKey);
+                    unseen.remove(key);
                 }
                 ;
             }
@@ -542,11 +508,10 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_ValuesAutomaton::toArray(HashMap_Values, array<Object>) -> array<Object>
-     * Source: java/util/HashMap.Values.lsl:577
+     * Source: java/util/HashMap.Values.lsl:587
      */
     public Object[] toArray(Object[] a) {
         Object[] result = null;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             final int aLen = a.length;
             final int len = this.storageRef.size();
@@ -558,10 +523,10 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
                 final LibSLRuntime.Map<Object, Map.Entry<Object, Object>> unseen = this.storageRef.duplicate();
                 int i = 0;
                 for (i = 0; i < len; i += 1) {
-                    final Object curKey = unseen.anyKey();
-                    final Map.Entry<Object, Object> entry = unseen.get(curKey);
+                    final Object key = unseen.anyKey();
+                    final Map.Entry<Object, Object> entry = unseen.get(key);
                     result[i] = ((AbstractMap_SimpleEntry) ((Object) entry)).value;
-                    unseen.remove(curKey);
+                    unseen.remove(key);
                 }
                 ;
                 if (aLen > len) {
@@ -574,36 +539,37 @@ public class HashMap_Values implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] HashMap_ValuesAutomaton::toString(HashMap_Values) -> String
-     * Source: java/util/HashMap.Values.lsl:603
+     * Source: java/util/HashMap.Values.lsl:613
      */
     public String toString() {
         String result = null;
-        Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            final int storageSize = this.storageRef.size();
-            if (storageSize != 0) {
-                final Object[] arrayValues = new Object[storageSize];
+            final int size = this.storageRef.size();
+            if (size == 0) {
+                result = "[]";
+            } else {
+                result = "[";
+                final int lastIndex = size - 1;
                 final LibSLRuntime.Map<Object, Map.Entry<Object, Object>> unseen = this.storageRef.duplicate();
                 int i = 0;
-                for (i = 0; i < storageSize; i += 1) {
-                    final Object curKey = unseen.anyKey();
-                    final Map.Entry<Object, Object> entry = unseen.get(curKey);
-                    arrayValues[i] = ((AbstractMap_SimpleEntry) ((Object) entry)).value;
-                    unseen.remove(curKey);
+                for (i = 0; i < size; i += 1) {
+                    final Object key = unseen.anyKey();
+                    final Map.Entry<Object, Object> entry = unseen.get(key);
+                    result = result.concat(LibSLRuntime.toString(((AbstractMap_SimpleEntry) ((Object) entry)).value));
+                    if (i != lastIndex) {
+                        result = result.concat(", ");
+                    }
+                    unseen.remove(key);
                 }
                 ;
-                result = LibSLRuntime.toString(arrayValues);
-            } else {
-                result = "[]";
+                result = result.concat("]");
             }
         }
         return result;
     }
 
     public static final class __$lsl_States {
-        public static final byte Allocated = (byte) 0;
-
-        public static final byte Initialized = (byte) 1;
+        public static final byte Initialized = (byte) 0;
     }
 
     @Approximate(HashMap_Values.class)
