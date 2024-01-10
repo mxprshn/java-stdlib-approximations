@@ -962,7 +962,7 @@ public final class LibSLRuntime {
             // general assumptions for this function to do something useful
             Engine.assume(list != null);
             Engine.assume(0 <= from);
-            Engine.assume(from < to);
+            Engine.assume(from <= to);
 
             // TODO: is there a more efficient solution?
             if (value == null) {
