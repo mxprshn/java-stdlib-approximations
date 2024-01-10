@@ -69,7 +69,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [CONSTRUCTOR] ArrayListAutomaton::<init>(ArrayList) -> void
-     * Source: java/util/ArrayList.main.lsl:523
+     * Source: java/util/ArrayList.main.lsl:532
      */
     public ArrayList() {
         this((Void) null);
@@ -82,7 +82,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [CONSTRUCTOR] ArrayListAutomaton::<init>(ArrayList, Collection) -> void
-     * Source: java/util/ArrayList.main.lsl:529
+     * Source: java/util/ArrayList.main.lsl:538
      */
     public ArrayList(Collection c) {
         this((Void) null);
@@ -99,7 +99,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [CONSTRUCTOR] ArrayListAutomaton::<init>(ArrayList, int) -> void
-     * Source: java/util/ArrayList.main.lsl:540
+     * Source: java/util/ArrayList.main.lsl:549
      */
     public ArrayList(int initialCapacity) {
         this((Void) null);
@@ -381,7 +381,13 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
             } else {
                 final int otherLength = c.size();
                 if (otherLength == 0) {
-                    result = false;
+                    if (complement) {
+                        result = true;
+                        this.storage = Engine.makeSymbolicList();
+                        this.modCount += 1;
+                    } else {
+                        result = false;
+                    }
                 } else {
                     Engine.assume(otherLength > 0);
                     int i = 0;
@@ -415,7 +421,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [SUBROUTINE] ArrayListAutomaton::_do_sort(int, int, Comparator) -> void
-     * Source: java/util/ArrayList.main.lsl:430
+     * Source: java/util/ArrayList.main.lsl:439
      */
     public void _do_sort(int start, int end, Comparator c) {
         /* body */ {
@@ -468,7 +474,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::add(ArrayList, Object) -> boolean
-     * Source: java/util/ArrayList.main.lsl:553
+     * Source: java/util/ArrayList.main.lsl:562
      */
     public boolean add(Object e) {
         boolean result = false;
@@ -483,7 +489,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::add(ArrayList, int, Object) -> void
-     * Source: java/util/ArrayList.main.lsl:563
+     * Source: java/util/ArrayList.main.lsl:572
      */
     public void add(int index, Object element) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -494,7 +500,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::addAll(ArrayList, Collection) -> boolean
-     * Source: java/util/ArrayList.main.lsl:569
+     * Source: java/util/ArrayList.main.lsl:578
      */
     public boolean addAll(Collection c) {
         boolean result = false;
@@ -507,7 +513,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::addAll(ArrayList, int, Collection) -> boolean
-     * Source: java/util/ArrayList.main.lsl:575
+     * Source: java/util/ArrayList.main.lsl:584
      */
     public boolean addAll(int index, Collection c) {
         boolean result = false;
@@ -521,7 +527,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::clear(ArrayList) -> void
-     * Source: java/util/ArrayList.main.lsl:582
+     * Source: java/util/ArrayList.main.lsl:591
      */
     public void clear() {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -533,7 +539,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::clone(ArrayList) -> Object
-     * Source: java/util/ArrayList.main.lsl:589
+     * Source: java/util/ArrayList.main.lsl:598
      */
     public Object clone() {
         Object result = null;
@@ -552,7 +558,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::contains(ArrayList, Object) -> boolean
-     * Source: java/util/ArrayList.main.lsl:600
+     * Source: java/util/ArrayList.main.lsl:609
      */
     public boolean contains(Object o) {
         boolean result = false;
@@ -565,7 +571,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::containsAll(ArrayList, Collection) -> boolean
-     * Source: java/util/ArrayList.main.lsl:607
+     * Source: java/util/ArrayList.main.lsl:616
      */
     public boolean containsAll(Collection c) {
         boolean result = false;
@@ -598,7 +604,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::ensureCapacity(ArrayList, int) -> void
-     * Source: java/util/ArrayList.main.lsl:650
+     * Source: java/util/ArrayList.main.lsl:659
      */
     public void ensureCapacity(int minCapacity) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -609,7 +615,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::equals(ArrayList, Object) -> boolean
-     * Source: java/util/ArrayList.main.lsl:657
+     * Source: java/util/ArrayList.main.lsl:666
      */
     public boolean equals(Object other) {
         boolean result = false;
@@ -639,7 +645,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::forEach(ArrayList, Consumer) -> void
-     * Source: java/util/ArrayList.main.lsl:687
+     * Source: java/util/ArrayList.main.lsl:696
      */
     public void forEach(Consumer _action) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -661,7 +667,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::get(ArrayList, int) -> Object
-     * Source: java/util/ArrayList.main.lsl:712
+     * Source: java/util/ArrayList.main.lsl:721
      */
     public Object get(int index) {
         Object result = null;
@@ -675,7 +681,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::hashCode(ArrayList) -> int
-     * Source: java/util/ArrayList.main.lsl:720
+     * Source: java/util/ArrayList.main.lsl:729
      */
     public int hashCode() {
         int result = 0;
@@ -688,7 +694,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::indexOf(ArrayList, Object) -> int
-     * Source: java/util/ArrayList.main.lsl:726
+     * Source: java/util/ArrayList.main.lsl:735
      */
     public int indexOf(Object o) {
         int result = 0;
@@ -701,7 +707,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::isEmpty(ArrayList) -> boolean
-     * Source: java/util/ArrayList.main.lsl:732
+     * Source: java/util/ArrayList.main.lsl:741
      */
     public boolean isEmpty() {
         boolean result = false;
@@ -714,7 +720,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::iterator(ArrayList) -> Iterator
-     * Source: java/util/ArrayList.main.lsl:738
+     * Source: java/util/ArrayList.main.lsl:747
      */
     public Iterator iterator() {
         Iterator result = null;
@@ -733,7 +739,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::lastIndexOf(ArrayList, Object) -> int
-     * Source: java/util/ArrayList.main.lsl:748
+     * Source: java/util/ArrayList.main.lsl:757
      */
     public int lastIndexOf(Object o) {
         int result = 0;
@@ -760,7 +766,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::listIterator(ArrayList) -> ListIterator
-     * Source: java/util/ArrayList.main.lsl:779
+     * Source: java/util/ArrayList.main.lsl:788
      */
     public ListIterator listIterator() {
         ListIterator result = null;
@@ -779,7 +785,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::listIterator(ArrayList, int) -> ListIterator
-     * Source: java/util/ArrayList.main.lsl:789
+     * Source: java/util/ArrayList.main.lsl:798
      */
     public ListIterator listIterator(int index) {
         ListIterator result = null;
@@ -799,7 +805,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::parallelStream(ArrayList) -> Stream
-     * Source: java/util/ArrayList.main.lsl:802
+     * Source: java/util/ArrayList.main.lsl:811
      */
     public Stream parallelStream() {
         Stream result = null;
@@ -812,7 +818,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::remove(ArrayList, Object) -> boolean
-     * Source: java/util/ArrayList.main.lsl:808
+     * Source: java/util/ArrayList.main.lsl:817
      */
     public boolean remove(Object o) {
         boolean result = false;
@@ -829,7 +835,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::remove(ArrayList, int) -> Object
-     * Source: java/util/ArrayList.main.lsl:817
+     * Source: java/util/ArrayList.main.lsl:826
      */
     public Object remove(int index) {
         Object result = null;
@@ -842,7 +848,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::removeAll(ArrayList, Collection) -> boolean
-     * Source: java/util/ArrayList.main.lsl:823
+     * Source: java/util/ArrayList.main.lsl:832
      */
     public boolean removeAll(Collection c) {
         boolean result = false;
@@ -855,7 +861,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::removeIf(ArrayList, Predicate) -> boolean
-     * Source: java/util/ArrayList.main.lsl:829
+     * Source: java/util/ArrayList.main.lsl:838
      */
     public boolean removeIf(Predicate filter) {
         boolean result = false;
@@ -868,7 +874,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::replaceAll(ArrayList, UnaryOperator) -> void
-     * Source: java/util/ArrayList.main.lsl:835
+     * Source: java/util/ArrayList.main.lsl:844
      */
     public void replaceAll(UnaryOperator op) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -883,7 +889,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::retainAll(ArrayList, Collection) -> boolean
-     * Source: java/util/ArrayList.main.lsl:845
+     * Source: java/util/ArrayList.main.lsl:854
      */
     public boolean retainAll(Collection c) {
         boolean result = false;
@@ -896,7 +902,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::set(ArrayList, int, Object) -> Object
-     * Source: java/util/ArrayList.main.lsl:851
+     * Source: java/util/ArrayList.main.lsl:860
      */
     public Object set(int index, Object element) {
         Object result = null;
@@ -909,7 +915,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::size(ArrayList) -> int
-     * Source: java/util/ArrayList.main.lsl:857
+     * Source: java/util/ArrayList.main.lsl:866
      */
     public int size() {
         int result = 0;
@@ -922,7 +928,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::sort(ArrayList, Comparator) -> void
-     * Source: java/util/ArrayList.main.lsl:863
+     * Source: java/util/ArrayList.main.lsl:872
      */
     public void sort(Comparator c) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -933,7 +939,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::spliterator(ArrayList) -> Spliterator
-     * Source: java/util/ArrayList.main.lsl:869
+     * Source: java/util/ArrayList.main.lsl:878
      */
     public Spliterator spliterator() {
         Spliterator result = null;
@@ -952,7 +958,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::stream(ArrayList) -> Stream
-     * Source: java/util/ArrayList.main.lsl:878
+     * Source: java/util/ArrayList.main.lsl:887
      */
     public Stream stream() {
         Stream result = null;
@@ -965,7 +971,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::subList(ArrayList, int, int) -> List
-     * Source: java/util/ArrayList.main.lsl:884
+     * Source: java/util/ArrayList.main.lsl:893
      */
     public List subList(int fromIndex, int toIndex) {
         List result = null;
@@ -986,7 +992,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::toArray(ArrayList) -> array<Object>
-     * Source: java/util/ArrayList.main.lsl:898
+     * Source: java/util/ArrayList.main.lsl:907
      */
     public Object[] toArray() {
         Object[] result = null;
@@ -1005,7 +1011,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::toArray(ArrayList, IntFunction) -> array<Object>
-     * Source: java/util/ArrayList.main.lsl:918
+     * Source: java/util/ArrayList.main.lsl:927
      */
     public Object[] toArray(IntFunction generator) {
         Object[] result = null;
@@ -1026,7 +1032,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::toArray(ArrayList, array<Object>) -> array<Object>
-     * Source: java/util/ArrayList.main.lsl:936
+     * Source: java/util/ArrayList.main.lsl:945
      */
     public Object[] toArray(Object[] a) {
         Object[] result = null;
@@ -1052,7 +1058,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::toString(ArrayList) -> String
-     * Source: java/util/ArrayList.main.lsl:959
+     * Source: java/util/ArrayList.main.lsl:968
      */
     public String toString() {
         String result = null;
@@ -1065,7 +1071,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::trimToSize(ArrayList) -> void
-     * Source: java/util/ArrayList.main.lsl:965
+     * Source: java/util/ArrayList.main.lsl:974
      */
     public void trimToSize() {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -1076,7 +1082,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::writeObject(ArrayList, ObjectOutputStream) -> void
-     * Source: java/util/ArrayList.main.lsl:974
+     * Source: java/util/ArrayList.main.lsl:983
      */
     private void writeObject(ObjectOutputStream s) throws java.io.IOException {
         /* body */ {
@@ -1086,7 +1092,7 @@ public class ArrayList implements LibSLRuntime.Automaton, List, RandomAccess, Cl
 
     /**
      * [FUNCTION] ArrayListAutomaton::readObject(ArrayList, ObjectInputStream) -> void
-     * Source: java/util/ArrayList.main.lsl:982
+     * Source: java/util/ArrayList.main.lsl:991
      */
     private void readObject(ObjectInputStream s) throws java.io.IOException,
             java.lang.ClassNotFoundException {
