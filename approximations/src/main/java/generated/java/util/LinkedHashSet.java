@@ -63,7 +63,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [CONSTRUCTOR] LinkedHashSetAutomaton::<init>(LinkedHashSet) -> void
-     * Source: java/util/LinkedHashSet.main.lsl:159
+     * Source: java/util/LinkedHashSet.main.lsl:155
      */
     public LinkedHashSet() {
         this((Void) null);
@@ -76,7 +76,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [CONSTRUCTOR] LinkedHashSetAutomaton::<init>(LinkedHashSet, Collection) -> void
-     * Source: java/util/LinkedHashSet.main.lsl:165
+     * Source: java/util/LinkedHashSet.main.lsl:161
      */
     public LinkedHashSet(Collection c) {
         this((Void) null);
@@ -90,7 +90,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [CONSTRUCTOR] LinkedHashSetAutomaton::<init>(LinkedHashSet, int) -> void
-     * Source: java/util/LinkedHashSet.main.lsl:172
+     * Source: java/util/LinkedHashSet.main.lsl:168
      */
     public LinkedHashSet(int initialCapacity) {
         this((Void) null);
@@ -106,7 +106,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [CONSTRUCTOR] LinkedHashSetAutomaton::<init>(LinkedHashSet, int, float) -> void
-     * Source: java/util/LinkedHashSet.main.lsl:184
+     * Source: java/util/LinkedHashSet.main.lsl:180
      */
     public LinkedHashSet(int initialCapacity, float loadFactor) {
         this((Void) null);
@@ -125,7 +125,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [SUBROUTINE] LinkedHashSetAutomaton::_checkForComodification(int) -> void
-     * Source: java/util/LinkedHashSet.main.lsl:81
+     * Source: java/util/LinkedHashSet.main.lsl:77
      */
     public void _checkForComodification(int expectedModCount) {
         /* body */ {
@@ -137,7 +137,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [SUBROUTINE] LinkedHashSetAutomaton::_addAllElements(Collection) -> boolean
-     * Source: java/util/LinkedHashSet.main.lsl:88
+     * Source: java/util/LinkedHashSet.main.lsl:84
      */
     private boolean _addAllElements(Collection c) {
         boolean result = false;
@@ -163,7 +163,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [SUBROUTINE] LinkedHashSetAutomaton::_makeStream(boolean) -> Stream
-     * Source: java/util/LinkedHashSet.main.lsl:125
+     * Source: java/util/LinkedHashSet.main.lsl:121
      */
     private Stream _makeStream(boolean parallel) {
         Stream result = null;
@@ -192,7 +192,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::add(LinkedHashSet, Object) -> boolean
-     * Source: java/util/LinkedHashSet.main.lsl:204
+     * Source: java/util/LinkedHashSet.main.lsl:200
      */
     public boolean add(Object obj) {
         boolean result = false;
@@ -212,7 +212,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::clear(LinkedHashSet) -> void
-     * Source: java/util/LinkedHashSet.main.lsl:222
+     * Source: java/util/LinkedHashSet.main.lsl:218
      */
     public void clear() {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -224,7 +224,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::clone(LinkedHashSet) -> Object
-     * Source: java/util/LinkedHashSet.main.lsl:229
+     * Source: java/util/LinkedHashSet.main.lsl:225
      */
     public Object clone() {
         Object result = null;
@@ -241,7 +241,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::contains(LinkedHashSet, Object) -> boolean
-     * Source: java/util/LinkedHashSet.main.lsl:237
+     * Source: java/util/LinkedHashSet.main.lsl:233
      */
     public boolean contains(Object obj) {
         boolean result = false;
@@ -258,7 +258,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::isEmpty(LinkedHashSet) -> boolean
-     * Source: java/util/LinkedHashSet.main.lsl:246
+     * Source: java/util/LinkedHashSet.main.lsl:242
      */
     public boolean isEmpty() {
         boolean result = false;
@@ -271,7 +271,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::iterator(LinkedHashSet) -> Iterator
-     * Source: java/util/LinkedHashSet.main.lsl:252
+     * Source: java/util/LinkedHashSet.main.lsl:248
      */
     public Iterator iterator() {
         Iterator result = null;
@@ -293,7 +293,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::remove(LinkedHashSet, Object) -> boolean
-     * Source: java/util/LinkedHashSet.main.lsl:263
+     * Source: java/util/LinkedHashSet.main.lsl:259
      */
     public boolean remove(Object obj) {
         boolean result = false;
@@ -312,7 +312,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::size(LinkedHashSet) -> int
-     * Source: java/util/LinkedHashSet.main.lsl:278
+     * Source: java/util/LinkedHashSet.main.lsl:274
      */
     public int size() {
         int result = 0;
@@ -325,7 +325,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::spliterator(LinkedHashSet) -> Spliterator
-     * Source: java/util/LinkedHashSet.main.lsl:284
+     * Source: java/util/LinkedHashSet.main.lsl:280
      */
     public Spliterator spliterator() {
         Spliterator result = null;
@@ -355,7 +355,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::equals(LinkedHashSet, Object) -> boolean
-     * Source: java/util/LinkedHashSet.main.lsl:315
+     * Source: java/util/LinkedHashSet.main.lsl:311
      */
     public boolean equals(Object other) {
         boolean result = false;
@@ -385,7 +385,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::hashCode(LinkedHashSet) -> int
-     * Source: java/util/LinkedHashSet.main.lsl:346
+     * Source: java/util/LinkedHashSet.main.lsl:342
      */
     public int hashCode() {
         int result = 0;
@@ -398,7 +398,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::removeAll(LinkedHashSet, Collection) -> boolean
-     * Source: java/util/LinkedHashSet.main.lsl:352
+     * Source: java/util/LinkedHashSet.main.lsl:348
      */
     public boolean removeAll(Collection c) {
         boolean result = false;
@@ -441,7 +441,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::toArray(LinkedHashSet) -> array<Object>
-     * Source: java/util/LinkedHashSet.main.lsl:407
+     * Source: java/util/LinkedHashSet.main.lsl:403
      */
     public Object[] toArray() {
         Object[] result = null;
@@ -465,7 +465,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::toArray(LinkedHashSet, array<Object>) -> array<Object>
-     * Source: java/util/LinkedHashSet.main.lsl:433
+     * Source: java/util/LinkedHashSet.main.lsl:429
      */
     public Object[] toArray(Object[] a) {
         Object[] result = null;
@@ -496,7 +496,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::toArray(LinkedHashSet, IntFunction) -> array<Object>
-     * Source: java/util/LinkedHashSet.main.lsl:458
+     * Source: java/util/LinkedHashSet.main.lsl:454
      */
     public Object[] toArray(IntFunction generator) {
         Object[] result = null;
@@ -523,7 +523,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::containsAll(LinkedHashSet, Collection) -> boolean
-     * Source: java/util/LinkedHashSet.main.lsl:478
+     * Source: java/util/LinkedHashSet.main.lsl:474
      */
     public boolean containsAll(Collection c) {
         boolean result = false;
@@ -548,7 +548,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::addAll(LinkedHashSet, Collection) -> boolean
-     * Source: java/util/LinkedHashSet.main.lsl:506
+     * Source: java/util/LinkedHashSet.main.lsl:502
      */
     public boolean addAll(Collection c) {
         boolean result = false;
@@ -561,7 +561,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::retainAll(LinkedHashSet, Collection) -> boolean
-     * Source: java/util/LinkedHashSet.main.lsl:512
+     * Source: java/util/LinkedHashSet.main.lsl:508
      */
     public boolean retainAll(Collection c) {
         boolean result = false;
@@ -591,7 +591,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::removeIf(LinkedHashSet, Predicate) -> boolean
-     * Source: java/util/LinkedHashSet.main.lsl:546
+     * Source: java/util/LinkedHashSet.main.lsl:542
      */
     public boolean removeIf(Predicate filter) {
         boolean result = false;
@@ -626,7 +626,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::forEach(LinkedHashSet, Consumer) -> void
-     * Source: java/util/LinkedHashSet.main.lsl:586
+     * Source: java/util/LinkedHashSet.main.lsl:582
      */
     public void forEach(Consumer userAction) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -650,7 +650,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::stream(LinkedHashSet) -> Stream
-     * Source: java/util/LinkedHashSet.main.lsl:616
+     * Source: java/util/LinkedHashSet.main.lsl:612
      */
     public Stream stream() {
         Stream result = null;
@@ -663,7 +663,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::parallelStream(LinkedHashSet) -> Stream
-     * Source: java/util/LinkedHashSet.main.lsl:623
+     * Source: java/util/LinkedHashSet.main.lsl:619
      */
     public Stream parallelStream() {
         Stream result = null;
@@ -676,7 +676,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::writeObject(LinkedHashSet, ObjectOutputStream) -> void
-     * Source: java/util/LinkedHashSet.main.lsl:631
+     * Source: java/util/LinkedHashSet.main.lsl:627
      */
     private void writeObject(ObjectOutputStream s) throws java.io.IOException {
         /* body */ {
@@ -686,7 +686,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::readObject(LinkedHashSet, ObjectInputStream) -> void
-     * Source: java/util/LinkedHashSet.main.lsl:638
+     * Source: java/util/LinkedHashSet.main.lsl:634
      */
     private void readObject(ObjectInputStream s) throws java.io.IOException,
             java.lang.ClassNotFoundException {
@@ -697,7 +697,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::toString(LinkedHashSet) -> String
-     * Source: java/util/LinkedHashSet.main.lsl:646
+     * Source: java/util/LinkedHashSet.main.lsl:642
      */
     public String toString() {
         String result = null;

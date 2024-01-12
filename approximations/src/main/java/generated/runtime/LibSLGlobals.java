@@ -6,10 +6,6 @@ package generated.runtime;
 
 import java.lang.Object;
 import java.lang.Void;
-import java.util.Optional;
-import java.util.OptionalDouble;
-import java.util.OptionalInt;
-import java.util.OptionalLong;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 
@@ -19,26 +15,6 @@ public final class LibSLGlobals {
      * Source: java/io/Console.lsl:23
      */
     public static final boolean CONSOLE_IS_TTY;
-
-    /**
-     * Source: java/util/Optional.automata.lsl:21
-     */
-    public static final Optional EMPTY_OPTIONAL;
-
-    /**
-     * Source: java/util/OptionalDouble.automata.lsl:20
-     */
-    public static final OptionalDouble EMPTY_OPTIONAL_DOUBLE;
-
-    /**
-     * Source: java/util/OptionalInt.automata.lsl:20
-     */
-    public static final OptionalInt EMPTY_OPTIONAL_INT;
-
-    /**
-     * Source: java/util/OptionalLong.automata.lsl:20
-     */
-    public static final OptionalLong EMPTY_OPTIONAL_LONG;
 
     /**
      * Source: java/lang/Character.lsl:31
@@ -152,25 +128,6 @@ public final class LibSLGlobals {
 
     static {
         CONSOLE_IS_TTY = Engine.makeSymbolicBoolean();
-        EMPTY_OPTIONAL = (Optional) ((Object) new generated.java.util.Optional((Void) null, 
-                    /* state = */ generated.java.util.Optional.__$lsl_States.Initialized, 
-                    /* value = */ null
-                ));
-        EMPTY_OPTIONAL_DOUBLE = (OptionalDouble) ((Object) new generated.java.util.OptionalDouble((Void) null, 
-                    /* state = */ generated.java.util.OptionalDouble.__$lsl_States.Initialized, 
-                    /* value = */ 0.0d, 
-                    /* present = */ false
-                ));
-        EMPTY_OPTIONAL_INT = (OptionalInt) ((Object) new generated.java.util.OptionalInt((Void) null, 
-                    /* state = */ generated.java.util.OptionalInt.__$lsl_States.Initialized, 
-                    /* value = */ 0, 
-                    /* present = */ false
-                ));
-        EMPTY_OPTIONAL_LONG = (OptionalLong) ((Object) new generated.java.util.OptionalLong((Void) null, 
-                    /* state = */ generated.java.util.OptionalLong.__$lsl_States.Initialized, 
-                    /* value = */ 0L, 
-                    /* present = */ false
-                ));
         MAX_CODE_POINT = 1114111;
         MIN_CODE_POINT = 0;
         MIN_HIGH_SURROGATE = 55296;
