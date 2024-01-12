@@ -10,6 +10,7 @@ import org.usvm.api.SymbolicIdentityMap;
 import org.usvm.api.SymbolicList;
 import org.usvm.api.SymbolicMap;
 
+@SuppressWarnings({"unused", "ManualMinMaxCalculation", "ExplicitArrayFilling"})
 public final class LibSLRuntime {
 
     /*
@@ -243,7 +244,6 @@ public final class LibSLRuntime {
     }
 
 
-
     private static final float FLOAT_MULTIPLIER_REGULAR = 1e+6f; // 8 decimal positions
     private static final int FLOAT_MULTIPLIER_REGULAR_count = 6;
     private static final int FLOAT_MULTIPLIER_REGULAR_int = (int) FLOAT_MULTIPLIER_REGULAR;
@@ -425,7 +425,6 @@ public final class LibSLRuntime {
             return decimals;
         }
     }
-
 
 
     private static final double DOUBLE_MULTIPLIER_REGULAR = 1e+15d; // 16 decimal positions
@@ -633,7 +632,6 @@ public final class LibSLRuntime {
             return decimals;
         }
     }
-
 
 
     public static <V> String toString(final SymbolicList<V> v) {
@@ -941,12 +939,211 @@ public final class LibSLRuntime {
             System.arraycopy(src, srcPos, dst, dstPos, count);
         }
 
+        public static void fill(final byte[] arr, final byte value) {
+            Engine.assume(arr != null);
+
+            final int count = arr.length;
+            Engine.assume(count >= 0);
+
+            for (int i = 0; i < count; i++)
+                arr[i] = value;
+        }
+
+        public static void fill(final short[] arr, final short value) {
+            Engine.assume(arr != null);
+
+            final int count = arr.length;
+            Engine.assume(count >= 0);
+
+            for (int i = 0; i < count; i++)
+                arr[i] = value;
+        }
+
+        public static void fill(final int[] arr, final int value) {
+            Engine.assume(arr != null);
+
+            final int count = arr.length;
+            Engine.assume(count >= 0);
+
+            for (int i = 0; i < count; i++)
+                arr[i] = value;
+        }
+
+        public static void fill(final long[] arr, final long value) {
+            Engine.assume(arr != null);
+
+            final int count = arr.length;
+            Engine.assume(count >= 0);
+
+            for (int i = 0; i < count; i++)
+                arr[i] = value;
+        }
+
+        public static void fill(final float[] arr, final float value) {
+            Engine.assume(arr != null);
+
+            final int count = arr.length;
+            Engine.assume(count >= 0);
+
+            for (int i = 0; i < count; i++)
+                arr[i] = value;
+        }
+
+        public static void fill(final double[] arr, final double value) {
+            Engine.assume(arr != null);
+
+            final int count = arr.length;
+            Engine.assume(count >= 0);
+
+            for (int i = 0; i < count; i++)
+                arr[i] = value;
+        }
+
+        public static void fill(final char[] arr, final char value) {
+            Engine.assume(arr != null);
+
+            final int count = arr.length;
+            Engine.assume(count >= 0);
+
+            for (int i = 0; i < count; i++)
+                arr[i] = value;
+        }
+
         public static <T> void fill(final T[] arr, final T value) {
             Engine.assume(arr != null);
 
             final int count = arr.length;
             Engine.assume(count >= 0);
+
             for (int i = 0; i < count; i++)
+                arr[i] = value;
+        }
+
+        public static void fillRange(final byte[] arr,
+                                     final int fromIndex, final int toIndex,
+                                     final byte value) {
+            Engine.assume(arr != null);
+
+            final int count = arr.length;
+            Engine.assume(count >= 0);
+
+            Engine.assume(0 <= fromIndex);
+            Engine.assume(fromIndex <= toIndex);
+            Engine.assume(toIndex <= count);
+
+            for (int i = fromIndex; i < toIndex; i++)
+                arr[i] = value;
+        }
+
+        public static void fillRange(final short[] arr,
+                                     final int fromIndex, final int toIndex,
+                                     final short value) {
+            Engine.assume(arr != null);
+
+            final int count = arr.length;
+            Engine.assume(count >= 0);
+
+            Engine.assume(0 <= fromIndex);
+            Engine.assume(fromIndex <= toIndex);
+            Engine.assume(toIndex <= count);
+
+            for (int i = fromIndex; i < toIndex; i++)
+                arr[i] = value;
+        }
+
+        public static void fillRange(final int[] arr,
+                                     final int fromIndex, final int toIndex,
+                                     final int value) {
+            Engine.assume(arr != null);
+
+            final int count = arr.length;
+            Engine.assume(count >= 0);
+
+            Engine.assume(0 <= fromIndex);
+            Engine.assume(fromIndex <= toIndex);
+            Engine.assume(toIndex <= count);
+
+            for (int i = fromIndex; i < toIndex; i++)
+                arr[i] = value;
+        }
+
+        public static void fillRange(final long[] arr,
+                                     final int fromIndex, final int toIndex,
+                                     final long value) {
+            Engine.assume(arr != null);
+
+            final int count = arr.length;
+            Engine.assume(count >= 0);
+
+            Engine.assume(0 <= fromIndex);
+            Engine.assume(fromIndex <= toIndex);
+            Engine.assume(toIndex <= count);
+
+            for (int i = fromIndex; i < toIndex; i++)
+                arr[i] = value;
+        }
+
+        public static void fillRange(final float[] arr,
+                                     final int fromIndex, final int toIndex,
+                                     final float value) {
+            Engine.assume(arr != null);
+
+            final int count = arr.length;
+            Engine.assume(count >= 0);
+
+            Engine.assume(0 <= fromIndex);
+            Engine.assume(fromIndex <= toIndex);
+            Engine.assume(toIndex <= count);
+
+            for (int i = fromIndex; i < toIndex; i++)
+                arr[i] = value;
+        }
+
+        public static void fillRange(final double[] arr,
+                                     final int fromIndex, final int toIndex,
+                                     final double value) {
+            Engine.assume(arr != null);
+
+            final int count = arr.length;
+            Engine.assume(count >= 0);
+
+            Engine.assume(0 <= fromIndex);
+            Engine.assume(fromIndex <= toIndex);
+            Engine.assume(toIndex <= count);
+
+            for (int i = fromIndex; i < toIndex; i++)
+                arr[i] = value;
+        }
+
+        public static void fillRange(final char[] arr,
+                                     final int fromIndex, final int toIndex,
+                                     final char value) {
+            Engine.assume(arr != null);
+
+            final int count = arr.length;
+            Engine.assume(count >= 0);
+
+            Engine.assume(0 <= fromIndex);
+            Engine.assume(fromIndex <= toIndex);
+            Engine.assume(toIndex <= count);
+
+            for (int i = fromIndex; i < toIndex; i++)
+                arr[i] = value;
+        }
+
+        public static <T> void fillRange(final T[] arr,
+                                         final int fromIndex, final int toIndex,
+                                         final T value) {
+            Engine.assume(arr != null);
+
+            final int count = arr.length;
+            Engine.assume(count >= 0);
+
+            Engine.assume(0 <= fromIndex);
+            Engine.assume(fromIndex <= toIndex);
+            Engine.assume(toIndex <= count);
+
+            for (int i = fromIndex; i < toIndex; i++)
                 arr[i] = value;
         }
 
@@ -1124,7 +1321,12 @@ public final class LibSLRuntime {
 
         @Override
         public boolean equals(Object obj) {
-            return LibSLRuntime.equals(this, obj);
+            if (obj instanceof Map) {
+                @SuppressWarnings("unchecked") final Map<K, V> otherMap = (Map<K, V>) obj;
+                return LibSLRuntime.equals(this, otherMap);
+            } else {
+                return false;
+            }
         }
     }
 
