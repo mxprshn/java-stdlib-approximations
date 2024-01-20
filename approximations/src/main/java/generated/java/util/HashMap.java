@@ -574,15 +574,13 @@ public class HashMap implements LibSLRuntime.Automaton, Map, Cloneable, Serializ
                     ((AbstractMap_SimpleEntry) ((Object) entry)).value = result;
                 }
             } else {
-                if (value != null) {
-                    entry = (stub.java.util.AbstractMap_SimpleEntry) ((Object) new AbstractMap_SimpleEntry((Void) null, 
-                        /* state = */ AbstractMap_SimpleEntry.__$lsl_States.Initialized, 
-                        /* key = */ key, 
-                        /* value = */ value
-                    ));
-                    this.storage.set(key, entry);
-                    this.modCount += 1;
-                }
+                entry = (stub.java.util.AbstractMap_SimpleEntry) ((Object) new AbstractMap_SimpleEntry((Void) null, 
+                    /* state = */ AbstractMap_SimpleEntry.__$lsl_States.Initialized, 
+                    /* key = */ key, 
+                    /* value = */ value
+                ));
+                this.storage.set(key, entry);
+                this.modCount += 1;
                 result = value;
             }
         }
@@ -591,7 +589,7 @@ public class HashMap implements LibSLRuntime.Automaton, Map, Cloneable, Serializ
 
     /**
      * [FUNCTION] HashMapAutomaton::put(HashMap, Object, Object) -> Object
-     * Source: java/util/HashMap.main.lsl:610
+     * Source: java/util/HashMap.main.lsl:607
      */
     public Object put(Object key, Object value) {
         Object result = null;
@@ -618,7 +616,7 @@ public class HashMap implements LibSLRuntime.Automaton, Map, Cloneable, Serializ
 
     /**
      * [FUNCTION] HashMapAutomaton::putAll(HashMap, Map) -> void
-     * Source: java/util/HashMap.main.lsl:636
+     * Source: java/util/HashMap.main.lsl:633
      */
     public void putAll(Map m) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -652,7 +650,7 @@ public class HashMap implements LibSLRuntime.Automaton, Map, Cloneable, Serializ
 
     /**
      * [FUNCTION] HashMapAutomaton::putIfAbsent(HashMap, Object, Object) -> Object
-     * Source: java/util/HashMap.main.lsl:645
+     * Source: java/util/HashMap.main.lsl:642
      */
     public Object putIfAbsent(Object key, Object value) {
         Object result = null;
@@ -678,7 +676,7 @@ public class HashMap implements LibSLRuntime.Automaton, Map, Cloneable, Serializ
 
     /**
      * [FUNCTION] HashMapAutomaton::remove(HashMap, Object) -> Object
-     * Source: java/util/HashMap.main.lsl:667
+     * Source: java/util/HashMap.main.lsl:664
      */
     public Object remove(Object key) {
         Object result = null;
@@ -698,7 +696,7 @@ public class HashMap implements LibSLRuntime.Automaton, Map, Cloneable, Serializ
 
     /**
      * [FUNCTION] HashMapAutomaton::remove(HashMap, Object, Object) -> boolean
-     * Source: java/util/HashMap.main.lsl:685
+     * Source: java/util/HashMap.main.lsl:682
      */
     public boolean remove(Object key, Object value) {
         boolean result = false;
@@ -721,7 +719,7 @@ public class HashMap implements LibSLRuntime.Automaton, Map, Cloneable, Serializ
 
     /**
      * [FUNCTION] HashMapAutomaton::replace(HashMap, Object, Object) -> Object
-     * Source: java/util/HashMap.main.lsl:706
+     * Source: java/util/HashMap.main.lsl:703
      */
     public Object replace(Object key, Object value) {
         Object result = null;
@@ -740,7 +738,7 @@ public class HashMap implements LibSLRuntime.Automaton, Map, Cloneable, Serializ
 
     /**
      * [FUNCTION] HashMapAutomaton::replace(HashMap, Object, Object, Object) -> boolean
-     * Source: java/util/HashMap.main.lsl:722
+     * Source: java/util/HashMap.main.lsl:719
      */
     public boolean replace(Object key, Object oldValue, Object newValue) {
         boolean result = false;
@@ -761,7 +759,7 @@ public class HashMap implements LibSLRuntime.Automaton, Map, Cloneable, Serializ
 
     /**
      * [FUNCTION] HashMapAutomaton::replaceAll(HashMap, BiFunction) -> void
-     * Source: java/util/HashMap.main.lsl:740
+     * Source: java/util/HashMap.main.lsl:737
      */
     public void replaceAll(BiFunction function) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -788,7 +786,7 @@ public class HashMap implements LibSLRuntime.Automaton, Map, Cloneable, Serializ
 
     /**
      * [FUNCTION] HashMapAutomaton::size(HashMap) -> int
-     * Source: java/util/HashMap.main.lsl:776
+     * Source: java/util/HashMap.main.lsl:773
      */
     public int size() {
         int result = 0;
@@ -801,7 +799,7 @@ public class HashMap implements LibSLRuntime.Automaton, Map, Cloneable, Serializ
 
     /**
      * [FUNCTION] HashMapAutomaton::toString(HashMap) -> String
-     * Source: java/util/HashMap.main.lsl:783
+     * Source: java/util/HashMap.main.lsl:780
      */
     public String toString() {
         String result = null;
@@ -814,7 +812,7 @@ public class HashMap implements LibSLRuntime.Automaton, Map, Cloneable, Serializ
 
     /**
      * [FUNCTION] HashMapAutomaton::values(HashMap) -> Collection
-     * Source: java/util/HashMap.main.lsl:789
+     * Source: java/util/HashMap.main.lsl:786
      */
     public Collection values() {
         Collection result = null;

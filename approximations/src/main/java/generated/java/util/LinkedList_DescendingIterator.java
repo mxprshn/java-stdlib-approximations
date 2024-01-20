@@ -52,21 +52,8 @@ public final class LinkedList_DescendingIterator implements LibSLRuntime.Automat
     }
 
     /**
-     * [SUBROUTINE] LinkedList_DescendingIteratorAutomaton::_checkForComodification() -> void
-     * Source: java/util/LinkedList.DescendingIterator.lsl:50
-     */
-    private void _checkForComodification() {
-        /* body */ {
-            final int modCount = ((LinkedList) ((Object) this.parent)).modCount;
-            if (modCount != this.expectedModCount) {
-                throw new ConcurrentModificationException();
-            }
-        }
-    }
-
-    /**
      * [FUNCTION] LinkedList_DescendingIteratorAutomaton::hasNext(LinkedList_DescendingIterator) -> boolean
-     * Source: java/util/LinkedList.DescendingIterator.lsl:60
+     * Source: java/util/LinkedList.DescendingIterator.lsl:59
      */
     public boolean hasNext() {
         boolean result = false;
@@ -79,13 +66,15 @@ public final class LinkedList_DescendingIterator implements LibSLRuntime.Automat
 
     /**
      * [FUNCTION] LinkedList_DescendingIteratorAutomaton::next(LinkedList_DescendingIterator) -> Object
-     * Source: java/util/LinkedList.DescendingIterator.lsl:69
+     * Source: java/util/LinkedList.DescendingIterator.lsl:68
      */
     public Object next() {
         Object result = null;
         /* body */ {
             Engine.assume(this.parent != null);
-            _checkForComodification();
+            if (((LinkedList) ((Object) this.parent)).modCount != this.expectedModCount) {
+                throw new ConcurrentModificationException();
+            }
             final SymbolicList<Object> parentStorage = ((LinkedList) ((Object) this.parent)).storage;
             final int i = this.cursor - 1;
             if (i < 0) {
@@ -103,7 +92,7 @@ public final class LinkedList_DescendingIterator implements LibSLRuntime.Automat
 
     /**
      * [FUNCTION] LinkedList_DescendingIteratorAutomaton::remove(LinkedList_DescendingIterator) -> void
-     * Source: java/util/LinkedList.DescendingIterator.lsl:93
+     * Source: java/util/LinkedList.DescendingIterator.lsl:92
      */
     public void remove() {
         /* body */ {
@@ -111,7 +100,9 @@ public final class LinkedList_DescendingIterator implements LibSLRuntime.Automat
             if (this.lastRet < 0) {
                 throw new IllegalStateException();
             }
-            _checkForComodification();
+            if (((LinkedList) ((Object) this.parent)).modCount != this.expectedModCount) {
+                throw new ConcurrentModificationException();
+            }
             final SymbolicList<Object> pStorage = ((LinkedList) ((Object) this.parent)).storage;
             if (this.lastRet >= pStorage.size()) {
                 throw new ConcurrentModificationException();
@@ -127,7 +118,7 @@ public final class LinkedList_DescendingIterator implements LibSLRuntime.Automat
 
     /**
      * [FUNCTION] LinkedList_DescendingIteratorAutomaton::forEachRemaining(LinkedList_DescendingIterator, Consumer) -> void
-     * Source: java/util/LinkedList.DescendingIterator.lsl:121
+     * Source: java/util/LinkedList.DescendingIterator.lsl:120
      */
     public void forEachRemaining(Consumer userAction) {
         /* body */ {
@@ -147,7 +138,9 @@ public final class LinkedList_DescendingIterator implements LibSLRuntime.Automat
                 ;
                 this.cursor = i;
                 this.lastRet = i - 1;
-                _checkForComodification();
+                if (((LinkedList) ((Object) this.parent)).modCount != this.expectedModCount) {
+                    throw new ConcurrentModificationException();
+                }
             }
         }
     }
