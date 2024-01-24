@@ -17,27 +17,27 @@ public final class LibSLGlobals {
     public static final boolean CONSOLE_IS_TTY;
 
     /**
-     * Source: java/lang/Character.lsl:53
+     * Source: java/lang/Character.lsl:54
      */
     public static final int MAX_CODE_POINT;
 
     /**
-     * Source: java/lang/Character.lsl:54
+     * Source: java/lang/Character.lsl:55
      */
     public static final int MIN_CODE_POINT;
 
     /**
-     * Source: java/lang/Character.lsl:56
+     * Source: java/lang/Character.lsl:57
      */
     public static final int MIN_HIGH_SURROGATE;
 
     /**
-     * Source: java/lang/Character.lsl:55
+     * Source: java/lang/Character.lsl:56
      */
     public static final int MIN_LOW_SURROGATE;
 
     /**
-     * Source: java/lang/Character.lsl:57
+     * Source: java/lang/Character.lsl:58
      */
     public static final int MIN_SUPPLEMENTARY_CODE_POINT;
 
