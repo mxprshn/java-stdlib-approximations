@@ -20,9 +20,11 @@ import java.lang.SuppressWarnings;
 import java.lang.UnsatisfiedLinkError;
 import java.lang.Void;
 import java.util.Properties;
-import jdk.internal.misc.VM;
+//import jdk.internal.misc.VM;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
+import org.usvm.api.SymbolicIdentityMap;
+import org.usvm.api.SymbolicMap;
 import runtime.LibSLRuntime;
 import stub.libsl.utils.SymbolicInputStream;
 
@@ -32,7 +34,7 @@ import stub.libsl.utils.SymbolicInputStream;
 @SuppressWarnings({"all", "unchecked"})
 @Approximate(java.lang.System.class)
 public final class System implements LibSLRuntime.Automaton {
-    private static final LibSLRuntime.Map<String, String> propsMap = new LibSLRuntime.Map<>(new LibSLRuntime.HashMapContainer<>());
+    private static final SymbolicMap<String, String> propsMap = Engine.makeSymbolicMap();
 
     private static volatile SecurityManager security = null;
 
@@ -50,7 +52,7 @@ public final class System implements LibSLRuntime.Automaton {
 
     private static final long NANOTIME_WARP_MAX = 1000L;
 
-    private static final LibSLRuntime.Map<Object, Integer> identityHashCodeMap = new LibSLRuntime.Map<>(new LibSLRuntime.IdentityMapContainer<>());
+    private static final SymbolicIdentityMap<Object, Integer> identityHashCodeMap = Engine.makeSymbolicIdentityMap();
 
     static {
         /* SystemAutomaton::<clinit>() */ {
@@ -85,7 +87,7 @@ public final class System implements LibSLRuntime.Automaton {
      */
     private static void _initProperties() {
         /* body */ {
-            final LibSLRuntime.Map<String, String> pm = propsMap;
+            final SymbolicMap<String, String> pm = propsMap;
             final int javaVersion = 8;
             final String userName = "Admin";
             pm.set("file.encoding", "Cp1251");
@@ -181,7 +183,7 @@ public final class System implements LibSLRuntime.Automaton {
                 /* closed = */ false, 
                 /* error = */ false
             ));
-            VM.initLevel(1);
+//            VM.initLevel(1);
         }
     }
 
@@ -192,7 +194,7 @@ public final class System implements LibSLRuntime.Automaton {
     private static int initPhase2() {
         int result = 0;
         /* body */ {
-            VM.initLevel(2);
+//            VM.initLevel(2);
             result = 0;
         }
         return result;
@@ -205,8 +207,8 @@ public final class System implements LibSLRuntime.Automaton {
     private static void initPhase3() {
         /* body */ {
             security = null;
-            VM.initLevel(3);
-            VM.initLevel(4);
+//            VM.initLevel(3);
+//            VM.initLevel(4);
         }
     }
 
@@ -227,8 +229,8 @@ public final class System implements LibSLRuntime.Automaton {
             if (sm != null) {
                 sm.checkPermission(new java.util.PropertyPermission(key, "write"));
             }
-            final LibSLRuntime.Map<String, String> pm = propsMap;
-            if (pm.hasKey(key)) {
+            final SymbolicMap<String, String> pm = propsMap;
+            if (pm.containsKey(key)) {
                 result = pm.get(key);
                 pm.remove(key);
             }
@@ -300,8 +302,8 @@ public final class System implements LibSLRuntime.Automaton {
             if (sm != null) {
                 sm.checkPropertyAccess(key);
             }
-            final LibSLRuntime.Map<String, String> pm = propsMap;
-            if (pm.hasKey(key)) {
+            final SymbolicMap<String, String> pm = propsMap;
+            if (pm.containsKey(key)) {
                 result = pm.get(key);
             } else {
                 result = null;
@@ -327,8 +329,8 @@ public final class System implements LibSLRuntime.Automaton {
             if (sm != null) {
                 sm.checkPropertyAccess(key);
             }
-            final LibSLRuntime.Map<String, String> pm = propsMap;
-            if (pm.hasKey(key)) {
+            final SymbolicMap<String, String> pm = propsMap;
+            if (pm.containsKey(key)) {
                 result = pm.get(key);
             } else {
                 result = def;
@@ -379,7 +381,7 @@ public final class System implements LibSLRuntime.Automaton {
             if (x == null) {
                 result = 0;
             } else {
-                if (identityHashCodeMap.hasKey(x)) {
+                if (identityHashCodeMap.containsKey(x)) {
                     final Integer value = identityHashCodeMap.get(x);
                     Engine.assume(value != null);
                     result = value.intValue();
@@ -550,8 +552,8 @@ public final class System implements LibSLRuntime.Automaton {
             if (sm != null) {
                 sm.checkPermission(new java.util.PropertyPermission(key, "write"));
             }
-            final LibSLRuntime.Map<String, String> pm = propsMap;
-            if (pm.hasKey(key)) {
+            final SymbolicMap<String, String> pm = propsMap;
+            if (pm.containsKey(key)) {
                 result = pm.get(key);
             } else {
                 result = null;

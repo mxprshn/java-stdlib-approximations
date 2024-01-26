@@ -1,5 +1,7 @@
-package generated.java.util;
+package generated.java.util.concurrent;
 
+
+import generated.java.util.ArrayList;
 import org.jacodb.approximation.annotation.Approximate;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -13,8 +15,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-@Approximate(java.util.HashMap.class)
-public class HashMap implements LibSLRuntime.Automaton, Map, Cloneable, Serializable {
+@Approximate(java.util.concurrent.ConcurrentHashMap.class)
+public class ConcurrentHashMap implements LibSLRuntime.Automaton, Map, Cloneable, Serializable {
     private static final long serialVersionUID = -5024744406713321676L;
 
     static {
@@ -23,18 +25,22 @@ public class HashMap implements LibSLRuntime.Automaton, Map, Cloneable, Serializ
 
     public SymbolicMap<Object, Object> storage = Engine.makeSymbolicMap();
 
-    public HashMap() {
+    public ConcurrentHashMap() {
     }
 
 
-    public HashMap(int capacity) {
+    public ConcurrentHashMap(int capacity) {
     }
 
 
-    public HashMap(int capacity, float loadFactor) {
+    public ConcurrentHashMap(int capacity, float loadFactor) {
     }
 
-    public HashMap(Map m) {
+    public ConcurrentHashMap(int initialCapacity,
+                             float loadFactor, int concurrencyLevel) {
+    }
+
+    public ConcurrentHashMap(Map m) {
         putAll(m);
     }
 
@@ -100,8 +106,8 @@ public class HashMap implements LibSLRuntime.Automaton, Map, Cloneable, Serializ
 
     @Override
     public void putAll(@NotNull Map m) {
-        if (m instanceof java.util.HashMap<?, ?>) {
-            final HashMap other = (HashMap) m;
+        if (m instanceof java.util.concurrent.ConcurrentHashMap<?, ?>) {
+            final generated.java.util.concurrent.ConcurrentHashMap other = (generated.java.util.concurrent.ConcurrentHashMap) m;
             final SymbolicMap otherStorage = other.storage;
             Engine.assume(otherStorage != null);
             storage.merge(otherStorage);
