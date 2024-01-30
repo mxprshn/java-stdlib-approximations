@@ -880,6 +880,8 @@ public final class LibSLRuntime {
         while (length != 0) {
             final K key = unseen.anyKey();
 
+            if (!b.hasKey(key))
+                return false;
             if (!equals(a.get(key), b.get(key)))
                 return false;
 
