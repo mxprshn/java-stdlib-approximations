@@ -670,7 +670,7 @@ public final class LibSLRuntime {
 
             res = res
                     .concat(toString(key))
-                    .concat(": ")
+                    .concat("=")
                     .concat(toString(value));
 
             if (count-- > 1)
