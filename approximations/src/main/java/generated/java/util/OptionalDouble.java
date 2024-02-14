@@ -264,9 +264,6 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
         double result = 0.0d;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (supplier == null) {
-                throw new NullPointerException();
-            }
             if (this.present) {
                 result = this.value;
             } else {
@@ -278,7 +275,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] OptionalDoubleAutomaton::orElseThrow(LSLOptionalDouble) -> double
-     * Source: java/util/OptionalDouble.automata.lsl:221
+     * Source: java/util/OptionalDouble.automata.lsl:218
      */
     public double orElseThrow() {
         double result = 0.0d;
@@ -294,7 +291,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] OptionalDoubleAutomaton::orElseThrow(LSLOptionalDouble, Supplier) -> double
-     * Source: java/util/OptionalDouble.automata.lsl:232
+     * Source: java/util/OptionalDouble.automata.lsl:229
      */
     public double orElseThrow(Supplier exceptionSupplier) throws java.lang.Throwable {
         double result = 0.0d;
@@ -315,7 +312,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] OptionalDoubleAutomaton::stream(LSLOptionalDouble) -> DoubleStream
-     * Source: java/util/OptionalDouble.automata.lsl:253
+     * Source: java/util/OptionalDouble.automata.lsl:250
      */
     public DoubleStream stream() {
         DoubleStream result = null;
@@ -342,7 +339,7 @@ public final class OptionalDouble implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] OptionalDoubleAutomaton::toString(LSLOptionalDouble) -> String
-     * Source: java/util/OptionalDouble.automata.lsl:275
+     * Source: java/util/OptionalDouble.automata.lsl:272
      */
     public String toString() {
         String result = null;

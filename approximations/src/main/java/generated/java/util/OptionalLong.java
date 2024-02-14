@@ -264,9 +264,6 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
         long result = 0L;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (supplier == null) {
-                throw new NullPointerException();
-            }
             if (this.present) {
                 result = this.value;
             } else {
@@ -278,7 +275,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] OptionalLongAutomaton::orElseThrow(LSLOptionalLong) -> long
-     * Source: java/util/OptionalLong.automata.lsl:221
+     * Source: java/util/OptionalLong.automata.lsl:218
      */
     public long orElseThrow() {
         long result = 0L;
@@ -294,7 +291,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] OptionalLongAutomaton::orElseThrow(LSLOptionalLong, Supplier) -> long
-     * Source: java/util/OptionalLong.automata.lsl:232
+     * Source: java/util/OptionalLong.automata.lsl:229
      */
     public long orElseThrow(Supplier exceptionSupplier) throws java.lang.Throwable {
         long result = 0L;
@@ -315,7 +312,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] OptionalLongAutomaton::stream(LSLOptionalLong) -> LongStream
-     * Source: java/util/OptionalLong.automata.lsl:253
+     * Source: java/util/OptionalLong.automata.lsl:250
      */
     public LongStream stream() {
         LongStream result = null;
@@ -342,7 +339,7 @@ public final class OptionalLong implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] OptionalLongAutomaton::toString(LSLOptionalLong) -> String
-     * Source: java/util/OptionalLong.automata.lsl:275
+     * Source: java/util/OptionalLong.automata.lsl:272
      */
     public String toString() {
         String result = null;

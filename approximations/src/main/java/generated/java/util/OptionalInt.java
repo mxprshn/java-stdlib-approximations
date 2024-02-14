@@ -264,9 +264,6 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
         int result = 0;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (supplier == null) {
-                throw new NullPointerException();
-            }
             if (this.present) {
                 result = this.value;
             } else {
@@ -278,7 +275,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] OptionalIntAutomaton::orElseThrow(LSLOptionalInt) -> int
-     * Source: java/util/OptionalInt.automata.lsl:221
+     * Source: java/util/OptionalInt.automata.lsl:218
      */
     public int orElseThrow() {
         int result = 0;
@@ -294,7 +291,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] OptionalIntAutomaton::orElseThrow(LSLOptionalInt, Supplier) -> int
-     * Source: java/util/OptionalInt.automata.lsl:232
+     * Source: java/util/OptionalInt.automata.lsl:229
      */
     public int orElseThrow(Supplier exceptionSupplier) throws java.lang.Throwable {
         int result = 0;
@@ -315,7 +312,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] OptionalIntAutomaton::stream(LSLOptionalInt) -> IntStream
-     * Source: java/util/OptionalInt.automata.lsl:253
+     * Source: java/util/OptionalInt.automata.lsl:250
      */
     public IntStream stream() {
         IntStream result = null;
@@ -342,7 +339,7 @@ public final class OptionalInt implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] OptionalIntAutomaton::toString(LSLOptionalInt) -> String
-     * Source: java/util/OptionalInt.automata.lsl:275
+     * Source: java/util/OptionalInt.automata.lsl:272
      */
     public String toString() {
         String result = null;

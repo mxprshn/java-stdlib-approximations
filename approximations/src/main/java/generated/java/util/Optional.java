@@ -374,9 +374,6 @@ public final class Optional implements LibSLRuntime.Automaton {
         Object result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            if (supplier == null) {
-                throw new NullPointerException();
-            }
             if (this.value == null) {
                 result = supplier.get();
             } else {
@@ -388,7 +385,7 @@ public final class Optional implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] OptionalAutomaton::orElseThrow(LSLOptional) -> Object
-     * Source: java/util/Optional.automata.lsl:359
+     * Source: java/util/Optional.automata.lsl:356
      */
     public Object orElseThrow() {
         Object result = null;
@@ -404,7 +401,7 @@ public final class Optional implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] OptionalAutomaton::orElseThrow(LSLOptional, Supplier) -> Object
-     * Source: java/util/Optional.automata.lsl:370
+     * Source: java/util/Optional.automata.lsl:367
      */
     public Object orElseThrow(Supplier exceptionSupplier) throws java.lang.Throwable {
         Object result = null;
@@ -425,7 +422,7 @@ public final class Optional implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] OptionalAutomaton::stream(LSLOptional) -> Stream
-     * Source: java/util/Optional.automata.lsl:392
+     * Source: java/util/Optional.automata.lsl:389
      */
     public Stream stream() {
         Stream result = null;
@@ -452,7 +449,7 @@ public final class Optional implements LibSLRuntime.Automaton {
 
     /**
      * [FUNCTION] OptionalAutomaton::toString(LSLOptional) -> String
-     * Source: java/util/Optional.automata.lsl:415
+     * Source: java/util/Optional.automata.lsl:412
      */
     public String toString() {
         String result = null;
