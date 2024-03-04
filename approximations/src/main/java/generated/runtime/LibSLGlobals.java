@@ -12,117 +12,117 @@ import org.usvm.api.Engine;
 @Approximate(runtime.LibSLGlobals.class)
 public final class LibSLGlobals {
     /**
-     * Source: java/io/Console.lsl:23
+     * Source: java/io/Console.lsl:22
      */
     public static final boolean CONSOLE_IS_TTY;
 
     /**
-     * Source: java/lang/Character.lsl:54
+     * Source: java/lang/Character.lsl:53
      */
     public static final int MAX_CODE_POINT;
 
     /**
-     * Source: java/lang/Character.lsl:55
+     * Source: java/lang/Character.lsl:54
      */
     public static final int MIN_CODE_POINT;
 
     /**
-     * Source: java/lang/Character.lsl:57
+     * Source: java/lang/Character.lsl:56
      */
     public static final int MIN_HIGH_SURROGATE;
 
     /**
-     * Source: java/lang/Character.lsl:56
+     * Source: java/lang/Character.lsl:55
      */
     public static final int MIN_LOW_SURROGATE;
 
     /**
-     * Source: java/lang/Character.lsl:58
+     * Source: java/lang/Character.lsl:57
      */
     public static final int MIN_SUPPLEMENTARY_CODE_POINT;
 
     /**
-     * Source: java/util/Random.lsl:27
+     * Source: java/util/Random.lsl:26
      */
     public static final int RANDOM_STREAM_SIZE_MAX;
 
     /**
-     * Source: java/lang/Object.lsl:26
+     * Source: java/lang/Object.lsl:25
      */
     public static final Object SOMETHING;
 
     /**
-     * Source: java/util/Spliterator.lsl:43
+     * Source: java/util/Spliterator.lsl:42
      */
     public static final int SPLITERATOR_CONCURRENT;
 
     /**
-     * Source: java/util/Spliterator.lsl:37
+     * Source: java/util/Spliterator.lsl:36
      */
     public static final int SPLITERATOR_DISTINCT;
 
     /**
-     * Source: java/util/Spliterator.lsl:42
+     * Source: java/util/Spliterator.lsl:41
      */
     public static final int SPLITERATOR_IMMUTABLE;
 
     /**
-     * Source: java/util/Spliterator.lsl:41
+     * Source: java/util/Spliterator.lsl:40
      */
     public static final int SPLITERATOR_NONNULL;
 
     /**
-     * Source: java/util/Spliterator.lsl:39
+     * Source: java/util/Spliterator.lsl:38
      */
     public static final int SPLITERATOR_ORDERED;
 
     /**
-     * Source: java/util/Spliterator.lsl:40
+     * Source: java/util/Spliterator.lsl:39
      */
     public static final int SPLITERATOR_SIZED;
 
     /**
-     * Source: java/util/Spliterator.lsl:38
+     * Source: java/util/Spliterator.lsl:37
      */
     public static final int SPLITERATOR_SORTED;
 
     /**
-     * Source: java/util/Spliterator.lsl:44
+     * Source: java/util/Spliterator.lsl:43
      */
     public static final int SPLITERATOR_SUBSIZED;
 
     /**
-     * Source: java/lang/System.lsl:80
+     * Source: java/lang/System.lsl:79
      */
     public static final boolean SYSTEM_IS_MAC;
 
     /**
-     * Source: java/lang/System.lsl:81
+     * Source: java/lang/System.lsl:80
      */
     public static final boolean SYSTEM_IS_WINDOWS;
 
     /**
-     * Source: jdk/internal/misc/VM.lsl:43
+     * Source: jdk/internal/misc/VM.lsl:42
      */
     public static final int VM_JAVA_LANG_SYSTEM_INITED;
 
     /**
-     * Source: jdk/internal/misc/VM.lsl:44
+     * Source: jdk/internal/misc/VM.lsl:43
      */
     public static final int VM_MODULE_SYSTEM_INITED;
 
     /**
-     * Source: jdk/internal/misc/VM.lsl:46
+     * Source: jdk/internal/misc/VM.lsl:45
      */
     public static final int VM_SYSTEM_BOOTED;
 
     /**
-     * Source: jdk/internal/misc/VM.lsl:45
+     * Source: jdk/internal/misc/VM.lsl:44
      */
     public static final int VM_SYSTEM_LOADER_INITIALIZING;
 
     /**
-     * Source: jdk/internal/misc/VM.lsl:47
+     * Source: jdk/internal/misc/VM.lsl:46
      */
     public static final int VM_SYSTEM_SHUTDOWN;
 
