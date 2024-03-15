@@ -95,7 +95,7 @@ public class SecurityManager implements LibSLRuntime.Automaton {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (t == null) {
-                throw new NullPointerException("thread can't be null");
+                throw new NullPointerException("thread can\'t be null");
             }
             _do_checkPermission(null);
         }
@@ -109,7 +109,7 @@ public class SecurityManager implements LibSLRuntime.Automaton {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (g == null) {
-                throw new NullPointerException("thread group can't be null");
+                throw new NullPointerException("thread group can\'t be null");
             }
             _do_checkPermission(null);
         }
@@ -123,7 +123,7 @@ public class SecurityManager implements LibSLRuntime.Automaton {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (host == null) {
-                throw new NullPointerException("host can't be null");
+                throw new NullPointerException("host can\'t be null");
             }
             if (Engine.makeSymbolicBoolean()) {
                 throw new IllegalArgumentException();
@@ -140,7 +140,7 @@ public class SecurityManager implements LibSLRuntime.Automaton {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
             if (host == null) {
-                throw new NullPointerException("host can't be null");
+                throw new NullPointerException("host can\'t be null");
             }
             if (Engine.makeSymbolicBoolean()) {
                 throw new IllegalArgumentException();

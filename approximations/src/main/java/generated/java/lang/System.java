@@ -218,10 +218,10 @@ public final class System implements LibSLRuntime.Automaton {
         String result = null;
         /* body */ {
             if (key == null) {
-                throw new NullPointerException("key can't be null");
+                throw new NullPointerException("key can\'t be null");
             }
             if (key.length() == 0) {
-                throw new NullPointerException("key can't be empty");
+                throw new NullPointerException("key can\'t be empty");
             }
             final SecurityManager sm = security;
             if (sm != null) {
@@ -291,10 +291,10 @@ public final class System implements LibSLRuntime.Automaton {
         String result = null;
         /* body */ {
             if (key == null) {
-                throw new NullPointerException("key can't be null");
+                throw new NullPointerException("key can\'t be null");
             }
             if (key.length() == 0) {
-                throw new NullPointerException("key can't be empty");
+                throw new NullPointerException("key can\'t be empty");
             }
             final SecurityManager sm = security;
             if (sm != null) {
@@ -318,10 +318,10 @@ public final class System implements LibSLRuntime.Automaton {
         String result = null;
         /* body */ {
             if (key == null) {
-                throw new NullPointerException("key can't be null");
+                throw new NullPointerException("key can\'t be null");
             }
             if (key.length() == 0) {
-                throw new NullPointerException("key can't be empty");
+                throw new NullPointerException("key can\'t be empty");
             }
             final SecurityManager sm = security;
             if (sm != null) {
@@ -541,10 +541,10 @@ public final class System implements LibSLRuntime.Automaton {
         String result = null;
         /* body */ {
             if (key == null) {
-                throw new NullPointerException("key can't be null");
+                throw new NullPointerException("key can\'t be null");
             }
             if (key.length() == 0) {
-                throw new NullPointerException("key can't be empty");
+                throw new NullPointerException("key can\'t be empty");
             }
             final SecurityManager sm = security;
             if (sm != null) {
