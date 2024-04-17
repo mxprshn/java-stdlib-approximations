@@ -805,14 +805,34 @@ public class HashMap implements LibSLRuntime.Automaton, Map, Cloneable, Serializ
         String result = null;
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
         /* body */ {
-            result = LibSLRuntime.toString(this.storage);
+            int count = this.storage.size();
+            if (count == 0) {
+                result = "{}";
+            } else {
+                result = "{";
+                final LibSLRuntime.Map<Object, Map.Entry<Object, Object>> unseen = this.storage.duplicate();
+                count = unseen.size();
+                Engine.assume(count > 0);
+                while (count != 0) {
+                    final Object key = unseen.anyKey();
+                    final Map.Entry<Object, Object> entry = unseen.get(key);
+                    unseen.remove(key);
+                    result = result.concat(LibSLRuntime.toString(entry));
+                    count -= 1;
+                    if (count != 0) {
+                        result = result.concat(", ");
+                    }
+                }
+                ;
+                result = result.concat("}");
+            }
         }
         return result;
     }
 
     /**
      * [FUNCTION] HashMapAutomaton::values(HashMap) -> Collection
-     * Source: java/util/HashMap.main.lsl:786
+     * Source: java/util/HashMap.main.lsl:818
      */
     public Collection values() {
         Collection result = null;

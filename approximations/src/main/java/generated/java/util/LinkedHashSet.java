@@ -422,7 +422,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
                 ;
             } else {
                 final LibSLRuntime.Map<Object, Object> unseenKeys = this.storage.duplicate();
-                while (i < this.storage.size()) {
+                while (i < lengthBeforeRemoving) {
                     final Object key = unseenKeys.anyKey();
                     unseenKeys.remove(key);
                     if (c.contains(key)) {
@@ -571,12 +571,15 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
                 throw new NullPointerException();
             }
             final int lengthBeforeAdd = this.storage.size();
-            final Iterator iter = c.iterator();
-            while (iter.hasNext()) {
-                final Object key = iter.next();
-                if (!this.storage.hasKey(key)) {
+            final LibSLRuntime.Map<Object, Object> unseenKeys = this.storage.duplicate();
+            int i = 0;
+            while (i < lengthBeforeAdd) {
+                final Object key = unseenKeys.anyKey();
+                unseenKeys.remove(key);
+                if (!c.contains(key)) {
                     this.storage.remove(key);
                 }
+                i += 1;
             }
             ;
             if (lengthBeforeAdd != this.storage.size()) {
@@ -591,7 +594,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::removeIf(LinkedHashSet, Predicate) -> boolean
-     * Source: java/util/LinkedHashSet.main.lsl:543
+     * Source: java/util/LinkedHashSet.main.lsl:547
      */
     public boolean removeIf(Predicate filter) {
         boolean result = false;
@@ -626,7 +629,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::forEach(LinkedHashSet, Consumer) -> void
-     * Source: java/util/LinkedHashSet.main.lsl:583
+     * Source: java/util/LinkedHashSet.main.lsl:587
      */
     public void forEach(Consumer userAction) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -650,7 +653,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::stream(LinkedHashSet) -> Stream
-     * Source: java/util/LinkedHashSet.main.lsl:613
+     * Source: java/util/LinkedHashSet.main.lsl:617
      */
     public Stream stream() {
         Stream result = null;
@@ -663,7 +666,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::parallelStream(LinkedHashSet) -> Stream
-     * Source: java/util/LinkedHashSet.main.lsl:620
+     * Source: java/util/LinkedHashSet.main.lsl:624
      */
     public Stream parallelStream() {
         Stream result = null;
@@ -676,7 +679,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::writeObject(LinkedHashSet, ObjectOutputStream) -> void
-     * Source: java/util/LinkedHashSet.main.lsl:628
+     * Source: java/util/LinkedHashSet.main.lsl:632
      */
     private void writeObject(ObjectOutputStream s) throws java.io.IOException {
         /* body */ {
@@ -686,7 +689,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::readObject(LinkedHashSet, ObjectInputStream) -> void
-     * Source: java/util/LinkedHashSet.main.lsl:635
+     * Source: java/util/LinkedHashSet.main.lsl:639
      */
     private void readObject(ObjectInputStream s) throws java.io.IOException,
             java.lang.ClassNotFoundException {
@@ -697,7 +700,7 @@ public class LinkedHashSet implements LibSLRuntime.Automaton, Set, Cloneable, Se
 
     /**
      * [FUNCTION] LinkedHashSetAutomaton::toString(LinkedHashSet) -> String
-     * Source: java/util/LinkedHashSet.main.lsl:643
+     * Source: java/util/LinkedHashSet.main.lsl:647
      */
     public String toString() {
         String result = null;

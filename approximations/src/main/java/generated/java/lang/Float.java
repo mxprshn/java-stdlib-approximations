@@ -32,11 +32,11 @@ public final class Float implements LibSLRuntime.Automaton, Comparable<Float> {
 
     public static final int MIN_EXPONENT = -126;
 
-    public static final float MAX_VALUE = 3.4028235E38f;
+    public static final float MAX_VALUE = 3.4028235e+38f;
 
-    public static final float MIN_VALUE = 1.4E-45f;
+    public static final float MIN_VALUE = 1.4e-45f;
 
-    public static final float MIN_NORMAL = 1.17549435E-38f;
+    public static final float MIN_NORMAL = 1.17549435e-38f;
 
     public static final float NEGATIVE_INFINITY = -1.0f / 0.0f;
 

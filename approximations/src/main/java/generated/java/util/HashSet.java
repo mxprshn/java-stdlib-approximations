@@ -435,7 +435,7 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
                 ;
             } else {
                 final LibSLRuntime.Map<Object, Object> unseenKeys = this.storage.duplicate();
-                while (i < this.storage.size()) {
+                while (i < lengthBeforeRemoving) {
                     final Object key = unseenKeys.anyKey();
                     unseenKeys.remove(key);
                     if (c.contains(key)) {
@@ -584,12 +584,15 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
                 throw new NullPointerException();
             }
             final int lengthBeforeAdd = this.storage.size();
-            final Iterator iter = c.iterator();
-            while (iter.hasNext()) {
-                final Object key = iter.next();
-                if (!this.storage.hasKey(key)) {
+            final LibSLRuntime.Map<Object, Object> unseenKeys = this.storage.duplicate();
+            int i = 0;
+            while (i < lengthBeforeAdd) {
+                final Object key = unseenKeys.anyKey();
+                unseenKeys.remove(key);
+                if (!c.contains(key)) {
                     this.storage.remove(key);
                 }
+                i += 1;
             }
             ;
             if (lengthBeforeAdd != this.storage.size()) {
@@ -604,7 +607,7 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
 
     /**
      * [FUNCTION] HashSetAutomaton::removeIf(HashSet, Predicate) -> boolean
-     * Source: java/util/HashSet.main.lsl:552
+     * Source: java/util/HashSet.main.lsl:556
      */
     public boolean removeIf(Predicate filter) {
         boolean result = false;
@@ -639,7 +642,7 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
 
     /**
      * [FUNCTION] HashSetAutomaton::forEach(HashSet, Consumer) -> void
-     * Source: java/util/HashSet.main.lsl:592
+     * Source: java/util/HashSet.main.lsl:596
      */
     public void forEach(Consumer userAction) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -664,7 +667,7 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
 
     /**
      * [FUNCTION] HashSetAutomaton::stream(HashSet) -> Stream
-     * Source: java/util/HashSet.main.lsl:623
+     * Source: java/util/HashSet.main.lsl:627
      */
     public Stream stream() {
         Stream result = null;
@@ -677,7 +680,7 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
 
     /**
      * [FUNCTION] HashSetAutomaton::parallelStream(HashSet) -> Stream
-     * Source: java/util/HashSet.main.lsl:630
+     * Source: java/util/HashSet.main.lsl:634
      */
     public Stream parallelStream() {
         Stream result = null;
@@ -690,7 +693,7 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
 
     /**
      * [FUNCTION] HashSetAutomaton::writeObject(HashSet, ObjectOutputStream) -> void
-     * Source: java/util/HashSet.main.lsl:638
+     * Source: java/util/HashSet.main.lsl:642
      */
     private void writeObject(ObjectOutputStream s) throws java.io.IOException {
         /* body */ {
@@ -700,7 +703,7 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
 
     /**
      * [FUNCTION] HashSetAutomaton::readObject(HashSet, ObjectInputStream) -> void
-     * Source: java/util/HashSet.main.lsl:645
+     * Source: java/util/HashSet.main.lsl:649
      */
     private void readObject(ObjectInputStream s) throws java.io.IOException,
             java.lang.ClassNotFoundException {
@@ -711,7 +714,7 @@ public class HashSet implements LibSLRuntime.Automaton, Set, Cloneable, Serializ
 
     /**
      * [FUNCTION] HashSetAutomaton::toString(HashSet) -> String
-     * Source: java/util/HashSet.main.lsl:653
+     * Source: java/util/HashSet.main.lsl:657
      */
     public String toString() {
         String result = null;

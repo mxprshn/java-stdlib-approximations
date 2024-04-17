@@ -120,7 +120,6 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
             }
             final Object key = this.unseenKeys.anyKey();
             this.unseenKeys.remove(key);
-            Engine.assume(key != this.currentKey);
             this.currentKey = key;
             result = key;
             this.index += 1;
@@ -131,7 +130,7 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
 
     /**
      * [FUNCTION] HashSet_KeyIteratorAutomaton::remove(HashSet_KeyIterator) -> void
-     * Source: java/util/HashSet.KeyIterator.lsl:107
+     * Source: java/util/HashSet.KeyIterator.lsl:106
      */
     public void remove() {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -152,7 +151,7 @@ public final class HashSet_KeyIterator implements LibSLRuntime.Automaton, Iterat
 
     /**
      * [FUNCTION] HashSet_KeyIteratorAutomaton::forEachRemaining(HashSet_KeyIterator, Consumer) -> void
-     * Source: java/util/HashSet.KeyIterator.lsl:127
+     * Source: java/util/HashSet.KeyIterator.lsl:126
      */
     public void forEachRemaining(Consumer userAction) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);

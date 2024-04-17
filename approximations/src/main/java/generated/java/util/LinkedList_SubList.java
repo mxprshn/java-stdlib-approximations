@@ -25,6 +25,7 @@ import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 import org.usvm.api.SymbolicList;
 import runtime.LibSLRuntime;
+import stub.java.util.stream.StreamLSL;
 
 /**
  * LinkedList_SubListAutomaton for LinkedList_SubList ~> java.util.LinkedList_SubList
@@ -66,7 +67,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [CONSTRUCTOR] LinkedList_SubListAutomaton::<init>(LinkedList_SubList, LinkedList, int, int) -> void
-     * Source: java/util/LinkedList.SubList.lsl:188
+     * Source: java/util/LinkedList.SubList.lsl:211
      */
     public LinkedList_SubList(LinkedList root, int fromIndex, int toIndex) {
         this((Void) null);
@@ -79,7 +80,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [CONSTRUCTOR] LinkedList_SubListAutomaton::<init>(LinkedList_SubList, LinkedList_SubList, int, int) -> void
-     * Source: java/util/LinkedList.SubList.lsl:195
+     * Source: java/util/LinkedList.SubList.lsl:218
      */
     private LinkedList_SubList(LinkedList_SubList parent, int fromIndex, int toIndex) {
         this((Void) null);
@@ -159,16 +160,31 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
     private Stream _makeStream(boolean parallel) {
         Stream result = null;
         /* body */ {
-            result = Engine.makeSymbolic(Stream.class);
-            Engine.assume(result != null);
-            Engine.assume(result.isParallel() == parallel);
+            Engine.assume(this.root != null);
+            ((LinkedList) ((Object) this.root))._checkForComodification(this.modCount);
+            final SymbolicList<Object> parentStorage = ((LinkedList) ((Object) this.root)).storage;
+            final int count = this.length;
+            final Object[] items = new Object[count];
+            int i = 0;
+            for (i = 0; i < count; i += 1) {
+                items[i] = parentStorage.get(this.offset + i);
+            }
+            ;
+            result = (StreamLSL) ((Object) new generated.java.util.stream.StreamLSL((Void) null, 
+                /* state = */ generated.java.util.stream.StreamLSL.__$lsl_States.Initialized, 
+                /* storage = */ items, 
+                /* length = */ count, 
+                /* closeHandlers = */ Engine.makeSymbolicList(), 
+                /* isParallel = */ parallel, 
+                /* linkedOrConsumed = */ false
+            ));
         }
         return result;
     }
 
     /**
      * [SUBROUTINE] LinkedList_SubListAutomaton::_batchRemove(Collection, boolean) -> boolean
-     * Source: java/util/LinkedList.SubList.lsl:163
+     * Source: java/util/LinkedList.SubList.lsl:186
      */
     private boolean _batchRemove(Collection c, boolean complement) {
         boolean result = false;
@@ -191,7 +207,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::add(LinkedList_SubList, Object) -> boolean
-     * Source: java/util/LinkedList.SubList.lsl:207
+     * Source: java/util/LinkedList.SubList.lsl:230
      */
     public boolean add(Object e) {
         boolean result = false;
@@ -208,7 +224,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::add(LinkedList_SubList, int, Object) -> void
-     * Source: java/util/LinkedList.SubList.lsl:220
+     * Source: java/util/LinkedList.SubList.lsl:243
      */
     public void add(int index, Object element) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -223,7 +239,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::addAll(LinkedList_SubList, Collection) -> boolean
-     * Source: java/util/LinkedList.SubList.lsl:233
+     * Source: java/util/LinkedList.SubList.lsl:256
      */
     public boolean addAll(Collection c) {
         boolean result = false;
@@ -236,7 +252,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::addAll(LinkedList_SubList, int, Collection) -> boolean
-     * Source: java/util/LinkedList.SubList.lsl:239
+     * Source: java/util/LinkedList.SubList.lsl:262
      */
     public boolean addAll(int index, Collection c) {
         boolean result = false;
@@ -249,7 +265,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::clear(LinkedList_SubList) -> void
-     * Source: java/util/LinkedList.SubList.lsl:246
+     * Source: java/util/LinkedList.SubList.lsl:269
      */
     public void clear() {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -275,7 +291,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::contains(LinkedList_SubList, Object) -> boolean
-     * Source: java/util/LinkedList.SubList.lsl:278
+     * Source: java/util/LinkedList.SubList.lsl:301
      */
     public boolean contains(Object o) {
         boolean result = false;
@@ -288,7 +304,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::containsAll(LinkedList_SubList, Collection) -> boolean
-     * Source: java/util/LinkedList.SubList.lsl:285
+     * Source: java/util/LinkedList.SubList.lsl:308
      */
     public boolean containsAll(Collection c) {
         boolean result = false;
@@ -330,7 +346,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::equals(LinkedList_SubList, Object) -> boolean
-     * Source: java/util/LinkedList.SubList.lsl:341
+     * Source: java/util/LinkedList.SubList.lsl:364
      */
     public boolean equals(Object o) {
         boolean result = false;
@@ -357,7 +373,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::forEach(LinkedList_SubList, Consumer) -> void
-     * Source: java/util/LinkedList.SubList.lsl:369
+     * Source: java/util/LinkedList.SubList.lsl:392
      */
     public void forEach(Consumer _action) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -383,7 +399,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::get(LinkedList_SubList, int) -> Object
-     * Source: java/util/LinkedList.SubList.lsl:401
+     * Source: java/util/LinkedList.SubList.lsl:424
      */
     public Object get(int index) {
         Object result = null;
@@ -400,7 +416,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::hashCode(LinkedList_SubList) -> int
-     * Source: java/util/LinkedList.SubList.lsl:413
+     * Source: java/util/LinkedList.SubList.lsl:436
      */
     public int hashCode() {
         int result = 0;
@@ -426,7 +442,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::indexOf(LinkedList_SubList, Object) -> int
-     * Source: java/util/LinkedList.SubList.lsl:441
+     * Source: java/util/LinkedList.SubList.lsl:464
      */
     public int indexOf(Object o) {
         int result = 0;
@@ -439,7 +455,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::isEmpty(LinkedList_SubList) -> boolean
-     * Source: java/util/LinkedList.SubList.lsl:448
+     * Source: java/util/LinkedList.SubList.lsl:471
      */
     public boolean isEmpty() {
         boolean result = false;
@@ -452,7 +468,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::iterator(LinkedList_SubList) -> Iterator
-     * Source: java/util/LinkedList.SubList.lsl:454
+     * Source: java/util/LinkedList.SubList.lsl:477
      */
     public Iterator iterator() {
         Iterator result = null;
@@ -474,7 +490,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::lastIndexOf(LinkedList_SubList, Object) -> int
-     * Source: java/util/LinkedList.SubList.lsl:467
+     * Source: java/util/LinkedList.SubList.lsl:490
      */
     public int lastIndexOf(Object o) {
         int result = 0;
@@ -504,7 +520,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::listIterator(LinkedList_SubList) -> ListIterator
-     * Source: java/util/LinkedList.SubList.lsl:501
+     * Source: java/util/LinkedList.SubList.lsl:524
      */
     public ListIterator listIterator() {
         ListIterator result = null;
@@ -526,7 +542,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::listIterator(LinkedList_SubList, int) -> ListIterator
-     * Source: java/util/LinkedList.SubList.lsl:514
+     * Source: java/util/LinkedList.SubList.lsl:537
      */
     public ListIterator listIterator(int index) {
         ListIterator result = null;
@@ -548,7 +564,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::parallelStream(LinkedList_SubList) -> Stream
-     * Source: java/util/LinkedList.SubList.lsl:528
+     * Source: java/util/LinkedList.SubList.lsl:551
      */
     public Stream parallelStream() {
         Stream result = null;
@@ -561,7 +577,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::remove(LinkedList_SubList, Object) -> boolean
-     * Source: java/util/LinkedList.SubList.lsl:535
+     * Source: java/util/LinkedList.SubList.lsl:558
      */
     public boolean remove(Object o) {
         boolean result = false;
@@ -583,7 +599,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::remove(LinkedList_SubList, int) -> Object
-     * Source: java/util/LinkedList.SubList.lsl:555
+     * Source: java/util/LinkedList.SubList.lsl:578
      */
     public Object remove(int index) {
         Object result = null;
@@ -601,7 +617,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::removeAll(LinkedList_SubList, Collection) -> boolean
-     * Source: java/util/LinkedList.SubList.lsl:569
+     * Source: java/util/LinkedList.SubList.lsl:592
      */
     public boolean removeAll(Collection c) {
         boolean result = false;
@@ -614,7 +630,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::removeIf(LinkedList_SubList, Predicate) -> boolean
-     * Source: java/util/LinkedList.SubList.lsl:575
+     * Source: java/util/LinkedList.SubList.lsl:598
      */
     public boolean removeIf(Predicate filter) {
         boolean result = false;
@@ -639,7 +655,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::replaceAll(LinkedList_SubList, UnaryOperator) -> void
-     * Source: java/util/LinkedList.SubList.lsl:599
+     * Source: java/util/LinkedList.SubList.lsl:622
      */
     public void replaceAll(UnaryOperator operator) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -651,7 +667,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::retainAll(LinkedList_SubList, Collection) -> boolean
-     * Source: java/util/LinkedList.SubList.lsl:606
+     * Source: java/util/LinkedList.SubList.lsl:629
      */
     public boolean retainAll(Collection c) {
         boolean result = false;
@@ -664,7 +680,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::set(LinkedList_SubList, int, Object) -> Object
-     * Source: java/util/LinkedList.SubList.lsl:612
+     * Source: java/util/LinkedList.SubList.lsl:635
      */
     public Object set(int index, Object element) {
         Object result = null;
@@ -683,7 +699,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::size(LinkedList_SubList) -> int
-     * Source: java/util/LinkedList.SubList.lsl:626
+     * Source: java/util/LinkedList.SubList.lsl:649
      */
     public int size() {
         int result = 0;
@@ -698,7 +714,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::sort(LinkedList_SubList, Comparator) -> void
-     * Source: java/util/LinkedList.SubList.lsl:636
+     * Source: java/util/LinkedList.SubList.lsl:659
      */
     public void sort(Comparator c) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -711,7 +727,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::spliterator(LinkedList_SubList) -> Spliterator
-     * Source: java/util/LinkedList.SubList.lsl:644
+     * Source: java/util/LinkedList.SubList.lsl:667
      */
     public Spliterator spliterator() {
         Spliterator result = null;
@@ -731,7 +747,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::stream(LinkedList_SubList) -> Stream
-     * Source: java/util/LinkedList.SubList.lsl:654
+     * Source: java/util/LinkedList.SubList.lsl:677
      */
     public Stream stream() {
         Stream result = null;
@@ -744,7 +760,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::subList(LinkedList_SubList, int, int) -> List
-     * Source: java/util/LinkedList.SubList.lsl:660
+     * Source: java/util/LinkedList.SubList.lsl:683
      */
     public List subList(int fromIndex, int toIndex) {
         List result = null;
@@ -766,7 +782,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::toArray(LinkedList_SubList) -> array<Object>
-     * Source: java/util/LinkedList.SubList.lsl:676
+     * Source: java/util/LinkedList.SubList.lsl:699
      */
     public Object[] toArray() {
         Object[] result = null;
@@ -790,7 +806,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::toArray(LinkedList_SubList, IntFunction) -> array<Object>
-     * Source: java/util/LinkedList.SubList.lsl:701
+     * Source: java/util/LinkedList.SubList.lsl:724
      */
     public Object[] toArray(IntFunction generator) {
         Object[] result = null;
@@ -816,7 +832,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::toArray(LinkedList_SubList, array<Object>) -> array<Object>
-     * Source: java/util/LinkedList.SubList.lsl:723
+     * Source: java/util/LinkedList.SubList.lsl:746
      */
     public Object[] toArray(Object[] a) {
         Object[] result = null;
@@ -847,7 +863,7 @@ public final class LinkedList_SubList implements LibSLRuntime.Automaton, List, R
 
     /**
      * [FUNCTION] LinkedList_SubListAutomaton::toString(LinkedList_SubList) -> String
-     * Source: java/util/LinkedList.SubList.lsl:750
+     * Source: java/util/LinkedList.SubList.lsl:773
      */
     public String toString() {
         String result = null;
