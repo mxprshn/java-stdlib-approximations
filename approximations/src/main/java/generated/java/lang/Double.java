@@ -32,11 +32,11 @@ public final class Double implements LibSLRuntime.Automaton, Comparable<Double> 
 
     public static final int MIN_EXPONENT = -1022;
 
-    public static final double MAX_VALUE = 1.7976931348623157E308;
+    public static final double MAX_VALUE = 1.7976931348623157E308d;
 
-    public static final double MIN_VALUE = 4.9E-324;
+    public static final double MIN_VALUE = 4.9E-324d;
 
-    public static final double MIN_NORMAL = 2.2250738585072014E-308;
+    public static final double MIN_NORMAL = 2.2250738585072014E-308d;
 
     public static final double POSITIVE_INFINITY = 1.0d / 0.0d;
 
