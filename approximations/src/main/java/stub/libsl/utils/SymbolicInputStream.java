@@ -65,7 +65,7 @@ public final class SymbolicInputStream extends InputStream implements LibSLRunti
         throw new LinkageError();
     }
 
-    public long transferTo(OutputStream out) throws java.io.IOException {
+    public long transferTo(OutputStream output) throws java.io.IOException {
         throw new LinkageError();
     }
 }

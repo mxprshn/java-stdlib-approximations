@@ -229,10 +229,10 @@ public final class VoidInputStream implements LibSLRuntime.Automaton {
      * [FUNCTION] VoidInputStreamAutomaton::transferTo(VoidInputStream, OutputStream) -> long
      * Source: libsl/utils/VoidInputStream.main.lsl:186
      */
-    public long transferTo(OutputStream out) throws java.io.IOException {
+    public long transferTo(OutputStream output) throws java.io.IOException {
         long result = 0L;
         /* body */ {
-            if (out == null) {
+            if (output == null) {
                 throw new NullPointerException();
             }
             if (this.closed) {

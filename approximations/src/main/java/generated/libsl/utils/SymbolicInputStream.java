@@ -384,10 +384,10 @@ public final class SymbolicInputStream implements LibSLRuntime.Automaton {
      * [FUNCTION] SymbolicInputStreamAutomaton::transferTo(SymbolicInputStream, OutputStream) -> long
      * Source: libsl/utils/SymbolicInputStream.main.lsl:302
      */
-    public long transferTo(OutputStream out) throws java.io.IOException {
+    public long transferTo(OutputStream output) throws java.io.IOException {
         long result = 0L;
         /* body */ {
-            if (out == null) {
+            if (output == null) {
                 throw new NullPointerException();
             }
             if (this.closed) {
