@@ -11,7 +11,6 @@ import java.lang.Object;
 import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.ConcurrentModificationException;
-import java.util.HashMap;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 import org.jacodb.approximation.annotation.Approximate;
@@ -60,7 +59,7 @@ public final class LinkedHashSet_KeySpliterator implements LibSLRuntime.Automato
     }
 
     /**
-     * [CONSTRUCTOR] LinkedHashSet_KeySpliteratorAutomaton::LinkedHashSet_KeySpliterator(LinkedHashSet_KeySpliterator, HashMap, int, int, int, int) -> LinkedHashSet_KeySpliterator
+     * [CONSTRUCTOR] LinkedHashSet_KeySpliteratorAutomaton::<init>(LinkedHashSet_KeySpliterator, HashMap, int, int, int, int) -> void
      * Source: java/util/LinkedHashSet.Spliterator.lsl:89
      */
     private LinkedHashSet_KeySpliterator(HashMap source, int origin, int fence, int est,

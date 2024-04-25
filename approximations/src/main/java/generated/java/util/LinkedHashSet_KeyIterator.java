@@ -11,7 +11,6 @@ import java.lang.Object;
 import java.lang.SuppressWarnings;
 import java.lang.Void;
 import java.util.ConcurrentModificationException;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
@@ -62,7 +61,7 @@ public final class LinkedHashSet_KeyIterator implements LibSLRuntime.Automaton, 
     }
 
     /**
-     * [CONSTRUCTOR] LinkedHashSet_KeyIteratorAutomaton::LinkedHashSet_KeyIterator(LinkedHashSet_KeyIterator, HashMap) -> LinkedHashSet_KeyIterator
+     * [CONSTRUCTOR] LinkedHashSet_KeyIteratorAutomaton::<init>(LinkedHashSet_KeyIterator, HashMap) -> void
      * Source: java/util/LinkedHashSet.KeyIterator.lsl:65
      */
     private LinkedHashSet_KeyIterator(HashMap source) {
@@ -119,7 +118,6 @@ public final class LinkedHashSet_KeyIterator implements LibSLRuntime.Automaton, 
             }
             final Object key = this.unseenKeys.anyKey();
             this.unseenKeys.remove(key);
-            Engine.assume(key != this.currentKey);
             this.currentKey = key;
             result = key;
             this.index += 1;
@@ -130,7 +128,7 @@ public final class LinkedHashSet_KeyIterator implements LibSLRuntime.Automaton, 
 
     /**
      * [FUNCTION] LinkedHashSet_KeyIteratorAutomaton::remove(LinkedHashSet_KeyIterator) -> void
-     * Source: java/util/LinkedHashSet.KeyIterator.lsl:106
+     * Source: java/util/LinkedHashSet.KeyIterator.lsl:105
      */
     public void remove() {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);
@@ -150,7 +148,7 @@ public final class LinkedHashSet_KeyIterator implements LibSLRuntime.Automaton, 
 
     /**
      * [FUNCTION] LinkedHashSet_KeyIteratorAutomaton::forEachRemaining(LinkedHashSet_KeyIterator, Consumer) -> void
-     * Source: java/util/LinkedHashSet.KeyIterator.lsl:126
+     * Source: java/util/LinkedHashSet.KeyIterator.lsl:125
      */
     public void forEachRemaining(Consumer userAction) {
         Engine.assume(this.__$lsl_state == __$lsl_States.Initialized);

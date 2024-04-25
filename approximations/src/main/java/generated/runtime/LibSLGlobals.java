@@ -6,177 +6,134 @@ package generated.runtime;
 
 import java.lang.Object;
 import java.lang.Void;
-import java.util.Optional;
-import java.util.OptionalDouble;
-import java.util.OptionalInt;
-import java.util.OptionalLong;
 import org.jacodb.approximation.annotation.Approximate;
 import org.usvm.api.Engine;
 
 @Approximate(runtime.LibSLGlobals.class)
 public final class LibSLGlobals {
     /**
-     * Source: java/io/Console.lsl:23
+     * Source: java/io/Console.lsl:22
      */
     public static final boolean CONSOLE_IS_TTY;
 
     /**
-     * Source: java/util/Optional.automata.lsl:21
-     */
-    public static final Optional EMPTY_OPTIONAL;
-
-    /**
-     * Source: java/util/OptionalDouble.automata.lsl:20
-     */
-    public static final OptionalDouble EMPTY_OPTIONAL_DOUBLE;
-
-    /**
-     * Source: java/util/OptionalInt.automata.lsl:20
-     */
-    public static final OptionalInt EMPTY_OPTIONAL_INT;
-
-    /**
-     * Source: java/util/OptionalLong.automata.lsl:20
-     */
-    public static final OptionalLong EMPTY_OPTIONAL_LONG;
-
-    /**
-     * Source: java/lang/Character.lsl:31
+     * Source: java/lang/Character.lsl:53
      */
     public static final int MAX_CODE_POINT;
 
     /**
-     * Source: java/util/Random.lsl:27
-     */
-    public static final int MAX_RANDOM_STREAM_SIZE;
-
-    /**
-     * Source: java/lang/Character.lsl:32
+     * Source: java/lang/Character.lsl:54
      */
     public static final int MIN_CODE_POINT;
 
     /**
-     * Source: java/lang/Character.lsl:34
+     * Source: java/lang/Character.lsl:56
      */
     public static final int MIN_HIGH_SURROGATE;
 
     /**
-     * Source: java/lang/Character.lsl:33
+     * Source: java/lang/Character.lsl:55
      */
     public static final int MIN_LOW_SURROGATE;
 
     /**
-     * Source: java/lang/Character.lsl:35
+     * Source: java/lang/Character.lsl:57
      */
     public static final int MIN_SUPPLEMENTARY_CODE_POINT;
 
     /**
-     * Source: java/lang/Object.lsl:26
+     * Source: java/util/Random.lsl:26
+     */
+    public static final int RANDOM_STREAM_SIZE_MAX;
+
+    /**
+     * Source: java/lang/Object.lsl:25
      */
     public static final Object SOMETHING;
 
     /**
-     * Source: java/util/Spliterator.lsl:43
+     * Source: java/util/Spliterator.lsl:42
      */
     public static final int SPLITERATOR_CONCURRENT;
 
     /**
-     * Source: java/util/Spliterator.lsl:37
+     * Source: java/util/Spliterator.lsl:36
      */
     public static final int SPLITERATOR_DISTINCT;
 
     /**
-     * Source: java/util/Spliterator.lsl:42
+     * Source: java/util/Spliterator.lsl:41
      */
     public static final int SPLITERATOR_IMMUTABLE;
 
     /**
-     * Source: java/util/Spliterator.lsl:41
+     * Source: java/util/Spliterator.lsl:40
      */
     public static final int SPLITERATOR_NONNULL;
 
     /**
-     * Source: java/util/Spliterator.lsl:39
+     * Source: java/util/Spliterator.lsl:38
      */
     public static final int SPLITERATOR_ORDERED;
 
     /**
-     * Source: java/util/Spliterator.lsl:40
+     * Source: java/util/Spliterator.lsl:39
      */
     public static final int SPLITERATOR_SIZED;
 
     /**
-     * Source: java/util/Spliterator.lsl:38
+     * Source: java/util/Spliterator.lsl:37
      */
     public static final int SPLITERATOR_SORTED;
 
     /**
-     * Source: java/util/Spliterator.lsl:44
+     * Source: java/util/Spliterator.lsl:43
      */
     public static final int SPLITERATOR_SUBSIZED;
 
     /**
-     * Source: java/lang/System.lsl:80
+     * Source: java/lang/System.lsl:79
      */
     public static final boolean SYSTEM_IS_MAC;
 
     /**
-     * Source: java/lang/System.lsl:81
+     * Source: java/lang/System.lsl:80
      */
     public static final boolean SYSTEM_IS_WINDOWS;
 
     /**
-     * Source: jdk/internal/misc/VM.lsl:43
+     * Source: jdk/internal/misc/VM.lsl:42
      */
     public static final int VM_JAVA_LANG_SYSTEM_INITED;
 
     /**
-     * Source: jdk/internal/misc/VM.lsl:44
+     * Source: jdk/internal/misc/VM.lsl:43
      */
     public static final int VM_MODULE_SYSTEM_INITED;
 
     /**
-     * Source: jdk/internal/misc/VM.lsl:46
+     * Source: jdk/internal/misc/VM.lsl:45
      */
     public static final int VM_SYSTEM_BOOTED;
 
     /**
-     * Source: jdk/internal/misc/VM.lsl:45
+     * Source: jdk/internal/misc/VM.lsl:44
      */
     public static final int VM_SYSTEM_LOADER_INITIALIZING;
 
     /**
-     * Source: jdk/internal/misc/VM.lsl:47
+     * Source: jdk/internal/misc/VM.lsl:46
      */
     public static final int VM_SYSTEM_SHUTDOWN;
 
     static {
         CONSOLE_IS_TTY = Engine.makeSymbolicBoolean();
-        EMPTY_OPTIONAL = (Optional) ((Object) new generated.java.util.Optional((Void) null, 
-                    /* state = */ generated.java.util.Optional.__$lsl_States.Initialized, 
-                    /* value = */ null
-                ));
-        EMPTY_OPTIONAL_DOUBLE = (OptionalDouble) ((Object) new generated.java.util.OptionalDouble((Void) null, 
-                    /* state = */ generated.java.util.OptionalDouble.__$lsl_States.Initialized, 
-                    /* value = */ 0.0d, 
-                    /* present = */ false
-                ));
-        EMPTY_OPTIONAL_INT = (OptionalInt) ((Object) new generated.java.util.OptionalInt((Void) null, 
-                    /* state = */ generated.java.util.OptionalInt.__$lsl_States.Initialized, 
-                    /* value = */ 0, 
-                    /* present = */ false
-                ));
-        EMPTY_OPTIONAL_LONG = (OptionalLong) ((Object) new generated.java.util.OptionalLong((Void) null, 
-                    /* state = */ generated.java.util.OptionalLong.__$lsl_States.Initialized, 
-                    /* value = */ 0L, 
-                    /* present = */ false
-                ));
         MAX_CODE_POINT = 1114111;
-        MAX_RANDOM_STREAM_SIZE = 100;
         MIN_CODE_POINT = 0;
         MIN_HIGH_SURROGATE = 55296;
         MIN_LOW_SURROGATE = 56320;
         MIN_SUPPLEMENTARY_CODE_POINT = 65536;
+        RANDOM_STREAM_SIZE_MAX = 100;
         SOMETHING = new java.lang.Object();
         SPLITERATOR_CONCURRENT = 4096;
         SPLITERATOR_DISTINCT = 1;

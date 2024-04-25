@@ -8,13 +8,13 @@ import org.usvm.api.decoder.DecoderApi;
 import org.usvm.api.decoder.DecoderFor;
 import org.usvm.api.decoder.ObjectData;
 import org.usvm.api.decoder.ObjectDecoder;
-import stub.libsl.utils.VoldInputStream;
+import stub.libsl.utils.VoidInputStream;
 
 import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings("ForLoopReplaceableByForEach")
-@DecoderFor(VoldInputStream.class)
+@DecoderFor(VoidInputStream.class)
 public final class InputStream$Void_Decoder implements ObjectDecoder {
     private volatile JcMethod cached_ByteArrayInputStream_ctor = null;
     private volatile JcType cached_bytes = null;
