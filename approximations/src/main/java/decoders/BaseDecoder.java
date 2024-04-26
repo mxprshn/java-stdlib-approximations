@@ -1,6 +1,6 @@
 package decoders;
 
-import org.jacodb.api.*;
+import org.jacodb.api.jvm.*;
 import org.usvm.api.decoder.DecoderApi;
 
 import java.util.ArrayList;

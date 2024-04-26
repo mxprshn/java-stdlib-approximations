@@ -1,6 +1,6 @@
 package decoders.java.util;
 
-import org.jacodb.api.*;
+import org.jacodb.api.jvm.*;
 import org.usvm.api.SymbolicMap;
 import org.usvm.api.decoder.DecoderApi;
 import org.usvm.api.decoder.DecoderFor;

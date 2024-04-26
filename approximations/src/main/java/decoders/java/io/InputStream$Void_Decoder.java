@@ -1,9 +1,9 @@
 package decoders.java.io;
 
-import org.jacodb.api.JcClassOrInterface;
-import org.jacodb.api.JcMethod;
-import org.jacodb.api.JcParameter;
-import org.jacodb.api.JcType;
+import org.jacodb.api.jvm.JcClassOrInterface;
+import org.jacodb.api.jvm.JcMethod;
+import org.jacodb.api.jvm.JcParameter;
+import org.jacodb.api.jvm.JcType;
 import org.usvm.api.decoder.DecoderApi;
 import org.usvm.api.decoder.DecoderFor;
 import org.usvm.api.decoder.ObjectData;

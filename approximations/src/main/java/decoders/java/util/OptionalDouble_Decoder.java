@@ -4,9 +4,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.OptionalDouble;
 
-import org.jacodb.api.JcClassOrInterface;
-import org.jacodb.api.JcField;
-import org.jacodb.api.JcMethod;
+import org.jacodb.api.jvm.JcClassOrInterface;
+import org.jacodb.api.jvm.JcField;
+import org.jacodb.api.jvm.JcMethod;
 import org.usvm.api.decoder.DecoderApi;
 import org.usvm.api.decoder.DecoderFor;
 import org.usvm.api.decoder.ObjectData;

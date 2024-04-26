@@ -5,11 +5,15 @@ plugins {
 
 repositories {
     mavenCentral()
+    maven("https://jitpack.io")
 }
 
+private val jacodbPackage = "com.github.UnitTestBot.jacodb"
+private val jacodbVersion = "890624770b" // jacodb neo branch
+
 dependencies {
-    compileOnly("org.jacodb:jacodb-api:1.4.0")
-    compileOnly("org.jacodb:jacodb-approximations:1.4.0")
+    compileOnly("$jacodbPackage:jacodb-api-jvm:$jacodbVersion")
+    compileOnly("$jacodbPackage:jacodb-approximations:$jacodbVersion")
     compileOnly(files(rootDir.resolve("usvm-api/usvm-api.jar")))
 }
 
