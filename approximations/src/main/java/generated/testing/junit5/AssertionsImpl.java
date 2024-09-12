@@ -1,15 +1,16 @@
 package generated.testing.junit5;
 
+import kotlin.Suppress;
 import org.apiguardian.api.API;
 import org.jacodb.approximation.annotation.Approximate;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.function.Executable;
 import org.opentest4j.AssertionFailedError;
 
 import java.util.Objects;
 import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
 
-import static org.apiguardian.api.API.Status.DEPRECATED;
 import static org.apiguardian.api.API.Status.STABLE;
 
 @Approximate(Assertions.class)
@@ -1171,5 +1172,53 @@ public class AssertionsImpl {
         if (!Objects.equals(expected, actual)) {
             throw new AssertionFailedError(messageSupplier.get());
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T extends Throwable> T assertThrows(Class<T> expectedType, Executable executable) throws Throwable {
+        try {
+            executable.execute();
+        } catch (Throwable actualException) {
+            if (expectedType.isInstance(actualException)) {
+                return (T) actualException;
+            }
+
+            throw actualException;
+            // Here is also a check for Out of memory error, but its omitted here
+        }
+
+        throw new AssertionFailedError();
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T extends Throwable> T assertThrows(Class<T> expectedType, Executable executable, String message) throws Throwable {
+        try {
+            executable.execute();
+        } catch (Throwable actualException) {
+            if (expectedType.isInstance(actualException)) {
+                return (T) actualException;
+            }
+
+            throw actualException;
+            // Here is also a check for Out of memory error, but its omitted here
+        }
+
+        throw new AssertionFailedError(message);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T extends Throwable> T assertThrows(Class<T> expectedType, Executable executable, Supplier<String> messageSupplier) throws Throwable {
+        try {
+            executable.execute();
+        } catch (Throwable actualException) {
+            if (expectedType.isInstance(actualException)) {
+                return (T) actualException;
+            }
+
+            throw actualException;
+            // Here is also a check for Out of memory error, but its omitted here
+        }
+
+        throw new AssertionFailedError(messageSupplier.get());
     }
 }
