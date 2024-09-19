@@ -7,10 +7,12 @@ import java.io.PrintStream;
 import java.lang.Object;
 import java.lang.SecurityManager;
 import java.lang.String;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
 import java.lang.System;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Test
 @SuppressWarnings({"unused", "UnnecessaryBoxing", "JavadocReference"})
@@ -92,34 +94,50 @@ public final class System_Tests {
     /**
      * {@link java.lang.System#clearProperty(String)}
      */
-    @Test(executionMax = 1)
+    @Test
     public static int test_clearProperty_0(final int execution) {
-        switch (execution) {
-            case 0: {
-                System.setProperty("abc.xyz", "321");
-                String oldValue = System.clearProperty("abc.xyz");
+        System.setProperty("abc.xyz", "321");
+        String oldValue = System.clearProperty("abc.xyz");
 
-                if (!"321".equals(oldValue))
-                    return -1;
-                break;
-            }
+        if (!"321".equals(oldValue))
+            return -1;
 
-            case 1: {
-                String oldValue = System.clearProperty("user.home");
-
-                if (oldValue == null)
-                    return -1;
-                break;
-            }
-
-            // TODO: more tests
-
-            default:
-                return 0;
-        }
-        return execution;
+        return 0;
     }
 
+    @Test
+    public static int test_clearProperty_1(final int execution) {
+        String oldValue = System.clearProperty("user.home");
+
+        if (oldValue == null)
+            return -1;
+
+        return 0;
+    }
+
+    @Test
+    public static int test_clearProperty_2(final int execution) {
+        String oldValue = System.clearProperty("file.encoding");
+
+        if (!oldValue.equals("Cp1251"))
+            return -1;
+
+        return 0;
+    }
+
+    @Test
+    public static int test_clearProperty_3(final int execution) {
+        String propKey = "abc.xyz";
+        System.setProperty(propKey, "321");
+        if (System.getProperty(propKey) == null) {
+            return -1;
+        }
+        System.clearProperty(propKey);
+        if (System.getProperty(propKey) != null) {
+            return -1;
+        }
+        return 0;
+    }
 
     /**
      * {@link java.lang.System#console()}
@@ -184,9 +202,27 @@ public final class System_Tests {
     /**
      * {@link java.lang.System#getProperties()}
      */
-    @Test(disabled = true)
+    @Test
     public static int test_getProperties_0(final int execution) {
-        return -1;
+        Properties properties = System.getProperties();
+        if (properties.getProperty("file.separator") == null) {
+            return -1;
+        }
+
+        return 0;
+    }
+
+    @Test
+    public static int test_getProperties_1(final int execution) {
+        Properties properties = System.getProperties();
+        if (properties.getProperty("file.separator") == null) {
+            return -1;
+        }
+        Properties newProperties = new Properties(properties);
+        if (newProperties.getProperty("file.separator") == null) {
+            return -1;
+        }
+        return 0;
     }
 
 
